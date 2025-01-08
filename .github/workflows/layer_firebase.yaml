@@ -1,4 +1,4 @@
-name: Run static code analysis and unit test for firebase layer module
+name: Firebase layer code quality validation
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,7 +19,19 @@ permissions:
   checks: write
 
 jobs:
-  layer_core:
+  setup_firebase_options:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/src/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+  validate_code_quality:
     uses: ./.github/workflows/_validate_layer.yaml
     with:
       module_path: './layer/firebase'

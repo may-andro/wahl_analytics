@@ -13,4 +13,5 @@ targets:
           explicit_to_json: true
         generate_for:
           - lib/src/feature/**/data/model/*.dart
+          - lib/src/feature/**/domain/entity/*.dart
           - layer/feature_flag/lib/src/data/model/*.dart

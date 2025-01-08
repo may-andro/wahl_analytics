@@ -1,4 +1,4 @@
-name: Run static code analysis and unit test for cache layer module
+name: Cache layer code quality validation
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,7 +19,7 @@ permissions:
   checks: write
 
 jobs:
-  layer_core:
+  validate_code_quality:
     uses: ./.github/workflows/_validate_layer.yaml
     with:
       module_path: './layer/cache'

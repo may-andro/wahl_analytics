@@ -41,9 +41,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/image/
-    - assets/lottie/
-    - assets/gif/
-    - assets/video/
   fonts:
     - family: CustomIcons
       fonts:
