@@ -1,0 +1,28 @@
+name: Run static code analysis and unit test for log reporter layer module
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*-review'
+      - '*-prod'
+    #paths:
+    #  - 'layers/core/**'
+    #  - '.github/workflows/layer_core.yaml'
+
+permissions:
+  checks: write
+
+jobs:
+  layer_core:
+    uses: ./.github/workflows/_validate_layer.yaml
+    with:
+      module_path: './layer/log_reporter'
+      should_run_golden_test: 'false'
+      has_build_runner: 'false'
+
