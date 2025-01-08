@@ -1,0 +1,276 @@
+{
+  "businessHours": "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday - Sunday: Closed",
+  "@businessHours": {
+    "description": "Business hours timings"
+  },
+  "businessHoursLabel": "Business Hours",
+  "@businessHoursLabel": {
+    "description": "Business Hours"
+  },
+  "callUs": "Call us",
+  "@callUs": {
+    "description": "Call us"
+  },
+  "careerPageFormDescription": "Share your experience and expertise with us. If your skills and background align with our needs, we’ll be in touch as soon as possible to discuss the next steps.",
+  "@careerPageFormDescription": {
+    "description": "Form description text on career page form"
+  },
+  "careerPageFormTitle": "Tell Us About Yourself",
+  "@careerPageFormTitle": {
+    "description": "Form title text on career page form"
+  },
+  "careerPageIntroDescription": "Explore flexible, remote-friendly opportunities and join our mission to make life simpler, more insightful, and more productive. Be part of a team that harnesses the power of data to drive smarter decisions and shape the future of innovation.",
+  "@careerPageIntroDescription": {
+    "description": "Description intro text on career page"
+  },
+  "careerPageIntroLabel": "Career at Wahl Analytics",
+  "@careerPageIntroLabel": {
+    "description": "Small intro label on career page"
+  },
+  "careerPageIntroTitle": "Work with us",
+  "@careerPageIntroTitle": {
+    "description": "Title intro text on career page"
+  },
+  "companyName": "Wahl Analytics",
+  "@companyName": {
+    "description": "Company name"
+  },
+  "contactInfoTitle": "Get in Touch with Us",
+  "@contactInfoTitle": {
+    "description": "Contact page intro title text"
+  },
+  "contactInfoDescription": "We’re here to help you unlock the full potential of data science and analytics. Whether you have questions, need more information, or are ready to start a project, reach out to us, and we’ll respond promptly.",
+  "@contactInfoDescription": {
+    "description": "Contact page intro description text"
+  },
+  "contactUs": "Contact us",
+  "@contactUs": {
+    "description": "Contact us"
+  },
+  "copyright": "©{year} All rights reserved by",
+  "@copyright": {
+    "description": "Cpyright text",
+    "placeholders": {
+      "year": {
+        "type": "String",
+        "example": "2024"
+      }
+    }
+  },
+  "countryFormFieldEmptyValidation": "The country seems to be empty",
+  "@countryFormFieldEmptyValidation": {
+    "description": "Form field validation error message when country is empty"
+  },
+  "countryFormFieldHint": "Spain",
+  "@countryFormFieldHint": {
+    "description": "Country form field hint"
+  },
+  "countryFormFieldInvalidValidation": "Please provide a valid country",
+  "@countryFormFieldInvalidValidation": {
+    "description": "Form field validation error when country is invalid"
+  },
+  "countryFormFieldLabel": "Country",
+  "@countryFormFieldLabel": {
+    "description": "Country form field label"
+  },
+  "countryFormFieldNotFoundValidation": "No country found",
+  "@countryFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no country is found"
+  },
+  "devModeTitle": "Developer Mode",
+  "@devModeTitle": {
+    "description": "Title for the dev mode authentication screen"
+  },
+  "devModeSubtitle": "You are one step away from unlocking the developer mode.",
+  "@devModeSubtitle": {
+    "description": "Subtitle for the dev mode authentication screen"
+  },
+  "devModeDescription": "Please add the 6 digit verification code sent to the email.",
+  "@devModeDescription": {
+    "description": "Description message for the dev mode authentication screen"
+  },
+  "emailFormFieldEmptyValidation": "The email seems to be empty",
+  "@emailFormFieldEmptyValidation": {
+    "description": "Form field validation error message when email is empty"
+  },
+  "emailFormFieldHint": "john@gmail.com",
+  "@emailFormFieldHint": {
+    "description": "Email form field hint"
+  },
+  "emailFormFieldInvalidValidation": "Please provide a valid email",
+  "@emailFormFieldInvalidValidation": {
+    "description": "Form field validation error when email is invalid"
+  },
+  "emailFormFieldLabel": "Email",
+  "@emailFormFieldLabel": {
+    "description": "Email form field label"
+  },
+  "emailFormFieldNotFoundValidation": "No email found",
+  "@emailFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no email is found"
+  },
+  "footerLocationLabel": "Servicing clients worldwide",
+  "@footerLocationLabel": {
+    "description": "The general location label above address in the home footer"
+  },
+  "messageFormFieldHint": "Tell us what excites you",
+  "@messageFormFieldHint": {
+    "description": "Career message form field hint"
+  },
+  "messageFormFieldInvalidValidation": "Invalid message, please remove any special characters and less than 500 characters",
+  "@messageFormFieldInvalidValidation": {
+    "description": "Form field validation error when message is invalid"
+  },
+  "messageFormFieldLabel": "Message",
+  "@messageFormFieldLabel": {
+    "description": "Career message form field label"
+  },
+  "nameFormFieldEmptyValidation": "The name seems to be empty",
+  "@nameFormFieldEmptyValidation": {
+    "description": "Form field validation error message when name is empty"
+  },
+  "nameFormFieldHint": "John Doe",
+  "@nameFormFieldHint": {
+    "description": "Name form field hint"
+  },
+  "nameFormFieldInvalidValidation": "Please provide a valid name",
+  "@nameFormFieldInvalidValidation": {
+    "description": "Form field validation error when name is invalid"
+  },
+  "nameFormFieldLabel": "Name",
+  "@nameFormFieldLabel": {
+    "description": "Name form field label"
+  },
+  "nameFormFieldNotFoundValidation": "No name found",
+  "@nameFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no name is found"
+  },
+  "location": "Location",
+  "@location": {
+    "description": "location"
+  },
+  "resumeFormFieldButton": "Add Resume",
+  "@resumeFormFieldButton": {
+    "description": "Resume form field button text"
+  },
+  "resumeFormFieldFileTooBig": "Please upload a file within 500kb",
+  "@resumeFormFieldFileTooBig": {
+    "description": "Form field validation error when file upload is failed due to large size"
+  },
+  "resumeFormFieldGeneralValidation": "A good resume will make the process faster",
+  "@resumeFormFieldFileUnknownFailure": {
+    "description": "Form field validation general error for resume upload"
+  },
+  "resumeFormFieldLabel": "Resume",
+  "@resumeFormFieldLabel": {
+    "description": "Resume form field button label"
+  },
+  "resumeFormFieldUploadFailed": "File could not be uploaded, please upload another file or try later",
+  "@resumeFormFieldUploadFailed": {
+    "description": "Form field validation error when file upload is failed"
+  },
+  "roleFormFieldEmptyValidation": "The role seems to be empty",
+  "@roleFormFieldEmptyValidation": {
+    "description": "Form field validation error message when role is empty"
+  },
+  "roleFormFieldHint": "Senior Business Analyst",
+  "@roleFormFieldHint": {
+    "description": "Job position form field hint"
+  },
+  "roleFormFieldInvalidValidation": "Please provide a valid role",
+  "@roleFormFieldInvalidValidation": {
+    "description": "Form field validation error when role is invalid"
+  },
+  "roleFormFieldLabel": "Applying for role",
+  "@roleFormFieldLabel": {
+    "description": "Job position form field label"
+  },
+  "roleFormFieldNotFoundValidation": "No role data found",
+  "@roleFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no role is found"
+  },
+  "routeNotFoundButton": "Go to Home",
+  "@routeNotFoundButton": {
+    "description": "Button label for route not found screen"
+  },
+  "routeNotFoundMessage": "Oops! The page you are looking for\\nis not found.",
+  "@routeNotFoundMessage": {
+    "description": "Error message for route not found screen"
+  },
+  "routeNotFoundTitle": "Page Not Found",
+  "@routeNotFoundTitle": {
+    "description": "Title error for route not found screen"
+  },
+  "splashProdMessage": "Warming up the engine...",
+  "@splashProdMessage": {
+    "description": "Splash message for loading status"
+  },
+  "splashStagingWarmupMessage": "Warming up the app 🔥",
+  "@splashStagingWarmupMessage": {
+    "description": "Splash message when DI has started"
+  },
+  "splashStagingFetchMessage": "Fetching all dependencies ⬇️",
+  "@splashStagingFetchMessage": {
+    "description": "Splash message when DI is registering"
+  },
+  "splashStagingRegisterMessage": "Registering the services 🎯",
+  "@splashStagingRegisterMessage": {
+    "description": "Splash message post DI registering"
+  },
+  "splashStagingDoneMessage": "Setup is finished 🚀",
+  "@splashStagingDoneMessage": {
+    "description": "Splash message when the DI is done"
+  },
+  "splashErrorTitle": "We have encountered an issue during the setup 😵‍💫💻",
+  "@splashErrorTitle": {
+    "description": "Splash error title"
+  },
+  "splashErrorMessage": "Please restart the app again or try later. If the issue persists",
+  "@splashErrorMessage": {
+    "description": "Splash error title"
+  },
+  "splashContactSupport": "contact support",
+  "@splashContactSupport": {
+    "description": "contact support"
+  },
+  "submitButton": "Submit",
+  "@submitButton": {
+    "description": "submit button text"
+  },
+  "userDataConsentCheckboxLabel": "I hereby give my consent to the Wahl Analytics to process my personal data contained in the application documents for the purpose of using my application in future recruitment processes.",
+  "@userDataConsentCheckboxLabel": {
+    "description": "user data consent checkbox text"
+  },
+  "userDataConsentNotFound": "We need the consent for processing your private data",
+  "@userDataConsentNotFound": {
+    "description": "No consent found for data processing"
+  },
+  "userDataConsentTitle": "Consent to the processing of personal data in future recruitment processes",
+  "@userDataConsentTitle": {
+    "description": "user data consent text"
+  },
+  "verificationCodeFormFieldEmptyValidation": "The code seems to be empty",
+  "@verificationCodeFormFieldEmptyValidation": {
+    "description": "Form field validation error message when verification code is empty"
+  },
+  "verificationCodeFormFieldInvalidValidation": "Verification code is invalid",
+  "@verificationCodeFormFieldInvalidValidation": {
+    "description": "Form field validation error when verification code is invalid"
+  },
+  "verificationCodeFormFieldLabel": "Verification Code",
+  "@verificationCodeFormFieldLabel": {
+    "description": "Verification code form field label"
+  },
+  "verificationCodeFormFieldNotFoundValidation": "No verification code found",
+  "@verificationCodeFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no verification is found"
+  },
+  "verificationCodeExpired": "Validation code has expired, please try later",
+  "@verificationCodeExpired": {
+    "description": "Validation code expired message"
+  },
+  "verificationCodeUnknownFailure": "Failed to verify the code at the moment, please try later",
+  "@verificationCodeUnknownFailure": {
+    "description": "Validation code unknown failure message"
+  }
+}

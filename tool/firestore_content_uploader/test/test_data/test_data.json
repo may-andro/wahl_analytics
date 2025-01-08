@@ -1,0 +1,16 @@
+{
+  "stringKey": "stringValue",
+  "intKey": 42,
+  "boolKey": true,
+  "listKey": [
+    "item1",
+    {
+      "nestedKey": "nestedValue"
+    },
+    99
+  ],
+  "mapKey": {
+    "nestedString": "nestedValue",
+    "nestedInt": 100
+  }
+}

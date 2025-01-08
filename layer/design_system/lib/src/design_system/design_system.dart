@@ -1,0 +1,3 @@
+enum DesignSystem {
+  primary,
+}

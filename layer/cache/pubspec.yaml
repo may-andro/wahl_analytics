@@ -1,0 +1,27 @@
+name: cache
+description: "Provides cache capabilities for the app"
+publish_to: 'none'
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  dependency_injection:
+    path: ../dependency_injection
+  error_reporter:
+    path: ../error_reporter
+  flutter:
+    sdk: flutter
+  meta: ^1.15.0
+  path: ^1.9.0
+  shared_preferences: ^2.3.5
+  sqflite: ^2.4.1
+  sqflite_common_ffi_web: 0.4.5+4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  sqflite_common_ffi: ^2.3.4+4

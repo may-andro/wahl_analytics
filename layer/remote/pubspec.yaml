@@ -1,0 +1,25 @@
+name: remote
+description: Provides all remote service for apis for the app
+publish_to: 'none'
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  dependency_injection:
+    path: ../dependency_injection
+  dio: ^5.7.0
+  dio_smart_retry: ^7.0.1
+  flutter:
+    sdk: flutter
+  log_reporter:
+    path: ../log_reporter
+  pretty_dio_logger: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  http_mock_adapter: ^0.6.1
+  mocktail: ^1.0.2

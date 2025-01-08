@@ -1,0 +1,22 @@
+name: use_case
+description: Provides base classes for making use cases for the app
+publish_to: 'none'
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  dependency_injection:
+    path: ../dependency_injection
+  either_dart: ^1.0.0
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  meta: ^1.15.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.2

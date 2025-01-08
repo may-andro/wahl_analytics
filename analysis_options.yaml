@@ -1,0 +1,44 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    unawaited_futures: true
+    sort_constructors_first: true
+    use_key_in_widget_constructors: true
+    use_super_parameters: true
+    use_colored_box: true
+    use_decorated_box: true
+    no_leading_underscores_for_local_identifiers: true
+    require_trailing_commas: true
+    flutter_style_todos: true
+
+analyzer:
+  plugins:
+    - custom_lint
+  language:
+    strict-raw-types: true
+    strict-inference: true
+    strict-casts: true
+  errors:
+    # By default, it's info level, we want warnings.
+    await_only_futures: warning
+    # Candidate for removal, but need to be careful when renaming enums.
+    # In some parts of the code, we didn't use Dart naming conventions for
+    # constant identifiers.
+    constant_identifier_names: ignore
+    # In mock methods, we use positional bool parameters very often (100+ cases).
+    avoid_positional_boolean_parameters: ignore
+    # Candidate for removal.
+    # For most cases, the code would be clearer after clean up.
+    parameter_assignments: ignore
+    # In the repository query/mutation strings, in regexes, and in test JSONs,
+    # we used raw strings often even if we didn't need them yet.
+    unnecessary_raw_strings: ignore
+
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.gen.dart'
+
+
