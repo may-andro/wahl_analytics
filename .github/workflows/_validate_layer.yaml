@@ -14,8 +14,8 @@ on:
         required: true
 
 env:
-  DART_SDK_VERSION: 3.4.3
-  FLUTTER_VERSION: 3.22.2
+  DART_SDK_VERSION: 3.6.0
+  FLUTTER_VERSION: 3.27.1
 
 jobs:
   setup:
