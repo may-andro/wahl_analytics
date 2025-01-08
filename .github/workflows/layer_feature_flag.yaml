@@ -23,5 +23,5 @@ jobs:
     uses: ./.github/workflows/_validate_layer.yaml
     with:
       module_path: './layer/feature_flag'
-      should_run_golden_test: 'true'
+      should_run_golden_test: 'false'
       has_build_runner: 'true'

@@ -27,7 +27,7 @@ jobs:
 
       - name: Decode Firebase Options
         run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/src/firebase_options.dart
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > layer/firebase/lib/src/firebase_options.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
