@@ -1,0 +1,98 @@
+name: Analyze and Test Layer Module
+
+on:
+  workflow_call:
+    inputs:
+      module_path:
+        type: string
+        required: true
+      has_build_runner:
+        type: string
+        required: true
+      should_run_golden_test:
+        type: string
+        required: true
+
+env:
+  DART_SDK_VERSION: 3.4.3
+  FLUTTER_VERSION: 3.22.2
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      runner: ${{ steps.runner.outputs.runner }}
+    steps:
+      - name: Find runner
+        id: runner
+        run: |
+          if [ ${{ inputs.should_run_golden_test }} == 'false' ]; then
+            echo "runner=ubuntu-latest" >> $GITHUB_OUTPUT
+          else
+            echo "runner=macos-latest" >> $GITHUB_OUTPUT
+          fi
+
+  analyze-module:
+    name: Analyze module
+    needs: [ setup ]
+    runs-on: ${{ needs.setup.outputs.runner }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.module_path }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup dart environment
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ env.DART_SDK_VERSION }}
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.16.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Get dart dependencies
+        run: flutter pub get
+
+      - name: Format the Dart code
+        run: dart format . --set-exit-if-changed
+
+      - name: Run code generators
+        if: inputs.has_build_runner == 'true'
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Get dart dependencies
+        if: inputs.has_build_runner == 'false'
+        run: flutter pub get
+
+      - name: Statically analyze the Dart code
+        run: flutter analyze
+
+      - name: Run unit tests
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.json
+          reporter: flutter-json
+          working-directory: ${{ inputs.module_path }}
+
+      - name: Run golden tests
+        run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json
+        if: inputs.should_run_golden_test == 'true'
+
+      - name: Generate golden test report
+        uses: dorny/test-reporter@v1
+        if: always() && inputs.should_run_golden_test == 'true'
+        with:
+          name: Golden Test Results
+          path: test-results-golden.json
+          reporter: flutter-json
+          working-directory: ${{ inputs.module_path }}
