@@ -33,7 +33,7 @@ jobs:
           fi
 
   analyze-module:
-    name: Analyze module
+    name: Format, Analyze, and Test module
     needs: [ setup ]
     runs-on: ${{ needs.setup.outputs.runner }}
     defaults:
@@ -49,7 +49,7 @@ jobs:
           sdk: ${{ env.DART_SDK_VERSION }}
 
       - name: Setup the flutter environment
-        uses: subosito/flutter-action@v2.16.0
+        uses: subosito/flutter-action@v2.18.0
         with:
           flutter-version: ${{env.FLUTTER_VERSION}}
           channel: stable
@@ -73,7 +73,7 @@ jobs:
         run: flutter analyze
 
       - name: Run unit tests
-        run: flutter test --exclude-tags golden --coverage --machine > test-results.json
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
 
       - name: Generate test report
         uses: dorny/test-reporter@v1
@@ -85,7 +85,7 @@ jobs:
           working-directory: ${{ inputs.module_path }}
 
       - name: Run golden tests
-        run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json
+        run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json  --no-pub
         if: inputs.should_run_golden_test == 'true'
 
       - name: Generate golden test report
