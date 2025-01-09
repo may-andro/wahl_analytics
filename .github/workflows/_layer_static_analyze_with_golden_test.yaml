@@ -17,7 +17,7 @@ env:
 jobs:
   analyze-module:
     name: Format, Analyze, and Test module
-    runs-on: macos-14
+    runs-on: macos-15
     defaults:
       run:
         working-directory: ${{ inputs.module_path }}
