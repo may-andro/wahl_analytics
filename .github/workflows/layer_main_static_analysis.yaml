@@ -62,7 +62,7 @@ jobs:
         run: dart format . --set-exit-if-changed
 
       - name: Run code generator
-        run: melos gen --no-select
+        run: melos gen_app --no-select
 
       - name: Statically analyze the code
         run: flutter analyze

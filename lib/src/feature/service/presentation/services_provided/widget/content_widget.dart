@@ -67,18 +67,3 @@ class ContentWidget extends StatelessWidget {
     );
   }
 }
-
-class _ItemWidget extends StatelessWidget {
-  const _ItemWidget({required this.serviceEntity});
-
-  final ServiceEntity serviceEntity;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: context.colorPalette.background.primary.color,
-      padding: EdgeInsets.symmetric(vertical: context.space(factor: 5)),
-      child: const Stack(),
-    );
-  }
-}
