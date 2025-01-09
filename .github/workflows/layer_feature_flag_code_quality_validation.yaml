@@ -1,4 +1,4 @@
-name: Remote layer code quality validation
+name: Feature Flag layer code quality validation
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -11,17 +11,16 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
-    paths:
-      - 'layers/remote/**'
-      - '.github/workflows/layer_remote.yaml'
+    #paths:
+    #  - 'layer/feature_flag/**'
+    #  - '.github/workflows/layer_feature_flag_code_quality_validation.yaml'
 
 permissions:
   checks: write
 
 jobs:
-  validate_code_quality:
+  layer_feature_flag_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
-      module_path: './layer/remote'
-      has_build_runner: 'false'
-
+      module_path: './layer/feature_flag'
+      has_build_runner: 'true'
