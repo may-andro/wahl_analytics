@@ -37,9 +37,8 @@ jobs:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
   validate_code_quality:
-    uses: ./.github/workflows/_validate_layer.yaml
+    uses: ./.github/workflows/_static_analyze_layer_with_test.yaml
     with:
       module_path: './layer/firebase'
-      should_run_golden_test: 'false'
       has_build_runner: 'false'
 

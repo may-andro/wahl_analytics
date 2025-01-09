@@ -1,0 +1,79 @@
+name: Analyze and test layer module with golden test
+
+on:
+  workflow_call:
+    inputs:
+      module_path:
+        type: string
+        required: true
+      has_build_runner:
+        type: string
+        required: true
+
+env:
+  DART_SDK_VERSION: 3.6.0
+  FLUTTER_VERSION: 3.27.1
+
+jobs:
+  analyze-module:
+    name: Format, Analyze, and Test module
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.module_path }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup dart environment
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ env.DART_SDK_VERSION }}
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Get dart dependencies
+        run: flutter pub get
+
+      - name: Format the Dart code
+        run: dart format . --set-exit-if-changed
+
+      - name: Run code generators
+        if: inputs.has_build_runner == 'true'
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Get dart dependencies
+        if: inputs.has_build_runner == 'false'
+        run: flutter pub get
+
+      - name: Statically analyze the Dart code
+        run: flutter analyze
+
+      - name: Run unit tests
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.json
+          reporter: flutter-json
+          working-directory: ${{ inputs.module_path }}
+
+      - name: Run golden tests
+        run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json  --no-pub
+
+      - name: Generate golden test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Golden Test Results
+          path: test-results-golden.json
+          reporter: flutter-json
+          working-directory: ${{ inputs.module_path }}

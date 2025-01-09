@@ -20,8 +20,7 @@ permissions:
 
 jobs:
   validate_code_quality:
-    uses: ./.github/workflows/_validate_layer.yaml
+    uses: ./.github/workflows/_static_analyze_layer_with_test.yaml
     with:
       module_path: './layer/dependency_injection'
-      should_run_golden_test: 'false'
       has_build_runner: 'false'

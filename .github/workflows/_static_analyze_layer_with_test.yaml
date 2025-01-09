@@ -9,33 +9,15 @@ on:
       has_build_runner:
         type: string
         required: true
-      should_run_golden_test:
-        type: string
-        required: true
 
 env:
   DART_SDK_VERSION: 3.6.0
   FLUTTER_VERSION: 3.27.1
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      runner: ${{ steps.runner.outputs.runner }}
-    steps:
-      - name: Find runner
-        id: runner
-        run: |
-          if [ ${{ inputs.should_run_golden_test }} == 'false' ]; then
-            echo "runner=ubuntu-latest" >> $GITHUB_OUTPUT
-          else
-            echo "runner=macos-latest" >> $GITHUB_OUTPUT
-          fi
-
   analyze-module:
     name: Format, Analyze, and Test module
-    needs: [ setup ]
-    runs-on: ${{ needs.setup.outputs.runner }}
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ${{ inputs.module_path }}
@@ -81,18 +63,5 @@ jobs:
         with:
           name: Test Results
           path: test-results.json
-          reporter: flutter-json
-          working-directory: ${{ inputs.module_path }}
-
-      - name: Run golden tests
-        run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json  --no-pub
-        if: inputs.should_run_golden_test == 'true'
-
-      - name: Generate golden test report
-        uses: dorny/test-reporter@v1
-        if: always() && inputs.should_run_golden_test == 'true'
-        with:
-          name: Golden Test Results
-          path: test-results-golden.json
           reporter: flutter-json
           working-directory: ${{ inputs.module_path }}
