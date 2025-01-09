@@ -11,9 +11,9 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
-    #paths:
-    #  - 'layers/core/**'
-    #  - '.github/workflows/layer_core.yaml'
+    paths:
+      - 'layers/core/**'
+      - '.github/workflows/layer_use_case.yaml'
 
 permissions:
   checks: write

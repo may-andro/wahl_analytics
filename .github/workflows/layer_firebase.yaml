@@ -43,13 +43,13 @@ jobs:
 
       - name: Decode Firebase Options
         run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > layer/firebase/lib/src/firebase_options.dart
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/src/firebase_options.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
       - name: Decode App Check Token
         run: |
-          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > layer/firebase/lib/src/app_check/token.dart
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
@@ -59,12 +59,7 @@ jobs:
       - name: Format the Dart code
         run: dart format . --set-exit-if-changed
 
-      - name: Run code generators
-        if: inputs.has_build_runner == 'true'
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
       - name: Get dart dependencies
-        if: inputs.has_build_runner == 'false'
         run: flutter pub get
 
       - name: Statically analyze the Dart code
