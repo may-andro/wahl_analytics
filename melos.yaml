@@ -172,6 +172,16 @@ scripts:
     packageFilters:
       flutter: true
 
+  # CI Helper commands
+  test_with_coverage:
+    run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
+    description: Run all the test with coverage
+    exec:
+      concurrency: 1
+    packageFilters:
+      flutter: true
+      dirExists: test
+
   # Firebase hosting
   host_web:
     run: |

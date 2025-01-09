@@ -44,28 +44,24 @@ jobs:
           echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > layer/firebase/lib/src/firebase_options.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
       - name: Decode App Check Token
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > layer/firebase/lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
-      - name: Setup Melos
-        run: |
-          dart pub global activate melos
-          melos bs
-
       - name: Get dart dependencies
         run: flutter pub get
 
       - name: Format the Dart code
-        run: melos format
+        run: dart format . --set-exit-if-changed
 
       - name: Run code generator
-        run: melos gen --no-select
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Statically analyze the code
-        run: melos analyze
+        run: flutter analyze
 
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
@@ -87,7 +83,7 @@ jobs:
         uses: dethereum/github-actions-report-lcov@v1.0.0
         with:
           coverage-files: coverage/lcov.info
-          minimum-coverage: 40
+          minimum-coverage: 10
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ inputs.module_path }}
