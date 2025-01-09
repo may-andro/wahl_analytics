@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   validate_code_quality:
-    uses: ./.github/workflows/_static_analyze_layer_with_golden_test.yaml
+    uses: ./.github/workflows/_layer_static_analyze_with_golden_test.yaml
     with:
       module_path: './layer/design_system'
       has_build_runner: 'true'

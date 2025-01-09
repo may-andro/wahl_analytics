@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   validate_code_quality:
-    uses: ./.github/workflows/_static_analyze_layer_with_test.yaml
+    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
       module_path: './layer/feature_flag'
       has_build_runner: 'true'

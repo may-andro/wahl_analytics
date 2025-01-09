@@ -1,4 +1,4 @@
-name: Analyze and test layer module with golden test
+name: Analyze and golden test layer module
 
 on:
   workflow_call:

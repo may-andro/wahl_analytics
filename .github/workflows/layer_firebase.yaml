@@ -28,17 +28,13 @@ jobs:
       - name: Decode Firebase Options
         run: |
           echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > layer/firebase/lib/src/firebase_options.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-      - name: Decode App Check Token
-        run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > layer/firebase/lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+          APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
-  validate_code_quality:
-    uses: ./.github/workflows/_static_analyze_layer_with_test.yaml
-    with:
-      module_path: './layer/firebase'
-      has_build_runner: 'false'
-
+      - name: Call Reusable Workflow
+        uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
+        with:
+          module_path: './layer/firebase'
+          has_build_runner: 'false'
