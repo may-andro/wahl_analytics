@@ -65,7 +65,7 @@ jobs:
         run: melos gen_app --no-select
 
       - name: Statically analyze the code
-        run: melos exec --scope="wahl_analytics" -- flutter analyze
+        run: flutter analyze
 
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub

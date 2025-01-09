@@ -192,14 +192,6 @@ scripts:
       ignore:
         - storybook
 
-  analyze_main_lib:
-    run: flutter analyze
-    description: Run `flutter analyze` in all packages.
-    exec:
-      concurrency: 1
-    packageFilters:
-      path: ./
-
 
   # Firebase hosting
   host_web:
