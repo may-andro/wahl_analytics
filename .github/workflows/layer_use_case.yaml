@@ -12,7 +12,7 @@ on:
       - '*-review'
       - '*-prod'
     paths:
-      - 'layers/core/**'
+      - 'layers/use_case/**'
       - '.github/workflows/layer_use_case.yaml'
 
 permissions:

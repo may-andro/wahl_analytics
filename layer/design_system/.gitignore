@@ -27,3 +27,8 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 build/
+
+# don't check in alchemist golden failure output
+test/**/goldens/**/*.*
+test/**/failures/**/*.*
+!test/**/goldens/ci/*.*

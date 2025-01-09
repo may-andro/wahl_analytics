@@ -12,8 +12,8 @@ on:
       - '*-review'
       - '*-prod'
     #paths:
-    #  - 'layers/core/**'
-    #  - '.github/workflows/layer_core.yaml'
+    #  - 'layers/design_system/**'
+    #  - '.github/workflows/layer_design_system.yaml'
 
 permissions:
   checks: write

@@ -12,7 +12,7 @@ on:
       - '*-review'
       - '*-prod'
     paths:
-      - 'layers/core/**'
+      - 'layers/log_reporter/**'
       - '.github/workflows/layer_log_reporter.yaml'
 
 permissions:

@@ -57,6 +57,7 @@ pubspec_overrides.yaml
 /index.html
 widget_tests.xml
 test-results.json
+test-results-golden.json
 
 # build_runner generated files
 **.g.dart

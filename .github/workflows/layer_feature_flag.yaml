@@ -12,8 +12,8 @@ on:
       - '*-review'
       - '*-prod'
     #paths:
-    #  - 'layers/core/**'
-    #  - '.github/workflows/layer_core.yaml'
+    #  - 'layers/feature_flag/**'
+    #  - '.github/workflows/layer_feature_flag.yaml'
 
 permissions:
   checks: write

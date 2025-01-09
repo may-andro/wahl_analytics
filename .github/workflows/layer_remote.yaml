@@ -12,7 +12,7 @@ on:
       - '*-review'
       - '*-prod'
     paths:
-      - 'layers/core/**'
+      - 'layers/remote/**'
       - '.github/workflows/layer_remote.yaml'
 
 permissions:
