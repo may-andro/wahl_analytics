@@ -51,6 +51,10 @@ jobs:
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
+      - name: Setup Melos
+        run: |
+          dart pub global activate melos
+
       - name: Get dart dependencies
         run: flutter pub get
 
@@ -58,7 +62,7 @@ jobs:
         run: dart format . --set-exit-if-changed
 
       - name: Run code generator
-        run: flutter pub run build_runner build --delete-conflicting-outputs
+        run: melos gen --no-select
 
       - name: Statically analyze the code
         run: flutter analyze
