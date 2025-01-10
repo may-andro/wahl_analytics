@@ -66,7 +66,6 @@ void groupGolden(
       'on $brightness with $designSystem',
       fileName: '${widgetUnderTest.snakeCase}_'
           '${label == null ? '' : '${label.snakeCase.replaceAll(' ', '')}_'}'
-          '${designSystem.title.toLowerCase().snakeCase..replaceAll(' ', '')}_'
           '${brightness.title.toLowerCase().snakeCase..replaceAll(' ', '')}',
       pumpBeforeTest: precacheImages,
       builder: () => GoldenTestGroup(
@@ -118,15 +117,6 @@ extension on Brightness {
         return 'Dark Mode';
       case Brightness.light:
         return 'Light Mode';
-    }
-  }
-}
-
-extension on DesignSystem {
-  String get title {
-    switch (this) {
-      case DesignSystem.primary:
-        return 'Theme Primary';
     }
   }
 }

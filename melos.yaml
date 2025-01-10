@@ -125,6 +125,14 @@ scripts:
     packageFilters:
       dependsOn: alchemist
 
+  golden_test_in_ci:
+    run: flutter test --tags golden --dart-define=CI=true
+    description: Run `golden` tests in all packages.
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: alchemist
+
   # Splash command
   gen_splash:
     run: |
