@@ -1,4 +1,4 @@
-name: Use Case layer code quality validation
+name: Log Reporter layer code quality validation
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,17 +12,17 @@ on:
       - '*-review'
       - '*-prod'
     paths:
-      - 'layer/use_case/**'
-      - '.github/workflows/layer_use_case_quality_validation.yaml'
+      - 'layer/log_reporter/**'
+      - '.github/workflows/layer_log_reporter_code_quality_validation.yaml'
       - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
 
 jobs:
-  layer_use_case_quality_validation:
+  layer_log_reporter_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
-      module_path: './layer/use_case'
+      module_path: './layer/log_reporter'
       has_build_runner: 'false'
 

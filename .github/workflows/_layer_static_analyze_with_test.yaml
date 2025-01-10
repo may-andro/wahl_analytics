@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./layer/${{ inputs.module_path }}
+        working-directory: ${{ inputs.module_path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,13 +39,13 @@ jobs:
 
       - name: Decode Firebase Options
         run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ../firebase/lib/src/firebase_options.dart
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
       - name: Decode App Check Token
         run: |
-          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ../firebase/lib/src/app_check/token.dart
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
@@ -81,4 +81,4 @@ jobs:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
-          working-directory: ./layer/${{ inputs.module_path }}
+          working-directory: ${{ inputs.module_path }}

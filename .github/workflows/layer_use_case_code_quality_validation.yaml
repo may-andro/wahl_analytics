@@ -1,4 +1,4 @@
-name: Remote layer code quality validation
+name: Use Case layer code quality validation
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,17 +12,17 @@ on:
       - '*-review'
       - '*-prod'
     paths:
-      - 'layer/remote/**'
-      - '.github/workflows/layer_remote_quality_validation.yaml'
+      - 'layer/use_case/**'
+      - '.github/workflows/layer_use_case_code_quality_validation.yaml'
       - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
 
 jobs:
-  layer_remote_quality_validation:
+  layer_use_case_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
-      module_path: './layer/remote'
+      module_path: './layer/use_case'
       has_build_runner: 'false'
 
