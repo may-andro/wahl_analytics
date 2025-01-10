@@ -23,5 +23,5 @@ jobs:
   layer_design_system_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_golden_test.yaml
     with:
-      module_path: './layer/design_system'
+      module_name: 'design_system'
       has_build_runner: 'true'
