@@ -38,11 +38,6 @@ jobs:
         env:
           APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
-      - name: Check working directory
-        run: |
-          echo "Current directory: $PWD"
-          echo "Workspace: ${{ github.workspace }}"
-
       - name: Setup Melos
         run: |
           dart pub global activate melos

@@ -25,3 +25,6 @@ jobs:
     with:
       module_path: './layer/dependency_injection'
       has_build_runner: 'false'
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
