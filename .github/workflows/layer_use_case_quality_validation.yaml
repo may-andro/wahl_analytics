@@ -14,6 +14,7 @@ on:
     paths:
       - 'layer/use_case/**'
       - '.github/workflows/layer_use_case_quality_validation.yaml'
+      - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write

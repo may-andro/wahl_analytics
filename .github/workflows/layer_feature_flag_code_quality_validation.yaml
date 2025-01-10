@@ -18,6 +18,10 @@ on:
 permissions:
   checks: write
 
+env:
+  DART_SDK_VERSION: 3.6.0
+  FLUTTER_VERSION: 3.27.1
+
 #jobs:
 #  layer_feature_flag_code_quality_validation:
 #    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml

@@ -14,6 +14,7 @@ on:
     paths:
       - 'layer/design_system/**'
       - '.github/workflows/layer_design_system_code_quality_validation.yaml'
+      - '.github/workflows/_layer_static_analyze_with_golden_test.yaml'
 
 permissions:
   checks: write
