@@ -14,7 +14,6 @@ on:
     paths:
       - 'layer/cache/**'
       - '.github/workflows/layer_cache_code_quality_validation.yaml'
-      - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
