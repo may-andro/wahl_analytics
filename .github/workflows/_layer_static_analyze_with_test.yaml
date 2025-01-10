@@ -18,6 +18,9 @@ jobs:
   analyze-module:
     name: Format, Analyze, and Test module
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.module_path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,13 +39,13 @@ jobs:
 
       - name: Decode Firebase Options
         run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/src/firebase_options.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
       - name: Decode App Check Token
         run: |
-          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
@@ -50,24 +53,16 @@ jobs:
         run: |
           echo "Current directory: $PWD"
           echo "Workspace: ${{ github.workspace }}"
-          echo "Module Path: ${{ inputs.module_path }}"
 
       - name: Get dart dependencies
         run: flutter pub get
-        working-directory: ${{ github.workspace }}/layer/firebase
-
-      - name: Get dart dependencies
-        run: flutter pub get
-        working-directory: ${{ inputs.module_path }}
 
       - name: Format the Dart code
         run: dart format . --set-exit-if-changed
-        working-directory: ${{ inputs.module_path }}
 
       - name: Run code generators
         if: inputs.has_build_runner == 'true'
         run: flutter pub run build_runner build --delete-conflicting-outputs
-        working-directory: ${{ inputs.module_path }}
 
       - name: Get dart dependencies
         if: inputs.has_build_runner == 'false'
@@ -75,11 +70,9 @@ jobs:
 
       - name: Statically analyze the Dart code
         run: flutter analyze
-        working-directory: ${{ inputs.module_path }}
 
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
-        working-directory: ${{ inputs.module_path }}
 
       - name: Generate test report
         uses: dorny/test-reporter@v1
