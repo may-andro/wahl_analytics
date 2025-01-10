@@ -19,6 +19,15 @@ permissions:
   checks: write
 
 jobs:
+  layer_cache_code_quality_validation1:
+    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
+    with:
+      module_path: './layer/cache'
+      has_build_runner: 'false'
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+
   layer_cache_code_quality_validation:
     name: Format, Analyze, and Test module
     runs-on: ubuntu-latest

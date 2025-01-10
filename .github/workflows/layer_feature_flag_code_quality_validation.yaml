@@ -23,11 +23,11 @@ env:
   FLUTTER_VERSION: 3.27.1
 
 jobs:
-  layer_remote_code_quality_validation:
+  layer_feature_flag_code_quality_validation1:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
-      module_path: './layer/remote'
-      has_build_runner: 'false'
+      module_path: './layer/feature_flag'
+      has_build_runner: 'true'
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
