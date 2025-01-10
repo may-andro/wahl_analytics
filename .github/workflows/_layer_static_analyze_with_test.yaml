@@ -50,9 +50,15 @@ jobs:
         run: |
           echo "Current directory: $PWD"
           echo "Workspace: ${{ github.workspace }}"
+          echo "Module Path: ${{ inputs.module_path }}"
 
       - name: Get dart dependencies
         run: flutter pub get
+        working-directory: ${{ github.workspace }}/layer/firebase
+
+      - name: Get dart dependencies
+        run: flutter pub get
+        working-directory: ${{ inputs.module_path }}
 
       - name: Format the Dart code
         run: dart format . --set-exit-if-changed
