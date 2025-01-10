@@ -13,8 +13,10 @@ on:
       - '*-prod'
 
 env:
-  DART_SDK_VERSION: 3.6.0
   FLUTTER_VERSION: 3.27.1
+
+permissions:
+  checks: write
 
 jobs:
   wahl_analytics_code_quality_validation:
@@ -23,11 +25,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup dart environment
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: ${{ env.DART_SDK_VERSION }}
 
       - name: Setup the flutter environment
         uses: subosito/flutter-action@v2.18.0
