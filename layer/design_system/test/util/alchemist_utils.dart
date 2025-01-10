@@ -8,8 +8,10 @@ import 'package:recase/recase.dart';
 /// A [TestCase] holds the description of the test, and the widget to be
 /// rendered.
 class TestCase {
-  const TestCase(this.description,
-      this.widget,);
+  const TestCase(
+    this.description,
+    this.widget,
+  );
 
   final String description;
   final Widget widget;
@@ -22,10 +24,11 @@ class TestCase {
 ///
 /// The [label] is an optional text that, if provided, will be rendered onto the
 /// golden images (below the title) and will be part of the golden files' name.
-void groupGoldenForBrightnessAndDS(String widgetUnderTest,
-    List<TestCase> Function(DSTheme theme) testCasesCallback, {
-      String? label,
-    }) {
+void groupGoldenForBrightnessAndDS(
+  String widgetUnderTest,
+  List<TestCase> Function(DSTheme theme) testCasesCallback, {
+  String? label,
+}) {
   for (final brightness in Brightness.values) {
     for (final designSystem in DesignSystem.values) {
       final dsTheme = DSTheme(
@@ -51,35 +54,32 @@ void groupGoldenForBrightnessAndDS(String widgetUnderTest,
 ///
 /// The [label] is an optional text that, if provided, will be rendered onto the
 /// golden images (below the title) and will be part of the golden files' name.
-void groupGolden(String widgetUnderTest,
-    Brightness brightness,
-    DesignSystem designSystem,
-    List<TestCase> testCases, {
-      String? label,
-    }) {
+void groupGolden(
+  String widgetUnderTest,
+  Brightness brightness,
+  DesignSystem designSystem,
+  List<TestCase> testCases, {
+  String? label,
+}) {
   group(widgetUnderTest, () {
     goldenTest(
       'on $brightness with $designSystem',
       fileName: '${widgetUnderTest.snakeCase}_'
           '${label == null ? '' : '${label.snakeCase.replaceAll(' ', '')}_'}'
-          '${brightness.title
-          .toLowerCase()
-          .snakeCase
-        ..replaceAll(' ', '')}',
+          '${brightness.title.toLowerCase().snakeCase..replaceAll(' ', '')}',
       pumpBeforeTest: precacheImages,
-      builder: () =>
-          GoldenTestGroup(
-            scenarioConstraints: const BoxConstraints(maxWidth: 600),
-            children: testCases.map(
-                  (testCase) {
-                return _TestCaseWidget(
-                  testCase,
-                  designSystem: designSystem,
-                  brightness: brightness,
-                );
-              },
-            ).toList(),
-          ),
+      builder: () => GoldenTestGroup(
+        scenarioConstraints: const BoxConstraints(maxWidth: 600),
+        children: testCases.map(
+          (testCase) {
+            return _TestCaseWidget(
+              testCase,
+              designSystem: designSystem,
+              brightness: brightness,
+            );
+          },
+        ).toList(),
+      ),
     );
   });
 }
@@ -87,7 +87,8 @@ void groupGolden(String widgetUnderTest,
 /// The test case widget that renders the test description and the
 /// widget under test.
 class _TestCaseWidget extends StatelessWidget {
-  const _TestCaseWidget(this.testCase, {
+  const _TestCaseWidget(
+    this.testCase, {
     required this.brightness,
     required this.designSystem,
   });
