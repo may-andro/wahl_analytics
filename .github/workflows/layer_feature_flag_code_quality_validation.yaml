@@ -18,9 +18,68 @@ on:
 permissions:
   checks: write
 
+#jobs:
+#  layer_feature_flag_code_quality_validation:
+#    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
+#    with:
+#      module_path: './layer/feature_flag'
+#      has_build_runner: 'true'
+
 jobs:
   layer_feature_flag_code_quality_validation:
-    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
-    with:
-      module_path: './layer/feature_flag'
-      has_build_runner: 'true'
+    name: Format, Analyze, and Test module
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./layer/feature_flag
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup dart environment
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ env.DART_SDK_VERSION }}
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ../firebase/lib/src/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ../firebase/lib/src/app_check/token.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Get dart dependencies
+        run: flutter pub get
+
+      - name: Format the Dart code
+        run: dart format . --set-exit-if-changed
+
+      - name: Run code generators
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Statically analyze the Dart code
+        run: flutter analyze
+
+      - name: Run unit tests
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.json
+          reporter: flutter-json
+          working-directory: ./layer/feature_flag
