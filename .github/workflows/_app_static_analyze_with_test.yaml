@@ -10,9 +10,6 @@ jobs:
   analyze_and_test:
     name: Analyse and test the app
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,6 +32,11 @@ jobs:
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > layer/firebase/lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Check working directory
+        run: |
+          echo "Current directory: $PWD"
+          echo "Workspace: ${{ github.workspace }}"
 
       - name: Setup Melos
         run: |
