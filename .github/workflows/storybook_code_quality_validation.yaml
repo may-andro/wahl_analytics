@@ -79,7 +79,7 @@ jobs:
         uses: dethereum/github-actions-report-lcov@v1.0.0
         with:
           coverage-files: coverage/lcov.info
-          minimum-coverage: 10
+          minimum-coverage: 70
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
           working-directory: ${{ env.PATH_STORYBOOK }}

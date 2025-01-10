@@ -20,7 +20,7 @@ env:
   FLUTTER_VERSION: 3.27.1
 
 jobs:
-  analyze_and_test:
+  wahl_analytics_code_quality_validation:
     name: Analyse and test the app
     runs-on: ubuntu-latest
     steps:
@@ -90,5 +90,4 @@ jobs:
           minimum-coverage: 10
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ inputs.module_path }}
 
