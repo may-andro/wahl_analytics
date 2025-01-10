@@ -11,6 +11,9 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+    paths:
+      - 'tool/storybook/**'
+      - '.github/workflows/storybook_code_quality_validation.yaml'
 
 permissions:
   checks: write
@@ -18,11 +21,15 @@ permissions:
 env:
   DART_SDK_VERSION: 3.6.0
   FLUTTER_VERSION: 3.27.1
+  PATH_STORYBOOK: ./tool/storybook
 
 jobs:
-  analyze_and_test:
-    name: Analyse and test the app
+  storybook_code_quality_validation:
+    name: Analyse, format and test the Storybook
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PATH_STORYBOOK }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,30 +46,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Decode Firebase Options
-        run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > layer/firebase/lib/src/firebase_options.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-
-      - name: Decode App Check Token
-        run: |
-          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > layer/firebase/lib/src/app_check/token.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-
-      - name: Setup Melos
-        run: |
-          dart pub global activate melos
-
       - name: Get dart dependencies
         run: flutter pub get
 
       - name: Format the Dart code
         run: dart format . --set-exit-if-changed
 
-      - name: Run code generator
-        run: melos gen_app --no-select
+      - name: Run code generators
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Statically analyze the code
         run: flutter analyze
@@ -77,6 +68,7 @@ jobs:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
+          working-directory: ${{ env.PATH_STORYBOOK }}
 
       - name: Install lcov on ubuntu
         run: |
@@ -90,5 +82,7 @@ jobs:
           minimum-coverage: 10
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ inputs.module_path }}
+          working-directory: ${{ env.PATH_STORYBOOK }}
+
+
 
