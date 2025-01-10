@@ -21,6 +21,9 @@ permissions:
 jobs:
   analyze_and_test:
     uses: ./.github/workflows/_app_static_analyze_with_test.yaml
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
   wahl_analytics_code_quality_validation:
     name: Analyse and test the app
