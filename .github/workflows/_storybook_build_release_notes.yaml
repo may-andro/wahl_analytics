@@ -32,6 +32,11 @@ jobs:
           to_tag="$(git tag --sort=committerdate -l '*-storybook-prod' | grep -v $GITHUB_REF_NAME | tail -n 1)"
           echo "to_tag=${to_tag}" >> $GITHUB_OUTPUT
 
+      - name: Debug output from tags
+        run: |
+          echo "From tag: ${{ steps.step_from_tag.outputs.from_tag }}"
+          echo "To tag: ${{ steps.step_to_tag.outputs.to_tag }}"
+
       - name: Extract changelog
         id: step_changelog
         run: |

@@ -1,4 +1,4 @@
-name: Storybook web release and hosting
+name: Storybook web preview release and hosting
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
