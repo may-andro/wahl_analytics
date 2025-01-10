@@ -43,21 +43,24 @@ jobs:
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
+      - name: Verify firebase_options.dart exists
+        run: |
+          if [ -f ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart ]; then
+            echo "firebase_options.dart exists"
+          else
+            echo "firebase_options.dart is missing!"
+            exit 1
+          fi
+
       - name: Decode App Check Token
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
-      - name: Verify firebase_options.dart exists
+      - name: Check working directory
         run: |
-          if [ -f ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart ]; then
-            echo "firebase_options.dart exists"
-            cat ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
-          else
-            echo "firebase_options.dart is missing!"
-            exit 1
-          fi
+          echo "Current directory: $PWD"
 
       - name: Get dart dependencies
         run: flutter pub get
@@ -75,6 +78,15 @@ jobs:
 
       - name: Statically analyze the Dart code
         run: flutter analyze
+
+      - name: Verify firebase_options.dart exists
+        run: |
+          if [ -f ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart ]; then
+            echo "firebase_options.dart exists"
+          else
+            echo "firebase_options.dart is missing!"
+            exit 1
+          fi
 
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
