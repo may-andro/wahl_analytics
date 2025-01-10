@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ inputs.module_path }}
+        working-directory: ./layer/${{ inputs.module_path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,16 +37,22 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Download Firebase Files
-        uses: actions/download-artifact@v3
-        with:
-          name: firebase-files
-          path: ${{ github.workspace }}/layer/firebase/lib/src
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ../firebase/lib/src/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ../firebase/lib/src/app_check/token.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
       - name: Check working directory
         run: |
           echo "Current directory: $PWD"
-          echo "Current directory: ${{ github.workspace }}"
+          echo "Workspace: ${{ github.workspace }}"
 
       - name: Get dart dependencies
         run: flutter pub get
@@ -75,4 +81,4 @@ jobs:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
-          working-directory: ${{ inputs.module_path }}
+          working-directory: ./layer/${{ inputs.module_path }}
