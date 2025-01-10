@@ -37,6 +37,17 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Download Firebase Files
+        uses: actions/download-artifact@v3
+        with:
+          name: firebase-files
+          path: ${{ github.workspace }}/layer/firebase/lib/src
+
+      - name: Check working directory
+        run: |
+          echo "Current directory: $PWD"
+          echo "Current directory: ${{ github.workspace }}"
+
       - name: Get dart dependencies
         run: flutter pub get
 
