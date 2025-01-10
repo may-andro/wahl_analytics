@@ -3,7 +3,7 @@ name: Analyze and golden test layer module
 on:
   workflow_call:
     inputs:
-      module_name:
+      module_path:
         type: string
         required: true
       has_build_runner:
@@ -20,7 +20,7 @@ jobs:
     runs-on: macos-15
     defaults:
       run:
-        working-directory: .layer/${{ inputs.module_name }}
+        working-directory: ${{ inputs.module_path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -64,7 +64,7 @@ jobs:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
-          working-directory: .layer/${{ inputs.module_name }}
+          working-directory: ${{ inputs.module_path }}
 
       - name: Run golden tests
         run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json  --no-pub
@@ -76,4 +76,4 @@ jobs:
           name: Golden Test Results
           path: test-results-golden.json
           reporter: flutter-json
-          working-directory: .layer/${{ inputs.module_name }}
+          working-directory: ${{ inputs.module_path }}
