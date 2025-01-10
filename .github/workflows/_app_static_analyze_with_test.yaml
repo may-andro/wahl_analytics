@@ -1,28 +1,13 @@
-name: Validate code quality of app
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+name: Analyze and test app
 
 on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '*-review'
-      - '*-prod'
+  workflow_call:
 
 env:
   FLUTTER_VERSION: 3.27.1
 
-permissions:
-  checks: write
-
 jobs:
   analyze_and_test:
-    uses: ./.github/workflows/_app_static_analyze_with_test.yaml
-
-  wahl_analytics_code_quality_validation:
     name: Analyse and test the app
     runs-on: ubuntu-latest
     steps:
