@@ -8,11 +8,11 @@ import 'package:flutter_test/flutter_test.dart';
 ///Any test executed in the package will now use the provided config.
 
 Future<void> testExecutable(FutureOr<void> Function() testMain) async {
-  //const isRunningInCi = bool.fromEnvironment('CI');
+  const isRunningInCi = bool.fromEnvironment('CI');
   TestWidgetsFlutterBinding.ensureInitialized();
   return AlchemistConfig.runWithConfig(
     config: const AlchemistConfig(
-      platformGoldensConfig: PlatformGoldensConfig(),
+      platformGoldensConfig: PlatformGoldensConfig(enabled: !isRunningInCi),
     ),
     run: testMain,
   );
