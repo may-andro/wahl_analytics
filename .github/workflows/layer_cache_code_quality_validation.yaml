@@ -41,6 +41,18 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ../firebase/lib/src/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ../firebase/lib/src/app_check/token.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
       - name: Get dart dependencies
         run: flutter pub get
 
