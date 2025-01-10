@@ -23,7 +23,7 @@ env:
   FLUTTER_VERSION: 3.27.1
 
 jobs:
-  layer_feature_flag_code_quality_validation1:
+  layer_feature_flag_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
       module_path: './layer/feature_flag'
