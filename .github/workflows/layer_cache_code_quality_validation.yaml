@@ -19,6 +19,33 @@ permissions:
   checks: write
 
 jobs:
+  setup-firebase:
+    name: Setup missing files for firebase layer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ./layer/firebase/lib/src/firebase_options.dart
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ./layer/firebase/lib/src/app_check/token.dart
+        env:
+          APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+
+      - name: Upload Firebase Files as Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: firebase-files
+          path: |
+            ./layer/firebase/lib/src/firebase_options.dart
+            ./layer/firebase/lib/src/app_check/token.dart
+
   layer_cache_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
