@@ -18,9 +18,6 @@ jobs:
   analyze-module:
     name: Format, Analyze, and Test module
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ inputs.module_path }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -59,10 +56,12 @@ jobs:
 
       - name: Format the Dart code
         run: dart format . --set-exit-if-changed
+        working-directory: ${{ inputs.module_path }}
 
       - name: Run code generators
         if: inputs.has_build_runner == 'true'
         run: flutter pub run build_runner build --delete-conflicting-outputs
+        working-directory: ${{ inputs.module_path }}
 
       - name: Get dart dependencies
         if: inputs.has_build_runner == 'false'
@@ -70,9 +69,11 @@ jobs:
 
       - name: Statically analyze the Dart code
         run: flutter analyze
+        working-directory: ${{ inputs.module_path }}
 
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
+        working-directory: ${{ inputs.module_path }}
 
       - name: Generate test report
         uses: dorny/test-reporter@v1
