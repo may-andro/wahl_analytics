@@ -22,6 +22,6 @@ jobs:
   layer_cache_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
-      module_path: '${{ github.workspace }}/layer/cache'
+      module_path: './layer/cache'
       has_build_runner: 'false'
 
