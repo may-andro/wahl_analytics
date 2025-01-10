@@ -65,6 +65,9 @@ jobs:
       - name: Statically analyze the Dart code
         run: flutter analyze
 
+      - name: Install SQLite
+        run: sudo apt-get install -y sqlite3 libsqlite3-dev
+
       - name: Run unit tests
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
 
