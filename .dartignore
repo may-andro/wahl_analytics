@@ -1,0 +1,4 @@
+# .dartignore
+layer/firebase/lib/src/firebase_options.dart
+layer/firebase/lib/src/app_check/token.dart
+**.g.dart
