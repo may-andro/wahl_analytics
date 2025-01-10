@@ -49,6 +49,16 @@ jobs:
         env:
           FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
+      - name: Verify firebase_options.dart exists
+        run: |
+          if [ -f ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart ]; then
+            echo "firebase_options.dart exists"
+            cat ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
+          else
+            echo "firebase_options.dart is missing!"
+            exit 1
+          fi
+
       - name: Get dart dependencies
         run: flutter pub get
 
