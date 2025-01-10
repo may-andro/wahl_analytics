@@ -17,11 +17,13 @@ jobs:
 
   code_quality_validation:
     uses: ./.github/workflows/_storybook_static_analysis.yaml
+    needs: [build_release_notes]
     with:
       path: './tool/storybook'
 
-  _storybook_deploy:
+  storybook_deploy:
     uses: ./.github/workflows/_storybook_deploy.yaml
+    needs: [code_quality_validation]
     with:
       path: './tool/storybook'
       channelId: 'live'

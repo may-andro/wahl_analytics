@@ -64,3 +64,7 @@ lib/
 The `Storybook` is hosted using `Firebase`. It is available at [Storybook](https://storybook.wahlanalytics.es/).
 
 The new version can be hosted using the `melos` command: `host_storybook`.
+
+### CI Hosting
+
+The CI triggers a preview webpage hosting when there are some changes in the Storybook or design system layer. This action is triggered on the pull request creation.
