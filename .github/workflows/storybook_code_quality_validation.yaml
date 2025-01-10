@@ -1,4 +1,4 @@
-name: Validate code quality of app
+name: Validate code quality of Storybook
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
