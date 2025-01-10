@@ -70,19 +70,5 @@ jobs:
           reporter: flutter-json
           working-directory: ${{ env.PATH_STORYBOOK }}
 
-      - name: Install lcov on ubuntu
-        run: |
-          sudo apt-get update
-          sudo apt-get install lcov
-
-      - name: Generate code coverage report from lcov.info
-        uses: dethereum/github-actions-report-lcov@v1.0.0
-        with:
-          coverage-files: coverage/lcov.info
-          minimum-coverage: 60
-          artifact-name: code-coverage-report
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ env.PATH_STORYBOOK }}
-
 
 

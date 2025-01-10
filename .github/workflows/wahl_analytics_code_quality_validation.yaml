@@ -12,9 +12,6 @@ on:
       - '*-review'
       - '*-prod'
 
-permissions:
-  checks: write
-
 env:
   DART_SDK_VERSION: 3.6.0
   FLUTTER_VERSION: 3.27.1
