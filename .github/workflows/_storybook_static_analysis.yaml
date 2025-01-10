@@ -1,0 +1,53 @@
+name: Analyze and test Storybook app
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        type: string
+        required: true
+
+env:
+  FLUTTER_VERSION: 3.27.1
+
+jobs:
+  analyze-and-test:
+    name: Format, analyze, and test Storybook
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.path }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Get dart dependencies
+        run: flutter pub get
+
+      - name: Format the Dart code
+        run: dart format . --set-exit-if-changed
+
+      - name: Run code generators
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Statically analyze the Dart code
+        run: flutter analyze
+
+      - name: Run unit tests
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.json
+          reporter: flutter-json
+          working-directory: ${{ inputs.path }}

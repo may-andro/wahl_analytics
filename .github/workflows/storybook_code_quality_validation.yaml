@@ -11,64 +11,13 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - "*-storybook-prod"
     paths:
       - 'tool/storybook/**'
       - '.github/workflows/storybook_code_quality_validation.yaml'
 
-permissions:
-  checks: write
-
-env:
-  DART_SDK_VERSION: 3.6.0
-  FLUTTER_VERSION: 3.27.1
-  PATH_STORYBOOK: ./tool/storybook
-
 jobs:
   storybook_code_quality_validation:
-    name: Analyse, format and test the Storybook
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.PATH_STORYBOOK }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup dart environment
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: ${{ env.DART_SDK_VERSION }}
-
-      - name: Setup the flutter environment
-        uses: subosito/flutter-action@v2.18.0
-        with:
-          flutter-version: ${{env.FLUTTER_VERSION}}
-          channel: stable
-          cache: true
-
-      - name: Get dart dependencies
-        run: flutter pub get
-
-      - name: Format the Dart code
-        run: dart format . --set-exit-if-changed
-
-      - name: Run code generators
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Statically analyze the code
-        run: flutter analyze
-
-      - name: Run unit tests
-        run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
-
-      - name: Generate test report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Test Results
-          path: test-results.json
-          reporter: flutter-json
-          working-directory: ${{ env.PATH_STORYBOOK }}
-
-
-
+    uses: ./.github/workflows/_storybook_static_analysis.yaml
+    with:
+      module_path: './tool/storybook'

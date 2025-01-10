@@ -1,0 +1,28 @@
+name: Storybook web release and hosting
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - 'tool/storybook/**'
+
+
+jobs:
+  build_release_notes:
+    uses: ./.github/workflows/_storybook_build_release_notes.yaml
+    with:
+      preRelease: false
+
+  code_quality_validation:
+    uses: ./.github/workflows/_storybook_static_analysis.yaml
+    with:
+      path: './tool/storybook'
+
+  _storybook_deploy:
+    uses: ./.github/workflows/_storybook_deploy.yaml
+    with:
+      path: './tool/storybook'
+      channelId: 'preview'
