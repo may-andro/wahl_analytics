@@ -30,6 +30,8 @@ Android Studio, Xcode, emulators and simulators.
 [Melos](https://melos.invertase.dev/) is used as a multiple package manager. Please read
 more [here](https://melos.invertase.dev/getting-started) to get started and set up.
 
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+
 ## Run the app
 
 The project has two versions based on environment:
