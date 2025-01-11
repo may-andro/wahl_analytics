@@ -11,7 +11,7 @@ on:
       - 'layer/design_system/**'
 
 jobs:
-  code_quality_validation:
+  storybook_code_quality_validation:
     uses: ./.github/workflows/_storybook_static_analysis.yaml
 
   storybook_deploy:
@@ -22,3 +22,4 @@ jobs:
     secrets:
       STORYBOOK_FIREBASE_SERVICE_ACCOUNT: ${{ secrets.STORYBOOK_FIREBASE_SERVICE_ACCOUNT }}
       STORYBOOK_FIREBASE_PROJECT_ID: ${{ secrets.STORYBOOK_FIREBASE_PROJECT_ID }}
+      STORYBOOK_FIREBASE_JSON_BASE64: ${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}

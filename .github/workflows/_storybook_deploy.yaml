@@ -11,6 +11,8 @@ on:
         required: true
       STORYBOOK_FIREBASE_PROJECT_ID:
         required: true
+      STORYBOOK_FIREBASE_JSON_BASE64:
+        required: true
 
 env:
   FLUTTER_VERSION: 3.27.1
@@ -33,6 +35,12 @@ jobs:
           flutter-version: ${{env.FLUTTER_VERSION}}
           channel: stable
           cache: true
+
+      - name: Decode Firebase Json
+        run: |
+          echo "${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
+        env:
+          FIREBASE_OPTIONS_BASE64: ${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}
 
       - name: Get dart dependencies
         run: flutter pub get

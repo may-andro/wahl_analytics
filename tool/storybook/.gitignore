@@ -57,6 +57,7 @@ firebase-service-account.json
 firebase-debug.log
 .firebaserc
 firebase.json
+firebase_json.base64
 .firebase/
 storybook_service_account.json
 
