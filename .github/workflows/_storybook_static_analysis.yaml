@@ -58,7 +58,7 @@ jobs:
       - name: Generate code coverage report from lcov.info
         uses: zgosalvez/github-actions-report-lcov@v4.1.22
         with:
-          coverage-files: ${{ github.workspace }}/coverage/lcov.info
+          coverage-files: coverage/lcov.*.info
           minimum-coverage: 0
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}

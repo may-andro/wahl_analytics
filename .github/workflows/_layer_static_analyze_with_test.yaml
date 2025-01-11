@@ -73,18 +73,3 @@ jobs:
           reporter: flutter-json
           working-directory: ${{ inputs.module_path }}
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install lcov on ubuntu
-        run: |
-          sudo apt-get update
-          sudo apt-get install lcov
-
-      - name: Generate code coverage report from lcov.info
-        uses: zgosalvez/github-actions-report-lcov@v4.1.22
-        with:
-          coverage-files: coverage/lcov.info
-          minimum-coverage: 0
-          artifact-name: code-coverage-report
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ inputs.module_path }}
-          update-comment: true
