@@ -70,11 +70,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install lcov
 
-      - name: Debug GitHub Token
-        run: |
-          echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-          echo "Token length: ${#secrets.GITHUB_TOKEN}"
-
       - name: Generate code coverage report from lcov.info
         uses: dethereum/github-actions-report-lcov@v1.0.0
         with:
