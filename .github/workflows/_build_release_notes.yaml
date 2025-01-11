@@ -1,4 +1,4 @@
-name: Create release notes for Storybook
+name: Create release notes
 
 on:
   workflow_call:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create changelog with headline
-        run: echo "# Storybook Release" > changelog.md
+        run: echo "# Release Notes" > changelog.md
 
       - name: Get notes-from tag
         id: step_from_tag

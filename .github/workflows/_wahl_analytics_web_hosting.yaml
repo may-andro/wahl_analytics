@@ -1,0 +1,66 @@
+name: Host Wahl Analytics to firebase
+
+on:
+  workflow_call:
+    inputs:
+      channelId:
+        type: string
+        required: true
+    secrets:
+      FIREBASE_OPTIONS_BASE64:
+        required: true
+      APP_CHECK_TOKEN_BASE64:
+        required: true
+      FIREBASE_SERVICE_ACCOUNT:
+        required: true
+      FIREBASE_PROJECT_ID:
+        required: true
+      FIREBASE_JSON_BASE64:
+        required: true
+
+env:
+  FLUTTER_VERSION: 3.27.1
+
+jobs:
+ build_and_host:
+    name: Deploy to firebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Decode Firebase Json
+        run: |
+          echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+
+      - name: Setup Melos
+        run: |
+          dart pub global activate melos
+
+      - name: Run code generator
+        run: melos gen_app --no-select
+
+      - name: Build Flutter Web
+        run: flutter build web --release --dart-define=build_env=prod
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+          channelId: ${{ inputs.channelId }}

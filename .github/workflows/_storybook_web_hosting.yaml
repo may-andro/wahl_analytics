@@ -7,11 +7,11 @@ on:
         type: string
         required: true
     secrets:
-      STORYBOOK_FIREBASE_SERVICE_ACCOUNT:
+      FIREBASE_SERVICE_ACCOUNT:
         required: true
-      STORYBOOK_FIREBASE_PROJECT_ID:
+      FIREBASE_PROJECT_ID:
         required: true
-      STORYBOOK_FIREBASE_JSON_BASE64:
+      FIREBASE_JSON_BASE64:
         required: true
 
 env:
@@ -38,9 +38,7 @@ jobs:
 
       - name: Decode Firebase Json
         run: |
-          echo "${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}
+          echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
 
       - name: Get dart dependencies
         run: flutter pub get
@@ -54,7 +52,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.STORYBOOK_FIREBASE_SERVICE_ACCOUNT }}"
-          projectId: ${{ secrets.STORYBOOK_FIREBASE_PROJECT_ID }}
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
           entryPoint: ${{ env.STORYBOOK_PATH }}
           channelId: ${{ inputs.channelId }}
