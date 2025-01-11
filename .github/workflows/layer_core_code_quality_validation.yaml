@@ -16,9 +16,6 @@ on:
       - '.github/workflows/layer_core_code_quality_validation.yaml'
       - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
-permissions:
-  checks: write
-
 jobs:
   layer_core_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
