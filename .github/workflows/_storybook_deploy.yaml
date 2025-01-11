@@ -14,8 +14,6 @@ on:
         required: true
       STORYBOOK_FIREBASE_PROJECT_ID:
         required: true
-      GITHUB_TOKEN:
-        required: true
 
 env:
   FLUTTER_VERSION: 3.27.1
