@@ -9,17 +9,6 @@ on:
     paths:
       - 'tool/storybook/**'
       - 'layer/design_system/**'
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '*-review'
-      - '*-prod'
-      - "*-storybook-prod"
-    paths:
-      - 'tool/storybook/**'
-      - 'layer/design_system/**'
-
 
 jobs:
   code_quality_validation:
