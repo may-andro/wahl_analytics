@@ -67,4 +67,5 @@ The new version can be hosted using the `melos` command: `host_storybook`.
 
 ### CI Hosting
 
-The CI triggers a preview webpage hosting when there are some changes in the Storybook or design system layer. This action is triggered on the pull request creation.
+The CI triggers a preview webpage hosting when there are some changes in the Storybook or design system layer. 
+A preview website is available for only few hours and meant for testing.
