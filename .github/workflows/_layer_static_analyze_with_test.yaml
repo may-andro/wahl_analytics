@@ -80,8 +80,11 @@ jobs:
           sudo apt-get install lcov
 
       - name: Generate code coverage report from lcov.info
-        uses: romeovs/lcov-reporter-action@v0.4.0
+        uses: zgosalvez/github-actions-report-lcov@v4.1.22
         with:
           coverage-files: coverage/lcov.info
-          title: code-coverage-report
+          minimum-coverage: 0
+          artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ${{ inputs.module_path }}
+          update-comment: true

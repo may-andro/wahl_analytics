@@ -62,5 +62,5 @@ jobs:
           minimum-coverage: 0
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ${{ env.STORYBOOK_PATH }}
+          working-directory: ${{ env.STORYBOOK_PATH }}/
           update-comment: true
