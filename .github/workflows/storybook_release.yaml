@@ -9,6 +9,9 @@ on:
     tags:
       - "*-storybook-prod"
 
+permissions:
+  checks: write
+
 jobs:
   storybook_build_release_notes:
     uses: ./.github/workflows/_build_release_notes.yaml

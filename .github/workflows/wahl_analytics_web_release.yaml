@@ -9,6 +9,8 @@ on:
     tags:
       - "*-prod"
 
+permissions: write-all
+
 jobs:
   wahl_analytics_build_release_notes:
     uses: ./.github/workflows/_build_release_notes.yaml
