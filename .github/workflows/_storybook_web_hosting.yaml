@@ -36,6 +36,15 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Set version from tag
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]
+          then
+            echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version number"
+          else
+            version=$(echo $GITHUB_REF_NAME | sed "s/-storybook-prod//") && sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
+          fi
+
       - name: Decode Firebase Json
         run: |
           echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
