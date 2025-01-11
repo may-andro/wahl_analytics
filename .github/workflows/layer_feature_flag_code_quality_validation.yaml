@@ -14,13 +14,10 @@ on:
     paths:
       - 'layer/feature_flag/**'
       - '.github/workflows/layer_feature_flag_code_quality_validation.yaml'
+      - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
-
-env:
-  DART_SDK_VERSION: 3.6.0
-  FLUTTER_VERSION: 3.27.1
 
 jobs:
   layer_feature_flag_code_quality_validation:

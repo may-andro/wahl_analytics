@@ -21,3 +21,4 @@ jobs:
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

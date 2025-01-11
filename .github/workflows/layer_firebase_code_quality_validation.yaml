@@ -14,78 +14,17 @@ on:
     paths:
       - 'layer/firebase/**'
       - '.github/workflows/layer_firebase_code_quality_validation.yaml'
-
-env:
-  DART_SDK_VERSION: 3.6.0
-  FLUTTER_VERSION: 3.27.1
+      - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
 
 jobs:
-  layer_firebase_code_quality_validation1:
+  layer_firebase_code_quality_validation:
     uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
     with:
       module_path: './layer/firebase'
-      has_build_runner: 'true'
+      has_build_runner: 'false'
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
-
-  layer_firebase_code_quality_validation:
-    name: Format, Analyze, and Test module
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./layer/firebase
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup dart environment
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: ${{ env.DART_SDK_VERSION }}
-
-      - name: Setup the flutter environment
-        uses: subosito/flutter-action@v2.18.0
-        with:
-          flutter-version: ${{env.FLUTTER_VERSION}}
-          channel: stable
-          cache: true
-
-      - name: Decode Firebase Options
-        run: |
-          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > lib/src/firebase_options.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-
-      - name: Decode App Check Token
-        run: |
-          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > lib/src/app_check/token.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-
-      - name: Get dart dependencies
-        run: flutter pub get
-
-      - name: Format the Dart code
-        run: dart format . --set-exit-if-changed
-
-      - name: Get dart dependencies
-        run: flutter pub get
-
-      - name: Statically analyze the Dart code
-        run: flutter analyze
-
-      - name: Run unit tests
-        run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
-
-      - name: Generate test report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Test Results
-          path: test-results.json
-          reporter: flutter-json
-          working-directory: ./layer/firebase

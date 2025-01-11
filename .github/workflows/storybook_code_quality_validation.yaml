@@ -19,5 +19,3 @@ on:
 jobs:
   storybook_code_quality_validation:
     uses: ./.github/workflows/_storybook_static_analysis.yaml
-    with:
-      module_path: './tool/storybook'

@@ -14,12 +14,13 @@ on:
 jobs:
   code_quality_validation:
     uses: ./.github/workflows/_storybook_static_analysis.yaml
-    with:
-      path: './tool/storybook'
 
   storybook_deploy:
     uses: ./.github/workflows/_storybook_deploy.yaml
     needs: [code_quality_validation]
     with:
-      path: './tool/storybook'
       channelId: 'preview'
+    secrets:
+      STORYBOOK_FIREBASE_SERVICE_ACCOUNT: ${{ secrets.STORYBOOK_FIREBASE_SERVICE_ACCOUNT }}
+      STORYBOOK_FIREBASE_PROJECT_ID: ${{ secrets.STORYBOOK_FIREBASE_PROJECT_ID }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
