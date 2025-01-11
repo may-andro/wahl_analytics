@@ -3,9 +3,6 @@ name: Deploy Storybook to firebase
 on:
   workflow_call:
     inputs:
-      path:
-        type: string
-        required: true
       channelId:
         type: string
         required: true

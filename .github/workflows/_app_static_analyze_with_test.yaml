@@ -78,5 +78,5 @@ jobs:
           coverage-files: coverage/lcov.info
           minimum-coverage: 10
           artifact-name: code-coverage-report
-          github-token: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
