@@ -39,14 +39,10 @@ jobs:
       - name: Decode Firebase Options
         run: |
           echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
-        env:
-          FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
 
       - name: Decode App Check Token
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
-        env:
-          APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
       - name: Get dart dependencies
         run: flutter pub get
@@ -69,10 +65,23 @@ jobs:
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
 
       - name: Generate test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: always()
         with:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
           working-directory: ${{ inputs.module_path }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install lcov on ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install lcov
+
+      - name: Generate code coverage report from lcov.info
+        uses: romeovs/lcov-reporter-action@v0.4.0
+        with:
+          coverage-files: coverage/lcov.info
+          title: code-coverage-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}

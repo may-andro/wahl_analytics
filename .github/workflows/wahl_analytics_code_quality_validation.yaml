@@ -12,9 +12,7 @@ on:
       - '*-review'
       - '*-prod'
 
-permissions:
-  checks: write
-  pull-requests: write
+permissions: write-all
 
 jobs:
   wahl_analytics_code_quality_validation:

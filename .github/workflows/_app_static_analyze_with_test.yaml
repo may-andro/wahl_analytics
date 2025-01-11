@@ -54,12 +54,13 @@ jobs:
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
 
       - name: Generate test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: always()
         with:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install lcov on ubuntu
         run: |

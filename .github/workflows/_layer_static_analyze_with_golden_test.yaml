@@ -56,13 +56,14 @@ jobs:
         run: flutter test --exclude-tags golden --coverage --machine > test-results.json  --no-pub
 
       - name: Generate test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         if: always()
         with:
           name: Test Results
           path: test-results.json
           reporter: flutter-json
           working-directory: ${{ inputs.module_path }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run golden tests
         run: flutter test --tags golden --dart-define=CI=true --machine > test-results-golden.json  --no-pub
