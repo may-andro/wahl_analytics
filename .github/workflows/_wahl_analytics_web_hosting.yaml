@@ -53,7 +53,16 @@ jobs:
 
       - name: Decode firebase-config.js in web directory
         run: |
-          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > ${{ github.workspace }}/build/web/firebase-config.js
+          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > web/firebase-config.js
+
+      - name: Verify firebase-config.js exists
+        run: |
+          if [ -f web/firebase-config.js ]; then
+            echo "firebase-config.js exists at the expected path."
+          else
+            echo "Error: firebase-config.js is missing."
+            exit 1
+          fi
 
       - name: Decode Firebase Options
         run: |
