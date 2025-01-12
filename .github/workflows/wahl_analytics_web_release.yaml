@@ -19,7 +19,6 @@ jobs:
 
   wahl_analytics_code_quality_validation:
     uses: ./.github/workflows/_app_static_analyze_with_test.yaml
-    needs: [wahl_analytics_build_release_notes]
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
