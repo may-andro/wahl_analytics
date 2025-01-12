@@ -123,7 +123,21 @@ flags.
 
 ## CI
 
-TODO
+GitHub is used for continuous integration, leveraging GitHub Actions workflows for automation throughout the development pipeline.
+
+Each layer of the code undergoes static analysis, formatting, and testing to ensure consistent code quality and maintainability.
+
+### Release Workflow
+Release workflows are responsible for building, creating, and deploying artifacts to their respective destinations.
+
+Follow these steps to create a release:
+
+1. Navigate to the Releases section on GitHub and click `Draft a new release`.
+2. Choose the appropriate build number and update the version code.
+3. To create a production build for release, append the `prod` keyword at the end of the version tag. For example: `1.1.0+2025xx-prod`.
+4. To create a preview build for testing, append the `review` keyword at the end of the version tag. For example: `1.1.0+2025xx-review`.
+
+For `Storybook` [release](tool/storybook/README.md), refer here for more info.
 
 ## Tools
 
