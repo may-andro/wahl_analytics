@@ -63,4 +63,20 @@ lib/
 
 The `Storybook` is hosted using `Firebase`. It is available at [Storybook](https://storybook.wahlanalytics.es/).
 
-The new version can be hosted using the `melos` command: `host_storybook`.
+The new version can be manually hosted using the `melos` command: `host_storybook`. It is not recommended as version is maintained in CI pipeline.
+
+### CI Hosting
+
+The `storybook_release.yaml` workflow is used to generate production builds of the application and deploy them to Firebase for hosting.
+
+The `storybook_release_preview.yaml` workflow triggers a preview deployment when changes are made to the Storybook or design system layers. 
+The preview website is available for a limited time, typically a few hours, and is intended for testing purposes only.
+
+### Release Workflow
+Release workflows are responsible for building, creating, and deploying artifacts to their respective destinations.
+
+Follow these steps to create a release:
+
+1. Navigate to the Releases section on GitHub and click `Draft a new release`.
+2. Choose the appropriate build number and update the version code.
+3. To create a production build for release, append the `-storybook-prod` keyword at the end of the version tag. For example: `1.1.0+2025xx-storybook-prod`.

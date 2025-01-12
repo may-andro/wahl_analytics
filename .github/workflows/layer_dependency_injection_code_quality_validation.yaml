@@ -1,0 +1,31 @@
+name: Dependency Injection layer code quality validation
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*-review'
+      - '*-prod'
+      - '*-prod-storybook'
+    paths:
+      - 'layer/dependency_injection/**'
+      - '.github/workflows/layer_dependency_injection_code_quality_validation.yaml'
+      - '.github/workflows/_layer_static_analyze_with_test.yaml'
+
+permissions:
+  checks: write
+
+jobs:
+  layer_dependency_injection_code_quality_validation:
+    uses: ./.github/workflows/_layer_static_analyze_with_test.yaml
+    with:
+      module_path: './layer/dependency_injection'
+      has_build_runner: 'false'
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}

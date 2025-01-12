@@ -40,21 +40,10 @@ class $AssetsImageGen {
       [carrer, contactUs, homeIntro, logo, logoDark, logoLight];
 }
 
-class $AssetsVideoGen {
-  const $AssetsVideoGen();
-
-  /// File path: assets/video/desktop.mp4
-  String get desktop => 'assets/video/desktop.mp4';
-
-  /// List of all assets
-  List<String> get values => [desktop];
-}
-
 class Assets {
   Assets._();
 
   static const $AssetsImageGen image = $AssetsImageGen();
-  static const $AssetsVideoGen video = $AssetsVideoGen();
 }
 
 class AssetGenImage {

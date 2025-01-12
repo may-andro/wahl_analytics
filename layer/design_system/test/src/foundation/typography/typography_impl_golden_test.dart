@@ -9,7 +9,7 @@ void main() {
       ' eu fugiat nulla pariatur.';
 
   groupGoldenForBrightnessAndDS(
-    'Fire Typography',
+    'Typography',
     (dsTheme) => [
       TestCase(
         'Display Large',
@@ -147,6 +147,6 @@ void main() {
         ),
       ),
     ],
-    label: 'with text grey9 color',
+    label: 'text',
   );
 }

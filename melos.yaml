@@ -125,6 +125,14 @@ scripts:
     packageFilters:
       dependsOn: alchemist
 
+  golden_test_in_ci:
+    run: flutter test --tags golden --dart-define=CI=true
+    description: Run `golden` tests in all packages.
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: alchemist
+
   # Splash command
   gen_splash:
     run: |
@@ -172,6 +180,27 @@ scripts:
     packageFilters:
       flutter: true
 
+  # CI Helper commands
+  test_with_coverage:
+    run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
+    description: Run all the test with coverage
+    exec:
+      concurrency: 1
+    packageFilters:
+      flutter: true
+      dirExists: test
+
+  gen_app:
+    run: dart run build_runner build --delete-conflicting-outputs
+    description: Run `build_runner` in all packages.
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: build_runner
+      ignore:
+        - storybook
+
+
   # Firebase hosting
   host_web:
     run: |
@@ -180,7 +209,7 @@ scripts:
       echo "Getting packages"
       flutter pub get 
       echo "Building web with Flutter"
-      flutter build web --release --dart-define=build_env=prod --no-tree-shake-icons
+      flutter build web --release --dart-define=build_env=prod
       echo "Deploying to Firebase"
       firebase deploy --only hosting
     description: Host flutter web page

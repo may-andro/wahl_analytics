@@ -1,0 +1,31 @@
+name: Storybook web release and hosting
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    tags:
+      - '*-prod-storybook'
+
+permissions: write-all
+
+jobs:
+  storybook_build_release_notes:
+    uses: ./.github/workflows/_build_release_notes.yaml
+    with:
+      preRelease: false
+
+  storybook_code_quality_validation:
+    uses: ./.github/workflows/_storybook_static_analysis.yaml
+
+  storybook_web_hosting:
+    uses: ./.github/workflows/_storybook_web_hosting.yaml
+    needs: [storybook_code_quality_validation]
+    with:
+      channelId: 'live'
+    secrets:
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      FIREBASE_JSON_BASE64: ${{ secrets.STORYBOOK_FIREBASE_JSON_BASE64 }}

@@ -1,0 +1,37 @@
+name: Web release and hosting
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    tags:
+      - '*-prod'
+
+permissions: write-all
+
+jobs:
+  wahl_analytics_build_release_notes:
+    uses: ./.github/workflows/_build_release_notes.yaml
+    with:
+      preRelease: false
+
+  wahl_analytics_code_quality_validation:
+    uses: ./.github/workflows/_app_static_analyze_with_test.yaml
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+
+  wahl_analytics_hosting:
+    uses: ./.github/workflows/_wahl_analytics_web_hosting.yaml
+    needs: [wahl_analytics_code_quality_validation]
+    with:
+      channelId: 'live'
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      FIREBASE_JSON_BASE64: ${{ secrets.FIREBASE_JSON_BASE64 }}
+      FIREBASE_CONFIG_BASE64: ${{ secrets.FIREBASE_CONFIG_BASE64 }}

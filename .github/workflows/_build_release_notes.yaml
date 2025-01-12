@@ -1,0 +1,59 @@
+name: Create release notes
+
+on:
+  workflow_call:
+    inputs:
+      preRelease:
+        type: boolean
+        required: false
+        default: false
+        description: Whether the created release is a pre-release.
+
+jobs:
+  build_release_notes:
+    runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.step_changelog.outputs.changelog }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create changelog with headline
+        run: echo "# Release Notes" > changelog.md
+
+      - name: Get notes-from tag
+        id: step_from_tag
+        run: |
+          echo "from_tag=$GITHUB_REF_NAME" >> $GITHUB_OUTPUT
+
+      - name: Get notes-to tag
+        id: step_to_tag
+        run: |
+          to_tag="$(git tag --sort=committerdate -l '*-storybook-prod' | grep -v $GITHUB_REF_NAME | tail -n 1)"
+          echo "to_tag=${to_tag}" >> $GITHUB_OUTPUT
+
+      - name: Debug output from tags
+        run: |
+          echo "From tag: ${{ steps.step_from_tag.outputs.from_tag }}"
+          echo "To tag: ${{ steps.step_to_tag.outputs.to_tag }}"
+
+      - name: Extract changelog
+        id: step_changelog
+        run: |
+          git log --pretty="format:* %s" ${{ steps.step_from_tag.outputs.from_tag }}...${{ steps.step_to_tag.outputs.to_tag }} >> changelog.md
+          echo "changelog=cat changelog.md" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: changelog.md
+          prerelease: ${{ inputs.preRelease }}
+
+      - name: Store release notes
+        uses: actions/upload-artifact@v4
+        with:
+          name: changelog-review
+          path: changelog.md
+
+
+

@@ -1,0 +1,78 @@
+name: Analyze and test app
+
+on:
+  workflow_call:
+    secrets:
+      FIREBASE_OPTIONS_BASE64:
+        required: true
+      APP_CHECK_TOKEN_BASE64:
+        required: true
+
+env:
+  FLUTTER_VERSION: 3.27.1
+
+jobs:
+  analyze_and_test:
+    name: Analyse and test the app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+
+      - name: Setup Melos
+        run: |
+          dart pub global activate melos
+
+      - name: Get dart dependencies
+        run: flutter pub get
+
+      - name: Format the Dart code
+        run: dart format . --set-exit-if-changed
+
+      - name: Run code generator
+        run: melos gen_app --no-select
+
+      - name: Statically analyze the code
+        run: flutter analyze
+
+      - name: Run unit tests
+        run: flutter test --exclude-tags golden --coverage --machine > test-results.json --no-pub
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1.9.1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.json
+          reporter: flutter-json
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install lcov on ubuntu
+        run: |
+          sudo apt-get update
+          sudo apt-get install lcov
+
+      - name: Generate code coverage report from lcov.info
+        uses: zgosalvez/github-actions-report-lcov@v4.1.22
+        with:
+          coverage-files: coverage/lcov.info
+          minimum-coverage: 0
+          artifact-name: code-coverage-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-comment: true
+
