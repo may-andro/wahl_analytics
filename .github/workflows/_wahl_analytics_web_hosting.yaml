@@ -17,6 +17,8 @@ on:
         required: true
       FIREBASE_JSON_BASE64:
         required: true
+      FIREBASE_CONFIG_BASE64:
+        required: true
 
 env:
   FLUTTER_VERSION: 3.27.1
@@ -48,6 +50,10 @@ jobs:
       - name: Decode Firebase Json
         run: |
           echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
+
+      - name: Decode firebase-config.js in web directory
+        run: |
+          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > ${{ github.workspace }}/web/firebase-config.js
 
       - name: Decode Firebase Options
         run: |

@@ -69,12 +69,14 @@ test-results-golden.json
 
 # web
 web/firebase-config.js
+web/firebase-config.base64
 
 # Firebase configuration files
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json
 android/app/google-services.json
 firebase_config.js
+firebase-config.base64
 firebase-service-account.json
 
 # Firebase Hosting and related files
