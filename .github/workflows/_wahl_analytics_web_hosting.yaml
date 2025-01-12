@@ -53,7 +53,7 @@ jobs:
 
       - name: Decode firebase-config.js in web directory
         run: |
-          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > ${{ github.workspace }}/web/firebase-config.js
+          echo "${{ secrets.FIREBASE_CONFIG_BASE64 }}" | base64 --decode > ${{ github.workspace }}/build/web/firebase-config.js
 
       - name: Decode Firebase Options
         run: |
