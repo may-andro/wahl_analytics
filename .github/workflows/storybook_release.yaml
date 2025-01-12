@@ -12,6 +12,11 @@ on:
 permissions: write-all
 
 jobs:
+  storybook_build_release_notes:
+    uses: ./.github/workflows/_build_release_notes.yaml
+    with:
+      preRelease: false
+
   storybook_code_quality_validation:
     uses: ./.github/workflows/_storybook_static_analysis.yaml
 
