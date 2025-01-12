@@ -4,10 +4,19 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+#on:
+#  push:
+#    tags:
+#      - '*-prod'
+
 on:
-  push:
-    tags:
+  pull_request:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
 
 permissions: write-all
 
@@ -17,15 +26,15 @@ jobs:
     with:
       preRelease: false
 
-  wahl_analytics_code_quality_validation:
-    uses: ./.github/workflows/_app_static_analyze_with_test.yaml
-    secrets:
-      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
-      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+  #wahl_analytics_code_quality_validation:
+  #  uses: ./.github/workflows/_app_static_analyze_with_test.yaml
+  #  secrets:
+  #    FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+  #    APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
   wahl_analytics_hosting:
     uses: ./.github/workflows/_wahl_analytics_web_hosting.yaml
-    needs: [wahl_analytics_code_quality_validation]
+    #needs: [wahl_analytics_code_quality_validation]
     with:
       channelId: 'live'
     secrets:

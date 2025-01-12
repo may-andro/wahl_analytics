@@ -36,6 +36,15 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Set version from tag
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]
+          then
+            echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version number"
+          else
+            version=$(echo $GITHUB_REF_NAME | sed "s/-storybook-prod//") && sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
+          fi
+
       - name: Decode Firebase Json
         run: |
           echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
@@ -47,6 +56,29 @@ jobs:
       - name: Decode App Check Token
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+
+      - name: Verify Firebase Options File
+        run: |
+          if [ -f "${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart" ]; then
+            echo "Firebase options file exists at the expected path."
+          else
+            echo "Error: Firebase options file is missing."
+            exit 1
+          fi
+          
+      - name: Verify App Check Token File
+        run: |
+          if [ -f "${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart" ]; then
+            echo "App Check token file exists at the expected path."
+          else
+            echo "Error: App Check token file is missing."
+            exit 1
+          fi
+
+      - name: Debug Directory Structure
+        run: |
+          echo "Listing files in src directory:"
+          ls -la ${{ github.workspace }}/layer/firebase/lib/src/
 
       - name: Setup Melos
         run: |
