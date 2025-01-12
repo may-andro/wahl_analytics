@@ -7,10 +7,7 @@ concurrency:
 on:
   push:
     tags:
-      - "*-prod"
-    tags-ignore:
-      - "*-review"
-      - "*-storybook-prod"
+      - '*-prod'
 
 permissions: write-all
 

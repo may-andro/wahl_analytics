@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/log_reporter/**'
       - '.github/workflows/layer_log_reporter_code_quality_validation.yaml'

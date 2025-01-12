@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/design_system/**'
       - '.github/workflows/layer_design_system_code_quality_validation.yaml'

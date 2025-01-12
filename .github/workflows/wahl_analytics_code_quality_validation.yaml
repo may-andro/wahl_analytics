@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
 
 permissions: write-all
 

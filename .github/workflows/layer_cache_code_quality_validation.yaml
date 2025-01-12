@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/cache/**'
       - '.github/workflows/layer_cache_code_quality_validation.yaml'

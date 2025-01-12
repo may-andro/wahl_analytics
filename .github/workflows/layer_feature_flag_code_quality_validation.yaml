@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/feature_flag/**'
       - '.github/workflows/layer_feature_flag_code_quality_validation.yaml'

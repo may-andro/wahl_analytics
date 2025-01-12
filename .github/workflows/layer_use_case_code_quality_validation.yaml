@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/use_case/**'
       - '.github/workflows/layer_use_case_code_quality_validation.yaml'

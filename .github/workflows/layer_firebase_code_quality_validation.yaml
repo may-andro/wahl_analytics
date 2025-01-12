@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/firebase/**'
       - '.github/workflows/layer_firebase_code_quality_validation.yaml'

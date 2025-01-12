@@ -11,6 +11,7 @@ on:
     tags-ignore:
       - '*-review'
       - '*-prod'
+      - '*-prod-storybook'
     paths:
       - 'layer/remote/**'
       - '.github/workflows/layer_remote_code_quality_validation.yaml'
