@@ -78,7 +78,7 @@ jobs:
       - name: Debug Directory Structure
         run: |
           echo "Listing files in src directory:"
-          ls -la ${{ github.workspace }}/layer/firebase/lib/src/
+          ls -la ${{ github.workspace }}/layer/firebase/lib/src/app_check/
 
       - name: Setup Melos
         run: |
@@ -99,5 +99,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
           channelId: ${{ inputs.channelId }}
-        env:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks
