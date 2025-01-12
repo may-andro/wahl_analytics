@@ -209,7 +209,7 @@ scripts:
       echo "Getting packages"
       flutter pub get 
       echo "Building web with Flutter"
-      flutter build web --release --dart-define=build_env=prod --no-tree-shake-icons
+      flutter build web --release --dart-define=build_env=prod
       echo "Deploying to Firebase"
       firebase deploy --only hosting
     description: Host flutter web page

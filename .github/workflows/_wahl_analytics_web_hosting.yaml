@@ -52,6 +52,9 @@ jobs:
         run: |
           dart pub global activate melos
 
+      - name: Get dart dependencies
+        run: flutter pub get
+
       - name: Run code generator
         run: melos gen_app --no-select
 
