@@ -15,13 +15,10 @@ class FbAppCheckController {
   final FirebaseAppCheck _firebaseAppCheck;
 
   Future<void> initialiseAppCheck() async {
-
     try {
-      const token = kDebugMode ? Token.debug : Token.release;
-      print('FbAppCheckController.initialiseAppCheck kDebugMode: $kDebugMode isProd: ${token == Token.release} ${Token.release[0]}');
       await _firebaseAppCheck.activate(
         webProvider:
-            ReCaptchaV3Provider(token),
+            ReCaptchaV3Provider(kDebugMode ? Token.debug : Token.release),
         androidProvider:
             kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
         appleProvider:
