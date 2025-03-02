@@ -7,6 +7,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get addButton => 'Add';
+
+  @override
+  String get addService => 'Add service';
+
+  @override
   String get businessHours =>
       'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday - Sunday: Closed';
 
@@ -15,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get callUs => 'Call us';
+
+  @override
+  String get cancelButton => 'Cancel';
 
   @override
   String get careerPageFormDescription =>
@@ -32,6 +41,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get careerPageIntroTitle => 'Work with us';
+
+  @override
+  String get closeButton => 'Close';
 
   @override
   String get companyName => 'Wahl Analytics';
@@ -68,6 +80,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get countryFormFieldNotFoundValidation => 'No country found';
 
   @override
+  String get dataUpdateSuccess => 'Data updated successfully';
+
+  @override
+  String get dataUpdateFailure => 'Data update failed';
+
+  @override
+  String get deleteButton => 'Delete';
+
+  @override
+  String get deleteServiceTitle => 'Delete Service?';
+
+  @override
+  String get deleteServiceSubTitle =>
+      'Are you sure you want to delete this service?';
+
+  @override
+  String get descriptionFormFieldInvalidValidation =>
+      'Please provide a valid description';
+
+  @override
+  String get descriptionFormFieldLabel => 'Description';
+
+  @override
+  String get descriptionFormFieldNotFoundValidation => 'No description found';
+
+  @override
   String get devModeTitle => 'Developer Mode';
 
   @override
@@ -94,7 +132,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailFormFieldNotFoundValidation => 'No email found';
 
   @override
+  String get errorLoadingFailureMessage =>
+      'We couldn\'t load the data at the moment. Please try refreshing the page or check back later.';
+
+  @override
   String get footerLocationLabel => 'Servicing clients worldwide';
+
+  @override
+  String get goToHomeButton => 'Go to Home';
+
+  @override
+  String get iconFormFieldHint => 'Select icon';
+
+  @override
+  String get iconFormFieldInvalidValidation =>
+      'Select one of the available icon';
+
+  @override
+  String get iconFormFieldLabel => 'Icon';
 
   @override
   String get messageFormFieldHint => 'Tell us what excites you';
@@ -123,6 +178,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get location => 'Location';
+
+  @override
+  String get longDescriptionFormFieldInvalidValidation =>
+      'Please provide a valid long description';
+
+  @override
+  String get longDescriptionFormFieldLabel => 'Long description';
+
+  @override
+  String get longDescriptionFormFieldNotFoundValidation =>
+      'No long description found';
 
   @override
   String get resumeFormFieldButton => 'Add Resume';
@@ -167,6 +233,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get routeNotFoundTitle => 'Page Not Found';
 
   @override
+  String serviceUpdatedSuccessMessage(String locale) {
+    return 'Services have been updated successfully ✅. Please verify that the data is updated correctly in all languages';
+  }
+
+  @override
+  String serviceUpdatedFailureMessage(String locale) {
+    return 'Services updated failed for $locale. Please try again later';
+  }
+
+  @override
+  String get shortDescriptionFormFieldInvalidValidation =>
+      'Please provide a valid short description';
+
+  @override
+  String get shortDescriptionFormFieldLabel => 'Short description';
+
+  @override
+  String get shortDescriptionFormFieldNotFoundValidation =>
+      'No short description found';
+
+  @override
   String get splashProdMessage => 'Warming up the engine...';
 
   @override
@@ -194,6 +281,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get submitButton => 'Submit';
+
+  @override
+  String get titleFormFieldInvalidValidation => 'Please provide a valid title';
+
+  @override
+  String get titleFormFieldLabel => 'Title';
+
+  @override
+  String get titleFormFieldNotFoundValidation => 'No title found';
+
+  @override
+  String get updateService => 'Update service';
 
   @override
   String get userDataConsentCheckboxLabel =>

@@ -8,4 +8,9 @@ class ServiceModuleRoute extends ModuleRoute {
     'services_provided',
     '/services_provided',
   );
+
+  static const ServiceModuleRoute servicesUpdate = ServiceModuleRoute._(
+    'services_update',
+    '/services_update',
+  );
 }

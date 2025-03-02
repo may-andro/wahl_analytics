@@ -15,7 +15,7 @@ class ClientMapper implements Mapper<ClientModel, ClientEntity> {
       name: from.name,
       shortDescription: from.shortDescription,
       longDescription: from.longDescription,
-      services: from.services.map(_serviceMapper.map).toList(),
+      services: from.services.map(_serviceMapper.to).toList(),
     );
   }
 }

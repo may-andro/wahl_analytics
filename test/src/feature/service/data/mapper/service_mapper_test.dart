@@ -3,7 +3,7 @@ import 'package:wahl_analytics/src/feature/service/data/data.dart';
 import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 
 void main() {
-  group('ServiceMapper', () {
+  group(ServiceMapper, () {
     late ServiceMapper mapper;
 
     setUp(() {
@@ -25,7 +25,18 @@ void main() {
         title: 'title',
       );
 
-      expect(mapper.map(serviceModel), serviceEntity);
+      expect(mapper.to(serviceModel), serviceEntity);
+    });
+
+    test('should correctly maps ServiceModel from ServiceEntity', () {
+      const serviceEntity = ServiceEntity(
+        icon: 'icon',
+        shortDescription: 'shortDescription',
+        longDescription: 'longDescription',
+        title: 'title',
+      );
+
+      expect(mapper.from(serviceEntity), isA<ServiceModel>());
     });
   });
 }

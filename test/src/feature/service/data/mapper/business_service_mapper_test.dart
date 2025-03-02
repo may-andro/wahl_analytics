@@ -3,7 +3,7 @@ import 'package:wahl_analytics/src/feature/service/data/data.dart';
 import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 
 void main() {
-  group('BusinessServiceMapper', () {
+  group(BusinessServiceMapper, () {
     late BusinessServiceMapper mapper;
 
     setUp(() {
@@ -42,9 +42,32 @@ void main() {
         ],
       );
 
-      final result = mapper.map(businessServiceModel);
+      final result = mapper.to(businessServiceModel);
 
       expect(result, businessServiceEntity);
+    });
+
+    test(
+        'should correctly maps BusinessServiceModel from BusinessServiceEntity',
+        () {
+      const businessServiceEntity = BusinessServiceEntity(
+        title: 'url',
+        name: 'name',
+        description: 'description',
+        action: 'action',
+        services: [
+          ServiceEntity(
+            icon: 'icon',
+            shortDescription: 'shortDescription',
+            longDescription: 'longDescription',
+            title: 'title',
+          ),
+        ],
+      );
+
+      final result = mapper.from(businessServiceEntity);
+
+      expect(result, isA<BusinessServiceModel>());
     });
   });
 }

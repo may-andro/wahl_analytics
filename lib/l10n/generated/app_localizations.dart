@@ -100,6 +100,18 @@ abstract class AppLocalizations {
     Locale('nl')
   ];
 
+  /// Add button label
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get addButton;
+
+  /// Add service dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Add service'**
+  String get addService;
+
   /// Business hours timings
   ///
   /// In en, this message translates to:
@@ -117,6 +129,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Call us'**
   String get callUs;
+
+  /// Cancel button label
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
 
   /// Form description text on career page form
   ///
@@ -147,6 +165,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Work with us'**
   String get careerPageIntroTitle;
+
+  /// Close button label
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeButton;
 
   /// Company name
   ///
@@ -208,6 +232,54 @@ abstract class AppLocalizations {
   /// **'No country found'**
   String get countryFormFieldNotFoundValidation;
 
+  /// Data update success dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Data updated successfully'**
+  String get dataUpdateSuccess;
+
+  /// Data update failure dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Data update failed'**
+  String get dataUpdateFailure;
+
+  /// Delete button label
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteButton;
+
+  /// Delete service dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Service?'**
+  String get deleteServiceTitle;
+
+  /// Delete service dialog sub title
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this service?'**
+  String get deleteServiceSubTitle;
+
+  /// Form field validation error when description is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide a valid description'**
+  String get descriptionFormFieldInvalidValidation;
+
+  /// Description form field label
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get descriptionFormFieldLabel;
+
+  /// Form field validation error message when no description is found
+  ///
+  /// In en, this message translates to:
+  /// **'No description found'**
+  String get descriptionFormFieldNotFoundValidation;
+
   /// Title for the dev mode authentication screen
   ///
   /// In en, this message translates to:
@@ -256,11 +328,41 @@ abstract class AppLocalizations {
   /// **'No email found'**
   String get emailFormFieldNotFoundValidation;
 
+  /// Generic error message for content loading failure
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load the data at the moment. Please try refreshing the page or check back later.'**
+  String get errorLoadingFailureMessage;
+
   /// The general location label above address in the home footer
   ///
   /// In en, this message translates to:
   /// **'Servicing clients worldwide'**
   String get footerLocationLabel;
+
+  /// Go to home button
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Home'**
+  String get goToHomeButton;
+
+  /// Icon selection form field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Select icon'**
+  String get iconFormFieldHint;
+
+  /// Form field validation error when icon is unselected
+  ///
+  /// In en, this message translates to:
+  /// **'Select one of the available icon'**
+  String get iconFormFieldInvalidValidation;
+
+  /// Icon selection form field label
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get iconFormFieldLabel;
 
   /// Career message form field hint
   ///
@@ -315,6 +417,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Location'**
   String get location;
+
+  /// Form field validation error when long description is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide a valid long description'**
+  String get longDescriptionFormFieldInvalidValidation;
+
+  /// Long description form field label
+  ///
+  /// In en, this message translates to:
+  /// **'Long description'**
+  String get longDescriptionFormFieldLabel;
+
+  /// Form field validation error message when no long description is found
+  ///
+  /// In en, this message translates to:
+  /// **'No long description found'**
+  String get longDescriptionFormFieldNotFoundValidation;
 
   /// Resume form field button text
   ///
@@ -394,6 +514,36 @@ abstract class AppLocalizations {
   /// **'Page Not Found'**
   String get routeNotFoundTitle;
 
+  /// Service update success message
+  ///
+  /// In en, this message translates to:
+  /// **'Services have been updated successfully ✅. Please verify that the data is updated correctly in all languages'**
+  String serviceUpdatedSuccessMessage(String locale);
+
+  /// Service update failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Services updated failed for {locale}. Please try again later'**
+  String serviceUpdatedFailureMessage(String locale);
+
+  /// Form field validation error when short description is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide a valid short description'**
+  String get shortDescriptionFormFieldInvalidValidation;
+
+  /// Short description form field label
+  ///
+  /// In en, this message translates to:
+  /// **'Short description'**
+  String get shortDescriptionFormFieldLabel;
+
+  /// Form field validation error message when no short description is found
+  ///
+  /// In en, this message translates to:
+  /// **'No short description found'**
+  String get shortDescriptionFormFieldNotFoundValidation;
+
   /// Splash message for loading status
   ///
   /// In en, this message translates to:
@@ -447,6 +597,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Submit'**
   String get submitButton;
+
+  /// Form field validation error when tile is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide a valid title'**
+  String get titleFormFieldInvalidValidation;
+
+  /// Title form field label
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get titleFormFieldLabel;
+
+  /// Form field validation error message when no title is found
+  ///
+  /// In en, this message translates to:
+  /// **'No title found'**
+  String get titleFormFieldNotFoundValidation;
+
+  /// Update service dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Update service'**
+  String get updateService;
 
   /// user data consent checkbox text
   ///

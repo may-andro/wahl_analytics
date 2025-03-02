@@ -7,6 +7,12 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
+  String get addButton => 'Toevoegen';
+
+  @override
+  String get addService => 'Service toevoegen';
+
+  @override
   String get businessHours =>
       'Maandag - Vrijdag: 9:00 - 18:00\nZaterdag - Zondag: Gesloten';
 
@@ -15,6 +21,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get callUs => 'Bel ons';
+
+  @override
+  String get cancelButton => 'Annuleren';
 
   @override
   String get careerPageFormDescription =>
@@ -32,6 +41,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get careerPageIntroTitle => 'Werk met ons';
+
+  @override
+  String get closeButton => 'Sluiten';
 
   @override
   String get companyName => 'Wahl Analytics';
@@ -68,6 +80,33 @@ class AppLocalizationsNl extends AppLocalizations {
   String get countryFormFieldNotFoundValidation => 'Geen land gevonden';
 
   @override
+  String get dataUpdateSuccess => 'Gegevens succesvol bijgewerkt';
+
+  @override
+  String get dataUpdateFailure => 'Gegevens bijwerken mislukt';
+
+  @override
+  String get deleteButton => 'Verwijderen';
+
+  @override
+  String get deleteServiceTitle => 'Service verwijderen?';
+
+  @override
+  String get deleteServiceSubTitle =>
+      'Weet u zeker dat u deze service wilt verwijderen?';
+
+  @override
+  String get descriptionFormFieldInvalidValidation =>
+      'Geef een geldige beschrijving op';
+
+  @override
+  String get descriptionFormFieldLabel => 'Beschrijving';
+
+  @override
+  String get descriptionFormFieldNotFoundValidation =>
+      'Geen beschrijving gevonden';
+
+  @override
   String get devModeTitle => 'Ontwikkelaarsmodus';
 
   @override
@@ -96,7 +135,24 @@ class AppLocalizationsNl extends AppLocalizations {
   String get emailFormFieldNotFoundValidation => 'Geen e-mailadres gevonden';
 
   @override
+  String get errorLoadingFailureMessage =>
+      'We konden de gegevens op dit moment niet laden. Probeer de pagina te vernieuwen of kom later terug.';
+
+  @override
   String get footerLocationLabel => 'Klanten wereldwijd bedienen';
+
+  @override
+  String get goToHomeButton => 'Ga naar home';
+
+  @override
+  String get iconFormFieldHint => 'Selecteer een pictogram';
+
+  @override
+  String get iconFormFieldInvalidValidation =>
+      'Selecteer een van de beschikbare pictogrammen';
+
+  @override
+  String get iconFormFieldLabel => 'Pictogram';
 
   @override
   String get messageFormFieldHint => 'Vertel ons wat u enthousiast maakt';
@@ -125,6 +181,17 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get location => 'Locatie';
+
+  @override
+  String get longDescriptionFormFieldInvalidValidation =>
+      'Geef een geldige lange beschrijving op';
+
+  @override
+  String get longDescriptionFormFieldLabel => 'Lange beschrijving';
+
+  @override
+  String get longDescriptionFormFieldNotFoundValidation =>
+      'Geen lange beschrijving gevonden';
 
   @override
   String get resumeFormFieldButton => 'Voeg CV toe';
@@ -170,6 +237,27 @@ class AppLocalizationsNl extends AppLocalizations {
   String get routeNotFoundTitle => 'Pagina Niet Gevonden';
 
   @override
+  String serviceUpdatedSuccessMessage(String locale) {
+    return 'Diensten zijn succesvol bijgewerkt ✅. Controleer alstublieft of de gegevens correct zijn bijgewerkt in alle talen';
+  }
+
+  @override
+  String serviceUpdatedFailureMessage(String locale) {
+    return 'Het bijwerken van diensten is mislukt voor $locale. Probeer het later opnieuw';
+  }
+
+  @override
+  String get shortDescriptionFormFieldInvalidValidation =>
+      'Geef een geldige korte beschrijving op';
+
+  @override
+  String get shortDescriptionFormFieldLabel => 'Korte beschrijving';
+
+  @override
+  String get shortDescriptionFormFieldNotFoundValidation =>
+      'Geen korte beschrijving gevonden';
+
+  @override
   String get splashProdMessage => 'De motor opwarmen...';
 
   @override
@@ -197,6 +285,18 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get submitButton => 'Indienen';
+
+  @override
+  String get titleFormFieldInvalidValidation => 'Geef een geldige titel op';
+
+  @override
+  String get titleFormFieldLabel => 'Titel';
+
+  @override
+  String get titleFormFieldNotFoundValidation => 'Geen titel gevonden';
+
+  @override
+  String get updateService => 'Service bijwerken';
 
   @override
   String get userDataConsentCheckboxLabel =>

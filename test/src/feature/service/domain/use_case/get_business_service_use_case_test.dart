@@ -4,7 +4,7 @@ import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 import '../../../../../mock/src/feature/service/domain/repository/mock_service_repository.dart';
 
 void main() {
-  group('GetBusinessServiceUseCase', () {
+  group(GetBusinessServiceUseCase, () {
     late GetBusinessServiceUseCase useCase;
 
     late MockServiceRepository mockServiceRepository;
@@ -16,7 +16,7 @@ void main() {
     });
 
     test(
-      'should return business team',
+      'should return business service entity',
       () async {
         const businessServiceEntity = BusinessServiceEntity(
           title: 'title',
@@ -33,7 +33,9 @@ void main() {
           ],
         );
 
-        mockServiceRepository.mockGetBusinessService(businessServiceEntity);
+        mockServiceRepository.mockGetBusinessServiceForLocale(
+          businessServiceEntity,
+        );
 
         final result = await useCase();
 
@@ -43,56 +45,24 @@ void main() {
     );
 
     test(
-      'should return BusinessServiceFailure '
-      'when NullDataFoundServiceException is thrown',
+      'should return $BusinessServiceFailure '
+      'when exception is thrown',
       () async {
+        final exceptions = [
+          NullDataFoundServiceException(Exception(), StackTrace.current),
+          ServerServiceException(Exception(), StackTrace.current),
+          IncorrectJsonServiceException(Exception(), StackTrace.current),
+          UnknownServiceException(Exception(), StackTrace.current),
+        ];
+
+        for (final exception in exceptions) {
+          mockServiceRepository.mockGetBusinessServiceThrowsException(
+            exception,
+          );
+        }
+
         mockServiceRepository.mockGetBusinessServiceThrowsException(
           NullDataFoundServiceException(Exception(), StackTrace.current),
-        );
-
-        final result = await useCase();
-
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessServiceFailure>());
-      },
-    );
-
-    test(
-      'should return BusinessServiceFailure '
-      'when ServerServiceException thrown',
-      () async {
-        mockServiceRepository.mockGetBusinessServiceThrowsException(
-          ServerServiceException(Exception(), StackTrace.current),
-        );
-
-        final result = await useCase();
-
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessServiceFailure>());
-      },
-    );
-
-    test(
-      'should return BusinessServiceFailure '
-      'when IncorrectJsonServiceException thrown',
-      () async {
-        mockServiceRepository.mockGetBusinessServiceThrowsException(
-          IncorrectJsonServiceException(Exception(), StackTrace.current),
-        );
-
-        final result = await useCase();
-
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessServiceFailure>());
-      },
-    );
-
-    test(
-      'should return BusinessServiceFailure '
-      'when UnknownServiceException thrown',
-      () async {
-        mockServiceRepository.mockGetBusinessServiceThrowsException(
-          UnknownServiceException(Exception(), StackTrace.current),
         );
 
         final result = await useCase();

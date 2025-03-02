@@ -4,20 +4,33 @@ import 'package:wahl_analytics/src/feature/service/data/model/model.dart';
 import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 
 class BusinessServiceMapper
-    implements Mapper<BusinessServiceModel, BusinessServiceEntity> {
+    implements BiMapper<BusinessServiceModel, BusinessServiceEntity> {
   BusinessServiceMapper(this._serviceMapper);
 
   final ServiceMapper _serviceMapper;
 
   @override
-  BusinessServiceEntity map(BusinessServiceModel from) {
+  BusinessServiceModel from(BusinessServiceEntity from) {
+    return BusinessServiceModel(
+      name: from.name,
+      title: from.title,
+      shortDescription: from.description,
+      action: from.action,
+      services: from.services.map((service) {
+        return _serviceMapper.from(service);
+      }).toList(),
+    );
+  }
+
+  @override
+  BusinessServiceEntity to(BusinessServiceModel from) {
     return BusinessServiceEntity(
       name: from.name,
       title: from.title,
       description: from.shortDescription,
       action: from.action,
       services: from.services.map((service) {
-        return _serviceMapper.map(service);
+        return _serviceMapper.to(service);
       }).toList(),
     );
   }

@@ -1,4 +1,12 @@
 {
+  "addButton": "Add",
+  "@addButton": {
+    "description": "Add button label"
+  },
+  "addService": "Add service",
+  "@addService": {
+    "description": "Add service dialog title"
+  },
   "businessHours": "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday - Sunday: Closed",
   "@businessHours": {
     "description": "Business hours timings"
@@ -10,6 +18,10 @@
   "callUs": "Call us",
   "@callUs": {
     "description": "Call us"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Cancel button label"
   },
   "careerPageFormDescription": "Share your experience and expertise with us. If your skills and background align with our needs, we’ll be in touch as soon as possible to discuss the next steps.",
   "@careerPageFormDescription": {
@@ -30,6 +42,10 @@
   "careerPageIntroTitle": "Work with us",
   "@careerPageIntroTitle": {
     "description": "Title intro text on career page"
+  },
+  "closeButton": "Close",
+  "@closeButton": {
+    "description": "Close button label"
   },
   "companyName": "Wahl Analytics",
   "@companyName": {
@@ -77,6 +93,38 @@
   "@countryFormFieldNotFoundValidation": {
     "description": "Form field validation error message when no country is found"
   },
+  "dataUpdateSuccess": "Data updated successfully",
+  "@dataUpdateSuccess": {
+    "description": "Data update success dialog title"
+  },
+  "dataUpdateFailure": "Data update failed",
+  "@dataUpdateFailure": {
+    "description": "Data update failure dialog title"
+  },
+  "deleteButton": "Delete",
+  "@deleteButton": {
+    "description": "Delete button label"
+  },
+  "deleteServiceTitle": "Delete Service?",
+  "@deleteServiceTitle": {
+    "description": "Delete service dialog title"
+  },
+  "deleteServiceSubTitle": "Are you sure you want to delete this service?",
+  "@deleteServiceSubTitle": {
+    "description": "Delete service dialog sub title"
+  },
+  "descriptionFormFieldInvalidValidation": "Please provide a valid description",
+  "@descriptionFormFieldInvalidValidation": {
+    "description": "Form field validation error when description is invalid"
+  },
+  "descriptionFormFieldLabel": "Description",
+  "@descriptionFormFieldLabel": {
+    "description": "Description form field label"
+  },
+  "descriptionFormFieldNotFoundValidation": "No description found",
+  "@descriptionFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no description is found"
+  },
   "devModeTitle": "Developer Mode",
   "@devModeTitle": {
     "description": "Title for the dev mode authentication screen"
@@ -109,9 +157,29 @@
   "@emailFormFieldNotFoundValidation": {
     "description": "Form field validation error message when no email is found"
   },
+  "errorLoadingFailureMessage": "We couldn't load the data at the moment. Please try refreshing the page or check back later.",
+  "@errorLoadingFailureMessage": {
+    "description": "Generic error message for content loading failure"
+  },
   "footerLocationLabel": "Servicing clients worldwide",
   "@footerLocationLabel": {
     "description": "The general location label above address in the home footer"
+  },
+  "goToHomeButton": "Go to Home",
+  "@goToHomeButton": {
+    "description": "Go to home button"
+  },
+  "iconFormFieldHint": "Select icon",
+  "@iconFormFieldHint": {
+    "description": "Icon selection form field hint"
+  },
+  "iconFormFieldInvalidValidation": "Select one of the available icon",
+  "@iconFormFieldInvalidValidation": {
+    "description": "Form field validation error when icon is unselected"
+  },
+  "iconFormFieldLabel": "Icon",
+  "@iconFormFieldLabel": {
+    "description": "Icon selection form field label"
   },
   "messageFormFieldHint": "Tell us what excites you",
   "@messageFormFieldHint": {
@@ -148,6 +216,18 @@
   "location": "Location",
   "@location": {
     "description": "location"
+  },
+  "longDescriptionFormFieldInvalidValidation": "Please provide a valid long description",
+  "@longDescriptionFormFieldInvalidValidation": {
+    "description": "Form field validation error when long description is invalid"
+  },
+  "longDescriptionFormFieldLabel": "Long description",
+  "@longDescriptionFormFieldLabel": {
+    "description": "Long description form field label"
+  },
+  "longDescriptionFormFieldNotFoundValidation": "No long description found",
+  "@longDescriptionFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no long description is found"
   },
   "resumeFormFieldButton": "Add Resume",
   "@resumeFormFieldButton": {
@@ -201,6 +281,38 @@
   "@routeNotFoundTitle": {
     "description": "Title error for route not found screen"
   },
+  "serviceUpdatedSuccessMessage": "Services have been updated successfully ✅. Please verify that the data is updated correctly in all languages",
+  "@serviceUpdatedSuccessMessage": {
+    "description": "Service update success message",
+    "placeholders": {
+      "locale": {
+        "type": "String",
+        "example": "en"
+      }
+    }
+  },
+  "serviceUpdatedFailureMessage": "Services updated failed for {locale}. Please try again later",
+  "@serviceUpdatedFailureMessage": {
+    "description": "Service update failure message",
+    "placeholders": {
+      "locale": {
+        "type": "String",
+        "example": "en"
+      }
+    }
+  },
+  "shortDescriptionFormFieldInvalidValidation": "Please provide a valid short description",
+  "@shortDescriptionFormFieldInvalidValidation": {
+    "description": "Form field validation error when short description is invalid"
+  },
+  "shortDescriptionFormFieldLabel": "Short description",
+  "@shortDescriptionFormFieldLabel": {
+    "description": "Short description form field label"
+  },
+  "shortDescriptionFormFieldNotFoundValidation": "No short description found",
+  "@shortDescriptionFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no short description is found"
+  },
   "splashProdMessage": "Warming up the engine...",
   "@splashProdMessage": {
     "description": "Splash message for loading status"
@@ -236,6 +348,22 @@
   "submitButton": "Submit",
   "@submitButton": {
     "description": "submit button text"
+  },
+  "titleFormFieldInvalidValidation": "Please provide a valid title",
+  "@titleFormFieldInvalidValidation": {
+    "description": "Form field validation error when tile is invalid"
+  },
+  "titleFormFieldLabel": "Title",
+  "@titleFormFieldLabel": {
+    "description": "Title form field label"
+  },
+  "titleFormFieldNotFoundValidation": "No title found",
+  "@titleFormFieldNotFoundValidation": {
+    "description": "Form field validation error message when no title is found"
+  },
+  "updateService": "Update service",
+  "@updateService": {
+    "description": "Update service dialog title"
   },
   "userDataConsentCheckboxLabel": "I hereby give my consent to the Wahl Analytics to process my personal data contained in the application documents for the purpose of using my application in future recruitment processes.",
   "@userDataConsentCheckboxLabel": {

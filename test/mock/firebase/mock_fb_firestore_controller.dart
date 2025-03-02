@@ -21,4 +21,15 @@ class MockFbFirestoreController extends Mock implements FbFirestoreController {
   void mockGetDocumentFromCollectionThrowsException(Object exception) {
     when(() => getDocumentFromCollection(any(), any())).thenThrow(exception);
   }
+
+  void mockUpdateDocumentFromCollection() {
+    when(
+      () => updateDocumentFromCollection(any(), any(), any()),
+    ).thenAnswer((_) async => {});
+  }
+
+  void mockUpdateDocumentFromCollectionThrowsException(Object exception) {
+    when(() => updateDocumentFromCollection(any(), any(), any()))
+        .thenThrow(exception);
+  }
 }

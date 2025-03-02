@@ -7,6 +7,12 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get addButton => 'Agregar';
+
+  @override
+  String get addService => 'Agregar servicio';
+
+  @override
   String get businessHours =>
       'Lunes - Viernes: 9:00 AM - 6:00 PM\nSábado - Domingo: Cerrado';
 
@@ -15,6 +21,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get callUs => 'Llámanos';
+
+  @override
+  String get cancelButton => 'Cancelar';
 
   @override
   String get careerPageFormDescription =>
@@ -32,6 +41,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get careerPageIntroTitle => 'Trabaja con nosotros';
+
+  @override
+  String get closeButton => 'Cerrar';
 
   @override
   String get companyName => 'Wahl Analytics';
@@ -68,6 +80,33 @@ class AppLocalizationsEs extends AppLocalizations {
   String get countryFormFieldNotFoundValidation => 'No se encontró el país';
 
   @override
+  String get dataUpdateSuccess => 'Datos actualizados con éxito';
+
+  @override
+  String get dataUpdateFailure => 'La actualización de datos falló';
+
+  @override
+  String get deleteButton => 'Eliminar';
+
+  @override
+  String get deleteServiceTitle => '¿Eliminar servicio?';
+
+  @override
+  String get deleteServiceSubTitle =>
+      '¿Está seguro de que desea eliminar este servicio?';
+
+  @override
+  String get descriptionFormFieldInvalidValidation =>
+      'Por favor, proporcione una descripción válida';
+
+  @override
+  String get descriptionFormFieldLabel => 'Descripción';
+
+  @override
+  String get descriptionFormFieldNotFoundValidation =>
+      'No se encontró ninguna descripción';
+
+  @override
   String get devModeTitle => 'Modo desarrollador';
 
   @override
@@ -95,7 +134,24 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emailFormFieldNotFoundValidation => 'No se encontró el correo';
 
   @override
+  String get errorLoadingFailureMessage =>
+      'No pudimos cargar los datos en este momento. Por favor, intenta actualizar la página o vuelve más tarde.';
+
+  @override
   String get footerLocationLabel => 'Atendiendo clientes en todo el mundo';
+
+  @override
+  String get goToHomeButton => 'Ir a inicio';
+
+  @override
+  String get iconFormFieldHint => 'Seleccione un ícono';
+
+  @override
+  String get iconFormFieldInvalidValidation =>
+      'Seleccione uno de los íconos disponibles';
+
+  @override
+  String get iconFormFieldLabel => 'Ícono';
 
   @override
   String get messageFormFieldHint => 'Cuéntanos qué te emociona';
@@ -125,6 +181,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get location => 'Ubicación';
+
+  @override
+  String get longDescriptionFormFieldInvalidValidation =>
+      'Por favor, proporcione una descripción larga válida';
+
+  @override
+  String get longDescriptionFormFieldLabel => 'Descripción larga';
+
+  @override
+  String get longDescriptionFormFieldNotFoundValidation =>
+      'No se encontró ninguna descripción larga';
 
   @override
   String get resumeFormFieldButton => 'Añadir currículum';
@@ -172,6 +239,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get routeNotFoundTitle => 'Página no encontrada';
 
   @override
+  String serviceUpdatedSuccessMessage(String locale) {
+    return 'Los servicios se han actualizado con éxito ✅. Por favor, verifica que los datos estén actualizados correctamente en todos los idiomas';
+  }
+
+  @override
+  String serviceUpdatedFailureMessage(String locale) {
+    return 'La actualización de servicios falló para $locale. Por favor, inténtelo de nuevo más tarde';
+  }
+
+  @override
+  String get shortDescriptionFormFieldInvalidValidation =>
+      'Por favor, proporcione una descripción breve válida';
+
+  @override
+  String get shortDescriptionFormFieldLabel => 'Descripción breve';
+
+  @override
+  String get shortDescriptionFormFieldNotFoundValidation =>
+      'No se encontró ninguna descripción breve';
+
+  @override
   String get splashProdMessage => 'Calentando el motor...';
 
   @override
@@ -200,6 +288,19 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get submitButton => 'Enviar';
+
+  @override
+  String get titleFormFieldInvalidValidation =>
+      'Por favor, proporciona un título válido';
+
+  @override
+  String get titleFormFieldLabel => 'Título';
+
+  @override
+  String get titleFormFieldNotFoundValidation => 'No se encontró ningún título';
+
+  @override
+  String get updateService => 'Actualizar servicio';
 
   @override
   String get userDataConsentCheckboxLabel =>

@@ -19,7 +19,8 @@ class GetBusinessServiceUseCase
   @override
   Future<Either<BusinessServiceFailure, BusinessServiceEntity>>
       execute() async {
-    final businessService = await _serviceRepository.getBusinessService();
+    final businessService =
+        await _serviceRepository.getBusinessServiceForLocale();
     return Right(businessService);
   }
 

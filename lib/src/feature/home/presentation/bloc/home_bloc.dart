@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:feature_flag/feature_flag.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this._getHomeContentUseCase,
     this._isFeatureEnabledUseCase,
     this._isDevModeAuthenticatedUseCase,
+    this._buildConfig,
   ) : super(const HomeState()) {
     on<OnInitScreenEvent>(_mapOnInitScreenEventToState);
     on<GetContentEvent>(_mapGetContentEventToState);
@@ -25,6 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetHomeContentUseCase _getHomeContentUseCase;
   final IsFeatureEnabledUseCase _isFeatureEnabledUseCase;
   final IsDevModeAuthenticatedUseCase _isDevModeAuthenticatedUseCase;
+  final BuildConfig _buildConfig;
   int lastHeaderLogoTapTimeStamp = 0;
   int headerLogoTapCount = 0;
 
@@ -137,6 +140,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     final newTriggerCount = state.devMenuTriggerCount + 1;
+
+    if (_buildConfig.buildEnvironment.isDevMenuEnabled) {
+      emit(
+        state.copyWith(
+          devMenuTriggerCount: newTriggerCount,
+          isDevMenuEnabled: true,
+        ),
+      );
+      return;
+    }
+
     final eitherResult = await _isDevModeAuthenticatedUseCase();
     final showDevMenuAuthentication = eitherResult.fold(
       (failure) => false,

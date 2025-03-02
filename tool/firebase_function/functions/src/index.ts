@@ -4,6 +4,17 @@ import * as nodemailer from "nodemailer";
 
 admin.initializeApp();
 
+// Set up the Nodemailer transporter using Gmail
+const nodemailerTransporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 export const sendContactUsEmail = functions
     .region("europe-west3")
     .firestore
@@ -41,17 +52,6 @@ export const sendContactUsEmail = functions
         `;
         /* eslint-enable max-len */
 
-        // Set up the Nodemailer transporter using Gmail
-        const transporter = nodemailer.createTransport({
-          host: "smtp.office365.com",
-          port: 587,
-          secure: false,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        });
-
         const mailOptions = {
           from: process.env.EMAIL_USER,
           to: process.env.EMAIL_TO,
@@ -59,7 +59,7 @@ export const sendContactUsEmail = functions
           html: emailBody,
         };
 
-        await transporter.sendMail(mailOptions);
+        await nodemailerTransporter.sendMail(mailOptions);
       } catch (error) {
         console.error("Error sending email:", error);
         throw new functions.https.HttpsError(
@@ -117,17 +117,6 @@ export const sendCareerEmail = functions
         `;
         /* eslint-enable max-len */
 
-        // Set up the Nodemailer transporter using Gmail
-        const transporter = nodemailer.createTransport({
-          host: "smtp.office365.com",
-          port: 587,
-          secure: false,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        });
-
         const mailOptions = {
           from: process.env.EMAIL_USER,
           to: process.env.EMAIL_TO,
@@ -135,7 +124,7 @@ export const sendCareerEmail = functions
           html: emailBody,
         };
 
-        await transporter.sendMail(mailOptions);
+        await nodemailerTransporter.sendMail(mailOptions);
       } catch (error) {
         console.error("Error sending email:", error);
         throw new functions.https.HttpsError(
@@ -159,17 +148,6 @@ export const sendDevMenuAuthEmail = functions
         const emailText = `Your verification code is: ${code}`;
         const emailHtml = `<p>Your verification code is: <b>${code}</b></p>`;
 
-        // Set up the Nodemailer transporter using Gmail
-        const transporter = nodemailer.createTransport({
-          host: "smtp.office365.com",
-          port: 587,
-          secure: false,
-          auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-          },
-        });
-
         const mailOptions = {
           from: process.env.EMAIL_USER,
           to: process.env.EMAIL_TO,
@@ -178,7 +156,7 @@ export const sendDevMenuAuthEmail = functions
           html: emailHtml,
         };
 
-        await transporter.sendMail(mailOptions);
+        await nodemailerTransporter.sendMail(mailOptions);
 
         const docRef = await admin.firestore()
             .collection("verification_codes")

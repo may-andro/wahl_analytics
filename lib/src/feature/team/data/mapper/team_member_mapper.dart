@@ -16,7 +16,7 @@ class TeamMemberMapper implements Mapper<TeamMemberModel, TeamMemberEntity> {
       role: from.role,
       shortDescription: from.shortDescription,
       longDescription: from.longDescription,
-      services: from.services.map(_serviceMapper.map).toList(),
+      services: from.services.map(_serviceMapper.to).toList(),
     );
   }
 }

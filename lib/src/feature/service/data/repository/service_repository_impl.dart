@@ -10,15 +10,71 @@ class ServiceRepositoryImpl implements ServiceRepository {
     this._buildConfig,
     this._firestoreController,
     this._businessServiceMapper,
+    this._allLocaleBusinessServiceMapper,
   );
 
   final AppLocale _appLocale;
   final BuildConfig _buildConfig;
   final FbFirestoreController _firestoreController;
   final BusinessServiceMapper _businessServiceMapper;
+  final AllLocaleBusinessServiceMapper _allLocaleBusinessServiceMapper;
 
   @override
-  Future<BusinessServiceEntity> getBusinessService() async {
+  Future<AllLocaleBusinessServiceEntity> getBusinessService() async {
+    try {
+      final dataMap = await _firestoreController.getDocumentFromCollection(
+        'business_service',
+        _buildConfig.buildEnvironment.name,
+      );
+
+      if (dataMap == null) {
+        throw const FormatException();
+      }
+
+      final businessServiceModelMap = Map<String, dynamic>.from(dataMap as Map);
+      final model =
+          AllLocaleBusinessServiceModel.fromJson(businessServiceModelMap);
+      return _allLocaleBusinessServiceMapper.to(model);
+    } catch (e, st) {
+      if (e is FirestoreException) {
+        throw ServerServiceException(e.cause, st);
+      }
+
+      if (e is TypeError) {
+        throw IncorrectJsonServiceException(e, st);
+      }
+
+      if (e is FormatException) {
+        throw NullDataFoundServiceException(e, st);
+      }
+
+      throw UnknownServiceException(e, st);
+    }
+  }
+
+  @override
+  Future<void> updateAllLocaleBusinessService(
+    AllLocaleBusinessServiceEntity allLocaleBusinessServiceEntity,
+  ) async {
+    try {
+      return _firestoreController.updateDocumentFromCollection(
+        'business_service',
+        _buildConfig.buildEnvironment.name,
+        _allLocaleBusinessServiceMapper
+            .from(allLocaleBusinessServiceEntity)
+            .toJson(),
+      );
+    } catch (e, st) {
+      if (e is FirestoreException) {
+        throw ServerServiceException(e.cause, st);
+      }
+
+      throw UnknownServiceException(e, st);
+    }
+  }
+
+  @override
+  Future<BusinessServiceEntity> getBusinessServiceForLocale() async {
     try {
       final dataMap = await _firestoreController.getDocumentFromCollection(
         'business_service',
@@ -33,7 +89,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
         dataMap[_appLocale.locale] as Map,
       );
       final model = BusinessServiceModel.fromJson(businessServiceModelMap);
-      return _businessServiceMapper.map(model);
+      return _businessServiceMapper.to(model);
     } catch (e, st) {
       if (e is FirestoreException) {
         throw ServerServiceException(e.cause, st);
