@@ -1,7 +1,8 @@
 import 'package:wahl_analytics/src/feature/error/error.dart';
 import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/service/presentation/route/service_module_route.dart';
-import 'package:wahl_analytics/src/feature/service/presentation/services_provided/services_provided_screen.dart';
+import 'package:wahl_analytics/src/feature/service/presentation/services_provided/services_provided.dart';
+import 'package:wahl_analytics/src/feature/service/presentation/services_update/services_update.dart';
 import 'package:wahl_analytics/src/route/route.dart';
 
 class ServiceModuleRouteConfigurator implements ModuleRouteConfigurator {
@@ -21,6 +22,11 @@ class ServiceModuleRouteConfigurator implements ModuleRouteConfigurator {
 
           return state.getCustomTransitionPage(const RouteNotFoundScreen());
         },
+      ),
+      GoRoute(
+        name: ServiceModuleRoute.servicesUpdate.name,
+        path: ServiceModuleRoute.servicesUpdate.path,
+        builder: (context, state) => const ServicesUpdateScreen(),
       ),
     ];
   }

@@ -26,4 +26,20 @@ class BusinessServiceEntity extends Equatable {
       services,
     ];
   }
+
+  BusinessServiceEntity copyWith({
+    String? name,
+    String? title,
+    String? description,
+    String? action,
+    List<ServiceEntity>? services,
+  }) {
+    return BusinessServiceEntity(
+      name: name ?? this.name,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      action: action ?? this.action,
+      services: services ?? this.services,
+    );
+  }
 }
