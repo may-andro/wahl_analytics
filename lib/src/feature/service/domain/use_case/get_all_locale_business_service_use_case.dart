@@ -27,7 +27,9 @@ class GetAllLocaleBusinessServiceUseCase extends BaseNoParamUseCase<
   @protected
   @override
   GetAllLocaleBusinessServiceFailure mapErrorToFailure(
-      Object e, StackTrace st) {
+    Object e,
+    StackTrace st,
+  ) {
     return GetAllLocaleBusinessServiceFailure(message: e.toString(), cause: e);
   }
 }
