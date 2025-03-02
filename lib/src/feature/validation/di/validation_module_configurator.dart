@@ -18,5 +18,7 @@ class ValidationModuleConfigurator implements ModuleConfigurator {
     serviceLocator.registerFactory(() => IsValidRoleUseCase());
     serviceLocator.registerFactory(() => IsValidMessageUseCase());
     serviceLocator.registerFactory(() => IsValidVerificationCodeUseCase());
+    serviceLocator.registerFactory(() => IsValidShortDescriptionUseCase());
+    serviceLocator.registerFactory(() => IsValidLongDescriptionUseCase());
   }
 }
