@@ -24,15 +24,15 @@ class ContentWidget extends StatelessWidget {
       listener: (context, state) {
         context.isDesktop
             ? UpdateMessageWidget.showAsDialog(
-          context: context,
-          isUpdatedSuccessfully: state.isFormSubmittedSuccessfully,
-          locale: state.locale,
-        )
+                context: context,
+                isUpdatedSuccessfully: state.isFormSubmittedSuccessfully,
+                locale: state.locale,
+              )
             : UpdateMessageWidget.showAsBottomSheet(
-          context: context,
-          isUpdatedSuccessfully: state.isFormSubmittedSuccessfully,
-          locale: state.locale,
-        );
+                context: context,
+                isUpdatedSuccessfully: state.isFormSubmittedSuccessfully,
+                locale: state.locale,
+              );
       },
       child: SingleChildScrollView(
         child: Container(
