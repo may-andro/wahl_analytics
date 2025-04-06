@@ -52,6 +52,7 @@ dependencies:
   meta: ^1.15.0
   open_file: ^3.5.10
   package_info_plus: ^8.1.2
+  recase: ^4.1.0
   remote:
     path: layer/remote
   url_launcher: ^6.3.1
