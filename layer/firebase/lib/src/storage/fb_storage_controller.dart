@@ -2,12 +2,17 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 sealed class FireStorageException implements Exception {
   FireStorageException(this.cause, this.stackTrace);
 
   final Object cause;
   final StackTrace stackTrace;
+}
+
+final class StorageDownloadErrorException extends FireStorageException {
+  StorageDownloadErrorException(super.cause, super.stackTrace);
 }
 
 final class StorageUploadErrorException extends FireStorageException {
@@ -86,6 +91,29 @@ class FbStorageController {
         return await storageRef.getDownloadURL();
       }
       throw exception;
+    } catch (error, st) {
+      throw StorageUploadFailedException(error, st);
+    }
+  }
+
+  Future<File> downloadFileDocument({
+    required String fileName,
+    required String? storageFolder,
+  }) async {
+    if (kIsWeb) {
+      throw StorageUploadFailedException(
+        'This method is not supported on web',
+        StackTrace.current,
+      );
+    }
+    try {
+      final appDocDir = await getApplicationDocumentsDirectory();
+      final tempFile = File('${appDocDir.path}/$fileName');
+
+      final storageRef = _firebaseStorage.ref('$storageFolder/$fileName');
+      await storageRef.writeToFile(tempFile);
+
+      return tempFile;
     } catch (error, st) {
       throw StorageUploadFailedException(error, st);
     }

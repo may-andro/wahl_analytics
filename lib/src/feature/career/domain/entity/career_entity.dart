@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
 class CareerEntity extends Equatable {
   const CareerEntity({
@@ -8,7 +7,10 @@ class CareerEntity extends Equatable {
     required this.role,
     required this.country,
     required this.message,
-    required this.fileData,
+    required this.resumeName,
+    required this.resumeUrl,
+    required this.uploadedAt,
+    required this.env,
   });
 
   final String name;
@@ -16,7 +18,10 @@ class CareerEntity extends Equatable {
   final String role;
   final String country;
   final String message;
-  final Uint8List fileData;
+  final String resumeName;
+  final String resumeUrl;
+  final DateTime uploadedAt;
+  final String env;
 
   @override
   List<Object?> get props => [
@@ -25,6 +30,9 @@ class CareerEntity extends Equatable {
         role,
         country,
         message,
-        fileData,
+        resumeName,
+        resumeUrl,
+        uploadedAt,
+        env,
       ];
 }

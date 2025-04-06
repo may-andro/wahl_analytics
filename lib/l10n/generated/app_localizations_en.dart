@@ -26,6 +26,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancelButton => 'Cancel';
 
   @override
+  String careersRequestApplication(String count) {
+    return '$count applications';
+  }
+
+  @override
   String get careerPageFormDescription =>
       'Share your experience and expertise with us. If your skills and background align with our needs, we’ll be in touch as soon as possible to discuss the next steps.';
 
@@ -87,6 +92,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteButton => 'Delete';
+
+  @override
+  String deleteCareerApplicationSuccess(String name) {
+    return 'Career application request is deleted for $name successfully';
+  }
+
+  @override
+  String deleteCareerApplicationFailure(String name) {
+    return 'Failed to delete career application request of $name';
+  }
 
   @override
   String get deleteServiceTitle => 'Delete Service?';
@@ -177,6 +192,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nameFormFieldNotFoundValidation => 'No name found';
 
   @override
+  String get noCareerRequestFoundTitle => 'No Submissions Available';
+
+  @override
+  String get noCareerRequestFoundDescription =>
+      'It seems there are no applications at the moment. Please check back later';
+
+  @override
   String get location => 'Location';
 
   @override
@@ -206,6 +228,27 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get resumeFormFieldUploadFailed =>
       'File could not be uploaded, please upload another file or try later';
+
+  @override
+  String resumeDownloadFailureMessage(String name) {
+    return 'Failed to download resume of $name';
+  }
+
+  @override
+  String resumeOpenFailureMessage(String name, Object path) {
+    return 'Failed to open resume at $path';
+  }
+
+  @override
+  String resumeOpenMessage(String path) {
+    return 'Resume downloaded at $path successfully';
+  }
+
+  @override
+  String get resumeUrlOpenFailureMessage => 'Failed to open the resume';
+
+  @override
+  String get resumeUrlOpenMessage => 'Resume file opened successfully';
 
   @override
   String get roleFormFieldEmptyValidation => 'The role seems to be empty';
@@ -252,6 +295,12 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get shortDescriptionFormFieldNotFoundValidation =>
       'No short description found';
+
+  @override
+  String get showLess => 'Show more';
+
+  @override
+  String get showMore => 'Show less';
 
   @override
   String get splashProdMessage => 'Warming up the engine...';

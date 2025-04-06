@@ -50,9 +50,11 @@ dependencies:
   log_reporter:
     path: layer/log_reporter
   meta: ^1.15.0
+  open_file: ^3.5.10
   package_info_plus: ^8.1.2
   remote:
     path: layer/remote
+  url_launcher: ^6.3.1
   use_case:
     path: layer/use_case
 

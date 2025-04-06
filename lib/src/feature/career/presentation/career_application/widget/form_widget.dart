@@ -1,16 +1,16 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:wahl_analytics/l10n/l10n.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/bloc/bloc.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/dto/dto.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/widget/upload_resume_form_field_widget.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/bloc/bloc.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/dto/dto.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/widget/upload_resume_form_field_widget.dart';
 
 class FormWidget extends StatelessWidget {
   const FormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CareerBloc, CareerState>(
+    return BlocBuilder<CareerApplicationBloc, CareerApplicationState>(
       builder: (context, state) {
         return Form(
           key: state.formKey,
@@ -99,7 +99,7 @@ class FormWidget extends StatelessWidget {
     const formFieldType = FormFieldType.email;
     return DSTextFieldWidget(
       key: const Key('email_input_widget'),
-      hintText: context.localizations.roleFormFieldHint,
+      hintText: context.localizations.emailFormFieldHint,
       labelText: context.localizations.emailFormFieldLabel,
       controller: context.state.textFieldControllers[formFieldType],
       focusNode: context.state.textFieldFocusNodes[formFieldType],
@@ -284,10 +284,4 @@ class FormWidget extends StatelessWidget {
       variant: DSButtonVariant.prominent,
     );
   }
-}
-
-extension _ContextExtension on BuildContext {
-  CareerBloc get bloc => read<CareerBloc>();
-
-  CareerState get state => bloc.state;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/dto/form_field_validation_message.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/dto/form_field_validation_message.dart';
 
 enum FormFieldType {
   name,

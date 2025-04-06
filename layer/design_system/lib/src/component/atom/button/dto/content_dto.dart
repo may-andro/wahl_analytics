@@ -10,7 +10,10 @@ abstract interface class ContentDTO {
   final IconData? left;
   final IconData? right;
 
-  Widget getContentWidget(BuildContext context);
+  Widget getContentWidget(
+    BuildContext context,
+    Color iconColor,
+  );
 }
 
 @internal
@@ -18,7 +21,10 @@ class TextContent extends ContentDTO {
   TextContent(super.label) : super(left: null, right: null);
 
   @override
-  Widget getContentWidget(BuildContext context) {
+  Widget getContentWidget(
+    BuildContext context,
+    Color iconColor,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -41,12 +47,15 @@ class LeftIconTextContent extends ContentDTO {
   final double size;
 
   @override
-  Widget getContentWidget(BuildContext context) {
+  Widget getContentWidget(
+    BuildContext context,
+    Color iconColor,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(width: context.space(factor: 2)),
-        _ImageContextWidget(left!, size),
+        _ImageContextWidget(left!, size, iconColor),
         SizedBox(width: context.space(factor: 0.5)),
         _TextContentWidget(label),
         SizedBox(width: context.space(factor: 2)),
@@ -66,14 +75,17 @@ class RightIconTextContent extends ContentDTO {
   final double size;
 
   @override
-  Widget getContentWidget(BuildContext context) {
+  Widget getContentWidget(
+    BuildContext context,
+    Color iconColor,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(width: context.space(factor: 2)),
         _TextContentWidget(label),
         SizedBox(width: context.space(factor: 0.5)),
-        _ImageContextWidget(right!, size),
+        _ImageContextWidget(right!, size, iconColor),
         SizedBox(width: context.space(factor: 2)),
       ],
     );
@@ -84,14 +96,20 @@ class _ImageContextWidget extends StatelessWidget {
   const _ImageContextWidget(
     this.icon,
     this.size,
+    this.iconColor,
   );
 
   final IconData icon;
   final double size;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
-    return Icon(icon, size: size);
+    return Icon(
+      icon,
+      size: size,
+      color: iconColor,
+    );
   }
 }
 

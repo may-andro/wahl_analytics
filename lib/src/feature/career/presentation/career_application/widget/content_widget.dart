@@ -1,8 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/widget/content_card_widget.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/widget/form_widget.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/widget/intro_widget.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/widget/content_card_widget.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/widget/form_widget.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/widget/intro_widget.dart';
 
 class ContentWidget extends StatefulWidget {
   const ContentWidget({super.key});

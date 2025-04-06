@@ -5,6 +5,7 @@ export 'ds_asset_image_widget.dart';
 export 'ds_card_widget.dart';
 export 'ds_checkbox_form_field_widget.dart';
 export 'ds_drop_down_widget.dart';
+export 'ds_expandable_text_widget.dart';
 export 'ds_horizontal_divider_widget.dart';
 export 'ds_horizontal_spacer_widget.dart';
 export 'ds_icons.dart';

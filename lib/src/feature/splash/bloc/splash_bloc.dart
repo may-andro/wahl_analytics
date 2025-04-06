@@ -35,11 +35,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         emit(SetUpProgress(_receivedSetUpStatus, progress));
       },
       onError: (error, stackTrace) {
+        errorDuringDI = true;
         if (error is DISetupException) {
           emit(SetUpError(error.message ?? error.cause ?? error));
+          return;
         }
         emit(SetUpError(error));
-        errorDuringDI = true;
       },
     );
 

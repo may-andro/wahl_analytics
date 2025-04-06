@@ -10,8 +10,10 @@ class CareerModel {
     required this.role,
     required this.country,
     required this.message,
+    required this.resumeName,
     required this.resumeUrl,
     required this.uploadedAt,
+    required this.env,
   });
 
   factory CareerModel.fromJson(Map<String, dynamic> json) =>
@@ -34,11 +36,17 @@ class CareerModel {
   @JsonKey(name: 'message')
   final String message;
 
+  @JsonKey(name: 'resumeName')
+  final String resumeName;
+
   @JsonKey(name: 'resumeUrl')
   final String resumeUrl;
 
   @JsonKey(name: 'uploadedAt')
   final String uploadedAt;
+
+  @JsonKey(name: 'env')
+  final String env;
 
   CareerModel copyWith({
     String? name,
@@ -46,8 +54,10 @@ class CareerModel {
     String? role,
     String? country,
     String? message,
+    String? resumeName,
     String? resumeUrl,
     String? uploadedAt,
+    String? env,
   }) {
     return CareerModel(
       name: name ?? this.name,
@@ -55,8 +65,10 @@ class CareerModel {
       role: role ?? this.role,
       country: country ?? this.country,
       message: message ?? this.message,
+      resumeName: resumeName ?? this.resumeName,
       resumeUrl: resumeUrl ?? this.resumeUrl,
       uploadedAt: uploadedAt ?? this.uploadedAt,
+      env: env ?? this.env,
     );
   }
 }

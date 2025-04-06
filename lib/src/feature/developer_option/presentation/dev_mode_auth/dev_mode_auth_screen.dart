@@ -1,3 +1,4 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:wahl_analytics/src/dependency_injection/app_module_configurator.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/dev_mode_auth/bloc/bloc.dart';
@@ -12,6 +13,7 @@ class DevModeAuthScreen extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       isDismissible: false,
+      backgroundColor: context.colorPalette.background.primary.color,
       builder: (context) => Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,

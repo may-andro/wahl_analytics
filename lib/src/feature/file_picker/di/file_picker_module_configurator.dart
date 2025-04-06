@@ -13,5 +13,7 @@ class FilePickerModuleConfigurator implements ModuleConfigurator {
   @override
   FutureOr<void> registerDependencies(ServiceLocator serviceLocator) {
     serviceLocator.registerFactory(() => FilePickerUseCase());
+
+    serviceLocator.registerFactory(() => FileOpenerUseCase());
   }
 }

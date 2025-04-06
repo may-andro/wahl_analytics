@@ -27,17 +27,17 @@ abstract class VariantDTO {
 class PrimaryVariant extends VariantDTO {
   @override
   Color getDefaultBackgroundColor(BuildContext context) {
-    return context.colorPalette.brand.primary.color;
+    return context.colorPalette.brand.primaryContainer.color;
   }
 
   @override
   Color getDefaultBorderColor(BuildContext context) {
-    return context.colorPalette.brand.primary.color;
+    return context.colorPalette.brand.primaryContainer.color;
   }
 
   @override
   Color getDefaultTextColor(BuildContext context) {
-    return context.colorPalette.brand.onPrimary.color;
+    return context.colorPalette.brand.onPrimaryContainer.color;
   }
 
   @override
@@ -57,17 +57,17 @@ class PrimaryVariant extends VariantDTO {
 
   @override
   Color getPressedBackgroundColor(BuildContext context) {
-    return context.colorPalette.brand.primaryContainer.color;
+    return context.colorPalette.brand.primary.color;
   }
 
   @override
   Color getPressedBorderColor(BuildContext context) {
-    return context.colorPalette.brand.primaryContainer.color;
+    return context.colorPalette.brand.primary.color;
   }
 
   @override
   Color getPressedTextColor(BuildContext context) {
-    return context.colorPalette.brand.onPrimaryContainer.color;
+    return context.colorPalette.brand.onPrimary.color;
   }
 }
 
