@@ -23,7 +23,7 @@ class FbFirestoreController {
     }
   }
 
-  Future<QuerySnapshot<Map<String, dynamic>>> getCollectionQuerySnapshot(
+  Future<List<Map<String, dynamic>>> getCollectionQuerySnapshot(
     String collectionPath, {
     String? field,
     Object? isEqualTo,
@@ -33,7 +33,7 @@ class FbFirestoreController {
     bool? descending,
     String? orderBy,
     int? limit,
-  }) {
+  }) async {
     try {
       Query<Map<String, dynamic>> query = _firebaseFirestore.collection(
         collectionPath,
@@ -63,17 +63,20 @@ class FbFirestoreController {
         query = query.limit(limit);
       }
 
-      return query.get();
+      final queryData = await query.get();
+      final snapshots = queryData.docs.where((doc) => doc.exists);
+
+      return snapshots.map((snapshot) => snapshot.data()).toList();
     } catch (error, st) {
       throw FirestoreException(error, st);
     }
   }
 
-  Future<void> addDocumentToCollection(
-    String collectionPath,
-    String documentPath,
-    Map<String, dynamic> data,
-  ) {
+  Future<void> addDocumentToCollection({
+    required String collectionPath,
+    required String documentPath,
+    required Map<String, dynamic> data,
+  }) {
     try {
       return _firebaseFirestore
           .collection(collectionPath)
@@ -84,10 +87,10 @@ class FbFirestoreController {
     }
   }
 
-  Future<void> deleteDocumentFromCollection(
-    String collectionPath,
-    String documentPath,
-  ) {
+  Future<void> deleteDocumentFromCollection({
+    required String collectionPath,
+    required String documentPath,
+  }) {
     try {
       return _firebaseFirestore
           .collection(collectionPath)

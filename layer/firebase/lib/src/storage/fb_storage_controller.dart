@@ -101,7 +101,7 @@ class FbStorageController {
     required String? storageFolder,
   }) async {
     if (kIsWeb) {
-      throw StorageUploadFailedException(
+      throw StorageDownloadErrorException(
         'This method is not supported on web',
         StackTrace.current,
       );
@@ -115,7 +115,7 @@ class FbStorageController {
 
       return tempFile;
     } catch (error, st) {
-      throw StorageUploadFailedException(error, st);
+      throw StorageDownloadErrorException(error, st);
     }
   }
 

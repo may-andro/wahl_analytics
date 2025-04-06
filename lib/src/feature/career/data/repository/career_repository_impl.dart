@@ -35,17 +35,20 @@ class CareerRepositoryImpl implements CareerRepository {
         fileNameWithExtension,
         careerApplicationEntity.fileData,
       );
-      final model = _careerApplicationMapper.map(careerApplicationEntity);
+      final dataMap = _careerApplicationMapper
+          .map(
+            careerApplicationEntity,
+          )
+          .copyWith(
+            resumeName: fileNameWithExtension,
+            resumeUrl: resumeUrl,
+          )
+          .toJson();
 
       return _firestoreController.addDocumentToCollection(
-        _collectionName,
-        fileNameWithExtension,
-        model
-            .copyWith(
-              resumeName: fileNameWithExtension,
-              resumeUrl: resumeUrl,
-            )
-            .toJson(),
+        collectionPath: _collectionName,
+        documentPath: fileNameWithExtension,
+        data: dataMap,
       );
     } catch (_) {
       rethrow;
@@ -67,16 +70,15 @@ class CareerRepositoryImpl implements CareerRepository {
   @override
   Future<List<CareerEntity>> getCareersRequest() async {
     try {
-      final dataMap = await _firestoreController.getCollectionQuerySnapshot(
+      final dataMaps = await _firestoreController.getCollectionQuerySnapshot(
         _collectionName,
         field: 'env',
         isEqualTo: _buildConfig.buildEnvironment.name,
       );
 
-      final snapshots = dataMap.docs.where((doc) => doc.exists);
-      return snapshots.map((snapshot) {
-        return _careerMapper.to(CareerModel.fromJson(snapshot.data()));
-      }).toList();
+      return dataMaps
+          .map((map) => _careerMapper.to(CareerModel.fromJson(map)))
+          .toList();
     } catch (_) {
       rethrow;
     }
@@ -86,8 +88,8 @@ class CareerRepositoryImpl implements CareerRepository {
   Future<void> deleteCareerRequest(CareerEntity careerEntity) async {
     try {
       return _firestoreController.deleteDocumentFromCollection(
-        _collectionName,
-        careerEntity.resumeName,
+        collectionPath: _collectionName,
+        documentPath: careerEntity.resumeName,
       );
     } catch (_) {
       rethrow;

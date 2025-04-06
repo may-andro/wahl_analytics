@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'career_model.g.dart';
@@ -15,6 +16,20 @@ class CareerModel {
     required this.uploadedAt,
     required this.env,
   });
+
+  factory CareerModel.test() {
+    return CareerModel(
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      role: 'Software Engineer',
+      country: 'USA',
+      message: 'Excited to apply for this role.',
+      resumeName: 'resumeName',
+      resumeUrl: 'resumeUrl',
+      uploadedAt: DateTime.now().toFullDateTime,
+      env: 'prod',
+    );
+  }
 
   factory CareerModel.fromJson(Map<String, dynamic> json) =>
       _$CareerModelFromJson(json);

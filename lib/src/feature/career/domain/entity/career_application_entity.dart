@@ -12,6 +12,18 @@ class CareerApplicationEntity extends Equatable {
     required this.env,
   });
 
+  factory CareerApplicationEntity.test() {
+    return CareerApplicationEntity(
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      role: 'Software Engineer',
+      country: 'USA',
+      message: 'Excited to apply for this role.',
+      fileData: Uint8List.fromList([0, 1, 2, 3]),
+      env: 'prod',
+    );
+  }
+
   final String name;
   final String email;
   final String role;
