@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wahl_analytics/src/feature/career/data/mapper/mapper.dart';
 import 'package:wahl_analytics/src/feature/career/data/model/model.dart';
@@ -23,7 +24,10 @@ void main() {
       expect(careerModel.message, equals(careerEntity.message));
       expect(careerModel.resumeUrl, equals(careerEntity.resumeUrl));
       expect(careerModel.resumeName, equals(careerEntity.resumeName));
-      expect(careerModel.uploadedAt, equals(careerEntity.uploadedAt));
+      expect(
+        careerModel.uploadedAt,
+        equals(careerEntity.uploadedAt.toFullDateTime),
+      );
     });
 
     test('should correctly maps CareerModel to CareerEntity', () {
@@ -38,7 +42,10 @@ void main() {
       expect(careerEntity.message, equals(careerModel.message));
       expect(careerEntity.resumeUrl, equals(careerModel.resumeUrl));
       expect(careerEntity.resumeName, equals(careerModel.resumeName));
-      expect(careerEntity.uploadedAt, equals(careerModel.uploadedAt));
+      expect(
+        careerEntity.uploadedAt,
+        equals(careerModel.uploadedAt.toFullDateTime),
+      );
     });
   });
 }
