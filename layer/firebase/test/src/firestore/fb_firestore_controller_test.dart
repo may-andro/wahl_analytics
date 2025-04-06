@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class MapListContains extends Matcher {
   const MapListContains(this._expected);
+
   final Map<dynamic, dynamic> _expected;
 
   @override
@@ -54,22 +55,19 @@ void main() {
       test('should get all collection', () async {
         await fakeFirebaseFirestore.collection(collectionPath).add(data);
 
-        final querySnapshot =
-            await fbFirestoreController.getCollectionQuerySnapshot(
+        final result = await fbFirestoreController.getCollectionQuerySnapshot(
           collectionPath,
         );
-        final dataList = querySnapshot.docs.map((e) => e.data()).toList();
-
-        expect(dataList, const MapListContains(data));
+        expect(result, const MapListContains(data));
       });
     });
 
     group('addDocumentToCollection', () {
       test('should add data to document', () async {
         await fbFirestoreController.addDocumentToCollection(
-          collectionPath,
-          documentPath,
-          data,
+          collectionPath: collectionPath,
+          documentPath: documentPath,
+          data: data,
         );
 
         final documentReference =
@@ -89,8 +87,8 @@ void main() {
         final String documentPath = documentReference.path;
 
         await fbFirestoreController.deleteDocumentFromCollection(
-          collectionPath,
-          documentPath,
+          collectionPath: collectionPath,
+          documentPath: documentPath,
         );
 
         final documentSnapshot =
