@@ -26,6 +26,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cancelButton => 'Cancelar';
 
   @override
+  String careersRequestApplication(String count) {
+    return '$count solicitudes';
+  }
+
+  @override
   String get careerPageFormDescription =>
       'Comparte tu experiencia y conocimientos con nosotros. Si tus habilidades y antecedentes coinciden con nuestras necesidades, nos pondremos en contacto contigo lo antes posible para discutir los próximos pasos.';
 
@@ -87,6 +92,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get deleteButton => 'Eliminar';
+
+  @override
+  String deleteCareerApplicationSuccess(String name) {
+    return 'La solicitud de aplicación de carrera para $name se eliminó con éxito';
+  }
+
+  @override
+  String deleteCareerApplicationFailure(String name) {
+    return 'No se pudo eliminar la solicitud de aplicación de carrera de $name';
+  }
 
   @override
   String get deleteServiceTitle => '¿Eliminar servicio?';
@@ -180,6 +195,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get nameFormFieldNotFoundValidation => 'No se encontró el nombre';
 
   @override
+  String get noCareerRequestFoundTitle => 'No hay presentaciones disponibles';
+
+  @override
+  String get noCareerRequestFoundDescription =>
+      'Parece que no hay solicitudes en este momento. Por favor, vuelva a intentarlo más tarde.';
+
+  @override
   String get location => 'Ubicación';
 
   @override
@@ -210,6 +232,28 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get resumeFormFieldUploadFailed =>
       'No se pudo cargar el archivo, sube otro archivo o inténtalo más tarde';
+
+  @override
+  String resumeDownloadFailureMessage(String name) {
+    return 'No se pudo descargar el currículum de $name';
+  }
+
+  @override
+  String resumeOpenFailureMessage(String name, Object path) {
+    return 'No se pudo abrir el currículum en $path';
+  }
+
+  @override
+  String resumeOpenMessage(String path) {
+    return 'Currículum descargado con éxito en $path';
+  }
+
+  @override
+  String get resumeUrlOpenFailureMessage => 'No se pudo abrir el currículum';
+
+  @override
+  String get resumeUrlOpenMessage =>
+      'El archivo del currículum se abrió con éxito';
 
   @override
   String get roleFormFieldEmptyValidation => 'Parece que el rol está vacío';
@@ -258,6 +302,12 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get shortDescriptionFormFieldNotFoundValidation =>
       'No se encontró ninguna descripción breve';
+
+  @override
+  String get showLess => 'Mostrar más';
+
+  @override
+  String get showMore => 'Mostrar menos';
 
   @override
   String get splashProdMessage => 'Calentando el motor...';

@@ -1,91 +1,58 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:storybook/src/model/option.dart';
 import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(
   name: 'Icon Title Tile Widget',
-  type: IconTitleTileWidget,
+  type: DSIconTitleTileWidget,
 )
-IconTitleTileWidget iconTitleTileWidget(BuildContext context) {
-  return const IconTitleTileWidget();
-}
+Widget build(BuildContext context) {
+  final colorMap = context.colorMap;
+  final colors = colorMap.keys.toList();
 
-class IconTitleTileWidget extends StatelessWidget {
-  const IconTitleTileWidget({super.key});
+  final textStyleMap = context.textStyleMap;
+  final textStyles = textStyleMap.keys.toList();
 
-  @override
-  Widget build(BuildContext context) {
-    return BaseScaffoldWidget(
-      title: 'DSIconTitleTileWidget',
-      child: Center(
+  final iconMap = {Icons.add: 'Add', Icons.remove: 'Remove'};
+
+  return BaseScaffoldWidget(
+    title: 'DSIconTitleTileWidget',
+    child: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
         child: DSIconTitleTileWidget(
-          text: 'Some label text',
-          icon: Icons.add,
-          textColor: context.knobs
-              .list<Option<DSColor>>(
-                label: 'Color',
-                options: <Option<DSColor>>[
-                  Option(
-                    context.colorPalette.brand.primary,
-                    'Brand Primary',
-                  ),
-                  Option(
-                    context.colorPalette.semantic.success,
-                    'Semantic Success',
-                  ),
-                  Option(
-                    context.colorPalette.semantic.error,
-                    'Semantic Error',
-                  ),
-                  Option(
-                    context.colorPalette.semantic.info,
-                    'Semantic Info',
-                  ),
-                ],
-                labelBuilder: (option) => option.label,
-              )
-              .value,
-          style: context.knobs
-              .list<Option<DSTextStyle>>(
-                label: 'Text Style',
-                description: 'Select the style',
-                options: [
-                  Option(context.typography.titleSmall, 'Title Small'),
-                  Option(context.typography.titleMedium, 'Title Medium'),
-                  Option(context.typography.titleLarge, 'Title Large'),
-                  Option(context.typography.bodySmall, 'Body Small'),
-                  Option(context.typography.bodyMedium, 'Body Medium'),
-                  Option(context.typography.bodyLarge, 'Body Large'),
-                  Option(context.typography.labelSmall, 'Label Small'),
-                  Option(context.typography.labelMedium, 'Label Medium'),
-                  Option(context.typography.labelLarge, 'label Large'),
-                  Option(context.typography.headlineSmall, 'Headline Small'),
-                  Option(
-                    context.typography.headlineMedium,
-                    'Headline Medium',
-                  ),
-                  Option(context.typography.headlineLarge, 'Headline Large'),
-                ],
-                labelBuilder: (option) => option.label,
-              )
-              .value,
-          iconSize: context.knobs
-              .list<Option<double?>>(
-                label: 'Size',
-                options: <Option<double?>>[
-                  Option(null, 'Not Defined [Default]'),
-                  Option(context.space(factor: 2), '16 pixel'),
-                  Option(context.space(factor: 5), '40 pixel'),
-                  Option(context.space(factor: 8), '64 pixel'),
-                ],
-                labelBuilder: (option) => option.label,
-              )
-              .value,
+          text: context.knobs.string(
+            label: 'Text',
+            initialValue:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. '
+                'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, '
+                'when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
+          ),
+          textColor: context.knobs.list(
+            label: 'Text Colors',
+            options: colors,
+            labelBuilder: (color) => colorMap[color] ?? 'Not found',
+            initialOption: colors[12],
+          ),
+          style: context.knobs.list(
+            label: 'Style',
+            options: textStyles,
+            labelBuilder: (style) => textStyleMap[style] ?? 'Not found',
+          ),
+          icon: context.knobs.list(
+            label: 'Icon',
+            options: iconMap.keys.toList(),
+            labelBuilder: (icon) => iconMap[icon] ?? 'Not found',
+          ),
+          iconSize: context.knobs.doubleOrNull.slider(
+            label: 'Icon Size',
+            min: 0,
+            max: 100,
+          ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

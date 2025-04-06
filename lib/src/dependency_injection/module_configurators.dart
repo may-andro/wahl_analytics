@@ -17,6 +17,7 @@ import 'package:wahl_analytics/src/feature/home/home.dart';
 import 'package:wahl_analytics/src/feature/service/service.dart';
 import 'package:wahl_analytics/src/feature/summary/summary.dart';
 import 'package:wahl_analytics/src/feature/team/team.dart';
+import 'package:wahl_analytics/src/feature/url_handler/url_handler.dart';
 import 'package:wahl_analytics/src/feature/validation/validation.dart';
 
 List<ModuleConfigurator> getModuleConfigurators(BuildConfig buildConfig) => [
@@ -37,6 +38,7 @@ List<ModuleConfigurator> getModuleConfigurators(BuildConfig buildConfig) => [
       FeatureFlagModuleConfigurator(),
       ValidationModuleConfigurator(),
       FilePickerModuleConfigurator(),
+      UrlHandlerModuleConfigurator(),
       DeveloperOptionModuleConfigurator(),
       ServiceModuleConfigurator(),
       TeamModuleConfigurator(),

@@ -10,7 +10,210 @@ extension BuildContextExtension on BuildContext {
 
   DSColorPalette get colorPalette => theme.colorPalette;
 
+  List<DSColor> get colors => [
+        ...neutralColors,
+        ...brandColors,
+        ...backgroundColors,
+        ...backgroundSecondaryColors,
+        ...semanticColors,
+        ...prominentColors,
+      ];
+
+  List<DSColor> get neutralColors => [
+        colorPalette.neutral.grey1,
+        colorPalette.neutral.grey2,
+        colorPalette.neutral.grey3,
+        colorPalette.neutral.grey4,
+        colorPalette.neutral.grey5,
+        colorPalette.neutral.grey6,
+        colorPalette.neutral.grey7,
+        colorPalette.neutral.grey8,
+        colorPalette.neutral.grey9,
+        colorPalette.neutral.grey10,
+        colorPalette.neutral.white,
+        colorPalette.neutral.black,
+      ];
+
+  List<DSColor> get brandColors => [
+        colorPalette.brand.primary,
+        colorPalette.brand.onPrimary,
+        colorPalette.brand.primaryContainer,
+        colorPalette.brand.onPrimaryContainer,
+        colorPalette.brand.secondary,
+        colorPalette.brand.onSecondary,
+        colorPalette.brand.secondaryContainer,
+        colorPalette.brand.onSecondaryContainer,
+        colorPalette.brand.tertiary,
+        colorPalette.brand.onTertiary,
+        colorPalette.brand.tertiaryContainer,
+        colorPalette.brand.onTertiaryContainer,
+      ];
+
+  List<DSColor> get prominentColors => [
+        colorPalette.prominent.primary,
+        colorPalette.prominent.onPrimary,
+        colorPalette.prominent.primaryContainer,
+        colorPalette.prominent.onPrimaryContainer,
+      ];
+
+  List<DSColor> get semanticColors => [
+        colorPalette.semantic.info,
+        colorPalette.semantic.onInfo,
+        colorPalette.semantic.infoContainer,
+        colorPalette.semantic.onInfoContainer,
+        colorPalette.semantic.success,
+        colorPalette.semantic.onSuccess,
+        colorPalette.semantic.successContainer,
+        colorPalette.semantic.onSuccessContainer,
+        colorPalette.semantic.warning,
+        colorPalette.semantic.onWarning,
+        colorPalette.semantic.warningContainer,
+        colorPalette.semantic.onWarningContainer,
+        colorPalette.semantic.error,
+        colorPalette.semantic.onError,
+        colorPalette.semantic.errorContainer,
+        colorPalette.semantic.onErrorContainer,
+      ];
+
+  List<DSColor> get backgroundColors => [
+        colorPalette.background.primary,
+        colorPalette.background.onPrimary,
+        colorPalette.background.surface,
+        colorPalette.background.onSurface,
+        colorPalette.background.disabled,
+        colorPalette.background.onDisabled,
+        colorPalette.background.surfaceVariant,
+        colorPalette.background.onSurfaceVariant,
+        colorPalette.background.inverseSurface,
+        colorPalette.background.onInverseSurface,
+        colorPalette.background.shadow,
+        colorPalette.background.scrim,
+      ];
+
+  List<DSColor> get backgroundSecondaryColors => [
+        colorPalette.backgroundSecondary.primary,
+        colorPalette.backgroundSecondary.onPrimary,
+        colorPalette.backgroundSecondary.surface,
+        colorPalette.backgroundSecondary.onSurface,
+        colorPalette.backgroundSecondary.disabled,
+        colorPalette.backgroundSecondary.onDisabled,
+        colorPalette.backgroundSecondary.surfaceVariant,
+        colorPalette.backgroundSecondary.onSurfaceVariant,
+        colorPalette.backgroundSecondary.inverseSurface,
+        colorPalette.backgroundSecondary.onInverseSurface,
+        colorPalette.backgroundSecondary.shadow,
+        colorPalette.backgroundSecondary.scrim,
+      ];
+
+  Map<DSColor, String> get colorMap {
+    return {
+      // Neutral Colors
+      colorPalette.neutral.grey1: 'Neutral Grey1',
+      colorPalette.neutral.grey2: 'Neutral Grey2',
+      colorPalette.neutral.grey3: 'Neutral Grey3',
+      colorPalette.neutral.grey4: 'Neutral Grey4',
+      colorPalette.neutral.grey5: 'Neutral Grey5',
+      colorPalette.neutral.grey6: 'Neutral Grey6',
+      colorPalette.neutral.grey7: 'Neutral Grey7',
+      colorPalette.neutral.grey8: 'Neutral Grey8',
+      colorPalette.neutral.grey9: 'Neutral Grey9',
+      colorPalette.neutral.grey10: 'Neutral Grey10',
+      colorPalette.neutral.white: 'Neutral White',
+      colorPalette.neutral.black: 'Neutral Black',
+
+      // Brand Colors
+      colorPalette.brand.primary: 'Brand Primary',
+      colorPalette.brand.onPrimary: 'Brand OnPrimary',
+      colorPalette.brand.primaryContainer: 'Brand PrimaryContainer',
+      colorPalette.brand.onPrimaryContainer: 'Brand OnPrimaryContainer',
+      colorPalette.brand.secondary: 'Brand Secondary',
+      colorPalette.brand.onSecondary: 'Brand OnSecondary',
+      colorPalette.brand.secondaryContainer: 'Brand SecondaryContainer',
+      colorPalette.brand.onSecondaryContainer: 'Brand OnSecondaryContainer',
+      colorPalette.brand.tertiary: 'Brand Tertiary',
+      colorPalette.brand.onTertiary: 'Brand OnTertiary',
+      colorPalette.brand.tertiaryContainer: 'Brand TertiaryContainer',
+      colorPalette.brand.onTertiaryContainer: 'Brand OnTertiaryContainer',
+
+      // Prominent Colors
+      colorPalette.prominent.primary: 'Prominent Primary',
+      colorPalette.prominent.onPrimary: 'Prominent OnPrimary',
+      colorPalette.prominent.primaryContainer: 'Prominent PrimaryContainer',
+      colorPalette.prominent.onPrimaryContainer: 'Prominent OnPrimaryContainer',
+
+      // Semantic Colors
+      colorPalette.semantic.info: 'Semantic Info',
+      colorPalette.semantic.onInfo: 'Semantic OnInfo',
+      colorPalette.semantic.infoContainer: 'Semantic InfoContainer',
+      colorPalette.semantic.onInfoContainer: 'Semantic OnInfoContainer',
+      colorPalette.semantic.success: 'Semantic Success',
+      colorPalette.semantic.onSuccess: 'Semantic OnSuccess',
+      colorPalette.semantic.successContainer: 'Semantic SuccessContainer',
+      colorPalette.semantic.onSuccessContainer: 'Semantic OnSuccessContainer',
+      colorPalette.semantic.warning: 'Semantic Warning',
+      colorPalette.semantic.onWarning: 'Semantic OnWarning',
+      colorPalette.semantic.warningContainer: 'Semantic WarningContainer',
+      colorPalette.semantic.onWarningContainer: 'Semantic OnWarningContainer',
+      colorPalette.semantic.error: 'Semantic Error',
+      colorPalette.semantic.onError: 'Semantic OnError',
+      colorPalette.semantic.errorContainer: 'Semantic ErrorContainer',
+      colorPalette.semantic.onErrorContainer: 'Semantic OnErrorContainer',
+
+      // Background Colors
+      colorPalette.background.primary: 'Background Primary',
+      colorPalette.background.onPrimary: 'Background OnPrimary',
+      colorPalette.background.surface: 'Background Surface',
+      colorPalette.background.onSurface: 'Background OnSurface',
+      colorPalette.background.disabled: 'Background Disabled',
+      colorPalette.background.onDisabled: 'Background OnDisabled',
+      colorPalette.background.surfaceVariant: 'Background SurfaceVariant',
+      colorPalette.background.onSurfaceVariant: 'Background OnSurfaceVariant',
+      colorPalette.background.inverseSurface: 'Background InverseSurface',
+      colorPalette.background.onInverseSurface: 'Background OnInverseSurface',
+      colorPalette.background.shadow: 'Background Shadow',
+      colorPalette.background.scrim: 'Background Scrim',
+
+      // Background Secondary Colors
+      colorPalette.backgroundSecondary.primary: 'BackgroundSecondary Primary',
+      colorPalette.backgroundSecondary.onPrimary:
+          'BackgroundSecondary OnPrimary',
+      colorPalette.backgroundSecondary.surface: 'BackgroundSecondary Surface',
+      colorPalette.backgroundSecondary.onSurface:
+          'BackgroundSecondary OnSurface',
+      colorPalette.backgroundSecondary.disabled: 'BackgroundSecondary Disabled',
+      colorPalette.backgroundSecondary.onDisabled:
+          'BackgroundSecondary OnDisabled',
+      colorPalette.backgroundSecondary.surfaceVariant:
+          'BackgroundSecondary SurfaceVariant',
+      colorPalette.backgroundSecondary.onSurfaceVariant:
+          'BackgroundSecondary OnSurfaceVariant',
+      colorPalette.backgroundSecondary.inverseSurface:
+          'BackgroundSecondary InverseSurface',
+      colorPalette.backgroundSecondary.onInverseSurface:
+          'BackgroundSecondary OnInverseSurface',
+      colorPalette.backgroundSecondary.shadow: 'BackgroundSecondary Shadow',
+      colorPalette.backgroundSecondary.scrim: 'BackgroundSecondary Scrim',
+    };
+  }
+
   DSTypography get typography => theme.typography;
+
+  Map<DSTextStyle, String> get textStyleMap {
+    return {
+      typography.titleSmall: 'Title Small',
+      typography.titleMedium: 'Title Medium',
+      typography.titleLarge: 'Title Large',
+      typography.bodySmall: 'Body Small',
+      typography.bodyMedium: 'Body Medium',
+      typography.bodyLarge: 'Body Large',
+      typography.labelSmall: 'Label Small',
+      typography.labelMedium: 'Label Medium',
+      typography.labelLarge: 'Label Large',
+      typography.headlineSmall: 'Headline Small',
+      typography.headlineMedium: 'Headline Medium',
+      typography.headlineLarge: 'Headline Large',
+    };
+  }
 
   DSDimen get dimen => theme.dimen;
 

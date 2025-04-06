@@ -6,23 +6,14 @@ import 'package:wahl_analytics/src/feature/career/domain/domain.dart';
 import '../../../../../mock/src/feature/career/domain/repository/mock_career_repository.dart';
 
 void main() {
-  group('SubmitCareerApplicationUseCase', () {
+  group(SubmitCareerApplicationUseCase, () {
     late SubmitCareerApplicationUseCase useCase;
 
     late MockCareerRepository mockCareerRepository;
 
-    final careerEntity = CareerEntity(
-      name: 'Name',
-      email: 'email',
-      role: 'role',
-      country: 'country',
-      message: 'message',
-      fileData: Uint8List.fromList([0, 1, 2, 3]),
-    );
-
     setUpAll(() {
       registerFallbackValue(Uint8List.fromList([0, 1, 2, 3]));
-      registerFallbackValue(careerEntity);
+      registerFallbackValue(CareerApplicationEntity.test());
     });
 
     setUp(() {
@@ -34,45 +25,45 @@ void main() {
     test('should call repository to submit the application', () async {
       mockCareerRepository.mockSubmitCareerApplication();
 
-      final result = await useCase(careerEntity);
+      final result = await useCase(CareerApplicationEntity.test());
 
       expect(result.isRight, isTrue);
     });
 
     test(
-        'should return ApplicationUploadFailureFailure '
+        'should return $ApplicationUploadFailure '
         'when document is failed to upload', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         UploadDocumentFailureException(Exception(), StackTrace.current),
       );
 
-      final result = await useCase(careerEntity);
+      final result = await useCase(CareerApplicationEntity.test());
 
       expect(result.isLeft, isTrue);
       expect(result.left, isA<ApplicationUploadFailure>());
     });
 
     test(
-        'should return ApplicationSubmissionFailureFailure '
+        'should return $ApplicationSubmissionFailure '
         'when UnknownCareerException thrown', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         UnknownCareerException(Exception(), StackTrace.current),
       );
 
-      final result = await useCase(careerEntity);
+      final result = await useCase(CareerApplicationEntity.test());
 
       expect(result.isLeft, isTrue);
       expect(result.left, isA<ApplicationSubmissionFailure>());
     });
 
     test(
-        'should return ApplicationSubmissionUnknownFailure '
+        'should return $ApplicationSubmissionUnknownFailure '
         'when unknown exception occurs', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         Exception(),
       );
 
-      final result = await useCase(careerEntity);
+      final result = await useCase(CareerApplicationEntity.test());
 
       expect(result.isLeft, isTrue);
       expect(result.left, isA<ApplicationSubmissionUnknownFailure>());

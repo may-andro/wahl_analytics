@@ -26,6 +26,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get cancelButton => 'Annuleren';
 
   @override
+  String careersRequestApplication(String count) {
+    return '$count aanvragen';
+  }
+
+  @override
   String get careerPageFormDescription =>
       'Deel uw ervaring en expertise met ons. Als uw vaardigheden en achtergrond aansluiten bij onze behoeften, nemen we zo snel mogelijk contact met u op om de volgende stappen te bespreken.';
 
@@ -87,6 +92,16 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get deleteButton => 'Verwijderen';
+
+  @override
+  String deleteCareerApplicationSuccess(String name) {
+    return 'Het carrièreaanvraagverzoek voor $name is succesvol verwijderd';
+  }
+
+  @override
+  String deleteCareerApplicationFailure(String name) {
+    return 'Het is niet gelukt om het carrièreaanvraagverzoek van $name te verwijderen';
+  }
 
   @override
   String get deleteServiceTitle => 'Service verwijderen?';
@@ -180,6 +195,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nameFormFieldNotFoundValidation => 'Geen naam gevonden';
 
   @override
+  String get noCareerRequestFoundTitle => 'Geen inzendingen beschikbaar';
+
+  @override
+  String get noCareerRequestFoundDescription =>
+      'Er lijken momenteel geen aanvragen te zijn. Kom later terug alstublieft.';
+
+  @override
   String get location => 'Locatie';
 
   @override
@@ -210,6 +232,27 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get resumeFormFieldUploadFailed =>
       'Het bestand kan niet worden geüpload. Probeer een ander bestand of probeer het later opnieuw';
+
+  @override
+  String resumeDownloadFailureMessage(String name) {
+    return 'Het downloaden van het cv van $name is mislukt';
+  }
+
+  @override
+  String resumeOpenFailureMessage(String name, Object path) {
+    return 'Het openen van het cv op $path is mislukt';
+  }
+
+  @override
+  String resumeOpenMessage(String path) {
+    return 'Cv succesvol gedownload op $path';
+  }
+
+  @override
+  String get resumeUrlOpenFailureMessage => 'Het openen van het cv is mislukt';
+
+  @override
+  String get resumeUrlOpenMessage => 'Het cv-bestand is succesvol geopend';
 
   @override
   String get roleFormFieldEmptyValidation => 'Het rolveld lijkt leeg te zijn';
@@ -256,6 +299,12 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get shortDescriptionFormFieldNotFoundValidation =>
       'Geen korte beschrijving gevonden';
+
+  @override
+  String get showLess => 'Meer weergeven';
+
+  @override
+  String get showMore => 'Minder weergeven';
 
   @override
   String get splashProdMessage => 'De motor opwarmen...';

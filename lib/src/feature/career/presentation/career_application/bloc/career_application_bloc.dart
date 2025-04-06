@@ -5,14 +5,16 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wahl_analytics/src/feature/career/domain/domain.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/bloc/career_event.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/bloc/career_state.dart';
-import 'package:wahl_analytics/src/feature/career/presentation/dto/dto.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/bloc/career_application_event.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/bloc/career_application_state.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/dto/dto.dart';
 import 'package:wahl_analytics/src/feature/file_picker/file_picker.dart';
 import 'package:wahl_analytics/src/feature/validation/validation.dart';
 
-class CareerBloc extends Bloc<CareerEvent, CareerState> {
-  CareerBloc(
+class CareerApplicationBloc
+    extends Bloc<CareerApplicationEvent, CareerApplicationState> {
+  CareerApplicationBloc(
+    this._buildConfig,
     this._isValidCountryUseCase,
     this._isValidEmailUseCase,
     this._isValidNameUseCase,
@@ -21,7 +23,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
     this._filePickerUseCase,
     this._submitCareerApplicationUseCase,
   ) : super(
-          CareerState(
+          CareerApplicationState(
             formKey: GlobalKey<FormState>(),
             textFieldFocusNodes: FormFieldType.focusNodeMap,
             textFieldControllers: FormFieldType.textEditingControllerMap,
@@ -34,6 +36,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
     on<SubmitFormEvent>(_mapSubmitFormEventToState);
   }
 
+  final BuildConfig _buildConfig;
   final IsValidCountryUseCase _isValidCountryUseCase;
   final IsValidEmailUseCase _isValidEmailUseCase;
   final IsValidNameUseCase _isValidNameUseCase;
@@ -44,7 +47,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
 
   FutureOr<void> _mapInitialiseScreenEventToState(
     InitialiseScreenEvent event,
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
   ) {
     emit(
       state.copyWith(
@@ -56,7 +59,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
 
   FutureOr<void> _mapSubmitFormEventToState(
     SubmitFormEvent event,
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
   ) async {
     for (final focusNode in state.textFieldFocusNodes.values) {
       focusNode.unfocus();
@@ -98,16 +101,18 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
           email.isNullOrEmpty ||
           role.isNullOrEmpty ||
           country.isNullOrEmpty) {
+        emit(state.copyWith(viewState: DSViewState.idle));
         return;
       }
 
-      final careerEntity = CareerEntity(
+      final careerEntity = CareerApplicationEntity(
         name: name!,
         email: email!,
         role: role!,
         country: country!,
         message: message ?? '',
         fileData: pickedFile!.bytes,
+        env: _buildConfig.buildEnvironment.name,
       );
       final result = await _submitCareerApplicationUseCase(careerEntity);
       result.fold((left) {
@@ -124,7 +129,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
   }
 
   String? _validateFieldAndEmitIfNeededBeforeSubmission(
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
     FormFieldType formFieldType,
     FormFieldValidationMessage formFieldValidationMessage,
   ) {
@@ -145,7 +150,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
     return null;
   }
 
-  PickedFile? _validateResumeSubmission(Emitter<CareerState> emit) {
+  PickedFile? _validateResumeSubmission(Emitter<CareerApplicationState> emit) {
     if (state.resumeFile != null) {
       return state.resumeFile;
     }
@@ -160,7 +165,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
 
   FutureOr<void> _mapOnConsentSelectedEventToState(
     OnConsentSelectedEvent event,
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
   ) {
     FormFieldValidationMessage? message;
     if (!event.isConsentGiven) {
@@ -180,7 +185,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
 
   FutureOr<void> _mapValidateTextFieldEventToState(
     ValidateTextFieldEvent event,
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
   ) async {
     FormFieldValidationMessage? message;
 
@@ -345,7 +350,7 @@ class CareerBloc extends Bloc<CareerEvent, CareerState> {
 
   FutureOr<void> _mapUploadResumeEventToState(
     UploadResumeEvent event,
-    Emitter<CareerState> emit,
+    Emitter<CareerApplicationState> emit,
   ) async {
     final eitherResult = await _filePickerUseCase();
 

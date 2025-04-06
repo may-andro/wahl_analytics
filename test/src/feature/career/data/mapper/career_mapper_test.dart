@@ -1,10 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wahl_analytics/src/feature/career/data/mapper/mapper.dart';
+import 'package:wahl_analytics/src/feature/career/data/model/model.dart';
 import 'package:wahl_analytics/src/feature/career/domain/domain.dart';
 
 void main() {
-  group('CareerMapper', () {
+  group(CareerMapper, () {
     late CareerMapper mapper;
 
     setUp(() {
@@ -12,32 +13,38 @@ void main() {
     });
 
     test('should correctly maps CareerEntity to CareerModel', () {
-      // Arrange
-      final careerEntity = CareerEntity(
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        role: 'Software Engineer',
-        country: 'USA',
-        message: 'Excited to apply for this role.',
-        fileData: Uint8List.fromList([0, 1, 2, 3]),
-      );
+      final careerEntity = CareerEntity.test();
 
-      // Act
-      final careerModel = mapper.map(careerEntity);
+      final careerModel = mapper.from(careerEntity);
 
-      // Assert
       expect(careerModel.name, equals(careerEntity.name));
       expect(careerModel.email, equals(careerEntity.email));
       expect(careerModel.role, equals(careerEntity.role));
       expect(careerModel.country, equals(careerEntity.country));
       expect(careerModel.message, equals(careerEntity.message));
-      expect(careerModel.resumeUrl, equals(''));
+      expect(careerModel.resumeUrl, equals(careerEntity.resumeUrl));
+      expect(careerModel.resumeName, equals(careerEntity.resumeName));
       expect(
         careerModel.uploadedAt,
-        allOf(
-          isNotNull,
-          isA<String>(),
-        ), // Ensure `uploadedAt` is a valid non-null string
+        equals(careerEntity.uploadedAt.toFullDateTime),
+      );
+    });
+
+    test('should correctly maps CareerModel to CareerEntity', () {
+      final careerModel = CareerModel.test();
+
+      final careerEntity = mapper.to(careerModel);
+
+      expect(careerEntity.name, equals(careerModel.name));
+      expect(careerEntity.email, equals(careerModel.email));
+      expect(careerEntity.role, equals(careerModel.role));
+      expect(careerEntity.country, equals(careerModel.country));
+      expect(careerEntity.message, equals(careerModel.message));
+      expect(careerEntity.resumeUrl, equals(careerModel.resumeUrl));
+      expect(careerEntity.resumeName, equals(careerModel.resumeName));
+      expect(
+        careerEntity.uploadedAt,
+        equals(careerModel.uploadedAt.toFullDateTime),
       );
     });
   });

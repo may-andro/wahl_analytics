@@ -55,7 +55,8 @@ class SectionTeamWidget extends StatelessWidget {
                 child: SectionInfoWidget(
                   bodySection: teamSection,
                   isSecondaryBackground: false,
-                  onClicked: () => context.push(CareerModuleRoute.career.path),
+                  onClicked: () =>
+                      context.push(CareerModuleRoute.careerApplication.path),
                 ),
               ),
             ],

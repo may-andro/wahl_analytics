@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:wahl_analytics/src/feature/career/career.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/route/route.dart';
 import 'package:wahl_analytics/src/feature/service/service.dart';
 import 'package:wahl_analytics/src/route/route.dart';
@@ -62,6 +63,14 @@ class ContentWidget extends StatelessWidget {
             onTap: () {
               context.push(ServiceModuleRoute.servicesUpdate.path);
             },
+            context: context,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: _buildItemWidget(
+            title: 'Careers request',
+            subtitle: 'View all the careers request',
+            onTap: () => context.push(CareerModuleRoute.careersRequest.path),
             context: context,
           ),
         ),

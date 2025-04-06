@@ -83,7 +83,12 @@ class _ButtonChildWidget extends StatelessWidget {
     if (loading != null) {
       return _getLoadingContent(context);
     }
-    return Center(child: content.getContentWidget(context));
+    return Center(
+      child: content.getContentWidget(
+        context,
+        variant.getDefaultTextColor(context),
+      ),
+    );
   }
 
   Widget _getLoadingContent(BuildContext context) {
@@ -96,7 +101,12 @@ class _ButtonChildWidget extends StatelessWidget {
           if (!isDisabled) ...[
             tempLoading.getContentWidget(border.getBorderRadius(context)),
           ],
-          Center(child: content.getContentWidget(context)),
+          Center(
+            child: content.getContentWidget(
+              context,
+              variant.getDefaultTextColor(context),
+            ),
+          ),
         ],
       );
     }

@@ -32,4 +32,74 @@ class MockFbFirestoreController extends Mock implements FbFirestoreController {
     when(() => updateDocumentFromCollection(any(), any(), any()))
         .thenThrow(exception);
   }
+
+  void mockGetCollectionQuerySnapshot(List<Map<String, dynamic>> expected) {
+    when(
+      () => getCollectionQuerySnapshot(
+        any(),
+        field: any(named: 'field'),
+        isEqualTo: any(named: 'isEqualTo'),
+        isLessThan: any(named: 'isLessThan'),
+        isGreaterThan: any(named: 'isGreaterThan'),
+        isNotEqualTo: any(named: 'isNotEqualTo'),
+        descending: any(named: 'descending'),
+        orderBy: any(named: 'orderBy'),
+        limit: any(named: 'limit'),
+      ),
+    ).thenAnswer((_) async => expected);
+  }
+
+  void mockGetCollectionQuerySnapshotThrowsException(Object exception) {
+    when(
+      () => getCollectionQuerySnapshot(
+        any(),
+        field: any(named: 'field'),
+        isEqualTo: any(named: 'isEqualTo'),
+        isLessThan: any(named: 'isLessThan'),
+        isGreaterThan: any(named: 'isGreaterThan'),
+        isNotEqualTo: any(named: 'isNotEqualTo'),
+        descending: any(named: 'descending'),
+        orderBy: any(named: 'orderBy'),
+        limit: any(named: 'limit'),
+      ),
+    ).thenThrow(exception);
+  }
+
+  void mockDeleteDocumentFromCollection() {
+    when(
+      () => deleteDocumentFromCollection(
+        collectionPath: any(named: 'collectionPath'),
+        documentPath: any(named: 'documentPath'),
+      ),
+    ).thenAnswer((_) async => {});
+  }
+
+  void mockDeleteDocumentFromCollectionThrowsException(Object exception) {
+    when(
+      () => deleteDocumentFromCollection(
+        collectionPath: any(named: 'collectionPath'),
+        documentPath: any(named: 'documentPath'),
+      ),
+    ).thenThrow(exception);
+  }
+
+  void mockAddDocumentToCollection() {
+    when(
+      () => addDocumentToCollection(
+        collectionPath: any(named: 'collectionPath'),
+        documentPath: any(named: 'documentPath'),
+        data: any(named: 'data'),
+      ),
+    ).thenAnswer((_) async => {});
+  }
+
+  void mockAddDocumentToCollectionThrowsException(Object exception) {
+    when(
+      () => addDocumentToCollection(
+        collectionPath: any(named: 'collectionPath'),
+        documentPath: any(named: 'documentPath'),
+        data: any(named: 'data'),
+      ),
+    ).thenThrow(exception);
+  }
 }

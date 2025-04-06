@@ -26,14 +26,16 @@ class DSIconTitleTileWidget extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: context.colorPalette.neutral.grey2.color,
+          color: (textColor ?? context.colorPalette.neutral.grey2).color,
           size: iconSize,
         ),
         const DSHorizontalSpacerWidget(2),
-        DSTextWidget(
-          text,
-          color: textColor ?? context.colorPalette.neutral.grey2,
-          style: style ?? context.typography.labelLarge,
+        Expanded(
+          child: DSTextWidget(
+            text,
+            color: textColor ?? context.colorPalette.neutral.grey2,
+            style: style ?? context.typography.labelLarge,
+          ),
         ),
       ],
     );

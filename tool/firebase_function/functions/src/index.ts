@@ -77,6 +77,13 @@ export const sendCareerEmail = functions
       try {
         const data = snap.data();
 
+        // Check if the environment is 'prod'
+        const env = data.env;
+        if (env !== "prod") {
+          console.log("Skipping email send as ENV: ${env} is not 'prod'");
+          return;
+        }
+
         /* eslint-disable max-len */
         const emailBody = `
           <p>Hello Pitter!</p>

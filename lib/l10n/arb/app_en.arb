@@ -23,6 +23,16 @@
   "@cancelButton": {
     "description": "Cancel button label"
   },
+  "careersRequestApplication": "{count} applications",
+  "@careersRequestApplication": {
+    "description": "Counts of applications",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
   "careerPageFormDescription": "Share your experience and expertise with us. If your skills and background align with our needs, we’ll be in touch as soon as possible to discuss the next steps.",
   "@careerPageFormDescription": {
     "description": "Form description text on career page form"
@@ -104,6 +114,26 @@
   "deleteButton": "Delete",
   "@deleteButton": {
     "description": "Delete button label"
+  },
+  "deleteCareerApplicationSuccess": "Career application request is deleted for {name} successfully",
+  "@deleteCareerApplicationSuccess": {
+    "description": "Career application deleted successful message",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "John Doe"
+      }
+    }
+  },
+  "deleteCareerApplicationFailure": "Failed to delete career application request of {name}",
+  "@deleteCareerApplicationFailure": {
+    "description": "Career application delete failure message",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "John Doe"
+      }
+    }
   },
   "deleteServiceTitle": "Delete Service?",
   "@deleteServiceTitle": {
@@ -213,6 +243,14 @@
   "@nameFormFieldNotFoundValidation": {
     "description": "Form field validation error message when no name is found"
   },
+  "noCareerRequestFoundTitle": "No Submissions Available",
+  "@noCareerRequestFoundTitle": {
+    "description": "No application found title"
+  },
+  "noCareerRequestFoundDescription": "It seems there are no applications at the moment. Please check back later",
+  "@noCareerRequestFoundDescription": {
+    "description": "No application found description"
+  },
   "location": "Location",
   "@location": {
     "description": "location"
@@ -248,6 +286,44 @@
   "resumeFormFieldUploadFailed": "File could not be uploaded, please upload another file or try later",
   "@resumeFormFieldUploadFailed": {
     "description": "Form field validation error when file upload is failed"
+  },
+  "resumeDownloadFailureMessage": "Failed to download resume of {name}",
+  "@resumeDownloadFailureMessage": {
+    "description": "Resume file download failure",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "path"
+      }
+    }
+  },
+  "resumeOpenFailureMessage": "Failed to open resume at {path}",
+  "@resumeOpenFailureMessage": {
+    "description": "Resume file open failure",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "path"
+      }
+    }
+  },
+  "resumeOpenMessage": "Resume downloaded at {path} successfully",
+  "@resumeOpenMessage": {
+    "description": "Resume file opening message",
+    "placeholders": {
+      "path": {
+        "type": "String",
+        "example": "path"
+      }
+    }
+  },
+  "resumeUrlOpenFailureMessage": "Failed to open the resume",
+  "@resumeUrlOpenFailureMessage": {
+    "description": "Resume url opening failure message"
+  },
+  "resumeUrlOpenMessage": "Resume file opened successfully",
+  "@resumeUrlOpenMessage": {
+    "description": "Resume url opening message"
   },
   "roleFormFieldEmptyValidation": "The role seems to be empty",
   "@roleFormFieldEmptyValidation": {
@@ -312,6 +388,14 @@
   "shortDescriptionFormFieldNotFoundValidation": "No short description found",
   "@shortDescriptionFormFieldNotFoundValidation": {
     "description": "Form field validation error message when no short description is found"
+  },
+  "showLess": "Show more",
+  "@showLess": {
+    "description": "Show less label text"
+  },
+  "showMore": "Show less",
+  "@showMore": {
+    "description": "Show more label text"
   },
   "splashProdMessage": "Warming up the engine...",
   "@splashProdMessage": {

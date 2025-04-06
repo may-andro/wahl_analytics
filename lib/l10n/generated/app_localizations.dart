@@ -136,6 +136,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancelButton;
 
+  /// Counts of applications
+  ///
+  /// In en, this message translates to:
+  /// **'{count} applications'**
+  String careersRequestApplication(String count);
+
   /// Form description text on career page form
   ///
   /// In en, this message translates to:
@@ -249,6 +255,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get deleteButton;
+
+  /// Career application deleted successful message
+  ///
+  /// In en, this message translates to:
+  /// **'Career application request is deleted for {name} successfully'**
+  String deleteCareerApplicationSuccess(String name);
+
+  /// Career application delete failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete career application request of {name}'**
+  String deleteCareerApplicationFailure(String name);
 
   /// Delete service dialog title
   ///
@@ -412,6 +430,18 @@ abstract class AppLocalizations {
   /// **'No name found'**
   String get nameFormFieldNotFoundValidation;
 
+  /// No application found title
+  ///
+  /// In en, this message translates to:
+  /// **'No Submissions Available'**
+  String get noCareerRequestFoundTitle;
+
+  /// No application found description
+  ///
+  /// In en, this message translates to:
+  /// **'It seems there are no applications at the moment. Please check back later'**
+  String get noCareerRequestFoundDescription;
+
   /// location
   ///
   /// In en, this message translates to:
@@ -465,6 +495,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'File could not be uploaded, please upload another file or try later'**
   String get resumeFormFieldUploadFailed;
+
+  /// Resume file download failure
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to download resume of {name}'**
+  String resumeDownloadFailureMessage(String name);
+
+  /// Resume file open failure
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open resume at {path}'**
+  String resumeOpenFailureMessage(String name, Object path);
+
+  /// Resume file opening message
+  ///
+  /// In en, this message translates to:
+  /// **'Resume downloaded at {path} successfully'**
+  String resumeOpenMessage(String path);
+
+  /// Resume url opening failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open the resume'**
+  String get resumeUrlOpenFailureMessage;
+
+  /// Resume url opening message
+  ///
+  /// In en, this message translates to:
+  /// **'Resume file opened successfully'**
+  String get resumeUrlOpenMessage;
 
   /// Form field validation error message when role is empty
   ///
@@ -543,6 +603,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No short description found'**
   String get shortDescriptionFormFieldNotFoundValidation;
+
+  /// Show less label text
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get showLess;
+
+  /// Show more label text
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showMore;
 
   /// Splash message for loading status
   ///
