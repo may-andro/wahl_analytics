@@ -12,7 +12,7 @@ linter:
     no_leading_underscores_for_local_identifiers: true
     require_trailing_commas: true
     flutter_style_todos: true
-    avoid_futureor_void: true
+    avoid_futureor_void: false
 
 analyzer:
   plugins:
