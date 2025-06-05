@@ -4,10 +4,10 @@ import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 
 class MockGetHomeContentUseCase extends Mock implements GetHomeContentUseCase {
   void mockCallSuccess(List<HomeContentEntity> expected) {
-    when(call).thenAnswer((_) async => Right(expected));
+    when(call).thenAnswer((_) => Right(expected));
   }
 
   void mockCallFailure(GetHomeContentFailure failure) {
-    when(call).thenAnswer((_) async => Left(failure));
+    when(call).thenAnswer((_) => Left(failure));
   }
 }

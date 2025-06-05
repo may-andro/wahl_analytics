@@ -12,7 +12,7 @@ class FakeFatalErrorHandler implements FatalErrorHandler {
   Object? error;
 
   @override
-  FutureOr<void> onFatalError(Object object) async {
+  FutureOr<void> onFatalError(Object object) {
     error = object;
   }
 }

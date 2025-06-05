@@ -55,7 +55,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   @override
   Future<void> updateAllLocaleBusinessService(
     AllLocaleBusinessServiceEntity allLocaleBusinessServiceEntity,
-  ) async {
+  ) {
     try {
       return _firestoreController.updateDocumentFromCollection(
         'business_service',

@@ -5,10 +5,10 @@ import 'package:wahl_analytics/src/feature/contact/domain/domain.dart';
 class MockSubmitContactUsApplicationUseCase extends Mock
     implements SubmitContactUsApplicationUseCase {
   void mockCallSuccess(BusinessContactEntity expected) {
-    when(() => call(any())).thenAnswer((_) async => const Right(null));
+    when(() => call(any())).thenAnswer((_) => const Right(null));
   }
 
   void mockCallFailure(SubmitContactUsApplicationFailure failure) {
-    when(() => call(any())).thenAnswer((_) async => Left(failure));
+    when(() => call(any())).thenAnswer((_) => Left(failure));
   }
 }

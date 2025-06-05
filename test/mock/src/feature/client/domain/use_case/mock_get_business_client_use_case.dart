@@ -5,10 +5,10 @@ import 'package:wahl_analytics/src/feature/client/domain/domain.dart';
 class MockGetBusinessClientUseCase extends Mock
     implements GetBusinessClientUseCase {
   void mockCallSuccess(BusinessClientEntity expected) {
-    when(call).thenAnswer((_) async => Right(expected));
+    when(call).thenAnswer((_) => Right(expected));
   }
 
   void mockCallFailure(BusinessClientFailure failure) {
-    when(call).thenAnswer((_) async => Left(failure));
+    when(call).thenAnswer((_) => Left(failure));
   }
 }

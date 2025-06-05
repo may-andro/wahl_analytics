@@ -189,7 +189,7 @@ class ServiceUpdateBloc extends Bloc<ServiceUpdateEvent, ServiceUpdateState> {
   FutureOr<void> _mapSubmitServiceUpdateFormEventToState(
     SubmitServiceUpdateFormEvent event,
     Emitter<ServiceUpdateState> emit,
-  ) async {
+  ) {
     for (final focusNode in state.textFieldFocusNodes.values) {
       focusNode.unfocus();
     }
@@ -225,7 +225,7 @@ class ServiceUpdateBloc extends Bloc<ServiceUpdateEvent, ServiceUpdateState> {
   FutureOr<void> _mapSelectServiceIconEventToState(
     SelectServiceIconEvent event,
     Emitter<ServiceUpdateState> emit,
-  ) async {
+  ) {
     emit(state.copyWith(selectedIcon: event.icon));
   }
 }
