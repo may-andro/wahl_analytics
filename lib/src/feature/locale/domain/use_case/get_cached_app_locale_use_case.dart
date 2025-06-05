@@ -9,7 +9,7 @@ class GetAppLocaleCacheFailure extends BasicFailure {
 }
 
 class GetCachedAppLocaleUseCase
-    extends BaseNoParamUseCase< AppLocale, GetAppLocaleCacheFailure> {
+    extends BaseNoParamUseCase<AppLocale, GetAppLocaleCacheFailure> {
   GetCachedAppLocaleUseCase(this._appLocaleCache);
 
   final AppLocaleCache _appLocaleCache;
@@ -17,7 +17,7 @@ class GetCachedAppLocaleUseCase
   @override
   FutureOr<Either<GetAppLocaleCacheFailure, AppLocale>> execute() async {
     final locale = await _appLocaleCache.get();
-    if(locale == null) {
+    if (locale == null) {
       return const Left(GetAppLocaleCacheFailure());
     }
 
@@ -29,5 +29,4 @@ class GetCachedAppLocaleUseCase
   GetAppLocaleCacheFailure mapErrorToFailure(Object e, StackTrace st) {
     return GetAppLocaleCacheFailure(message: e.toString(), cause: e);
   }
-
 }

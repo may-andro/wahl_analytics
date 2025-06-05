@@ -1,2 +1,2 @@
-//GENERATED BARREL FILE 
-export './cache/app_locale_cache.dart'; 
+//GENERATED BARREL FILE
+export './cache/app_locale_cache.dart';

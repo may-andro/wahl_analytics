@@ -1,7 +1,6 @@
 import 'package:design_system/src/component/atom/atom.dart';
 import 'package:design_system/src/extension/build_context_extension.dart';
 import 'package:design_system/src/foundation/foundation.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DSAppBarWidget extends StatelessWidget implements PreferredSizeWidget {

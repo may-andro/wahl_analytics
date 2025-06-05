@@ -21,16 +21,14 @@ class SectionHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DSResponsiveContainerWidget(
       mobileBuilder: (_) => const _MobileHeaderWidget(),
-      tabletBuilder: (_) =>
-          _TabletHeaderWidget(
-            onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
-          ),
-      desktopBuilder: (_) =>
-          _DesktopHeaderWidget(
-            opacity: opacity,
-            height: height,
-            onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
-          ),
+      tabletBuilder: (_) => _TabletHeaderWidget(
+        onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
+      ),
+      desktopBuilder: (_) => _DesktopHeaderWidget(
+        opacity: opacity,
+        height: height,
+        onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
+      ),
     );
   }
 
@@ -127,15 +125,15 @@ class _TabsWidget extends StatelessWidget {
         return Wrap(
           spacing: context.space(factor: 0),
           children: state.homeBodySections?.map((section) {
-            return SectionMenuItemWidget(
-              bodySection: section,
-              onTap: () {
-                context.read<HomeBloc>().add(TabSelectionEvent(section));
-              },
-              isSelected: section == state.selectedBodySection,
-              isIndicatorEnabled: true,
-            );
-          }).toList() ??
+                return SectionMenuItemWidget(
+                  bodySection: section,
+                  onTap: () {
+                    context.read<HomeBloc>().add(TabSelectionEvent(section));
+                  },
+                  isSelected: section == state.selectedBodySection,
+                  isIndicatorEnabled: true,
+                );
+              }).toList() ??
               [],
         );
       },
