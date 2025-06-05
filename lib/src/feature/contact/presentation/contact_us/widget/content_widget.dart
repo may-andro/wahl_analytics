@@ -47,7 +47,7 @@ class ContentWidget extends StatelessWidget {
   }
 
   Widget _getContent(BuildContext context) {
-    const formWidget = FormWidget(key: Key('career_form_widget'));
+    const formWidget = FormWidget(key: Key('contact_us_form_widget'));
     const contactDetailsWidget = ContactDetailWidget();
     switch (context.deviceWidth) {
       case DSDeviceWidthResolution.xs:

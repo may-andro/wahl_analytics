@@ -46,8 +46,8 @@ void main() {
     group('getBusinessSummary', () {
       test(
         'should return BusinessSummaryEntity '
-        'when firebase has valid data',
-        () async {
+            'when firebase has valid data',
+            () async {
           mockFbFirestoreController
               .mockGetDocumentFromCollection(testSummaryData);
 
@@ -59,15 +59,15 @@ void main() {
 
       test(
         'should throw NullDataFoundSummaryException '
-        'when firebase has null data',
-        () async {
+            'when firebase has null data',
+            () async {
           mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
           expect(
-            () async => await repository.getBusinessSummary(),
+                () async => await repository.getBusinessSummary(),
             throwsA(
               predicate(
-                (exception) => exception is NullDataFoundSummaryException,
+                    (exception) => exception is NullDataFoundSummaryException,
               ),
             ),
           );
@@ -76,8 +76,8 @@ void main() {
 
       test(
         'should throw ServerSummaryException '
-        'when firebase has FirestoreException exception',
-        () async {
+            'when firebase has FirestoreException exception',
+            () {
           final exception = FirestoreException(
             Exception(),
             StackTrace.current,
@@ -86,7 +86,7 @@ void main() {
               .mockGetDocumentFromCollectionThrowsException(exception);
 
           expect(
-            () async => await repository.getBusinessSummary(),
+                () async => await repository.getBusinessSummary(),
             throwsA(
               predicate((exception) => exception is ServerSummaryException),
             ),
@@ -96,8 +96,8 @@ void main() {
 
       test(
         'should throw IncorrectJsonSummaryException '
-        'when json is different from expected',
-        () async {
+            'when json is different from expected',
+            () async {
           mockFbFirestoreController.mockGetDocumentFromCollection(
             {
               'test': {
@@ -108,10 +108,10 @@ void main() {
           );
 
           expect(
-            () async => await repository.getBusinessSummary(),
+                () async => await repository.getBusinessSummary(),
             throwsA(
               predicate(
-                (exception) => exception is IncorrectJsonSummaryException,
+                    (exception) => exception is IncorrectJsonSummaryException,
               ),
             ),
           );
@@ -120,17 +120,17 @@ void main() {
 
       test(
         'should throw UnknownSummaryException '
-        'when json is different from expected',
-        () async {
+            'when json is different from expected',
+            () async {
           final exception = Exception();
           mockFbFirestoreController
               .mockGetDocumentFromCollectionThrowsException(exception);
 
           expect(
-            () async => await repository.getBusinessSummary(),
+                () async => await repository.getBusinessSummary(),
             throwsA(
               predicate(
-                (exception) => exception is UnknownSummaryException,
+                    (exception) => exception is UnknownSummaryException,
               ),
             ),
           );

@@ -6,5 +6,5 @@ extension AppLocalizationsExtension on AppLocalizations {}
 extension BuildContextLocalizationsExtension on BuildContext {
   AppLocalizations get localizations => AppLocalizations.of(this);
 
-  String get locale => localizations.localeName;
+  String get languageCode => localizations.localeName;
 }

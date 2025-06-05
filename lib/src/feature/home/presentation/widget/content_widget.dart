@@ -29,8 +29,15 @@ class ContentWidget extends StatelessWidget {
             );
           },
           errorBuilder: (_) {
-            return DSErrorCardWidget(
-              message: state.errorStateCause,
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.isDesktop
+                    ? context.width * 0.15
+                    : context.space(factor: 2),
+              ),
+              child: DSErrorCardWidget(
+                message: state.errorStateCause,
+              ),
             );
           },
           builder: (_) {
@@ -125,18 +132,6 @@ class _SuccessContentWidgetState extends State<_SuccessContentWidget>
                   opacity: 1 - scrollPercentage,
                   height: height,
                 ),
-                titleSpacing: 0,
-                leadingWidth: context.space(factor: 13),
-                leading: context.isDesktop
-                    ? null
-                    : DSIconButtonWidget(
-                        Icons.menu,
-                        iconColor: colorPalette.background.onPrimary,
-                        buttonColor: colorPalette.background.primary,
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                      ),
               );
             },
           ),

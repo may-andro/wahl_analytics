@@ -31,7 +31,7 @@ class DSIconButtonWidget extends StatelessWidget {
         ),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size.zero,
-        shadowColor: context.colorPalette.background.shadow.color,
+        shadowColor: context.colorPalette.neutral.transparent.color,
         backgroundColor: buttonColor.color,
         shape: const CircleBorder(),
         padding: EdgeInsets.zero,

@@ -1,8 +1,10 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:wahl_analytics/l10n/l10n.dart';
 import 'package:wahl_analytics/src/feature/contact/contact.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/bloc.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/widget/section_menu_item_widget.dart';
+import 'package:wahl_analytics/src/feature/locale/locale.dart';
 import 'package:wahl_analytics/src/route/route.dart';
 
 class SectionHeaderWidget extends StatelessWidget {
@@ -19,14 +21,16 @@ class SectionHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DSResponsiveContainerWidget(
       mobileBuilder: (_) => const _MobileHeaderWidget(),
-      tabletBuilder: (_) => _TabletHeaderWidget(
-        onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
-      ),
-      desktopBuilder: (_) => _DesktopHeaderWidget(
-        opacity: opacity,
-        height: height,
-        onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
-      ),
+      tabletBuilder: (_) =>
+          _TabletHeaderWidget(
+            onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
+          ),
+      desktopBuilder: (_) =>
+          _DesktopHeaderWidget(
+            opacity: opacity,
+            height: height,
+            onTrailingButtonClicked: () => _navigateToContactUsScreen(context),
+          ),
     );
   }
 
@@ -40,16 +44,13 @@ class _MobileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(-30, 0),
-      child: const Row(
-        children: [
-          Spacer(),
-          _LogoWidget(heightFactor: 5),
-          Spacer(),
-          DSHorizontalSpacerWidget(5.5),
-        ],
-      ),
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _MenuButtonWidget(),
+        Align(child: _LogoWidget(heightFactor: 5)),
+        LocaleButtonWidget(),
+      ],
     );
   }
 }
@@ -63,20 +64,13 @@ class _TabletHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(-15.5, 0),
-      child: Row(
-        children: [
-          const Spacer(),
-          const _LogoWidget(heightFactor: 5),
-          const Spacer(),
-          DSButtonWidget(
-            label: 'Contact Us',
-            size: DSButtonSize.small,
-            onPressed: onTrailingButtonClicked,
-          ),
-        ],
-      ),
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _MenuButtonWidget(),
+        _LogoWidget(heightFactor: 5),
+        LocaleButtonWidget(),
+      ],
     );
   }
 }
@@ -109,10 +103,11 @@ class _DesktopHeaderWidget extends StatelessWidget {
           dividerWidget,
           const DSHorizontalSpacerWidget(2),
           DSButtonWidget(
-            label: 'Contact Us',
-            size: DSButtonSize.medium,
+            label: context.localizations.contactUs,
             onPressed: onTrailingButtonClicked,
           ),
+          const DSHorizontalSpacerWidget(2),
+          const LocaleButtonWidget(size: 3, popupMenuYOffset: 4),
         ],
       ),
     );
@@ -132,15 +127,15 @@ class _TabsWidget extends StatelessWidget {
         return Wrap(
           spacing: context.space(factor: 0),
           children: state.homeBodySections?.map((section) {
-                return SectionMenuItemWidget(
-                  bodySection: section,
-                  onTap: () {
-                    context.read<HomeBloc>().add(TabSelectionEvent(section));
-                  },
-                  isSelected: section == state.selectedBodySection,
-                  isIndicatorEnabled: true,
-                );
-              }).toList() ??
+            return SectionMenuItemWidget(
+              bodySection: section,
+              onTap: () {
+                context.read<HomeBloc>().add(TabSelectionEvent(section));
+              },
+              isSelected: section == state.selectedBodySection,
+              isIndicatorEnabled: true,
+            );
+          }).toList() ??
               [],
         );
       },
@@ -188,6 +183,22 @@ class _LogoWidget extends StatelessWidget {
         fit: BoxFit.cover,
         height: context.space(factor: heightFactor),
       ),
+    );
+  }
+}
+
+class _MenuButtonWidget extends StatelessWidget {
+  const _MenuButtonWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return DSIconButtonWidget(
+      Icons.menu,
+      iconColor: context.colorPalette.background.onPrimary,
+      buttonColor: context.colorPalette.neutral.transparent,
+      onPressed: () {
+        Scaffold.of(context).openDrawer();
+      },
     );
   }
 }

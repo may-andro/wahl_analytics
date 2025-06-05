@@ -39,7 +39,7 @@ Future<void> runAppWithInitialization() async {
   );
 }
 
-void _runMainApp(DesignSystem designSystem) {
+void _runMainApp(DesignSystem designSystem, AppLocale appLocale) {
   final serviceLocator = DIController().serviceLocator;
   final moduleRouteConfigurator = serviceLocator.get<ModuleRouteController>();
   final navigationObservers = [
@@ -53,7 +53,6 @@ void _runMainApp(DesignSystem designSystem) {
 
   Bloc.observer = serviceLocator.get<AppBlocObserver>();
 
-  final appLocale = serviceLocator.get<AppLocale>();
   final logReporter = serviceLocator.get<LogReporter>();
   logReporter.debug(
     'Project is setup in locale: ${appLocale.locale}',
