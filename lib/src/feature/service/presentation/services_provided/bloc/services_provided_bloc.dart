@@ -16,7 +16,7 @@ class ServicesProvidedBloc
   FutureOr<void> _mapOnSetBusinessServiceEntityEventToState(
     SetBusinessServiceEntityEvent event,
     Emitter<ServicesProvidedState> emit,
-  ) async {
+  ) {
     emit(
       state.copyWith(
         viewState: DSViewState.idle,

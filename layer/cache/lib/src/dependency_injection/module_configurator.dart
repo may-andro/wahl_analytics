@@ -18,5 +18,5 @@ class CacheModuleConfigurator implements ModuleConfigurator {
   }
 
   @override
-  FutureOr<void> registerDependencies(ServiceLocator serviceLocator) async {}
+  FutureOr<void> registerDependencies(ServiceLocator serviceLocator) {}
 }

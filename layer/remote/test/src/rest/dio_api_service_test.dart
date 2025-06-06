@@ -41,7 +41,7 @@ void main() {
       test(
         'should return $ApiAuthenticationException'
         ' when the dio status code 401',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onGet(
@@ -59,7 +59,7 @@ void main() {
       test(
         'should return $ApiClientException'
         ' when the dio status code is not 404',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onGet(
@@ -77,7 +77,7 @@ void main() {
       test(
         'should return $ApiClientException'
         ' when the dio status code is not 500',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onGet(
@@ -95,7 +95,7 @@ void main() {
       test(
         'should return $ApiConnectionTimeoutException'
         ' when the dio error is ${DioExceptionType.sendTimeout}',
-        () async {
+        () {
           const path = '/path';
           const type = DioExceptionType.sendTimeout;
           dioAdapter.onGet(
@@ -116,7 +116,7 @@ void main() {
       test(
         'should return $ApiUnknownException'
         ' when the dio error is unknown',
-        () async {
+        () {
           const path = '/path';
           dioAdapter.onGet(
             path,
@@ -154,7 +154,7 @@ void main() {
       test(
         'should return $ApiAuthenticationException'
         ' when the dio status code 401',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onPost(
@@ -172,7 +172,7 @@ void main() {
       test(
         'should return $ApiClientException'
         ' when the dio status code is not 404',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onPost(
@@ -190,7 +190,7 @@ void main() {
       test(
         'should return $ApiServerException'
         ' when the dio status code is not 500',
-        () async {
+        () {
           const path = '/path';
           const response = {'message': 'error'};
           dioAdapter.onPost(
@@ -208,7 +208,7 @@ void main() {
       test(
         'should return $ApiConnectionTimeoutException'
         ' when the dio error is ${DioExceptionType.sendTimeout}',
-        () async {
+        () {
           const path = '/path';
           const type = DioExceptionType.sendTimeout;
 
@@ -230,7 +230,7 @@ void main() {
       test(
         'should return $ApiUnknownException'
         ' when the dio error is unknown',
-        () async {
+        () {
           const path = '/path';
 
           dioAdapter.onPost(

@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 
 class MockFeatureFlagRepository extends Mock implements FeatureFlagRepository {
   void mockInitFeatureFlags() {
-    when(initFeatureFlags).thenAnswer((_) async {});
+    when(initFeatureFlags).thenAnswer((_) {});
   }
 
   void mockInitFeatureFlagsException() {
@@ -12,7 +12,7 @@ class MockFeatureFlagRepository extends Mock implements FeatureFlagRepository {
   }
 
   void mockGetFeatureFlags(List<FeatureFlag> expected) {
-    when(getFeatureFlags).thenAnswer((_) async => expected);
+    when(getFeatureFlags).thenAnswer((_) => expected);
   }
 
   void mockGetFeatureFlagsException() {
@@ -20,7 +20,7 @@ class MockFeatureFlagRepository extends Mock implements FeatureFlagRepository {
   }
 
   void mockIsFeatureEnabled(bool expected) {
-    when(() => isFeatureEnabled(any())).thenAnswer((_) async => expected);
+    when(() => isFeatureEnabled(any())).thenAnswer((_) => expected);
   }
 
   void mockIsFeatureEnabledException() {
@@ -36,7 +36,7 @@ class MockFeatureFlagRepository extends Mock implements FeatureFlagRepository {
   }
 
   void mockReset() {
-    when(this.reset).thenAnswer((_) async {});
+    when(this.reset).thenAnswer((_) {});
   }
 
   void mockResetException() {

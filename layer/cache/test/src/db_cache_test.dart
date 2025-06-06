@@ -43,7 +43,7 @@ void main() {
   group('DBCache', () {
     late TestModelCache testModelCache;
 
-    setUpAll(() async {
+    setUpAll(() {
       sqfliteFfiInit();
       databaseFactory = databaseFactoryFfi;
     });

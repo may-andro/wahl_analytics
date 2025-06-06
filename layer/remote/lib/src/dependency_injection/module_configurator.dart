@@ -21,10 +21,10 @@ class RemoteModuleConfigurator implements ModuleConfigurator {
   FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) {}
 
   @override
-  FutureOr<void> preDependenciesSetup(ServiceLocator serviceLocator) async {}
+  FutureOr<void> preDependenciesSetup(ServiceLocator serviceLocator) {}
 
   @override
-  FutureOr<void> registerDependencies(ServiceLocator serviceLocator) async {
+  FutureOr<void> registerDependencies(ServiceLocator serviceLocator) {
     final logReporter = serviceLocator.get<LogReporter>();
     final dio = Dio();
 

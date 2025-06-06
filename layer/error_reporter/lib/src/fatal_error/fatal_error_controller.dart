@@ -23,7 +23,7 @@ class FatalErrorController {
     return error is Error || error is FatalException;
   }
 
-  Future<void> onFatalError(Object error) async {
+  Future<void> onFatalError(Object error) {
     return Future.forEach(
       registeredHandlers,
       (handler) => handler.onFatalError(error),

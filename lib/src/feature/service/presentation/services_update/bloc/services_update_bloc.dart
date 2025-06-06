@@ -211,7 +211,7 @@ class ServicesUpdateBloc
   FutureOr<void> _mapAddServiceFormEventToState(
     AddServiceFormEvent event,
     Emitter<ServicesUpdateState> emit,
-  ) async {
+  ) {
     final services = state.businessService?.services ?? [];
     final updatedServices = List<ServiceEntity>.from(services)
       ..add(event.service);
@@ -232,7 +232,7 @@ class ServicesUpdateBloc
   FutureOr<void> _mapUpdateServiceFormEventToState(
     UpdateServiceFormEvent event,
     Emitter<ServicesUpdateState> emit,
-  ) async {
+  ) {
     final services = state.businessService?.services ?? [];
     final updatedServices = List<ServiceEntity>.from(services)
       ..[event.index] = (event.service);
@@ -253,7 +253,7 @@ class ServicesUpdateBloc
   FutureOr<void> _mapDeleteServiceFormEventToState(
     DeleteServiceFormEvent event,
     Emitter<ServicesUpdateState> emit,
-  ) async {
+  ) {
     final services = state.businessService?.services ?? [];
     final updatedServices = List<ServiceEntity>.from(services)
       ..remove(event.service);
@@ -275,7 +275,7 @@ class ServicesUpdateBloc
   FutureOr<void> _mapSelectLocaleEventToState(
     SelectLocaleEvent event,
     Emitter<ServicesUpdateState> emit,
-  ) async {
+  ) {
     var businessService = state.businessService;
     businessService = businessService?.copyWith(
       title:
@@ -347,7 +347,7 @@ class ServicesUpdateBloc
   FutureOr<void> _mapReorderServicePositionEventToState(
     ReorderServicePositionEvent event,
     Emitter<ServicesUpdateState> emit,
-  ) async {
+  ) {
     final services = state.businessService?.services ?? [];
     final updatedServices = List<ServiceEntity>.from(services);
     final service = updatedServices.removeAt(event.oldIndex);

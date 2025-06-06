@@ -97,7 +97,7 @@ void main() {
       test(
         'should throw $NullDataFoundServiceException '
         'when firebase has null data',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
           expect(
@@ -114,7 +114,7 @@ void main() {
       test(
         'should throw $ServerServiceException '
         'when firebase has $FirestoreException exception',
-        () async {
+        () {
           final exception = FirestoreException(
             Exception(),
             StackTrace.current,
@@ -134,7 +134,7 @@ void main() {
       test(
         'should throw $IncorrectJsonServiceException '
         'when json is different from expected',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(
             {
               'test': {
@@ -158,7 +158,7 @@ void main() {
       test(
         'should throw $UnknownServiceException '
         'when json is different from expected',
-        () async {
+        () {
           final exception = Exception();
           mockFbFirestoreController
               .mockGetDocumentFromCollectionThrowsException(exception);
@@ -193,7 +193,7 @@ void main() {
       test(
         'should throw NullDataFoundServiceException '
         'when firebase has null data',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
           expect(
@@ -210,7 +210,7 @@ void main() {
       test(
         'should throw ServerServiceException '
         'when firebase has FirestoreException exception',
-        () async {
+        () {
           final exception = FirestoreException(
             Exception(),
             StackTrace.current,
@@ -230,7 +230,7 @@ void main() {
       test(
         'should throw IncorrectJsonServiceException '
         'when json is different from expected',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(
             {
               'test': {
@@ -254,7 +254,7 @@ void main() {
       test(
         'should throw UnknownServiceException '
         'when json is different from expected',
-        () async {
+        () {
           final exception = Exception();
           mockFbFirestoreController
               .mockGetDocumentFromCollectionThrowsException(exception);
@@ -339,7 +339,7 @@ void main() {
       test(
         'should throw $ServerServiceException '
         'when firebase has $FirestoreException exception',
-        () async {
+        () {
           final exception = FirestoreException(
             Exception(),
             StackTrace.current,
@@ -361,7 +361,7 @@ void main() {
       test(
         'should throw $UnknownServiceException '
         'when unexpected exception occurs',
-        () async {
+        () {
           final exception = Exception();
           mockFbFirestoreController
               .mockGetDocumentFromCollectionThrowsException(exception);

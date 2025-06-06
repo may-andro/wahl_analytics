@@ -16,7 +16,7 @@ class SplashApp extends StatelessWidget {
 
   final BuildConfig buildConfig;
   final List<ModuleConfigurator> moduleConfigurators;
-  final void Function(DesignSystem) onInitializationSuccessful;
+  final void Function(DesignSystem, AppLocale) onInitializationSuccessful;
 
   @override
   Widget build(BuildContext context) {

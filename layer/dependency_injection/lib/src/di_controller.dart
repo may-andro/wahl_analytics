@@ -17,6 +17,8 @@ class DIController {
   Stream<DISetUpStatus> setUpDIGraph({
     required List<ModuleConfigurator> configurators,
   }) async* {
+    await _serviceLocator.reset();
+
     yield DISetUpStatus.warmup;
 
     for (final configurator in configurators) {

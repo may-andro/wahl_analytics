@@ -4,10 +4,10 @@ import 'package:wahl_analytics/src/feature/validation/domain/domain.dart';
 
 class MockIsValidCountryUseCase extends Mock implements IsValidCountryUseCase {
   void mockCallSuccess(bool expected) {
-    when(() => call(any())).thenAnswer((_) async => Right(expected));
+    when(() => call(any())).thenAnswer((_) => Right(expected));
   }
 
   void mockCallFailure(IsValidCountryFailure failure) {
-    when(() => call(any())).thenAnswer((_) async => Left(failure));
+    when(() => call(any())).thenAnswer((_) => Left(failure));
   }
 }

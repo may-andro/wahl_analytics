@@ -36,104 +36,94 @@ class GetHomeContentUseCase
     final homeContentList = <HomeContentEntity>[];
 
     final businessSummaryEither = await _getBusinessSummaryUseCase();
-    businessSummaryEither.fold(
-      (failure) {
-        return GetHomeContentFailure(
-          message: failure.message,
-          cause: failure.cause,
-        );
-      },
-      (businessSummary) {
-        homeContentList.add(
-          HeaderSection(
-            title: businessSummary.title,
-            descriptions: businessSummary.descriptions,
-            urls: businessSummary.urls,
-          ),
-        );
-      },
+    if (businessSummaryEither.isLeft) {
+      return Left(
+        GetHomeContentFailure(
+          message: businessSummaryEither.left.message,
+          cause: businessSummaryEither.left.cause,
+        ),
+      );
+    }
+    homeContentList.add(
+      HeaderSection(
+        title: businessSummaryEither.right.title,
+        descriptions: businessSummaryEither.right.descriptions,
+        urls: businessSummaryEither.right.urls,
+      ),
     );
 
     final businessServiceEither = await _getBusinessServiceUseCase();
-    businessServiceEither.fold(
-      (failure) {
-        return GetHomeContentFailure(
-          message: failure.message,
-          cause: failure.cause,
-        );
-      },
-      (businessService) {
-        homeContentList.add(
-          ServiceSection(
-            name: businessService.name,
-            title: businessService.title,
-            description: businessService.description,
-            action: businessService.action,
-            services: businessService.services,
-          ),
-        );
-      },
+    if (businessServiceEither.isLeft) {
+      return Left(
+        GetHomeContentFailure(
+          message: businessServiceEither.left.message,
+          cause: businessServiceEither.left.cause,
+        ),
+      );
+    }
+    homeContentList.add(
+      ServiceSection(
+        name: businessServiceEither.right.name,
+        title: businessServiceEither.right.title,
+        description: businessServiceEither.right.description,
+        action: businessServiceEither.right.action,
+        services: businessServiceEither.right.services,
+      ),
     );
 
     final businessClientEither = await _getBusinessClientUseCase();
-    businessClientEither.fold(
-      (failure) {
-        return GetHomeContentFailure(
-          message: failure.message,
-          cause: failure.cause,
-        );
-      },
-      (businessClient) {
-        homeContentList.add(
-          ClientSection(
-            name: businessClient.name,
-            title: businessClient.title,
-            description: businessClient.description,
-            action: businessClient.action,
-            clients: businessClient.clients,
-          ),
-        );
-      },
+    if (businessClientEither.isLeft) {
+      return Left(
+        GetHomeContentFailure(
+          message: businessClientEither.left.message,
+          cause: businessClientEither.left.cause,
+        ),
+      );
+    }
+    homeContentList.add(
+      ClientSection(
+        name: businessClientEither.right.name,
+        title: businessClientEither.right.title,
+        description: businessClientEither.right.description,
+        action: businessClientEither.right.action,
+        clients: businessClientEither.right.clients,
+      ),
     );
 
     final businessTeamEither = await _getBusinessTeamUseCase();
-    businessTeamEither.fold(
-      (failure) {
-        return GetHomeContentFailure(
-          message: failure.message,
-          cause: failure.cause,
-        );
-      },
-      (businessTeam) {
-        homeContentList.add(
-          TeamSection(
-            name: businessTeam.name,
-            title: businessTeam.title,
-            description: businessTeam.description,
-            action: businessTeam.action,
-            members: businessTeam.members,
-          ),
-        );
-      },
+    if (businessClientEither.isLeft) {
+      return Left(
+        GetHomeContentFailure(
+          message: businessTeamEither.left.message,
+          cause: businessTeamEither.left.cause,
+        ),
+      );
+    }
+    homeContentList.add(
+      TeamSection(
+        name: businessTeamEither.right.name,
+        title: businessTeamEither.right.title,
+        description: businessTeamEither.right.description,
+        action: businessTeamEither.right.action,
+        members: businessTeamEither.right.members,
+      ),
     );
 
     final businessContactEither = await _getBusinessContactUseCase();
-    businessContactEither.fold(
-      (failure) {
-        return GetHomeContentFailure(
-          message: failure.message,
-          cause: failure.cause,
-        );
-      },
-      (businessContact) {
-        homeContentList.add(
-          FooterSection(
-            email: businessContact.email,
-            mobileNumber: businessContact.mobileNumber,
-            address: businessContact.address,
-          ),
-        );
-      },
+    if (businessContactEither.isLeft) {
+      return Left(
+        GetHomeContentFailure(
+          message: businessContactEither.left.message,
+          cause: businessContactEither.left.cause,
+        ),
+      );
+    }
+    homeContentList.add(
+      FooterSection(
+        email: businessContactEither.right.email,
+        mobileNumber: businessContactEither.right.mobileNumber,
+        address: businessContactEither.right.address,
+      ),
     );
 
     return Right(homeContentList);

@@ -65,7 +65,7 @@ void main() {
       test(
         'should throw NullDataFoundContactException '
         'when firebase has null data',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
           expect(
@@ -82,7 +82,7 @@ void main() {
       test(
         'should throw ServerContactException '
         'when firebase has FirestoreException exception',
-        () async {
+        () {
           final exception = FirestoreException(
             Exception(),
             StackTrace.current,
@@ -102,7 +102,7 @@ void main() {
       test(
         'should throw IncorrectJsonContactException '
         'when json is different from expected',
-        () async {
+        () {
           mockFbFirestoreController.mockGetDocumentFromCollection(
             {
               'test': {
@@ -126,7 +126,7 @@ void main() {
       test(
         'should throw UnknownContactException '
         'when json is different from expected',
-        () async {
+        () {
           final exception = Exception();
           mockFbFirestoreController
               .mockGetDocumentFromCollectionThrowsException(exception);
@@ -168,7 +168,7 @@ void main() {
 
       test(
         'should throw error when firebase throws exception',
-        () async {
+        () {
           const entity = ContactUsEntity(
             name: 'name',
             email: 'email',

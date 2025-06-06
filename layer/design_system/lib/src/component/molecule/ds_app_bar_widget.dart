@@ -1,7 +1,6 @@
 import 'package:design_system/src/component/atom/atom.dart';
 import 'package:design_system/src/extension/build_context_extension.dart';
 import 'package:design_system/src/foundation/foundation.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DSAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -22,24 +21,33 @@ class DSAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       shadowColor: context.colorPalette.background.onPrimary.color,
       automaticallyImplyLeading: false,
       centerTitle: true,
-      toolbarHeight: getHeight(context),
-      title: DSSvgImageWidget(
-        assetImage: context.isDarkMode
-            ? DSSvgAssetImage.logoDark
-            : DSSvgAssetImage.logoLight,
-        fit: BoxFit.cover,
-        height: context.space(factor: 5),
-      ),
-      titleSpacing: 0,
-      leadingWidth: context.space(factor: 13),
-      leading: kIsWeb || onBackClicked == null
-          ? null
-          : DSIconButtonWidget(
-              Icons.close,
-              iconColor: context.colorPalette.background.onPrimary,
-              buttonColor: context.colorPalette.background.primary,
-              onPressed: onBackClicked!,
+      toolbarHeight: height,
+      title: Stack(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: getPadding(context),
+              child: DSIconButtonWidget(
+                Icons.close,
+                iconColor: context.colorPalette.background.onPrimary,
+                buttonColor: context.colorPalette.background.primary,
+                onPressed: onBackClicked!,
+                size: getIconSize(context),
+              ),
             ),
+          ),
+          Align(
+            child: DSSvgImageWidget(
+              assetImage: context.isDarkMode
+                  ? DSSvgAssetImage.logoDark
+                  : DSSvgAssetImage.logoLight,
+              fit: BoxFit.cover,
+              height: context.space(factor: 5),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -56,6 +64,26 @@ class DSAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         return context.space(factor: 7);
       case DSDeviceResolution.desktop:
         return context.space(factor: 8);
+    }
+  }
+
+  EdgeInsets getPadding(BuildContext context) {
+    switch (context.deviceResolution) {
+      case DSDeviceResolution.mobile:
+      case DSDeviceResolution.tablet:
+        return EdgeInsets.zero;
+      case DSDeviceResolution.desktop:
+        return EdgeInsets.only(left: context.space(factor: 5));
+    }
+  }
+
+  DSIconButtonSize getIconSize(BuildContext context) {
+    switch (context.deviceResolution) {
+      case DSDeviceResolution.mobile:
+      case DSDeviceResolution.tablet:
+        return DSIconButtonSize.medium;
+      case DSDeviceResolution.desktop:
+        return DSIconButtonSize.small;
     }
   }
 }

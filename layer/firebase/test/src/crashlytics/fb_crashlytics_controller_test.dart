@@ -153,7 +153,7 @@ void main() {
         verifyNever(() => mockFirebaseCrashlytics.crash());
       });
 
-      test('should not call crash when platform is not supported', () async {
+      test('should not call crash when platform is not supported', () {
         debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
         mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(true);
 

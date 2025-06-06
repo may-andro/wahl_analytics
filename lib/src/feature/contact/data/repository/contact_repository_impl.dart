@@ -54,7 +54,7 @@ class ContactRepositoryImpl implements ContactRepository {
   }
 
   @override
-  Future<void> submitApplication(ContactUsEntity contactUsEntity) async {
+  Future<void> submitApplication(ContactUsEntity contactUsEntity) {
     return _firestoreController.addToCollection(
       'contact_us',
       _contactUsMapper.map(contactUsEntity).toJson(),

@@ -64,6 +64,14 @@ scripts:
     packageFilters:
       flutter: true
 
+  upgrade:
+    run: flutter pub upgrade
+    description: Run `flutter pub upgrade` in all packages.
+    exec:
+      concurrency: 1
+    packageFilters:
+      flutter: true
+
   # Cleaning commands
   clean:
     run: flutter clean
@@ -87,7 +95,7 @@ scripts:
       rm -rf ios/Pods/*
       rm -f ios/Podfile.lock
       rm -r ios/.symlinks
-      rm -r ios/Flutter/Flutter.framework
+      rm -rf ~/.pub-cache/hosted/pub.dartlang.org/ 
       rm -f ios/Flutter/Flutter.podspec
       flutter clean
       flutter pub get
@@ -155,13 +163,13 @@ scripts:
     run: flutter run lib/main.dart  --dart-define=build_env=prod --release -d chrome --web-port=1234
     description: Run the app in prod env.
 
-  run_prod_web:
+  run_staging_web:
     run: flutter run lib/main.dart  --dart-define=build_env=staging -d chrome --web-port=1234
-    description: Run the app in prod env.
+    description: Run the app in staging env.
 
   run_staging:
     run: flutter run lib/main.dart  --dart-define=build_env=staging
-    description: Run the app in prod env.
+    description: Run the app in staging env.
 
 
   # Helper commands
