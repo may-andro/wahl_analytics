@@ -95,7 +95,7 @@ void main() {
   );
 
   test(
-    'should skip footer content when GetBusinessSummaryUseCase ends with failure',
+    'should return error when GetBusinessSummaryUseCase ends with failure',
     () async {
       mockGetBusinessSummaryUseCase.mockCallFailure(
         const BusinessSummaryFailure(),
@@ -108,17 +108,12 @@ void main() {
 
       final result = await getHomeContentUseCase();
 
-      expect(result.isRight, isTrue);
-      expect(result.right.length, 4);
-      expect(result.right[0], isA<ServiceSection>());
-      expect(result.right[1], isA<ClientSection>());
-      expect(result.right[2], isA<TeamSection>());
-      expect(result.right[3], isA<FooterSection>());
+      expect(result.isLeft, isTrue);
     },
   );
 
   test(
-    'should skip team content when GetBusinessTeamUseCase ends with failure',
+    'should return error when GetBusinessTeamUseCase ends with failure',
     () async {
       mockGetBusinessTeamUseCase.mockCallFailure(const BusinessTeamFailure());
 
@@ -129,17 +124,12 @@ void main() {
 
       final result = await getHomeContentUseCase();
 
-      expect(result.isRight, isTrue);
-      expect(result.right.length, 4);
-      expect(result.right[0], isA<HeaderSection>());
-      expect(result.right[1], isA<ServiceSection>());
-      expect(result.right[2], isA<ClientSection>());
-      expect(result.right[3], isA<FooterSection>());
+      expect(result.isLeft, isTrue);
     },
   );
 
   test(
-    'should skip service content when GetBusinessServiceUseCase ends with failure',
+    'should return error content when GetBusinessServiceUseCase ends with failure',
     () async {
       mockGetBusinessServiceUseCase.mockCallFailure(
         const BusinessServiceFailure(),
@@ -152,17 +142,12 @@ void main() {
 
       final result = await getHomeContentUseCase();
 
-      expect(result.isRight, isTrue);
-      expect(result.right.length, 4);
-      expect(result.right[0], isA<HeaderSection>());
-      expect(result.right[1], isA<ClientSection>());
-      expect(result.right[2], isA<TeamSection>());
-      expect(result.right[3], isA<FooterSection>());
+      expect(result.isLeft, isTrue);
     },
   );
 
   test(
-    'should skip contact content when GetBusinessContactUseCase ends with failure',
+    'should return error content when GetBusinessContactUseCase ends with failure',
     () async {
       mockGetBusinessContactUseCase
           .mockCallFailure(const BusinessContactFailure());
@@ -174,17 +159,12 @@ void main() {
 
       final result = await getHomeContentUseCase();
 
-      expect(result.isRight, isTrue);
-      expect(result.right.length, 4);
-      expect(result.right[0], isA<HeaderSection>());
-      expect(result.right[1], isA<ServiceSection>());
-      expect(result.right[2], isA<ClientSection>());
-      expect(result.right[3], isA<TeamSection>());
+      expect(result.isLeft, isTrue);
     },
   );
 
   test(
-    'should skip clients content when GetBusinessClientUseCase ends with failure',
+    'should return error content when GetBusinessClientUseCase ends with failure',
     () async {
       mockGetBusinessClientUseCase
           .mockCallFailure(const BusinessClientFailure());
@@ -196,12 +176,7 @@ void main() {
 
       final result = await getHomeContentUseCase();
 
-      expect(result.isRight, isTrue);
-      expect(result.right.length, 4);
-      expect(result.right[0], isA<HeaderSection>());
-      expect(result.right[1], isA<ServiceSection>());
-      expect(result.right[2], isA<TeamSection>());
-      expect(result.right[3], isA<FooterSection>());
+      expect(result.isLeft, isTrue);
     },
   );
 }

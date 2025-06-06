@@ -85,9 +85,9 @@ class CareerRepositoryImpl implements CareerRepository {
   }
 
   @override
-  Future<void> deleteCareerRequest(CareerEntity careerEntity) {
+  Future<void> deleteCareerRequest(CareerEntity careerEntity) async {
     try {
-      return _firestoreController.deleteDocumentFromCollection(
+      await _firestoreController.deleteDocumentFromCollection(
         collectionPath: _collectionName,
         documentPath: careerEntity.resumeName,
       );
