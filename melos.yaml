@@ -153,6 +153,15 @@ scripts:
     packageFilters:
       dependsOn: flutter_native_splash
 
+  gen_icon:
+    run: |
+      flutter pub run flutter_launcher_icons -f flutter_launcher_icons.yaml
+    description: Generate icons for the app.
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: flutter_launcher_icons
+
 
   # Run commands
   run_prod:
