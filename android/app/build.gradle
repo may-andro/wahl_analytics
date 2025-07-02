@@ -56,25 +56,32 @@ android {
         versionName = flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storePassword keystoreProperties['storePassword']
+
+            v2SigningEnabled true
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig = signingConfigs.getByName("release")
-        }
-    }
-
-    signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"]
-            keyPassword = keystoreProperties["keyPassword"]
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            storePassword = keystoreProperties["storePassword"]
+            signingConfig signingConfigs.release
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.android.support:multidex:2.0.1'
 }

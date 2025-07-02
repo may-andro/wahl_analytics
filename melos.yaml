@@ -244,6 +244,20 @@ scripts:
       firebase deploy --only hosting:wahl-consultancy-storybook-320bf-5669e --project wahl-consultancy-storybook-320bf-5669e
     description: Host flutter web page
 
+  host_privacy_policy:
+    run: |
+      cd tool/privacy_policy
+      echo "Deploying to Firebase"
+      firebase deploy --only hosting:privacy-policy-320bf
+    description: Host static privacy policy web page
+
+  host_terms_and_conditions:
+    run: |
+      cd tool/terms_and_condition
+      echo "Deploying to Firebase"
+      firebase deploy --only hosting:terms-and-condition-320bf
+    description: Host static privacy policy web page
+
   # Firebase function deploy
   host_functions:
     run: |
