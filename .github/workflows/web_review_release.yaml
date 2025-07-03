@@ -12,15 +12,15 @@ on:
 permissions: write-all
 
 jobs:
-  wahl_analytics_code_quality_validation:
+  code_quality_validation:
     uses: ./.github/workflows/_app_static_analyze_with_test.yaml
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
-  wahl_analytics_preview_hosting:
+  web_preview_hosting:
     uses: ./.github/workflows/_wahl_analytics_web_hosting.yaml
-    needs: [wahl_analytics_code_quality_validation]
+    needs: [code_quality_validation]
     with:
       channelId: 'review'
     secrets:

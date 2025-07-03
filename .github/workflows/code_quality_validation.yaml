@@ -16,7 +16,7 @@ on:
 permissions: write-all
 
 jobs:
-  wahl_analytics_code_quality_validation:
+  code_quality_validation:
     uses: ./.github/workflows/_app_static_analyze_with_test.yaml
     secrets:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
