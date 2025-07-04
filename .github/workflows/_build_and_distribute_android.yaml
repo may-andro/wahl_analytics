@@ -97,12 +97,12 @@ jobs:
           if [ "$GITHUB_REF_TYPE" != "tag" ]; then
             echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version and build name"
           else
-            version=$(echo "$tag" | sed -E 's/\+.*//' | sed -E 's/-prod|-review//')
-            build_name=$(echo "$tag" | sed -E 's/.*\+([0-9]+).*/\1/')
+            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//" | sed "s/+.*//")
+            build_name=$(echo $GITHUB_REF_NAME | sed -E 's/.*\+([0-9]+).*/\1/')
             echo "Extracted version: $version"
             echo "Extracted build name: $build_name"
-            echo "version=$version" >> "$GITHUB_OUTPUT"
-            echo "build_name=$build_name" >> "$GITHUB_OUTPUT"
+            echo "::set-output name=version::$version"
+            echo "::set-output name=build_name::$build_name"
           fi
         id: extract_version_and_build_name
 
@@ -127,7 +127,7 @@ jobs:
         timeout-minutes: 20
 
       - name: Build aab file
-        run: flutter build appbundle --split-per-abi --dart-define=build_env=prod
+        run: flutter build appbundle --dart-define=build_env=prod
 
       - name: Upload APK artifact to Github
         uses: actions/upload-artifact@v4
