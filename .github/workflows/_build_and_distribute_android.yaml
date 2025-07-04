@@ -124,7 +124,7 @@ jobs:
         run: flutter build appbundle -t lib/main.dart --dart-define=build_env=prod
 
       - name: Upload APK artifact to Github
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: inputs.upload_to_github == 'true'
         with:
           name: app-release.apk
