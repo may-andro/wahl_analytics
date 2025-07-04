@@ -33,7 +33,7 @@ on:
         required: true
       PLAYSTORE_SERVICE_ACCOUNT:
         required: true
-      GOOGLE_SERVICES:
+      GOOGLE_SERVICES_BASE64:
         required: true
 
 env:
@@ -75,9 +75,9 @@ jobs:
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
 
-      - name: Add Google Services json in android directory
+      - name: Add Google Services in android directory
         run: |
-          echo "${{ secrets.GOOGLE_SERVICES }}" > ${{ github.workspace }}/android/app/google-services.json
+          echo "${{ secrets.GOOGLE_SERVICES_BASE64 }}" | base64 --decode > ${{ github.workspace }}/android/app/google-services.json
 
       - name: Create directory
         run: mkdir -p android/app/.signing
@@ -97,8 +97,8 @@ jobs:
           if [ "$GITHUB_REF_TYPE" != "tag" ]; then
             echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version and build name"
           else
-            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//" | sed "s/+.*//")
-            build_name=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//")
+            version=$(echo "$tag" | sed -E 's/\+.*//' | sed -E 's/-prod|-review//')
+            build_name=$(echo "$tag" | sed -E 's/.*\+([0-9]+).*/\1/')
             echo "Extracted version: $version"
             echo "Extracted build name: $build_name"
             echo "version=$version" >> "$GITHUB_OUTPUT"
@@ -123,11 +123,11 @@ jobs:
         run: melos gen_icon
 
       - name: Build apk file
-        run: flutter build apk -t lib/main.dart --dart-define=build_env=prod --build-name=${{ steps.extract_version_and_build_name.outputs.build_name }}
+        run: flutter build apk --split-per-abi --dart-define=build_env=prod --build-name=${{ steps.extract_version_and_build_name.outputs.build_name }}
         timeout-minutes: 20
 
       - name: Build aab file
-        run: flutter build appbundle -t lib/main.dart --dart-define=build_env=prod
+        run: flutter build appbundle --split-per-abi --dart-define=build_env=prod
 
       - name: Upload APK artifact to Github
         uses: actions/upload-artifact@v4
