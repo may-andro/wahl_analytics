@@ -155,6 +155,10 @@ scripts:
     run: flutter run lib/main.dart  --dart-define=build_env=prod
     description: Run the app in prod env.
 
+  run_prod_release:
+    run: flutter run lib/main.dart  --dart-define=build_env=prod --release
+    description: Run the release app in prod env.
+
   run_prod_web_release:
     run: flutter run lib/main.dart  --dart-define=build_env=prod --release -d chrome --web-port=1234
     description: Run the app in prod env.

@@ -132,7 +132,7 @@ jobs:
           retention-days: 7
 
       - name: Upload AAB artifact to Github
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: inputs.upload_to_github == 'true'
         with:
           name: app-release.aab
@@ -140,12 +140,12 @@ jobs:
           retention-days: 7
 
       - name: Upload APK to Firebase
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.0
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.1
         if: inputs.upload_to_firebase == 'true'
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: Testers
+          groups: ${{ inputs.upload_to_play_store == 'true' && 'release_review' || 'review' }}
           file: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Upload AAB to Play Store
