@@ -33,6 +33,8 @@ on:
         required: true
       PLAYSTORE_SERVICE_ACCOUNT:
         required: true
+      GOOGLE_SERVICES:
+        required: true
 
 env:
   FLUTTER_VERSION: 3.32.2
@@ -72,6 +74,10 @@ jobs:
       - name: Decode App Check Token
         run: |
           echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+
+      - name: Add Google Services json in android directory
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES }}" > ${{ github.workspace }}/android/app/google-services.json
 
       - name: Create directory
         run: mkdir -p android/app/.signing
