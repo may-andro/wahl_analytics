@@ -38,6 +38,9 @@ jobs:
         run: |
           dart pub global activate melos
 
+      - name: Get locale dependencies
+        run: melos gen_translations
+
       - name: Get dart dependencies
         run: flutter pub get
 
