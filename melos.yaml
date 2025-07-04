@@ -37,20 +37,6 @@ scripts:
     packageFilters:
       dependsOn: build_runner
 
-  format:
-    run: dart format lib test --set-exit-if-changed
-    description: Run `flutter format` in all packages.
-    exec:
-      concurrency: 1
-
-  analyze:
-    run: flutter analyze
-    description: Run `flutter analyze` in all packages.
-    exec:
-      concurrency: 1
-    packageFilters:
-      flutter: true
-
   analyze_fix:
     run: |
       dart fix --dry-run
@@ -73,14 +59,6 @@ scripts:
       flutter: true
 
   # Cleaning commands
-  clean:
-    run: flutter clean
-    description: Run `flutter clean` in all packages.
-    exec:
-      concurrency: 1
-    packageFilters:
-      flutter: true
-
   cache_clean:
     run: |
       flutter clean
@@ -161,6 +139,15 @@ scripts:
       concurrency: 1
     packageFilters:
       dependsOn: flutter_launcher_icons
+
+  gen_translations:
+    run: |
+      flutter gen-l10n
+    description: Generate locale for the app.
+    exec:
+      concurrency: 1
+    packageFilters:
+      dependsOn: flutter_localizations
 
 
   # Run commands
