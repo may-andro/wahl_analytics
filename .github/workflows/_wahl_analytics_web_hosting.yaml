@@ -41,11 +41,10 @@ jobs:
       - name: Set version from tag
         run: |
           if [ "$GITHUB_REF_TYPE" != "tag" ]
+          then
             echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version number"
           else
-            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//" | sed "s/+.*//")
-            echo "Extracted version: $version"
-            sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
+            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//") && sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
           fi
 
       - name: Decode Firebase Json

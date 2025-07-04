@@ -114,7 +114,7 @@ jobs:
         run: melos gen --no-select
 
       - name: Generate icons
-        run: melos gen-icons --no-select
+        run: melos gen_icon
 
       - name: Build apk file
         run: flutter build apk -t lib/main.dart --dart-define=build_env=prod --build-name=${{ steps.extract_version_and_build_name.outputs.build_name }}
