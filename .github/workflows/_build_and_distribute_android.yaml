@@ -95,8 +95,8 @@ jobs:
             build_name=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//")
             echo "Extracted version: $version"
             echo "Extracted build name: $build_name"
-            echo "::set-output name=version::$version"
-            echo "::set-output name=build_name::$build_name"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+            echo "build_name=$build_name" >> "$GITHUB_OUTPUT"
           fi
         id: extract_version_and_build_name
 
