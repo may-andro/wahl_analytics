@@ -23,8 +23,8 @@ jobs:
       FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
       APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
 
-  web_hosting:
-    uses: ./.github/workflows/_wahl_analytics_web_hosting.yaml
+  web_build_and_distribute_release_candidate:
+    uses: ./.github/workflows/_build_and_distribute_web.yaml
     needs: [code_quality_validation]
     with:
       channelId: 'live'
@@ -38,7 +38,7 @@ jobs:
 
   android_build_and_distribute_release_candidate:
     uses: ./.github/workflows/_build_and_distribute_android.yaml
-    needs: [ code_quality_validation ]
+    needs: [code_quality_validation]
     with:
       upload_to_github: 'false'
       upload_to_firebase: 'true'

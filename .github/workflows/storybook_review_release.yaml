@@ -16,10 +16,10 @@ permissions: write-all
 
 jobs:
   storybook_code_quality_validation:
-    uses: ./.github/workflows/_storybook_static_analysis.yaml
+    uses: ./.github/workflows/_storybook_static_analyze_with_test.yaml
 
   storybook_web_hosting:
-    uses: ./.github/workflows/_storybook_web_hosting.yaml
+    uses: ./.github/workflows/_build_and_distribute_storybook_web.yaml
     needs: [storybook_code_quality_validation]
     with:
       channelId: 'preview'
