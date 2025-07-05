@@ -17,7 +17,8 @@ class ContactDetailWidget extends StatelessWidget {
           child: SizedBox(
             width: double.maxFinite,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
