@@ -97,7 +97,7 @@ jobs:
           if [ "$GITHUB_REF_TYPE" != "tag" ]; then
             echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version and build name"
           else
-            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//" | sed "s/+.*//")
+            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//") && sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
             build_name=$(echo $GITHUB_REF_NAME | sed -E 's/.*\+([0-9]+).*/\1/')
             echo "Extracted version: $version"
             echo "Extracted build name: $build_name"
