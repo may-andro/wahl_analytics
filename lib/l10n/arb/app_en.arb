@@ -75,7 +75,7 @@
   },
   "copyright": "©{year} All rights reserved by",
   "@copyright": {
-    "description": "Cpyright text",
+    "description": "Copyright text",
     "placeholders": {
       "year": {
         "type": "String",

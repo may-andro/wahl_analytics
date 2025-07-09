@@ -26,23 +26,17 @@ class $AssetsImageGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsImageGen image = $AssetsImageGen();
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;

@@ -202,7 +202,7 @@ abstract class AppLocalizations {
   /// **'Contact us'**
   String get contactUs;
 
-  /// Cpyright text
+  /// Copyright text
   ///
   /// In en, this message translates to:
   /// **'©{year} All rights reserved by'**

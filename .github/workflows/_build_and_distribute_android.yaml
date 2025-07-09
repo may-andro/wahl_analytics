@@ -1,0 +1,169 @@
+name: Build and upload android artifacts
+
+on:
+  workflow_call:
+    inputs:
+      upload_to_github:
+        type: string
+        required: true
+      upload_to_firebase:
+        type: string
+        required: true
+      upload_to_play_store:
+        type: string
+        required: true
+    secrets:
+      SIGNING_KEYSTORE_BASE64:
+        required: true
+      SIGNING_KEY_ALIAS:
+        required: true
+      SIGNING_KEY_PASSWORD:
+        required: true
+      SIGNING_STORE_PASSWORD:
+        required: true
+      APP_CHECK_TOKEN_BASE64:
+        required: true
+      FIREBASE_APP_ID:
+        required: true
+      FIREBASE_JSON_BASE64:
+        required: true
+      FIREBASE_OPTIONS_BASE64:
+        required: true
+      FIREBASE_SERVICE_ACCOUNT:
+        required: true
+      PLAYSTORE_SERVICE_ACCOUNT:
+        required: true
+      GOOGLE_SERVICES_BASE64:
+        required: true
+
+env:
+  FLUTTER_VERSION: 3.32.2
+  JAVA_VERSION: "17"
+  PROPERTIES_PATH: "./android/key.properties"
+
+jobs:
+  create_release_artifact:
+    name: Create and upload apk and aab to github
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java environment
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{env.JAVA_VERSION}}
+          cache: 'gradle'
+
+      - name: Setup the flutter environment
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{env.FLUTTER_VERSION}}
+          channel: stable
+          cache: true
+
+      - name: Decode Firebase Json
+        run: |
+          echo "${{ secrets.FIREBASE_JSON_BASE64 }}" | base64 --decode > firebase.json
+
+      - name: Decode Firebase Options
+        run: |
+          echo "${{ secrets.FIREBASE_OPTIONS_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/firebase_options.dart
+
+      - name: Decode App Check Token
+        run: |
+          echo "${{ secrets.APP_CHECK_TOKEN_BASE64 }}" | base64 --decode > ${{ github.workspace }}/layer/firebase/lib/src/app_check/token.dart
+
+      - name: Add Google Services in android directory
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_BASE64 }}" | base64 --decode > ${{ github.workspace }}/android/app/google-services.json
+
+      - name: Create signing directory
+        run: mkdir -p android/app/.signing
+
+      - name: Decoding base64 key into a file
+        run: echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 --decode > android/app/.signing/keystore.jks
+
+      - name: Create the key.properties
+        run: |
+          echo "storeFile=.signing/keystore.jks" > android/key.properties
+          echo "storePassword=${{ secrets.SIGNING_STORE_PASSWORD }}" >> ${{env.PROPERTIES_PATH}}
+          echo "keyPassword=${{ secrets.SIGNING_KEY_PASSWORD }}" >> ${{env.PROPERTIES_PATH}}
+          echo "keyAlias=${{ secrets.SIGNING_KEY_ALIAS }}" >> ${{env.PROPERTIES_PATH}}
+
+      - name: Extract version and build name from tag
+        run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]; then
+            echo "Ref name $GITHUB_REF_NAME is not a tag but a $GITHUB_REF_TYPE, not setting version and build name"
+          else
+            version=$(echo $GITHUB_REF_NAME | sed "s/-review//" | sed "s/-prod//") && sed -i "s/^version: .*$/version: $version/g" pubspec.yaml
+            build_name=$(echo $GITHUB_REF_NAME | sed -E 's/.*\+([0-9]+).*/\1/')
+            echo "Extracted version: $version"
+            echo "Extracted build name: $build_name"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+            echo "build_name=$build_name" >> "$GITHUB_OUTPUT"
+          fi
+        id: extract_version_and_build_name
+
+      - name: Update pubspec.yaml with extracted version
+        run: |
+          if [ -n "${{ steps.extract_version_and_build_name.outputs.version }}" ]; then
+          sed -i "s/^version: .*$/version: ${{ steps.extract_version_and_build_name.outputs.version }}/g" pubspec.yaml
+          fi
+
+      - name: Setup Melos
+        run: |
+          dart pub global activate melos
+
+      - name: Run code generator
+        run: melos gen --no-select
+
+      - name: Generate icons
+        run: melos gen_icon
+
+      - name: Build apk file
+        run: flutter build apk --dart-define=build_env=prod --build-name=${{ steps.extract_version_and_build_name.outputs.build_name }}
+        timeout-minutes: 20
+
+      - name: Build aab file
+        run: flutter build appbundle --dart-define=build_env=prod
+
+      - name: Upload APK artifact to Github
+        uses: actions/upload-artifact@v4
+        if: inputs.upload_to_github == 'true'
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
+
+      - name: Upload AAB artifact to Github
+        uses: actions/upload-artifact@v4
+        if: inputs.upload_to_github == 'true'
+        with:
+          name: app-release.aab
+          path: build/app/outputs/bundle/release/app-release.aab
+          retention-days: 7
+
+      - name: Upload APK to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.1
+        if: inputs.upload_to_firebase == 'true'
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          groups: ${{ inputs.upload_to_play_store == 'true' && 'release_review' || 'review' }}
+          file: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload AAB to Play Store
+        if: inputs.upload_to_play_store == 'true'
+        uses: r0adkll/upload-google-play@v1.1.3
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_SERVICE_ACCOUNT }}
+          packageName: com.mayandro.wahl_analytics
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: alpha
+
+
+
+
+

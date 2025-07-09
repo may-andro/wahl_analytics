@@ -19,38 +19,40 @@ class SectionFooterWidget extends StatelessWidget {
 
         final footerSection = footerSections.first;
 
-        return Container(
-          color: context.colorPalette.backgroundSecondary.primary.color,
-          padding: EdgeInsets.symmetric(
-            horizontal: context.space(factor: 5),
-            vertical: context.space(factor: 5),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (context.deviceResolution == DSDeviceResolution.mobile)
-                ..._getMobileWidgets(
-                  context,
-                  footerSection,
-                  state.isMobileDetailVisible,
-                  state.isEmailDetailVisible,
-                ),
-              if (context.deviceResolution == DSDeviceResolution.tablet)
-                ..._getTabletWidgets(
-                  context,
-                  footerSection,
-                  state.isMobileDetailVisible,
-                  state.isEmailDetailVisible,
-                ),
-              if (context.deviceResolution == DSDeviceResolution.desktop)
-                ..._getDesktopWidgets(
-                  context,
-                  footerSection,
-                  state.isMobileDetailVisible,
-                  state.isEmailDetailVisible,
-                ),
-            ],
+        return SafeArea(
+          child: Container(
+            color: context.colorPalette.backgroundSecondary.primary.color,
+            padding: EdgeInsets.symmetric(
+              horizontal: context.space(factor: 5),
+              vertical: context.space(factor: 5),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (context.deviceResolution == DSDeviceResolution.mobile)
+                  ..._getMobileWidgets(
+                    context,
+                    footerSection,
+                    state.isMobileDetailVisible,
+                    state.isEmailDetailVisible,
+                  ),
+                if (context.deviceResolution == DSDeviceResolution.tablet)
+                  ..._getTabletWidgets(
+                    context,
+                    footerSection,
+                    state.isMobileDetailVisible,
+                    state.isEmailDetailVisible,
+                  ),
+                if (context.deviceResolution == DSDeviceResolution.desktop)
+                  ..._getDesktopWidgets(
+                    context,
+                    footerSection,
+                    state.isMobileDetailVisible,
+                    state.isEmailDetailVisible,
+                  ),
+              ],
+            ),
           ),
         );
       },
@@ -217,14 +219,17 @@ class _AddressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
+    return Column(
       spacing: context.space(factor: 0.5),
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DSTextWidget(
           context.localizations.footerLocationLabel.toUpperCase(),
           color: context.colorPalette.neutral.grey1,
           style: context.typography.bodyLarge,
+          textOverflow: TextOverflow.ellipsis,
+          maxLines: 2,
         ),
         ...footerSection.address.map((address) {
           return DSTextWidget(

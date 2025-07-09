@@ -1,0 +1,57 @@
+name: Preview Web hosting and Android release to store
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    tags:
+      - '*-review'
+
+permissions: write-all
+
+jobs:
+  build_release_notes:
+    uses: ./.github/workflows/_build_release_notes.yaml
+    with:
+      preRelease: true
+
+  code_quality_validation:
+    uses: ./.github/workflows/_app_static_analyze_with_test.yaml
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+
+  web_build_and_distribute_review_candidate:
+    uses: ./.github/workflows/_build_and_distribute_web.yaml
+    needs: [code_quality_validation]
+    with:
+      channelId: 'review'
+    secrets:
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      FIREBASE_JSON_BASE64: ${{ secrets.FIREBASE_JSON_BASE64 }}
+      FIREBASE_CONFIG_BASE64: ${{ secrets.FIREBASE_CONFIG_BASE64 }}
+
+  android_build_and_distribute_review_candidate:
+    uses: ./.github/workflows/_build_and_distribute_android.yaml
+    needs: [code_quality_validation]
+    with:
+      upload_to_github: 'false'
+      upload_to_firebase: 'true'
+      upload_to_play_store: 'false'
+    secrets:
+      SIGNING_KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+      SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+      SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+      APP_CHECK_TOKEN_BASE64: ${{ secrets.APP_CHECK_TOKEN_BASE64 }}
+      FIREBASE_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+      FIREBASE_JSON_BASE64: ${{ secrets.FIREBASE_JSON_BASE64 }}
+      FIREBASE_OPTIONS_BASE64: ${{ secrets.FIREBASE_OPTIONS_BASE64 }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      PLAYSTORE_SERVICE_ACCOUNT: ${{ secrets.PLAYSTORE_SERVICE_ACCOUNT }}
+      GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}

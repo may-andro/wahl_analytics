@@ -12,48 +12,50 @@ class FormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CareerApplicationBloc, CareerApplicationState>(
       builder: (context, state) {
-        return Form(
-          key: state.formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: context.space(factor: 5)),
-              DSTextWidget(
-                context.localizations.careerPageFormTitle,
-                color: context.colorPalette.neutral.grey9,
-                style: context.typography.titleLarge,
-              ),
-              SizedBox(height: context.space(factor: 0.5)),
-              DSTextWidget(
-                context.localizations.careerPageFormDescription,
-                color: context.colorPalette.neutral.grey7,
-                style: context.typography.bodyLarge,
-              ),
-              SizedBox(height: context.space(factor: 3)),
-              _buildNameTextField(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildEmailTextField(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildRoleTextField(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildCountryTextField(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildMessageTextField(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildUploadCVButton(context),
-              SizedBox(height: context.space(factor: 2)),
-              DSTextWidget(
-                'Consent to the processing of personal data in future recruitment processes',
-                color: context.colorPalette.neutral.grey9,
-                style: context.typography.bodyLarge,
-              ),
-              SizedBox(height: context.space(factor: 0.5)),
-              _buildConsentCheckBox(context),
-              SizedBox(height: context.space(factor: 2)),
-              _buildSubmitButton(context),
-              SizedBox(height: context.space(factor: 5)),
-            ],
+        return SafeArea(
+          child: Form(
+            key: state.formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: context.space(factor: 5)),
+                DSTextWidget(
+                  context.localizations.careerPageFormTitle,
+                  color: context.colorPalette.neutral.grey9,
+                  style: context.typography.titleLarge,
+                ),
+                SizedBox(height: context.space(factor: 0.5)),
+                DSTextWidget(
+                  context.localizations.careerPageFormDescription,
+                  color: context.colorPalette.neutral.grey7,
+                  style: context.typography.bodyLarge,
+                ),
+                SizedBox(height: context.space(factor: 3)),
+                _buildNameTextField(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildEmailTextField(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildRoleTextField(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildCountryTextField(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildMessageTextField(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildUploadCVButton(context),
+                SizedBox(height: context.space(factor: 2)),
+                DSTextWidget(
+                  'Consent to the processing of personal data in future recruitment processes',
+                  color: context.colorPalette.neutral.grey9,
+                  style: context.typography.bodyLarge,
+                ),
+                SizedBox(height: context.space(factor: 0.5)),
+                _buildConsentCheckBox(context),
+                SizedBox(height: context.space(factor: 2)),
+                _buildSubmitButton(context),
+                SizedBox(height: context.space(factor: 5)),
+              ],
+            ),
           ),
         );
       },

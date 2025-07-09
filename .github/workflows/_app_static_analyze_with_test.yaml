@@ -38,11 +38,14 @@ jobs:
         run: |
           dart pub global activate melos
 
+      - name: Get locale dependencies
+        run: melos gen_translations
+
       - name: Get dart dependencies
         run: flutter pub get
 
       - name: Format the Dart code
-        run: dart format . --set-exit-if-changed
+        run: dart format lib test --set-exit-if-changed
 
       - name: Run code generator
         run: melos gen_app --no-select

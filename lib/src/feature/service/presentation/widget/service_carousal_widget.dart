@@ -19,7 +19,7 @@ class ServiceCarousalWidget extends StatelessWidget {
       child: Column(
         children: [
           DSCarousalWidget(
-            height: context.space(factor: 40),
+            height: context.space(factor: 44),
             autoPlay: true,
             enableInfiniteScroll: true,
             onPageChanged: (index, _) {
