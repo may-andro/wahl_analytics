@@ -24,8 +24,10 @@ final class RestartAppEvent extends FeatureFlagEvent {}
 
 final class UpdateSearchFieldVisibilityEvent extends FeatureFlagEvent {}
 
-final class OnSearchTermUpdateEvent extends FeatureFlagEvent {
-  const OnSearchTermUpdateEvent(this.searchTerm);
+final class SearchTermUpdateEvent extends FeatureFlagEvent {
+  const SearchTermUpdateEvent(this.searchTerm);
 
   final String searchTerm;
 }
+
+final class ScreenVisibleEvent extends FeatureFlagEvent {}

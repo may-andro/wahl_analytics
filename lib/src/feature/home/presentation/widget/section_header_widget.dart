@@ -33,6 +33,7 @@ class SectionHeaderWidget extends StatelessWidget {
   }
 
   void _navigateToContactUsScreen(BuildContext context) {
+    context.bloc.add(ContactUsClickEvent());
     context.push(ContactModuleRoute.contactUs.path);
   }
 }

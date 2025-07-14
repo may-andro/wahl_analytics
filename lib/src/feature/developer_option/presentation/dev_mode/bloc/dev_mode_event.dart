@@ -8,3 +8,5 @@ sealed class DevModeEvent extends Equatable {
 }
 
 final class OpenDBCacheScreenEvent extends DevModeEvent {}
+
+final class ScreenVisibleEvent extends DevModeEvent {}

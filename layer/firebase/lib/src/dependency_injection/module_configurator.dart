@@ -41,10 +41,6 @@ class FirebaseModuleConfigurator implements ModuleConfigurator {
     final analyticsController = serviceLocator.get<FbAnalyticsController>();
     await analyticsController.enableFirebaseAnalytics(isFirebaseEnabled);
     await analyticsController.sendUserEvent(userId);
-    await analyticsController.sendLogEvent(
-      'app_started',
-      parameters: {'time': '${DateTime.now().microsecondsSinceEpoch}'},
-    );
   }
 
   @override

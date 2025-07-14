@@ -4,6 +4,7 @@ import 'package:dependency_injection/dependency_injection.dart';
 import 'package:feature_flag/feature_flag.dart';
 import 'package:firebase/firebase.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/developer_option/data/data.dart';
 import 'package:wahl_analytics/src/feature/developer_option/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/cache_playground/cache_playground.dart';
@@ -11,6 +12,7 @@ import 'package:wahl_analytics/src/feature/developer_option/presentation/dev_mod
 import 'package:wahl_analytics/src/feature/developer_option/presentation/dev_mode_auth/bloc/dev_mode_auth_bloc.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/feature_flag/feature_flag.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/route/route.dart';
+import 'package:wahl_analytics/src/feature/developer_option/presentation/tracking_log/tracking_log.dart';
 import 'package:wahl_analytics/src/feature/validation/domain/use_case/is_valid_verification_code_use_case.dart';
 import 'package:wahl_analytics/src/route/route.dart';
 
@@ -21,9 +23,9 @@ class DeveloperOptionModuleConfigurator implements ModuleConfigurator {
       serviceLocator.get<DummyEntityCache>().initializeDB();
     }
 
-    serviceLocator
-        .get<ModuleRouteController>()
-        .register(DeveloperOptionModuleRouteConfigurator());
+    serviceLocator.get<ModuleRouteController>().register(
+      DeveloperOptionModuleRouteConfigurator(),
+    );
   }
 
   @override
@@ -67,7 +69,13 @@ class DeveloperOptionModuleConfigurator implements ModuleConfigurator {
       ),
     );
 
-    serviceLocator.registerFactory(() => DevModeBloc());
+    serviceLocator.registerFactory(
+      () => DevModeTrackingDelegate(serviceLocator.get<TrackingReporter>()),
+    );
+
+    serviceLocator.registerFactory(
+      () => DevModeBloc(serviceLocator.get<DevModeTrackingDelegate>()),
+    );
 
     serviceLocator.registerFactory(
       () => DevModeAuthBloc(
@@ -79,15 +87,37 @@ class DeveloperOptionModuleConfigurator implements ModuleConfigurator {
     );
 
     serviceLocator.registerFactory(
+      () => FeatureFlagTrackingDelegate(serviceLocator.get<TrackingReporter>()),
+    );
+
+    serviceLocator.registerFactory(
       () => FeatureFlagBloc(
         serviceLocator.get<GetFeatureFlagsUseCase>(),
         serviceLocator.get<UpdateFeatureFlagUseCase>(),
         serviceLocator.get<ResetFeatureFlagsUseCase>(),
+        serviceLocator.get<FeatureFlagTrackingDelegate>(),
       ),
     );
 
     serviceLocator.registerFactory(
-      () => CachePlaygroundBloc(serviceLocator.get<DummyEntityCache>()),
+      () => CachePlaygroundTrackingDelegate(
+        serviceLocator.get<TrackingReporter>(),
+      ),
+    );
+
+    serviceLocator.registerFactory(
+      () => CachePlaygroundBloc(
+        serviceLocator.get<DummyEntityCache>(),
+        serviceLocator.get<CachePlaygroundTrackingDelegate>(),
+      ),
+    );
+
+    serviceLocator.registerFactory(
+      () => TrackingLogTrackingDelegate(serviceLocator.get<TrackingReporter>()),
+    );
+
+    serviceLocator.registerFactory(
+      () => TrackingLogBloc(serviceLocator.get<TrackingLogTrackingDelegate>()),
     );
   }
 }

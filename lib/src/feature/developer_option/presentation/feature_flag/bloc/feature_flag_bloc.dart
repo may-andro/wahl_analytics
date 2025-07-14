@@ -7,35 +7,39 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wahl_analytics/src/app/restart_app.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/feature_flag/bloc/feature_flag_event.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/feature_flag/bloc/feature_flag_state.dart';
+import 'package:wahl_analytics/src/feature/developer_option/presentation/feature_flag/tracking/feature_flag_tracking_delegate.dart';
 
 class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
   FeatureFlagBloc(
     this._getFeatureFlagsUseCase,
     this._updateFeatureFlagUseCase,
     this._resetFeatureFlagsUseCase,
+    this._trackingDelegate,
   ) : super(
-          FeatureFlagState(
-            scrollController: ScrollController(),
-            searchFocusNode: FocusNode(),
-            searchTextEditingController: TextEditingController(),
-          ),
-        ) {
-    on<OnInitScreenEvent>(_mapOnInitScreenEvent);
-    on<UpdateFFEvent>(_mapUpdateFFEvent);
-    on<ResetFFEvent>(_mapResetFFEvent);
-    on<UpdateListTypeEvent>(_mapUpdateListTypeEvent);
-    on<RestartAppEvent>(_mapRestartAppEvent);
+        FeatureFlagState(
+          scrollController: ScrollController(),
+          searchFocusNode: FocusNode(),
+          searchTextEditingController: TextEditingController(),
+        ),
+      ) {
+    on<OnInitScreenEvent>(_mapOnInitScreenEventToState);
+    on<UpdateFFEvent>(_mapUpdateFFEventToState);
+    on<ResetFFEvent>(_mapResetFFEventToState);
+    on<UpdateListTypeEvent>(_mapUpdateListTypeEventToState);
+    on<RestartAppEvent>(_mapRestartAppEventToState);
     on<UpdateSearchFieldVisibilityEvent>(
-      _mapUpdateSearchFieldVisibilityEventEvent,
+      _mapUpdateSearchFieldVisibilityEventToState,
     );
-    on<OnSearchTermUpdateEvent>(_mapOnSearchTermUpdateEvent);
+    on<SearchTermUpdateEvent>(_mapSearchTermUpdateEventToState);
+    on<ScreenVisibleEvent>(_mapScreenVisibleEventToState);
   }
 
   final GetFeatureFlagsUseCase _getFeatureFlagsUseCase;
   final UpdateFeatureFlagUseCase _updateFeatureFlagUseCase;
   final ResetFeatureFlagsUseCase _resetFeatureFlagsUseCase;
+  final FeatureFlagTrackingDelegate _trackingDelegate;
 
-  FutureOr<void> _mapOnInitScreenEvent(
+  FutureOr<void> _mapOnInitScreenEventToState(
     OnInitScreenEvent event,
     Emitter<FeatureFlagState> emit,
   ) async {
@@ -55,7 +59,7 @@ class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
     );
   }
 
-  FutureOr<void> _mapUpdateFFEvent(
+  FutureOr<void> _mapUpdateFFEventToState(
     UpdateFFEvent event,
     Emitter<FeatureFlagState> emit,
   ) async {
@@ -65,8 +69,9 @@ class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
         //emit(state.copyWith(viewState: DSViewState.error));
       },
       (_) {
-        final List<FeatureFlag> featureFlags =
-            List.of(state.featureFlags ?? []);
+        final List<FeatureFlag> featureFlags = List.of(
+          state.featureFlags ?? [],
+        );
         if (featureFlags.isEmpty) return;
 
         final index = featureFlags.indexWhere(
@@ -75,17 +80,12 @@ class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
         if (index == -1) return;
 
         featureFlags[index] = event.featureFlag;
-        emit(
-          state.copyWith(
-            featureFlags: featureFlags,
-            isRestartNeeded: true,
-          ),
-        );
+        emit(state.copyWith(featureFlags: featureFlags, isRestartNeeded: true));
       },
     );
   }
 
-  FutureOr<void> _mapResetFFEvent(
+  FutureOr<void> _mapResetFFEventToState(
     ResetFFEvent event,
     Emitter<FeatureFlagState> emit,
   ) async {
@@ -103,21 +103,21 @@ class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
     );
   }
 
-  FutureOr<void> _mapUpdateListTypeEvent(
+  FutureOr<void> _mapUpdateListTypeEventToState(
     UpdateListTypeEvent event,
     Emitter<FeatureFlagState> emit,
   ) {
     emit(state.copyWith(isGrid: !state.isGrid));
   }
 
-  FutureOr<void> _mapRestartAppEvent(
+  FutureOr<void> _mapRestartAppEventToState(
     RestartAppEvent event,
     Emitter<FeatureFlagState> emit,
   ) {
     return restartApp();
   }
 
-  FutureOr<void> _mapUpdateSearchFieldVisibilityEventEvent(
+  FutureOr<void> _mapUpdateSearchFieldVisibilityEventToState(
     UpdateSearchFieldVisibilityEvent event,
     Emitter<FeatureFlagState> emit,
   ) {
@@ -142,10 +142,17 @@ class FeatureFlagBloc extends Bloc<FeatureFlagEvent, FeatureFlagState> {
     }
   }
 
-  FutureOr<void> _mapOnSearchTermUpdateEvent(
-    OnSearchTermUpdateEvent event,
+  FutureOr<void> _mapSearchTermUpdateEventToState(
+    SearchTermUpdateEvent event,
     Emitter<FeatureFlagState> emit,
   ) {
     emit(state.copyWith(searchTerm: event.searchTerm));
+  }
+
+  FutureOr<void> _mapScreenVisibleEventToState(
+    ScreenVisibleEvent event,
+    Emitter<FeatureFlagState> emit,
+  ) {
+    _trackingDelegate.trackScreenView();
   }
 }

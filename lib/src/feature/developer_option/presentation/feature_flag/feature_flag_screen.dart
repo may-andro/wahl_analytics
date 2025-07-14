@@ -13,13 +13,20 @@ class FeatureFlagScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) =>
           appServiceLocator.get<FeatureFlagBloc>()..add(OnInitScreenEvent()),
-      child: Scaffold(
-        backgroundColor: context.colorPalette.background.primary.color,
-        appBar: DSAppBarWidget(
-          height: DSAppBarWidget.getHeight(context),
-          onBackClicked: context.pop,
-        ),
-        body: const ContentWidget(),
+      child: BlocBuilder<FeatureFlagBloc, FeatureFlagState>(
+        builder: (context, state) {
+          return RouteObserverWidget(
+            onResume: () => context.bloc.add(ScreenVisibleEvent()),
+            child: Scaffold(
+              backgroundColor: context.colorPalette.background.primary.color,
+              appBar: DSAppBarWidget(
+                height: DSAppBarWidget.getHeight(context),
+                onBackClicked: context.pop,
+              ),
+              body: const ContentWidget(),
+            ),
+          );
+        },
       ),
     );
   }

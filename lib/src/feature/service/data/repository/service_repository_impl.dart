@@ -86,7 +86,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
       }
 
       final businessServiceModelMap = Map<String, dynamic>.from(
-        dataMap[_appLocale.locale] as Map,
+        dataMap[_appLocale.languageCode] as Map,
       );
       final model = BusinessServiceModel.fromJson(businessServiceModelMap);
       return _businessServiceMapper.to(model);

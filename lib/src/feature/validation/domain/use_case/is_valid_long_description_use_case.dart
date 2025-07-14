@@ -30,7 +30,7 @@ class IsValidLongDescriptionUseCase
       return const Left(EmptyLongDescriptionFailure());
     }
 
-    final regEx = RegExp(r'^(?!\s*$).{100,500}$');
+    final regEx = RegExp(r'^(?!\s*$).{100,500}$', dotAll: true);
     return Right(regEx.hasMatch(input));
   }
 

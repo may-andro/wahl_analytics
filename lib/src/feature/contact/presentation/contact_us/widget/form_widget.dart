@@ -5,9 +5,7 @@ import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/bloc/
 import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/dto/dto.dart';
 
 class FormWidget extends StatelessWidget {
-  const FormWidget({
-    super.key,
-  });
+  const FormWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +53,9 @@ class FormWidget extends StatelessWidget {
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (text) {
         context.state.textFieldFocusNodes[formFieldType]?.unfocus();
-        FocusScope.of(context).requestFocus(
-          context.state.textFieldFocusNodes[FormFieldType.email],
-        );
+        FocusScope.of(
+          context,
+        ).requestFocus(context.state.textFieldFocusNodes[FormFieldType.email]);
       },
       onChanged: (input) {
         context.bloc.add(
@@ -174,10 +172,4 @@ class FormWidget extends StatelessWidget {
       variant: DSButtonVariant.prominent,
     );
   }
-}
-
-extension _ContextExtension on BuildContext {
-  ContactUsBloc get bloc => read<ContactUsBloc>();
-
-  ContactUsState get state => bloc.state;
 }

@@ -15,64 +15,72 @@ class DbCachePlaygroundScreen extends StatelessWidget {
       create: (_) {
         return appServiceLocator.get<CachePlaygroundBloc>()..add(OnInitEvent());
       },
-      child: Scaffold(
-        backgroundColor: context.colorPalette.background.primary.color,
-        body: const ContentWidget(),
-        appBar: AppBar(
-          backgroundColor: context.colorPalette.background.primary.color,
-          surfaceTintColor: context.colorPalette.neutral.transparent.color,
-          shadowColor: context.colorPalette.background.onPrimary.color,
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: DSTextWidget(
-            'Cache Playground',
-            color: context.colorPalette.neutral.grey9,
-            style: context.typography.titleMedium,
-          ),
-          titleSpacing: 0,
-          leading: context.isDesktop
-              ? null
-              : Padding(
-                  padding: EdgeInsets.only(
-                    left: context.space(factor: 3),
-                  ),
-                  child: DSIconButtonWidget(
-                    Icons.close,
-                    iconColor: context.colorPalette.background.onPrimary,
-                    buttonColor: context.colorPalette.background.primary,
-                    onPressed: context.pop,
-                  ),
+      child: BlocBuilder<CachePlaygroundBloc, CachePlaygroundState>(
+        builder: (context, state) {
+          return RouteObserverWidget(
+            onResume: () => context.bloc.add(ScreenVisibleEvent()),
+            child: Scaffold(
+              backgroundColor: context.colorPalette.background.primary.color,
+              body: const ContentWidget(),
+              appBar: AppBar(
+                backgroundColor: context.colorPalette.background.primary.color,
+                surfaceTintColor:
+                    context.colorPalette.neutral.transparent.color,
+                shadowColor: context.colorPalette.background.onPrimary.color,
+                automaticallyImplyLeading: false,
+                centerTitle: true,
+                title: DSTextWidget(
+                  'Cache Playground',
+                  color: context.colorPalette.neutral.grey9,
+                  style: context.typography.titleMedium,
                 ),
-        ),
-        floatingActionButton:
-            BlocBuilder<CachePlaygroundBloc, CachePlaygroundState>(
-          builder: (context, state) {
-            return FloatingActionButton(
-              onPressed: () {
-                showDialog<DummyEntity>(
-                  context: context,
-                  builder: (_) {
-                    return AlertDialog(
-                      title: DSTextWidget(
-                        'Add entry to data base',
-                        color: context.colorPalette.neutral.grey7,
-                        style: context.typography.titleMedium,
+                titleSpacing: 0,
+                leading: context.isDesktop
+                    ? null
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          left: context.space(factor: 3),
+                        ),
+                        child: DSIconButtonWidget(
+                          Icons.close,
+                          iconColor: context.colorPalette.background.onPrimary,
+                          buttonColor: context.colorPalette.background.primary,
+                          onPressed: context.pop,
+                        ),
                       ),
-                      content: const FormWidget(),
-                    );
-                  },
-                ).then((dummyEntity) {
-                  if (dummyEntity != null && context.mounted) {
-                    context.bloc.add(
-                      AddCacheDataEvent(dummyEntity: dummyEntity),
-                    );
-                  }
-                });
-              },
-              child: const Icon(Icons.add),
-            );
-          },
-        ),
+              ),
+              floatingActionButton:
+                  BlocBuilder<CachePlaygroundBloc, CachePlaygroundState>(
+                    builder: (context, state) {
+                      return FloatingActionButton(
+                        onPressed: () {
+                          showDialog<DummyEntity>(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: DSTextWidget(
+                                  'Add entry to data base',
+                                  color: context.colorPalette.neutral.grey7,
+                                  style: context.typography.titleMedium,
+                                ),
+                                content: const FormWidget(),
+                              );
+                            },
+                          ).then((dummyEntity) {
+                            if (dummyEntity != null && context.mounted) {
+                              context.bloc.add(
+                                AddCacheDataEvent(dummyEntity: dummyEntity),
+                              );
+                            }
+                          });
+                        },
+                        child: const Icon(Icons.add),
+                      );
+                    },
+                  ),
+            ),
+          );
+        },
       ),
     );
   }

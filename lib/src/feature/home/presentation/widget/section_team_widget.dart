@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/career/career.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/bloc.dart';
@@ -15,8 +16,9 @@ class SectionTeamWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final sections =
-            state.homeBodySections?.whereType<TeamSection>().toList();
+        final sections = state.homeBodySections
+            ?.whereType<TeamSection>()
+            .toList();
         if (sections == null || sections.isEmpty) {
           return const SizedBox.shrink();
         }
@@ -26,40 +28,41 @@ class SectionTeamWidget extends StatelessWidget {
         if (teamMembers.isEmpty) return const SizedBox.shrink();
 
         final teamMember = teamMembers[0];
-        return Container(
-          key: state.sectionKeyMap?[teamSection.name],
-          color: context.colorPalette.background.primary.color,
-          padding: EdgeInsets.symmetric(
-            vertical: context.space(factor: 5),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DSResponsiveContainerWidget(
-                mobileBuilder: (_) => _MobileContentWidget(
-                  teamMember: teamMember,
+        return TrackingImpressionDetectorWidget(
+          impressionId: 'home_section_team',
+          onImpression: () => context.bloc.add(HomeTeamSectionViewEvent()),
+          child: Container(
+            key: state.sectionKeyMap?[teamSection.name],
+            color: context.colorPalette.background.primary.color,
+            padding: EdgeInsets.symmetric(vertical: context.space(factor: 5)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DSResponsiveContainerWidget(
+                  mobileBuilder: (_) =>
+                      _MobileContentWidget(teamMember: teamMember),
+                  tabletBuilder: (_) =>
+                      _TabletContentWidget(teamMember: teamMember),
+                  desktopBuilder: (_) =>
+                      _DesktopContentWidget(teamMember: teamMember),
                 ),
-                tabletBuilder: (_) => _TabletContentWidget(
-                  teamMember: teamMember,
+                const DSVerticalSpacerWidget(3),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.space(factor: 5),
+                  ),
+                  child: SectionInfoWidget(
+                    bodySection: teamSection,
+                    isSecondaryBackground: false,
+                    onClicked: () {
+                      context.bloc.add(ContactUsClickEvent());
+                      context.push(CareerModuleRoute.careerApplication.path);
+                    },
+                  ),
                 ),
-                desktopBuilder: (_) => _DesktopContentWidget(
-                  teamMember: teamMember,
-                ),
-              ),
-              const DSVerticalSpacerWidget(3),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.space(factor: 5),
-                ),
-                child: SectionInfoWidget(
-                  bodySection: teamSection,
-                  isSecondaryBackground: false,
-                  onClicked: () =>
-                      context.push(CareerModuleRoute.careerApplication.path),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -68,9 +71,7 @@ class SectionTeamWidget extends StatelessWidget {
 }
 
 class _MobileContentWidget extends StatelessWidget {
-  const _MobileContentWidget({
-    required this.teamMember,
-  });
+  const _MobileContentWidget({required this.teamMember});
 
   final TeamMemberEntity teamMember;
 
@@ -91,9 +92,7 @@ class _MobileContentWidget extends StatelessWidget {
 }
 
 class _TabletContentWidget extends StatelessWidget {
-  const _TabletContentWidget({
-    required this.teamMember,
-  });
+  const _TabletContentWidget({required this.teamMember});
 
   final TeamMemberEntity teamMember;
 
@@ -117,9 +116,7 @@ class _TabletContentWidget extends StatelessWidget {
 }
 
 class _DesktopContentWidget extends StatelessWidget {
-  const _DesktopContentWidget({
-    required this.teamMember,
-  });
+  const _DesktopContentWidget({required this.teamMember});
 
   final TeamMemberEntity teamMember;
 
@@ -138,12 +135,8 @@ class _DesktopContentWidget extends StatelessWidget {
         ),
         const DSVerticalSpacerWidget(2),
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.space(factor: 5),
-          ),
-          child: ServiceHorizontalListWidget(
-            services: teamMember.services,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
+          child: ServiceHorizontalListWidget(services: teamMember.services),
         ),
       ],
     );

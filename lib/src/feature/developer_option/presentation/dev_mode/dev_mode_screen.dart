@@ -12,13 +12,20 @@ class DevModeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => appServiceLocator.get<DevModeBloc>(),
-      child: Scaffold(
-        backgroundColor: context.colorPalette.background.primary.color,
-        appBar: DSAppBarWidget(
-          height: DSAppBarWidget.getHeight(context),
-          onBackClicked: context.pop,
-        ),
-        body: const ContentWidget(),
+      child: BlocBuilder<DevModeBloc, DevModeState>(
+        builder: (context, state) {
+          return RouteObserverWidget(
+            onResume: () => context.bloc.add(ScreenVisibleEvent()),
+            child: Scaffold(
+              backgroundColor: context.colorPalette.background.primary.color,
+              appBar: DSAppBarWidget(
+                height: DSAppBarWidget.getHeight(context),
+                onBackClicked: context.pop,
+              ),
+              body: const ContentWidget(),
+            ),
+          );
+        },
       ),
     );
   }

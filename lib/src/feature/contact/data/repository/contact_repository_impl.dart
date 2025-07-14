@@ -32,7 +32,7 @@ class ContactRepositoryImpl implements ContactRepository {
       }
 
       final businessContactModelMap = Map<String, dynamic>.from(
-        dataMap[_appLocale.locale] as Map,
+        dataMap[_appLocale.languageCode] as Map,
       );
       final model = BusinessContactModel.fromJson(businessContactModelMap);
       return _businessContactMapper.map(model);

@@ -14,4 +14,6 @@ targets:
         generate_for:
           - lib/src/feature/**/data/model/*.dart
           - lib/src/feature/**/domain/entity/*.dart
+          - lib/src/feature/**/presentation/tracking/*.dart
           - layer/feature_flag/lib/src/data/model/*.dart
+          - layer/event_reporter/lib/src/data/model/*.dart

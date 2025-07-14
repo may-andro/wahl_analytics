@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:log_reporter/log_reporter.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/app/splash_app.dart';
 import 'package:wahl_analytics/src/app/wahl_analytics_app.dart';
 import 'package:wahl_analytics/src/dependency_injection/module_configurators.dart';
@@ -39,19 +40,46 @@ Future<void> runAppWithInitialization() async {
   );
 }
 
-void _runMainApp(DesignSystem designSystem, AppLocale appLocale) {
+void _runMainApp(DesignSystem designSystem) {
+  final serviceLocator = DIController().serviceLocator;
+
+  final appLocale = serviceLocator.get<AppLocale>();
+  _sendAppStartEvent(appLocale);
+  Bloc.observer = serviceLocator.get<AppBlocObserver>();
+
+  runApp(
+    LocaleListenerWidget(
+      appLocale: appLocale,
+      builder: (context, appLocale) {
+        return WahlAnalyticsApp(
+          appLocale: appLocale,
+          buildConfig: serviceLocator.get<BuildConfig>(),
+          designSystem: designSystem,
+          routeConfigurator: _routeConfigurator,
+        );
+      },
+    ),
+  );
+}
+
+RouteConfigurator get _routeConfigurator {
   final serviceLocator = DIController().serviceLocator;
   final moduleRouteConfigurator = serviceLocator.get<ModuleRouteController>();
   final navigationObservers = [
     serviceLocator.get<FirebaseAnalyticsObserver>(),
     serviceLocator.get<RouteNavigationObserver>(),
+    serviceLocator.get<FocusClearingRouteObserver>(),
+    routeObserver,
   ];
   final routeConfigurator = RouteConfigurator(
     moduleRouteConfigurator.registeredModuleRouteConfigurator,
     navigationObservers,
   );
+  return routeConfigurator;
+}
 
-  Bloc.observer = serviceLocator.get<AppBlocObserver>();
+void _sendAppStartEvent(AppLocale appLocale) {
+  final serviceLocator = DIController().serviceLocator;
 
   final logReporter = serviceLocator.get<LogReporter>();
   logReporter.debug(
@@ -59,14 +87,6 @@ void _runMainApp(DesignSystem designSystem, AppLocale appLocale) {
     tag: 'runAppWithInitialization',
   );
 
-  runApp(
-    LocaleListenerWidget(
-      appLocale: appLocale,
-      child: WahlAnalyticsApp(
-        designSystem: designSystem,
-        routeConfigurator: routeConfigurator,
-        buildConfig: serviceLocator.get<BuildConfig>(),
-      ),
-    ),
-  );
+  final trackingReporter = serviceLocator.get<TrackingReporter>();
+  trackingReporter.sendTrackingEvent(AppInitializationFinishedTracking());
 }

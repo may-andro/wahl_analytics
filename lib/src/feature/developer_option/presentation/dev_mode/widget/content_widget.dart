@@ -12,9 +12,9 @@ class ContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      scrollBehavior: ScrollConfiguration.of(context).copyWith(
-        scrollbars: false,
-      ),
+      scrollBehavior: ScrollConfiguration.of(
+        context,
+      ).copyWith(scrollbars: false),
       shrinkWrap: true,
       slivers: [
         SliverToBoxAdapter(
@@ -71,6 +71,15 @@ class ContentWidget extends StatelessWidget {
             title: 'Careers request',
             subtitle: 'View all the careers request',
             onTap: () => context.push(CareerModuleRoute.careersRequest.path),
+            context: context,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: _buildItemWidget(
+            title: 'Event History',
+            subtitle: 'View all the events',
+            onTap: () =>
+                context.push(DeveloperOptionModuleRoute.trackingLog.path),
             context: context,
           ),
         ),

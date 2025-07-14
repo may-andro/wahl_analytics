@@ -24,7 +24,7 @@ class ServicesUpdateBloc
             textFieldFocusNodes: ServicesUpdateFormFieldType.focusNodeMap,
             textFieldControllers:
                 ServicesUpdateFormFieldType.textEditingControllerMap,
-            locale: appLocale.locale,
+            locale: appLocale.languageCode,
           ),
         ) {
     on<GetBusinessServiceEvent>(_mapOnGetBusinessServiceEventToState);

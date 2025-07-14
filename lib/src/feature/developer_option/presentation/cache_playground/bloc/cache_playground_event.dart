@@ -25,3 +25,5 @@ final class DeleteCacheDataEvent extends CachePlaygroundEvent {
 
   final DummyEntity dummyEntity;
 }
+
+final class ScreenVisibleEvent extends CachePlaygroundEvent {}

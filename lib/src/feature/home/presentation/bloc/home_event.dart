@@ -8,7 +8,21 @@ sealed class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class OnInitScreenEvent extends HomeEvent {}
+final class OnInitEvent extends HomeEvent {}
+
+final class ScreenVisibleEvent extends HomeEvent {}
+
+final class LoadingContentViewEvent extends HomeEvent {}
+
+final class HomeContentViewEvent extends HomeEvent {}
+
+final class ErrorContentViewEvent extends HomeEvent {}
+
+final class HomeServiceSectionViewEvent extends HomeEvent {}
+
+final class HomeClientSectionViewEvent extends HomeEvent {}
+
+final class HomeTeamSectionViewEvent extends HomeEvent {}
 
 final class GetContentEvent extends HomeEvent {}
 
@@ -25,3 +39,13 @@ final class TabSelectionEvent extends HomeEvent {
 }
 
 final class HeaderLogoClickEvent extends HomeEvent {}
+
+final class ContactUsClickEvent extends HomeEvent {}
+
+final class JoinUsClickEvent extends HomeEvent {}
+
+final class DrawerEvent extends HomeEvent {
+  const DrawerEvent(this.isOpened);
+
+  final bool isOpened;
+}

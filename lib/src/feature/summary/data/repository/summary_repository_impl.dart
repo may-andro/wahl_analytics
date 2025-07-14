@@ -30,7 +30,7 @@ class SummaryRepositoryImpl implements SummaryRepository {
       }
 
       final businessSummaryModelMap =
-          Map<String, dynamic>.from(dataMap[_appLocale.locale] as Map);
+          Map<String, dynamic>.from(dataMap[_appLocale.languageCode] as Map);
       final model = BusinessSummaryModel.fromJson(businessSummaryModelMap);
       return _businessSummaryMapper.map(model);
     } catch (e, st) {

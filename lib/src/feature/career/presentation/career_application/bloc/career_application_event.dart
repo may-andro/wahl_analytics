@@ -8,7 +8,9 @@ sealed class CareerApplicationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class InitialiseScreenEvent extends CareerApplicationEvent {}
+final class OnInitEvent extends CareerApplicationEvent {}
+
+final class ScreenVisibleEvent extends CareerApplicationEvent {}
 
 class ValidateTextFieldEvent extends CareerApplicationEvent {
   const ValidateTextFieldEvent({
@@ -21,9 +23,7 @@ class ValidateTextFieldEvent extends CareerApplicationEvent {
 }
 
 final class OnConsentSelectedEvent extends CareerApplicationEvent {
-  const OnConsentSelectedEvent({
-    required this.isConsentGiven,
-  });
+  const OnConsentSelectedEvent({required this.isConsentGiven});
 
   final bool isConsentGiven;
 }
@@ -34,4 +34,8 @@ final class SubmitFormEvent extends CareerApplicationEvent {
 
 final class UploadResumeEvent extends CareerApplicationEvent {
   const UploadResumeEvent();
+}
+
+final class CloseClickEvent extends CareerApplicationEvent {
+  const CloseClickEvent();
 }

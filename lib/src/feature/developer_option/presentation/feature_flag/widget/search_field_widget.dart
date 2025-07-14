@@ -21,7 +21,7 @@ class SearchFieldWidget extends StatelessWidget {
               hintText: 'Search term, e.g. "native", or "price"',
             ),
             onChanged: (value) {
-              context.bloc.add(OnSearchTermUpdateEvent(value));
+              context.bloc.add(SearchTermUpdateEvent(value));
             },
           ),
         );
