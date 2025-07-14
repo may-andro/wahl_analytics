@@ -18,7 +18,7 @@ class DSPositionIndicatorWidget extends StatelessWidget {
       height: context.space(factor: 0.5),
       child: AnimatedBuilder(
         animation: indexListener,
-        builder: (_, __) {
+        builder: (_, _) {
           return ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -26,7 +26,7 @@ class DSPositionIndicatorWidget extends StatelessWidget {
             itemBuilder: (_, pos) {
               return _IndicatorWidget(isActive: indexListener.value == pos);
             },
-            separatorBuilder: (_, __) =>
+            separatorBuilder: (_, _) =>
                 SizedBox(width: context.space(factor: 0.5)),
           );
         },
