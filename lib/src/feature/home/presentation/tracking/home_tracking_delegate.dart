@@ -1,5 +1,4 @@
 import 'package:tracking/tracking.dart';
-import 'package:wahl_analytics/src/feature/home/presentation/tracking/drawer_tracking_action.dart';
 
 class _TrackingArea extends TrackingArea {
   const _TrackingArea() : super('home');
@@ -13,7 +12,7 @@ class HomeTrackingDelegate extends ScreenTrackingDelegate {
     trackEvent(
       Tracking(
         name: 'drawer_menu',
-        action: const DrawerTrackingAction(status: 'open'),
+        action: const ViewAction(label: 'open'),
       ),
     );
   }
@@ -22,7 +21,7 @@ class HomeTrackingDelegate extends ScreenTrackingDelegate {
     trackEvent(
       Tracking(
         name: 'drawer_menu',
-        action: const DrawerTrackingAction(status: 'close'),
+        action: const ViewAction(label: 'close'),
       ),
     );
   }
@@ -31,33 +30,33 @@ class HomeTrackingDelegate extends ScreenTrackingDelegate {
     trackEvent(
       Tracking(
         name: 'drawer_menu',
-        action: ClickAction(label: 'drawer_item', value: drawerItemName),
+        action: ClickAction(label: drawerItemName),
       ),
     );
   }
 
   void trackLoadingContentView() {
-    trackEvent(ViewTracking(name: 'loading_content_view'));
+    trackEvent(ViewTracking(label: 'loading_content_view'));
   }
 
   void trackHomeContentView() {
-    trackEvent(ViewTracking(name: 'home_content_view'));
+    trackEvent(ViewTracking(label: 'home_content_view'));
   }
 
   void trackErrorContentView() {
-    trackEvent(ViewTracking(name: 'error_content_view'));
+    trackEvent(ViewTracking(label: 'error_content_view'));
   }
 
   void trackServicesSectionView() {
-    trackEvent(ViewTracking(name: 'services_section'));
+    trackEvent(ViewTracking(label: 'services_section'));
   }
 
   void trackClientSectionView() {
-    trackEvent(ViewTracking(name: 'client_section'));
+    trackEvent(ViewTracking(label: 'client_section'));
   }
 
   void trackTeamSectionView() {
-    trackEvent(ViewTracking(name: 'team_section'));
+    trackEvent(ViewTracking(label: 'team_section'));
   }
 
   void trackContactUsClick() {

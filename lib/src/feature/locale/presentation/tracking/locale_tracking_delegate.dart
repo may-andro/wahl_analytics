@@ -11,7 +11,7 @@ class LocaleTrackingDelegate extends TrackingDelegate {
   }
 
   void trackLocalePopupView() {
-    trackEvent(ViewTracking(name: 'locale_popup'));
+    trackEvent(ViewTracking(label: 'locale_popup'));
   }
 
   void trackUpdateLocaleClick(AppLocale locale) {
