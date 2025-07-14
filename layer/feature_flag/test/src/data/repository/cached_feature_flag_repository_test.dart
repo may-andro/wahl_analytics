@@ -35,9 +35,9 @@ void main() {
 
     group('initFeatureFlags', () {
       test('should do nothing when cache is available', () async {
-        mockFeatureFlagCache.mockGetAll(
-          [FeatureModel(name: 'name', isEnabled: 0)],
-        );
+        mockFeatureFlagCache.mockGetAll([
+          FeatureModel(name: 'name', isEnabled: 0),
+        ]);
 
         await repository.initFeatureFlags();
 
@@ -69,8 +69,7 @@ void main() {
         await expectLater(repository.initFeatureFlags(), throwsException);
       });
 
-      test(
-          'should throw exception '
+      test('should throw exception '
           'when putting in cache throw exception', () async {
         const featureFlags = [
           FeatureFlag(Feature.contactUsHomeFab, false),
@@ -85,8 +84,7 @@ void main() {
         await expectLater(repository.initFeatureFlags(), throwsException);
       });
 
-      test(
-          'should throw exception '
+      test('should throw exception '
           'when delegate repository throw exception', () async {
         const featureFlags = [
           FeatureFlag(Feature.contactUsHomeFab, false),
@@ -110,16 +108,11 @@ void main() {
 
         final result = await repository.getFeatureFlags();
 
-        expect(
-          result,
-          const [FeatureFlag(Feature.contactUsHomeFab, false)],
-        );
+        expect(result, const [FeatureFlag(Feature.contactUsHomeFab, false)]);
       });
 
       test('should skip invalid cached data', () async {
-        final cachedList = [
-          FeatureModel(name: 'invalid_key', isEnabled: 0),
-        ];
+        final cachedList = [FeatureModel(name: 'invalid_key', isEnabled: 0)];
         mockFeatureFlagCache.mockGetAll(cachedList);
 
         final result = await repository.getFeatureFlags();
@@ -149,8 +142,7 @@ void main() {
         expect(result, isTrue);
       });
 
-      test(
-          'should return false value of cached Feature '
+      test('should return false value of cached Feature '
           'when not found in cache', () async {
         mockFeatureFlagCache.mockGet(null);
 
@@ -194,9 +186,7 @@ void main() {
 
         repository.updateFeatureFlag(featureFlag);
 
-        verify(
-          () => mockFeatureFlagCache.put(any()),
-        ).called(1);
+        verify(() => mockFeatureFlagCache.put(any())).called(1);
       });
     });
   });

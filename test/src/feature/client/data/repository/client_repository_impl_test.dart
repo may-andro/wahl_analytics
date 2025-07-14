@@ -83,99 +83,68 @@ void main() {
     });
 
     group('getBusinessClient', () {
-      test(
-        'should return BusinessClientEntity '
-        'when firebase has valid data',
-        () async {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            testClientData,
-          );
+      test('should return BusinessClientEntity '
+          'when firebase has valid data', () async {
+        mockFbFirestoreController.mockGetDocumentFromCollection(testClientData);
 
-          final result = await repository.getBusinessClient();
+        final result = await repository.getBusinessClient();
 
-          expect(result, businessClientEntity);
-        },
-      );
+        expect(result, businessClientEntity);
+      });
 
-      test(
-        'should throw NullDataFoundClientException '
-        'when firebase has null data',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(null);
+      test('should throw NullDataFoundClientException '
+          'when firebase has null data', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
-          expect(
-            () async => await repository.getBusinessClient(),
-            throwsA(
-              predicate(
-                (exception) => exception is NullDataFoundClientException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessClient(),
+          throwsA(
+            predicate((exception) => exception is NullDataFoundClientException),
+          ),
+        );
+      });
 
-      test(
-        'should throw ServerClientException '
-        'when firebase has FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw ServerClientException '
+          'when firebase has FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessClient(),
-            throwsA(
-              predicate((exception) => exception is ServerClientException),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessClient(),
+          throwsA(predicate((exception) => exception is ServerClientException)),
+        );
+      });
 
-      test(
-        'should throw IncorrectJsonClientException '
-        'when json is different from expected',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            {
-              'test': {
-                'name': 'name',
-                'title': 'title',
-              },
-            },
-          );
+      test('should throw IncorrectJsonClientException '
+          'when json is different from expected', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection({
+          'test': {'name': 'name', 'title': 'title'},
+        });
 
-          expect(
-            () async => await repository.getBusinessClient(),
-            throwsA(
-              predicate(
-                (exception) => exception is IncorrectJsonClientException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessClient(),
+          throwsA(
+            predicate((exception) => exception is IncorrectJsonClientException),
+          ),
+        );
+      });
 
-      test(
-        'should throw UnknownClientException '
-        'when json is different from expected',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw UnknownClientException '
+          'when json is different from expected', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessClient(),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownClientException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessClient(),
+          throwsA(
+            predicate((exception) => exception is UnknownClientException),
+          ),
+        );
+      });
     });
   });
 }

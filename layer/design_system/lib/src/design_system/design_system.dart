@@ -1,3 +1,1 @@
-enum DesignSystem {
-  primary,
-}
+enum DesignSystem { primary }

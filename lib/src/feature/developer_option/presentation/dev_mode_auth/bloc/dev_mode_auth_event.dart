@@ -12,18 +12,13 @@ final class OnInitEvent extends DevModeAuthEvent {
 }
 
 class ValidateTextFieldEvent extends DevModeAuthEvent {
-  const ValidateTextFieldEvent({
-    required this.text,
-  });
+  const ValidateTextFieldEvent({required this.text});
 
   final String? text;
 }
 
 final class SubmitFormEvent extends DevModeAuthEvent {
-  const SubmitFormEvent({
-    required this.code,
-    required this.docId,
-  });
+  const SubmitFormEvent({required this.code, required this.docId});
 
   final String docId;
   final String code;

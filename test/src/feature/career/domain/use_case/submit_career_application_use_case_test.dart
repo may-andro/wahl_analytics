@@ -30,8 +30,7 @@ void main() {
       expect(result.isRight, isTrue);
     });
 
-    test(
-        'should return $ApplicationUploadFailure '
+    test('should return $ApplicationUploadFailure '
         'when document is failed to upload', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         UploadDocumentFailureException(Exception(), StackTrace.current),
@@ -43,8 +42,7 @@ void main() {
       expect(result.left, isA<ApplicationUploadFailure>());
     });
 
-    test(
-        'should return $ApplicationSubmissionFailure '
+    test('should return $ApplicationSubmissionFailure '
         'when UnknownCareerException thrown', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         UnknownCareerException(Exception(), StackTrace.current),
@@ -56,8 +54,7 @@ void main() {
       expect(result.left, isA<ApplicationSubmissionFailure>());
     });
 
-    test(
-        'should return $ApplicationSubmissionUnknownFailure '
+    test('should return $ApplicationSubmissionUnknownFailure '
         'when unknown exception occurs', () async {
       mockCareerRepository.mockSubmitCareerApplicationThrowsException(
         Exception(),

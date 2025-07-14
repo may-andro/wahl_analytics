@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Icon Button Widget',
-  type: IconButtonWidget,
-)
+@widgetbook.UseCase(name: 'Icon Button Widget', type: IconButtonWidget)
 IconButtonWidget iconButtonWidget(BuildContext context) {
   return const IconButtonWidget();
 }
@@ -39,14 +36,8 @@ class IconButtonWidget extends StatelessWidget {
                 .list<Option<DSColor>>(
                   label: 'Icon Color',
                   options: <Option<DSColor>>[
-                    Option(
-                      context.colorPalette.neutral.white,
-                      'White',
-                    ),
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.neutral.white, 'White'),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -55,10 +46,7 @@ class IconButtonWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -67,10 +55,7 @@ class IconButtonWidget extends StatelessWidget {
                 .list<Option<DSColor>>(
                   label: 'Button Color',
                   options: <Option<DSColor>>[
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -79,10 +64,7 @@ class IconButtonWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

@@ -32,8 +32,9 @@ class ServiceRepositoryImpl implements ServiceRepository {
       }
 
       final businessServiceModelMap = Map<String, dynamic>.from(dataMap as Map);
-      final model =
-          AllLocaleBusinessServiceModel.fromJson(businessServiceModelMap);
+      final model = AllLocaleBusinessServiceModel.fromJson(
+        businessServiceModelMap,
+      );
       return _allLocaleBusinessServiceMapper.to(model);
     } catch (e, st) {
       if (e is FirestoreException) {

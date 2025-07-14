@@ -17,11 +17,6 @@ class ServicesProvidedBloc
     SetBusinessServiceEntityEvent event,
     Emitter<ServicesProvidedState> emit,
   ) {
-    emit(
-      state.copyWith(
-        viewState: DSViewState.idle,
-        services: event.services,
-      ),
-    );
+    emit(state.copyWith(viewState: DSViewState.idle, services: event.services));
   }
 }

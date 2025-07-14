@@ -30,45 +30,54 @@ void main() {
       expect(result.right, isTrue);
     });
 
-    test('should return false when email address is invalid (missing @)',
-        () async {
-      final result = await useCase('testexample.com');
+    test(
+      'should return false when email address is invalid (missing @)',
+      () async {
+        final result = await useCase('testexample.com');
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
-
-    test('should return false when email address is invalid (missing domain)',
-        () async {
-      final result = await useCase('test@.com');
-
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
-
-    test('should return false when email address is invalid (missing TLD)',
-        () async {
-      final result = await useCase('test@example');
-
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test(
-        'should return false when email address is invalid (invalid characters)',
-        () async {
-      final result = await useCase('test@exa mple.com');
+      'should return false when email address is invalid (missing domain)',
+      () async {
+        final result = await useCase('test@.com');
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
-    test('should return false when email address is invalid (multiple @)',
-        () async {
-      final result = await useCase('test@@example.com');
+    test(
+      'should return false when email address is invalid (missing TLD)',
+      () async {
+        final result = await useCase('test@example');
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
+
+    test(
+      'should return false when email address is invalid (invalid characters)',
+      () async {
+        final result = await useCase('test@exa mple.com');
+
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
+
+    test(
+      'should return false when email address is invalid (multiple @)',
+      () async {
+        final result = await useCase('test@@example.com');
+
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
   });
 }

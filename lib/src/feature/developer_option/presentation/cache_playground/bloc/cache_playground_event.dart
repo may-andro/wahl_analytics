@@ -11,17 +11,13 @@ sealed class CachePlaygroundEvent extends Equatable {
 final class OnInitEvent extends CachePlaygroundEvent {}
 
 final class AddCacheDataEvent extends CachePlaygroundEvent {
-  const AddCacheDataEvent({
-    required this.dummyEntity,
-  });
+  const AddCacheDataEvent({required this.dummyEntity});
 
   final DummyEntity dummyEntity;
 }
 
 final class DeleteCacheDataEvent extends CachePlaygroundEvent {
-  const DeleteCacheDataEvent({
-    required this.dummyEntity,
-  });
+  const DeleteCacheDataEvent({required this.dummyEntity});
 
   final DummyEntity dummyEntity;
 }

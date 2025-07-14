@@ -62,8 +62,8 @@ class ServiceDeleteWidget extends StatelessWidget {
                     factor: context.isMobile
                         ? 4
                         : context.isTablet
-                            ? 3
-                            : 2,
+                        ? 3
+                        : 2,
                   ),
                 ),
                 const DSHorizontalSpacerWidget(3),

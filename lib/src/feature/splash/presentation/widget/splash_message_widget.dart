@@ -31,10 +31,7 @@ class SplashMessageWidget extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
-        LinearProgressIndicator(
-          value: progress,
-          color: Colors.green,
-        ),
+        LinearProgressIndicator(value: progress, color: Colors.green),
         const SizedBox(height: 48),
       ],
     );

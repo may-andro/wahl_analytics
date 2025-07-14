@@ -33,8 +33,9 @@ class SplashErrorWidget extends StatelessWidget {
               border: Border.all(
                 color: Color(context.isDarkMode ? 0xFFFFFFFF : 0xFF121212),
               ),
-              color: Color(context.isDarkMode ? 0xFFFFFFFF : 0xFF121212)
-                  .withValues(alpha: 0.5),
+              color: Color(
+                context.isDarkMode ? 0xFFFFFFFF : 0xFF121212,
+              ).withValues(alpha: 0.5),
             ),
             child: Text(
               _cause.toString(),

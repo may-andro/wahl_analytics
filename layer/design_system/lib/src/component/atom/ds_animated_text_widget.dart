@@ -116,8 +116,8 @@ class _DSAnimatedTextWidgetState extends State<DSAnimatedTextWidget>
     final lineHeight = textStyle.height ?? 1.0;
     final textHeight = textPainter.size.height;
 
-    final int numberOfLines =
-        (textHeight / (textStyle.fontSize! * lineHeight)).ceil();
+    final int numberOfLines = (textHeight / (textStyle.fontSize! * lineHeight))
+        .ceil();
 
     return numberOfLines;
   }

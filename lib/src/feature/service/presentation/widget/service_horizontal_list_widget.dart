@@ -6,10 +6,7 @@ import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/service/presentation/widget/service_card_widget.dart';
 
 class ServiceHorizontalListWidget extends StatefulWidget {
-  const ServiceHorizontalListWidget({
-    required this.services,
-    super.key,
-  });
+  const ServiceHorizontalListWidget({required this.services, super.key});
 
   final List<ServiceEntity> services;
 
@@ -43,18 +40,16 @@ class _ServiceHorizontalListWidgetState
         return Wrap(
           runSpacing: context.space(),
           spacing: context.space(),
-          children: widget.services.sublist(0, maxServiceCount).map(
-            (service) {
-              return SizedBox(
-                width: min(
-                  width / maxServiceCount - context.space(),
-                  context.space(factor: 20),
-                ),
-                height: context.space(factor: 22.5),
-                child: ServiceCardWidget(service: service),
-              );
-            },
-          ).toList(),
+          children: widget.services.sublist(0, maxServiceCount).map((service) {
+            return SizedBox(
+              width: min(
+                width / maxServiceCount - context.space(),
+                context.space(factor: 20),
+              ),
+              height: context.space(factor: 22.5),
+              child: ServiceCardWidget(service: service),
+            );
+          }).toList(),
         );
       },
     );

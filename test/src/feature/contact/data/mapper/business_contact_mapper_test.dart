@@ -9,19 +9,21 @@ void main() {
       mapper = BusinessContactMapper();
     });
 
-    test('should correctly maps BusinessContactModel to BusinessContactEntity',
-        () {
-      const contactUsEntity = BusinessContactModel(
-        mobileNumber: 'mobileNumber',
-        email: 'email',
-        address: ['address'],
-      );
+    test(
+      'should correctly maps BusinessContactModel to BusinessContactEntity',
+      () {
+        const contactUsEntity = BusinessContactModel(
+          mobileNumber: 'mobileNumber',
+          email: 'email',
+          address: ['address'],
+        );
 
-      final result = mapper.map(contactUsEntity);
+        final result = mapper.map(contactUsEntity);
 
-      expect(result.mobileNumber, 'mobileNumber');
-      expect(result.email, 'email');
-      expect(result.address, ['address']);
-    });
+        expect(result.mobileNumber, 'mobileNumber');
+        expect(result.email, 'email');
+        expect(result.address, ['address']);
+      },
+    );
   });
 }

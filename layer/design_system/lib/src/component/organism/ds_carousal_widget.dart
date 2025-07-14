@@ -21,7 +21,7 @@ class DSCarousalWidget extends StatelessWidget {
   final bool enableInfiniteScroll;
   final bool autoPlay;
   final void Function(int index, CarouselPageChangedReason reason)?
-      onPageChanged;
+  onPageChanged;
   final Axis scrollDirection;
   final ScrollPhysics? scrollPhysics;
 

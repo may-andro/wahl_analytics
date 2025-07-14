@@ -53,9 +53,7 @@ class _DSDropDownWidgetState<T> extends State<DSDropDownWidget<T>> {
           items: widget.items,
           selectedItemBuilder: widget.selectedItemBuilder,
           value: widget.value,
-          decoration: _decorateInputDecoration(
-            hint: widget.hintText,
-          ),
+          decoration: _decorateInputDecoration(hint: widget.hintText),
           focusNode: widget.focusNode,
           onChanged: widget.onChanged,
           onTap: widget.onTap,
@@ -103,14 +101,13 @@ class _DSDropDownWidgetState<T> extends State<DSDropDownWidget<T>> {
         borderRadius: borderRadius,
       ),
       disabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: context.colorPalette.neutral.grey4.color,
-        ),
+        borderSide: BorderSide(color: context.colorPalette.neutral.grey4.color),
         borderRadius: borderRadius,
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: _dropDownValidationData?.dropDownValidationType ==
+          color:
+              _dropDownValidationData?.dropDownValidationType ==
                   DropDownValidationType.success
               ? context.colorPalette.semantic.success.color
               : context.colorPalette.background.disabled.color,
@@ -119,7 +116,8 @@ class _DSDropDownWidgetState<T> extends State<DSDropDownWidget<T>> {
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: _dropDownValidationData?.dropDownValidationType ==
+          color:
+              _dropDownValidationData?.dropDownValidationType ==
                   DropDownValidationType.success
               ? context.colorPalette.semantic.success.color
               : context.colorPalette.background.disabled.color,
@@ -127,9 +125,7 @@ class _DSDropDownWidgetState<T> extends State<DSDropDownWidget<T>> {
         borderRadius: borderRadius,
       ),
       border: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: context.colorPalette.neutral.grey3.color,
-        ),
+        borderSide: BorderSide(color: context.colorPalette.neutral.grey3.color),
         borderRadius: borderRadius,
       ),
       errorStyle: const TextStyle(height: 0, fontSize: 0.1),
@@ -255,13 +251,13 @@ extension _TextFieldValidationTypeExtension on DropDownValidationType {
 
 class DropDownValidationData {
   const DropDownValidationData.error(this.message)
-      : dropDownValidationType = DropDownValidationType.error;
+    : dropDownValidationType = DropDownValidationType.error;
 
   const DropDownValidationData.success(this.message)
-      : dropDownValidationType = DropDownValidationType.success;
+    : dropDownValidationType = DropDownValidationType.success;
 
   const DropDownValidationData.helper(this.message)
-      : dropDownValidationType = DropDownValidationType.helper;
+    : dropDownValidationType = DropDownValidationType.helper;
 
   final String message;
   final DropDownValidationType dropDownValidationType;

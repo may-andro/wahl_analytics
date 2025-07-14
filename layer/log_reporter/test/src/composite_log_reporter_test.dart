@@ -14,10 +14,7 @@ void main() {
       mockLogger1 = _MockLogger1();
       mockLogger2 = _MockLogger2();
 
-      compositeLogReporter = CompositeLogReporter([
-        mockLogger1,
-        mockLogger2,
-      ]);
+      compositeLogReporter = CompositeLogReporter([mockLogger1, mockLogger2]);
     });
 
     group('debug', () {

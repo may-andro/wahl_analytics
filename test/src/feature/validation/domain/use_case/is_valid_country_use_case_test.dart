@@ -30,21 +30,25 @@ void main() {
       expect(result.right, isTrue);
     });
 
-    test('should return true when country name is with hyphens and spaces',
-        () async {
-      final result = await useCase("Cote d'Ivoire");
+    test(
+      'should return true when country name is with hyphens and spaces',
+      () async {
+        final result = await useCase("Cote d'Ivoire");
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isTrue);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isTrue);
+      },
+    );
 
-    test('should return false when country name has special characters',
-        () async {
-      final result = await useCase('United@States');
+    test(
+      'should return false when country name has special characters',
+      () async {
+        final result = await useCase('United@States');
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test('should return false when country name is too short', () async {
       final result = await useCase('U');

@@ -20,11 +20,11 @@ class TeamMemberEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        url,
-        name,
-        role,
-        shortDescription,
-        longDescription,
-        services,
-      ];
+    url,
+    name,
+    role,
+    shortDescription,
+    longDescription,
+    services,
+  ];
 }

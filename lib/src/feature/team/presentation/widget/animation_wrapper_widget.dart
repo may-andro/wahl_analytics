@@ -23,7 +23,4 @@ class AnimationWrapperWidget extends StatelessWidget {
   }
 }
 
-enum AnimationType {
-  scale,
-  fade,
-}
+enum AnimationType { scale, fade }

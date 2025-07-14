@@ -14,13 +14,9 @@ class BusinessTeamModel {
   });
 
   factory BusinessTeamModel.fromJson(Map<String, dynamic> json) {
-    final members = (json['members'] as List<dynamic>).map(
-      (member) {
-        return TeamMemberModel.fromJson(
-          Map<String, dynamic>.from(member as Map),
-        );
-      },
-    ).toList();
+    final members = (json['members'] as List<dynamic>).map((member) {
+      return TeamMemberModel.fromJson(Map<String, dynamic>.from(member as Map));
+    }).toList();
     return BusinessTeamModel(
       name: json['name'] as String,
       title: json['title'] as String,

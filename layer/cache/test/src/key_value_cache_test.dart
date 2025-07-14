@@ -55,8 +55,8 @@ void main() {
     setUp(() {
       mockedSharedPreferences = MockedSharedPreferences();
       DIController().serviceLocator.registerSingleton<SharedPreferences>(
-            () => mockedSharedPreferences,
-          );
+        () => mockedSharedPreferences,
+      );
       keyValueCache = _TestCache();
     });
 
@@ -113,12 +113,8 @@ void main() {
 
         await keyValueCache.put('Test');
 
-        verify(
-          () => mockedSharedPreferences.setString(any(), any()),
-        ).called(1);
-        verify(
-          () => mockedSharedPreferences.setInt(any(), any()),
-        ).called(1);
+        verify(() => mockedSharedPreferences.setString(any(), any())).called(1);
+        verify(() => mockedSharedPreferences.setInt(any(), any())).called(1);
       });
     });
 

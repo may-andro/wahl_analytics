@@ -30,17 +30,14 @@ final class DSTextStyle {
   final double? height;
 
   TextStyle get textStyle => TextStyle(
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        height: height,
-        letterSpacing: letterSpacing,
-        fontStyle: fontStyle,
-      );
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    height: height,
+    letterSpacing: letterSpacing,
+    fontStyle: fontStyle,
+  );
 
-  double getTextHeight(
-    BuildContext context,
-    int lines,
-  ) {
+  double getTextHeight(BuildContext context, int lines) {
     final textScaler = MediaQuery.textScalerOf(context);
     final renderParagraph = RenderParagraph(
       TextSpan(text: _stringWithAllAsciiCharCodes, style: textStyle),
@@ -53,10 +50,7 @@ final class DSTextStyle {
     return renderParagraph.getMaxIntrinsicHeight(double.infinity) * lines;
   }
 
-  double getTextWidth(
-    BuildContext context,
-    String text,
-  ) {
+  double getTextWidth(BuildContext context, String text) {
     final textScaler = MediaQuery.textScalerOf(context);
     final renderParagraph = RenderParagraph(
       TextSpan(text: text, style: textStyle),

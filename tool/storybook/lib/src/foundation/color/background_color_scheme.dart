@@ -17,22 +17,19 @@ class BackgroundColorScheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorPalette.background;
-    return ColorAvatarBuilderWidget(
-      [
-        ColorAvatar(colorScheme.primary.color, 'Primary'),
-        ColorAvatar(colorScheme.onPrimary.color, 'On Primary'),
-        ColorAvatar(colorScheme.surface.color, 'Surface'),
-        ColorAvatar(colorScheme.onSurface.color, 'On Surface'),
-        ColorAvatar(colorScheme.disabled.color, 'Disabled'),
-        ColorAvatar(colorScheme.onDisabled.color, 'On Disabled'),
-        ColorAvatar(colorScheme.surfaceVariant.color, 'Surface Variant'),
-        ColorAvatar(colorScheme.onSurfaceVariant.color, 'On Surface Variant'),
-        ColorAvatar(colorScheme.inverseSurface.color, 'Inverse Variant'),
-        ColorAvatar(colorScheme.onInverseSurface.color, 'On Inverse Variant'),
-        ColorAvatar(colorScheme.scrim.color, 'Scrim'),
-        ColorAvatar(colorScheme.shadow.color, 'Shadow'),
-      ],
-      title: 'Background Color Scheme',
-    );
+    return ColorAvatarBuilderWidget([
+      ColorAvatar(colorScheme.primary.color, 'Primary'),
+      ColorAvatar(colorScheme.onPrimary.color, 'On Primary'),
+      ColorAvatar(colorScheme.surface.color, 'Surface'),
+      ColorAvatar(colorScheme.onSurface.color, 'On Surface'),
+      ColorAvatar(colorScheme.disabled.color, 'Disabled'),
+      ColorAvatar(colorScheme.onDisabled.color, 'On Disabled'),
+      ColorAvatar(colorScheme.surfaceVariant.color, 'Surface Variant'),
+      ColorAvatar(colorScheme.onSurfaceVariant.color, 'On Surface Variant'),
+      ColorAvatar(colorScheme.inverseSurface.color, 'Inverse Variant'),
+      ColorAvatar(colorScheme.onInverseSurface.color, 'On Inverse Variant'),
+      ColorAvatar(colorScheme.scrim.color, 'Scrim'),
+      ColorAvatar(colorScheme.shadow.color, 'Shadow'),
+    ], title: 'Background Color Scheme');
   }
 }

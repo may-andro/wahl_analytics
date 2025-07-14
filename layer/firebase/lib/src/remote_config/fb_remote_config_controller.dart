@@ -26,17 +26,10 @@ enum RemoteConfigs {
     key: 'mobile_detail_visibility',
     defaultValue: 'false',
   ),
-  emailDetailVisibility(
-    key: 'email_detail_visibility',
-    defaultValue: 'false',
-  ),
-  serviceDetail(key: 'service_detail', defaultValue: 'false'),
-  ;
+  emailDetailVisibility(key: 'email_detail_visibility', defaultValue: 'false'),
+  serviceDetail(key: 'service_detail', defaultValue: 'false');
 
-  const RemoteConfigs({
-    required this.key,
-    required this.defaultValue,
-  });
+  const RemoteConfigs({required this.key, required this.defaultValue});
 
   final String key;
   final dynamic defaultValue;

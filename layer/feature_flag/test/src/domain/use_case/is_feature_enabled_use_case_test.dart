@@ -27,9 +27,7 @@ void main() {
 
       expect(result.isRight, true);
       expect(result.right, true);
-      verify(
-        () => mockFeatureFlagRepository.isFeatureEnabled(any()),
-      ).called(1);
+      verify(() => mockFeatureFlagRepository.isFeatureEnabled(any())).called(1);
     });
 
     test('should return Left when there is error', () async {
@@ -38,9 +36,7 @@ void main() {
       final result = await useCase(Feature.contactUsHomeFab);
 
       expect(result.isLeft, true);
-      verify(
-        () => mockFeatureFlagRepository.isFeatureEnabled(any()),
-      ).called(1);
+      verify(() => mockFeatureFlagRepository.isFeatureEnabled(any())).called(1);
     });
   });
 }

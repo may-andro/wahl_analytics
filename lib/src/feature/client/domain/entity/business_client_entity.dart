@@ -18,12 +18,6 @@ class BusinessClientEntity extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      name,
-      title,
-      description,
-      action,
-      clients,
-    ];
+    return [name, title, description, action, clients];
   }
 }

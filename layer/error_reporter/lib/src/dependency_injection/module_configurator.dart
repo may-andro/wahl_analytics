@@ -15,21 +15,15 @@ class ErrorReporterModuleConfigurator implements ModuleConfigurator {
   final bool isFirebaseEnabled;
 
   @override
-  FutureOr<void> postDependenciesSetup(
-    ServiceLocator serviceLocator,
-  ) async {
+  FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) async {
     await serviceLocator.get<ErrorReporter>().init();
   }
 
   @override
-  FutureOr<void> preDependenciesSetup(
-    ServiceLocator serviceLocator,
-  ) {}
+  FutureOr<void> preDependenciesSetup(ServiceLocator serviceLocator) {}
 
   @override
-  FutureOr<void> registerDependencies(
-    ServiceLocator serviceLocator,
-  ) {
+  FutureOr<void> registerDependencies(ServiceLocator serviceLocator) {
     // Blacklist errors
     serviceLocator.registerSingleton<BlacklistErrorController>(
       () => BlacklistErrorController(),

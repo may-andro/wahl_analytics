@@ -12,9 +12,7 @@ class DownloadResumeFailure extends BasicFailure {
 
 class DownloadResumeUseCase
     extends BaseUseCase<File, CareerEntity, DownloadResumeFailure> {
-  DownloadResumeUseCase(
-    this._fbStorageController,
-  );
+  DownloadResumeUseCase(this._fbStorageController);
 
   final FbStorageController _fbStorageController;
 

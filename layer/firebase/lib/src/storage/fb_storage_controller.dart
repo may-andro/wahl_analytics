@@ -40,10 +40,7 @@ class FbStorageController {
 
   final FirebaseStorage _firebaseStorage;
 
-  Future<String> uploadRawDocument(
-    String fileName,
-    Uint8List data,
-  ) async {
+  Future<String> uploadRawDocument(String fileName, Uint8List data) async {
     try {
       final storageRef = _firebaseStorage
           .refFromURL('gs://wahl-analytics-320bf.appspot.com/career')
@@ -79,10 +76,7 @@ class FbStorageController {
     }
   }
 
-  Future<String> uploadFileDocument(
-    String fileName,
-    File file,
-  ) async {
+  Future<String> uploadFileDocument(String fileName, File file) async {
     try {
       final storageRef = _firebaseStorage.ref();
       final uploadTask = await storageRef.putFile(file);

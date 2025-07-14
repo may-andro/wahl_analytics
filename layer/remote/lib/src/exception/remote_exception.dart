@@ -29,7 +29,7 @@ class ApiAuthenticationException extends RemoteApiException {
 /// Thrown when there is error in the client side (I.e. HTTP 4xx).
 class ApiClientException extends RemoteApiException {
   ApiClientException(this.errorMessage, Object cause, StackTrace stackTrace)
-      : super(cause, stackTrace);
+    : super(cause, stackTrace);
 
   final String errorMessage;
 }
@@ -37,7 +37,7 @@ class ApiClientException extends RemoteApiException {
 /// Thrown when there is error in the server side (I.e. HTTP 5xx).
 class ApiServerException extends RemoteApiException {
   ApiServerException(this.errorMessage, Object cause, StackTrace stackTrace)
-      : super(cause, stackTrace);
+    : super(cause, stackTrace);
 
   final String errorMessage;
 }

@@ -4,10 +4,7 @@ import 'package:design_system/src/foundation/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension BrightnessExtension on Brightness {
-  T brightnessMapper<T>({
-    required T light,
-    required T dark,
-  }) {
+  T brightnessMapper<T>({required T light, required T dark}) {
     if (isLightMode) {
       return light;
     }

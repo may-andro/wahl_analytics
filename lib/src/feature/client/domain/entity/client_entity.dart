@@ -18,12 +18,6 @@ class ClientEntity extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      url,
-      name,
-      shortDescription,
-      longDescription,
-      services,
-    ];
+    return [url, name, shortDescription, longDescription, services];
   }
 }

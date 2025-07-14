@@ -1,30 +1,21 @@
 import 'package:error_reporter/error_reporter.dart';
 
 sealed class TeamException implements AppException {
-  const TeamException(
-    this.cause,
-    this.stackTrace,
-  );
+  const TeamException(this.cause, this.stackTrace);
 
   final Object cause;
   final StackTrace stackTrace;
 }
 
 class NullDataFoundTeamException extends TeamException {
-  const NullDataFoundTeamException(
-    super.cause,
-    super.stackTrace,
-  );
+  const NullDataFoundTeamException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Null data found for BusinessTeam at Firebase';
 }
 
 class ServerTeamException extends TeamException {
-  const ServerTeamException(
-    super.cause,
-    super.stackTrace,
-  );
+  const ServerTeamException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -32,10 +23,7 @@ class ServerTeamException extends TeamException {
 }
 
 class IncorrectJsonTeamException extends TeamException {
-  const IncorrectJsonTeamException(
-    super.cause,
-    super.stackTrace,
-  );
+  const IncorrectJsonTeamException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -43,10 +31,7 @@ class IncorrectJsonTeamException extends TeamException {
 }
 
 class UnknownTeamException extends TeamException {
-  const UnknownTeamException(
-    super.cause,
-    super.stackTrace,
-  );
+  const UnknownTeamException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Failed to fetch BusinessTeam due to $cause';

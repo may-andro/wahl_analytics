@@ -5,8 +5,10 @@ import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 
 class AllLocaleBusinessServiceMapper
     implements
-        BiMapper<AllLocaleBusinessServiceModel,
-            AllLocaleBusinessServiceEntity> {
+        BiMapper<
+          AllLocaleBusinessServiceModel,
+          AllLocaleBusinessServiceEntity
+        > {
   AllLocaleBusinessServiceMapper(this._businessServiceMapper);
 
   final BusinessServiceMapper _businessServiceMapper;

@@ -64,8 +64,9 @@ void main() {
         final result = await useCase('input_data');
 
         expect(result.isRight, isTrue);
-        verify(() => mockInterceptor.onCall<dynamic>(any(), 'input_data'))
-            .called(1);
+        verify(
+          () => mockInterceptor.onCall<dynamic>(any(), 'input_data'),
+        ).called(1);
         verify(() => mockInterceptor.onSuccess(any(), result)).called(1);
         verifyNever(() => mockInterceptor.onError(any(), any(), any()));
       });
@@ -76,8 +77,9 @@ void main() {
         final result = await useCase.call('input_data');
 
         expect(result.isLeft, isTrue);
-        verify(() => mockInterceptor.onCall<dynamic>(any(), 'input_data'))
-            .called(1);
+        verify(
+          () => mockInterceptor.onCall<dynamic>(any(), 'input_data'),
+        ).called(1);
         verify(() => mockInterceptor.onError(any(), any(), any())).called(1);
         verifyNever(() => mockInterceptor.onSuccess(any(), any<dynamic>()));
       });

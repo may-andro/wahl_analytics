@@ -15,81 +15,66 @@ void main() {
       useCase = GetBusinessSummaryUseCase(mockSummaryRepository);
     });
 
-    test(
-      'should return business team',
-      () async {
-        const businessSummaryEntity = BusinessSummaryEntity(
-          title: 'url',
-          urls: ['url'],
-          descriptions: ['description'],
-        );
-        mockSummaryRepository.mockGetBusinessSummary(businessSummaryEntity);
+    test('should return business team', () async {
+      const businessSummaryEntity = BusinessSummaryEntity(
+        title: 'url',
+        urls: ['url'],
+        descriptions: ['description'],
+      );
+      mockSummaryRepository.mockGetBusinessSummary(businessSummaryEntity);
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isRight, isTrue);
-        expect(result.right, businessSummaryEntity);
-      },
-    );
+      expect(result.isRight, isTrue);
+      expect(result.right, businessSummaryEntity);
+    });
 
-    test(
-      'should return BusinessSummaryFailure '
-      'when NullDataFoundSummaryException is thrown',
-      () async {
-        mockSummaryRepository.mockGetBusinessSummaryThrowsException(
-          NullDataFoundSummaryException(Exception(), StackTrace.current),
-        );
+    test('should return BusinessSummaryFailure '
+        'when NullDataFoundSummaryException is thrown', () async {
+      mockSummaryRepository.mockGetBusinessSummaryThrowsException(
+        NullDataFoundSummaryException(Exception(), StackTrace.current),
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessSummaryFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<BusinessSummaryFailure>());
+    });
 
-    test(
-      'should return BusinessSummaryFailure '
-      'when ServerSummaryException thrown',
-      () async {
-        mockSummaryRepository.mockGetBusinessSummaryThrowsException(
-          ServerSummaryException(Exception(), StackTrace.current),
-        );
+    test('should return BusinessSummaryFailure '
+        'when ServerSummaryException thrown', () async {
+      mockSummaryRepository.mockGetBusinessSummaryThrowsException(
+        ServerSummaryException(Exception(), StackTrace.current),
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessSummaryFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<BusinessSummaryFailure>());
+    });
 
-    test(
-      'should return BusinessSummaryFailure '
-      'when IncorrectJsonSummaryException thrown',
-      () async {
-        mockSummaryRepository.mockGetBusinessSummaryThrowsException(
-          IncorrectJsonSummaryException(Exception(), StackTrace.current),
-        );
+    test('should return BusinessSummaryFailure '
+        'when IncorrectJsonSummaryException thrown', () async {
+      mockSummaryRepository.mockGetBusinessSummaryThrowsException(
+        IncorrectJsonSummaryException(Exception(), StackTrace.current),
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessSummaryFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<BusinessSummaryFailure>());
+    });
 
-    test(
-      'should return BusinessSummaryFailure '
-      'when UnknownSummaryException thrown',
-      () async {
-        mockSummaryRepository.mockGetBusinessSummaryThrowsException(
-          UnknownSummaryException(Exception(), StackTrace.current),
-        );
+    test('should return BusinessSummaryFailure '
+        'when UnknownSummaryException thrown', () async {
+      mockSummaryRepository.mockGetBusinessSummaryThrowsException(
+        UnknownSummaryException(Exception(), StackTrace.current),
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessSummaryFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<BusinessSummaryFailure>());
+    });
   });
 }

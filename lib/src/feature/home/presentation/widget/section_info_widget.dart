@@ -58,10 +58,7 @@ class _SectionInfoWidgetState extends State<SectionInfoWidget>
   }
 
   Animation<Offset> _createSlideTransition(double start, double end) {
-    return Tween<Offset>(
-      begin: const Offset(0, 1.0),
-      end: Offset.zero,
-    ).animate(
+    return Tween<Offset>(begin: const Offset(0, 1.0), end: Offset.zero).animate(
       CurvedAnimation(
         parent: _animationController,
         curve: Interval(start, end, curve: Curves.decelerate),

@@ -9,8 +9,13 @@ class UpdateAllLocaleBusinessServiceFailure extends BasicFailure {
   const UpdateAllLocaleBusinessServiceFailure({super.message, super.cause});
 }
 
-class UpdateAllLocaleBusinessServiceUseCase extends BaseUseCase<void,
-    AllLocaleBusinessServiceEntity, UpdateAllLocaleBusinessServiceFailure> {
+class UpdateAllLocaleBusinessServiceUseCase
+    extends
+        BaseUseCase<
+          void,
+          AllLocaleBusinessServiceEntity,
+          UpdateAllLocaleBusinessServiceFailure
+        > {
   UpdateAllLocaleBusinessServiceUseCase(this._serviceRepository);
 
   final ServiceRepository _serviceRepository;

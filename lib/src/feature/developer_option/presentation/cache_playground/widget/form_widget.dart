@@ -53,9 +53,7 @@ class _FormWidgetState extends State<FormWidget> {
             },
             validator: (input) {
               if (input == null || input.isEmpty) {
-                return const TextFieldValidationData.error(
-                  'Can not be empty',
-                );
+                return const TextFieldValidationData.error('Can not be empty');
               }
               return null;
             },

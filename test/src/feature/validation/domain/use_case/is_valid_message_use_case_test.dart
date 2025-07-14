@@ -23,31 +23,37 @@ void main() {
       expect(result.left, isA<EmptyMessageFailure>());
     });
 
-    test('should return true when message is within 10 to 500 characters',
-        () async {
-      final result = await useCase(
-        'This is a valid message with enough length.',
-      );
+    test(
+      'should return true when message is within 10 to 500 characters',
+      () async {
+        final result = await useCase(
+          'This is a valid message with enough length.',
+        );
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isTrue);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isTrue);
+      },
+    );
 
-    test('should return false when message is less than 10 characters',
-        () async {
-      final result = await useCase('Too short');
+    test(
+      'should return false when message is less than 10 characters',
+      () async {
+        final result = await useCase('Too short');
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
-    test('should return false when message is more than 500 characters',
-        () async {
-      final result = await useCase('A' * 501);
+    test(
+      'should return false when message is more than 500 characters',
+      () async {
+        final result = await useCase('A' * 501);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test('should return false when message contains only whitespace', () async {
       final result = await useCase('       ');

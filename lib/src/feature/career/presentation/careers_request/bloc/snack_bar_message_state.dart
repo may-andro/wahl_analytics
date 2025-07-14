@@ -84,8 +84,9 @@ extension SnackBarMessageStateExtension on SnackBarMessageState {
   String _getMessage(BuildContext context) {
     final snackBarMessageState = this;
     return switch (snackBarMessageState) {
-      OpenFileSuccessMessageState() =>
-        context.localizations.resumeOpenMessage(snackBarMessageState.file.path),
+      OpenFileSuccessMessageState() => context.localizations.resumeOpenMessage(
+        snackBarMessageState.file.path,
+      ),
       OpenUrlSuccessMessageState() =>
         context.localizations.resumeUrlOpenMessage,
       DeleteCareerSuccessMessageState() =>
@@ -94,8 +95,10 @@ extension SnackBarMessageStateExtension on SnackBarMessageState {
         ),
       OpenFileFailureMessageState() =>
         context.localizations.resumeUrlOpenFailureMessage,
-      ResumeDownloadFailureMessageState() => context.localizations
-          .resumeDownloadFailureMessage(snackBarMessageState.careerEntity.name),
+      ResumeDownloadFailureMessageState() =>
+        context.localizations.resumeDownloadFailureMessage(
+          snackBarMessageState.careerEntity.name,
+        ),
       OpenUrlFailureMessageState() =>
         context.localizations.resumeUrlOpenFailureMessage,
       DeleteCareerFailureMessageState() =>

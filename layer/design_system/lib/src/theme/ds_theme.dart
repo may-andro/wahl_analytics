@@ -5,13 +5,11 @@ import 'package:design_system/src/foundation/foundation.dart';
 import 'package:flutter/material.dart';
 
 final class DSTheme {
-  DSTheme({
-    required this.brightness,
-    required this.designSystem,
-  })  : _lightColorPalette = brightness.getLightColorPalette(designSystem),
-        _darkColorPalette = brightness.getDarkColorPalette(designSystem),
-        _typography = designSystem.typography,
-        _dimen = designSystem.dimen;
+  DSTheme({required this.brightness, required this.designSystem})
+    : _lightColorPalette = brightness.getLightColorPalette(designSystem),
+      _darkColorPalette = brightness.getDarkColorPalette(designSystem),
+      _typography = designSystem.typography,
+      _dimen = designSystem.dimen;
 
   final Brightness brightness;
 

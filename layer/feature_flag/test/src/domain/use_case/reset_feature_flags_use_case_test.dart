@@ -23,9 +23,7 @@ void main() {
       final result = await useCase();
 
       expect(result.isRight, true);
-      verify(
-        () => mockFeatureFlagRepository.reset(),
-      ).called(1);
+      verify(() => mockFeatureFlagRepository.reset()).called(1);
     });
 
     test('should return $Left when there is no error', () async {
@@ -34,9 +32,7 @@ void main() {
       final result = await useCase();
 
       expect(result.isLeft, true);
-      verify(
-        () => mockFeatureFlagRepository.reset(),
-      ).called(1);
+      verify(() => mockFeatureFlagRepository.reset()).called(1);
     });
   });
 }

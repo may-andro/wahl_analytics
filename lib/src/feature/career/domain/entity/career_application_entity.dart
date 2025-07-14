@@ -34,12 +34,12 @@ class CareerApplicationEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        name,
-        email,
-        role,
-        country,
-        message,
-        fileData,
-        env,
-      ];
+    name,
+    email,
+    role,
+    country,
+    message,
+    fileData,
+    env,
+  ];
 }

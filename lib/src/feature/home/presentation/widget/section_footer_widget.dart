@@ -192,10 +192,7 @@ class _ContactWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (isEmailVisible) ...[
-          DSIconTitleTileWidget(
-            text: footerSection.email,
-            icon: Icons.email,
-          ),
+          DSIconTitleTileWidget(text: footerSection.email, icon: Icons.email),
           const DSVerticalSpacerWidget(2),
         ],
         if (isMobileVisible) ...[
@@ -211,9 +208,7 @@ class _ContactWidget extends StatelessWidget {
 }
 
 class _AddressWidget extends StatelessWidget {
-  const _AddressWidget({
-    required this.footerSection,
-  });
+  const _AddressWidget({required this.footerSection});
 
   final FooterSection footerSection;
 

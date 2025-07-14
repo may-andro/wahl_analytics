@@ -60,8 +60,8 @@ class _ServiceWidget extends StatelessWidget {
                 factor: context.isMobile
                     ? 4
                     : context.isTablet
-                        ? 3
-                        : 2,
+                    ? 3
+                    : 2,
               ),
             ),
             const DSHorizontalSpacerWidget(3),
@@ -156,8 +156,9 @@ class _EditButtonWidget extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        final index =
-            context.bloc.state.businessService?.services.indexOf(service);
+        final index = context.bloc.state.businessService?.services.indexOf(
+          service,
+        );
 
         if (index == null) return;
 

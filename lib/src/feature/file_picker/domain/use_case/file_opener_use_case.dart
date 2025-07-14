@@ -4,9 +4,7 @@ import 'dart:io';
 import 'package:open_file/open_file.dart';
 import 'package:use_case/use_case.dart';
 
-const _supportedTypes = {
-  '.pdf': 'application/pdf',
-};
+const _supportedTypes = {'.pdf': 'application/pdf'};
 
 sealed class FileOpenerFailure extends BasicFailure {
   const FileOpenerFailure({super.message, super.cause});

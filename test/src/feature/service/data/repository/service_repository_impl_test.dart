@@ -81,194 +81,150 @@ void main() {
     });
 
     group('getBusinessService', () {
-      test(
-        'should return $AllLocaleBusinessServiceEntity '
-        'when firebase has valid data',
-        () async {
-          mockFbFirestoreController
-              .mockGetDocumentFromCollection(testServiceData);
+      test('should return $AllLocaleBusinessServiceEntity '
+          'when firebase has valid data', () async {
+        mockFbFirestoreController.mockGetDocumentFromCollection(
+          testServiceData,
+        );
 
-          final result = await repository.getBusinessService();
+        final result = await repository.getBusinessService();
 
-          expect(result, isA<AllLocaleBusinessServiceEntity>());
-        },
-      );
+        expect(result, isA<AllLocaleBusinessServiceEntity>());
+      });
 
-      test(
-        'should throw $NullDataFoundServiceException '
-        'when firebase has null data',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(null);
+      test('should throw $NullDataFoundServiceException '
+          'when firebase has null data', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is NullDataFoundServiceException,
-              ),
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate(
+              (exception) => exception is NullDataFoundServiceException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw $ServerServiceException '
-        'when firebase has $FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw $ServerServiceException '
+          'when firebase has $FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate((exception) => exception is ServerServiceException),
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate((exception) => exception is ServerServiceException),
+          ),
+        );
+      });
+
+      test('should throw $IncorrectJsonServiceException '
+          'when json is different from expected', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection({
+          'test': {'name': 'name', 'title': 'title'},
+        });
+
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate(
+              (exception) => exception is IncorrectJsonServiceException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw $IncorrectJsonServiceException '
-        'when json is different from expected',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            {
-              'test': {
-                'name': 'name',
-                'title': 'title',
-              },
-            },
-          );
+      test('should throw $UnknownServiceException '
+          'when json is different from expected', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is IncorrectJsonServiceException,
-              ),
-            ),
-          );
-        },
-      );
-
-      test(
-        'should throw $UnknownServiceException '
-        'when json is different from expected',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
-
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownServiceException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate((exception) => exception is UnknownServiceException),
+          ),
+        );
+      });
     });
 
     group('getBusinessServiceForLocale', () {
-      test(
-        'should return BusinessServiceEntity '
-        'when firebase has valid data',
-        () async {
-          mockFbFirestoreController
-              .mockGetDocumentFromCollection(testServiceData);
+      test('should return BusinessServiceEntity '
+          'when firebase has valid data', () async {
+        mockFbFirestoreController.mockGetDocumentFromCollection(
+          testServiceData,
+        );
 
-          final result = await repository.getBusinessServiceForLocale();
+        final result = await repository.getBusinessServiceForLocale();
 
-          expect(result, isA<BusinessServiceEntity>());
-          expect(result.title, 'English');
-        },
-      );
+        expect(result, isA<BusinessServiceEntity>());
+        expect(result.title, 'English');
+      });
 
-      test(
-        'should throw NullDataFoundServiceException '
-        'when firebase has null data',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(null);
+      test('should throw NullDataFoundServiceException '
+          'when firebase has null data', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is NullDataFoundServiceException,
-              ),
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate(
+              (exception) => exception is NullDataFoundServiceException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw ServerServiceException '
-        'when firebase has FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw ServerServiceException '
+          'when firebase has FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate((exception) => exception is ServerServiceException),
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate((exception) => exception is ServerServiceException),
+          ),
+        );
+      });
+
+      test('should throw IncorrectJsonServiceException '
+          'when json is different from expected', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection({
+          'test': {'name': 'name', 'title': 'title'},
+        });
+
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate(
+              (exception) => exception is IncorrectJsonServiceException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw IncorrectJsonServiceException '
-        'when json is different from expected',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            {
-              'test': {
-                'name': 'name',
-                'title': 'title',
-              },
-            },
-          );
+      test('should throw UnknownServiceException '
+          'when json is different from expected', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is IncorrectJsonServiceException,
-              ),
-            ),
-          );
-        },
-      );
-
-      test(
-        'should throw UnknownServiceException '
-        'when json is different from expected',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
-
-          expect(
-            () async => await repository.getBusinessService(),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownServiceException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessService(),
+          throwsA(
+            predicate((exception) => exception is UnknownServiceException),
+          ),
+        );
+      });
     });
 
     group('updateAllLocaleBusinessService', () {
@@ -336,47 +292,38 @@ void main() {
         },
       );
 
-      test(
-        'should throw $ServerServiceException '
-        'when firebase has $FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockUpdateDocumentFromCollectionThrowsException(exception);
+      test('should throw $ServerServiceException '
+          'when firebase has $FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController
+            .mockUpdateDocumentFromCollectionThrowsException(exception);
 
-          expect(
-            () async => await repository.updateAllLocaleBusinessService(
-              allLocaleBusinessServiceEntity,
-            ),
-            throwsA(
-              predicate((exception) => exception is ServerServiceException),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.updateAllLocaleBusinessService(
+            allLocaleBusinessServiceEntity,
+          ),
+          throwsA(
+            predicate((exception) => exception is ServerServiceException),
+          ),
+        );
+      });
 
-      test(
-        'should throw $UnknownServiceException '
-        'when unexpected exception occurs',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw $UnknownServiceException '
+          'when unexpected exception occurs', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository
-                .updateAllLocaleBusinessService(allLocaleBusinessServiceEntity),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownServiceException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.updateAllLocaleBusinessService(
+            allLocaleBusinessServiceEntity,
+          ),
+          throwsA(
+            predicate((exception) => exception is UnknownServiceException),
+          ),
+        );
+      });
     });
   });
 }

@@ -4,9 +4,7 @@ part 'dummy_entity.g.dart';
 
 @JsonSerializable()
 class DummyEntity {
-  DummyEntity({
-    required this.name,
-  });
+  DummyEntity({required this.name});
 
   factory DummyEntity.fromJson(Map<String, dynamic> json) =>
       _$DummyEntityFromJson(json);

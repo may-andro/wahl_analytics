@@ -28,13 +28,13 @@ class FeatureFlagState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        featureFlags,
-        searchTerm,
-        isGrid,
-        isRestartNeeded,
-        isSearchFieldVisible,
-      ];
+    viewState,
+    featureFlags,
+    searchTerm,
+    isGrid,
+    isRestartNeeded,
+    isSearchFieldVisible,
+  ];
 
   FeatureFlagState copyWith({
     DSViewState? viewState,
@@ -58,8 +58,9 @@ class FeatureFlagState extends Equatable {
   }
 
   List<FeatureFlag>? get filteredFeatureFlags {
-    final searchedTerm =
-        (searchTerm ?? searchTextEditingController.text).toLowerCase().trim();
+    final searchedTerm = (searchTerm ?? searchTextEditingController.text)
+        .toLowerCase()
+        .trim();
     return featureFlags
         ?.where(
           (featureFlag) =>

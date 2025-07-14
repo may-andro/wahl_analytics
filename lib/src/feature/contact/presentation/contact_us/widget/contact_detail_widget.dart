@@ -17,8 +17,9 @@ class ContactDetailWidget extends StatelessWidget {
           child: SizedBox(
             width: double.maxFinite,
             child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
+              padding: EdgeInsets.symmetric(
+                horizontal: context.space(factor: 5),
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,10 +90,7 @@ class ContactDetailWidget extends StatelessWidget {
 }
 
 class _ContactIconTextWidget extends StatelessWidget {
-  const _ContactIconTextWidget({
-    required this.icon,
-    required this.text,
-  });
+  const _ContactIconTextWidget({required this.icon, required this.text});
 
   final IconData icon;
   final String text;

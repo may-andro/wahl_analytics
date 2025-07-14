@@ -5,10 +5,7 @@ import 'package:wahl_analytics/src/feature/error/error.dart';
 import 'package:wahl_analytics/src/route/module_route_configurator.dart';
 
 class RouteConfigurator {
-  RouteConfigurator(
-    this.moduleRouteConfigurator,
-    this.navigationObservers,
-  );
+  RouteConfigurator(this.moduleRouteConfigurator, this.navigationObservers);
 
   final List<ModuleRouteConfigurator> moduleRouteConfigurator;
   final List<NavigatorObserver> navigationObservers;

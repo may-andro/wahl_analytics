@@ -10,27 +10,24 @@ class UploadResumeFormFieldWidget extends FormField<PickedFile> {
     bool isLoading = false,
     PickedFile? resumeFile,
   }) : super(
-          builder: (FormFieldState<PickedFile> state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _LabelTextWidget(),
-                _ButtonWidget(
-                  onPressed: onClicked,
-                  isLoading: isLoading,
-                ),
-                if (resumeFile != null) ...[
-                  const DSVerticalSpacerWidget(0.5),
-                  _SuccessTextWidget(fileName: resumeFile.name),
-                ],
-                if (state.hasError && resumeFile == null) ...[
-                  const DSVerticalSpacerWidget(0.5),
-                  _ErrorTextWidget(error: state.errorText),
-                ],
-              ],
-            );
-          },
-        );
+         builder: (FormFieldState<PickedFile> state) {
+           return Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               const _LabelTextWidget(),
+               _ButtonWidget(onPressed: onClicked, isLoading: isLoading),
+               if (resumeFile != null) ...[
+                 const DSVerticalSpacerWidget(0.5),
+                 _SuccessTextWidget(fileName: resumeFile.name),
+               ],
+               if (state.hasError && resumeFile == null) ...[
+                 const DSVerticalSpacerWidget(0.5),
+                 _ErrorTextWidget(error: state.errorText),
+               ],
+             ],
+           );
+         },
+       );
 }
 
 class _LabelTextWidget extends StatelessWidget {
@@ -47,10 +44,7 @@ class _LabelTextWidget extends StatelessWidget {
 }
 
 class _ButtonWidget extends StatelessWidget {
-  const _ButtonWidget({
-    required this.onPressed,
-    this.isLoading = false,
-  });
+  const _ButtonWidget({required this.onPressed, this.isLoading = false});
 
   final bool isLoading;
   final VoidCallback onPressed;

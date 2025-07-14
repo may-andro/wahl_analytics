@@ -12,10 +12,7 @@ class CachePlaygroundState extends Equatable {
   final List<DummyEntity>? dummyLists;
 
   @override
-  List<Object?> get props => [
-        viewState,
-        dummyLists,
-      ];
+  List<Object?> get props => [viewState, dummyLists];
 
   CachePlaygroundState copyWith({
     DSViewState? viewState,

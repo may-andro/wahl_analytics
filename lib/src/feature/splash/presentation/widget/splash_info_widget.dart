@@ -33,10 +33,7 @@ class SplashInfoWidget extends StatelessWidget {
 }
 
 class _ItemWidget extends StatelessWidget {
-  const _ItemWidget(
-    this.receivedStatusList, {
-    required this.setUpStatus,
-  });
+  const _ItemWidget(this.receivedStatusList, {required this.setUpStatus});
 
   final List<DISetUpStatus> receivedStatusList;
   final DISetUpStatus setUpStatus;

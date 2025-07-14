@@ -11,10 +11,7 @@ String _sampleText =
     'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. '
     'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
-@widgetbook.UseCase(
-  name: 'Text Widget',
-  type: TextWidget,
-)
+@widgetbook.UseCase(name: 'Text Widget', type: TextWidget)
 TextWidget textWidget(BuildContext context) {
   return const TextWidget();
 }
@@ -35,10 +32,7 @@ class TextWidget extends StatelessWidget {
                 .list<Option<DSColor>>(
                   label: 'Color',
                   options: <Option<DSColor>>[
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -47,10 +41,7 @@ class TextWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

@@ -53,10 +53,7 @@ final class SelectLocaleEvent extends ServicesUpdateEvent {
 }
 
 final class ReorderServicePositionEvent extends ServicesUpdateEvent {
-  const ReorderServicePositionEvent(
-    this.oldIndex,
-    this.newIndex,
-  );
+  const ReorderServicePositionEvent(this.oldIndex, this.newIndex);
 
   final int oldIndex;
   final int newIndex;

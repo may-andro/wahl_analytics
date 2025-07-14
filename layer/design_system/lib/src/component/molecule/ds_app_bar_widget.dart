@@ -4,11 +4,7 @@ import 'package:design_system/src/foundation/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DSAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const DSAppBarWidget({
-    required this.height,
-    this.onBackClicked,
-    super.key,
-  });
+  const DSAppBarWidget({required this.height, this.onBackClicked, super.key});
 
   final double height;
   final VoidCallback? onBackClicked;

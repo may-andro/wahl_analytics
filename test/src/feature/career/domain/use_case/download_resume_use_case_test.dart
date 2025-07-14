@@ -28,8 +28,7 @@ void main() {
       expect(result.right, file);
     });
 
-    test(
-        'should return $DownloadResumeFailure'
+    test('should return $DownloadResumeFailure'
         ' when exception occurs', () async {
       mockFbStorageController.mockDownloadFileDocumentThrowsException();
 

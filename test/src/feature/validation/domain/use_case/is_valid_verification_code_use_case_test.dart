@@ -9,21 +9,25 @@ void main() {
       useCase = IsValidVerificationCodeUseCase();
     });
 
-    test('should return $NullVerificationCodeFailure when input is null',
-        () async {
-      final result = await useCase(null);
+    test(
+      'should return $NullVerificationCodeFailure when input is null',
+      () async {
+        final result = await useCase(null);
 
-      expect(result.isLeft, isTrue);
-      expect(result.left, isA<NullVerificationCodeFailure>());
-    });
+        expect(result.isLeft, isTrue);
+        expect(result.left, isA<NullVerificationCodeFailure>());
+      },
+    );
 
-    test('should return $EmptyVerificationCodeFailure when input is empty',
-        () async {
-      final result = await useCase('');
+    test(
+      'should return $EmptyVerificationCodeFailure when input is empty',
+      () async {
+        final result = await useCase('');
 
-      expect(result.isLeft, isTrue);
-      expect(result.left, isA<EmptyVerificationCodeFailure>());
-    });
+        expect(result.isLeft, isTrue);
+        expect(result.left, isA<EmptyVerificationCodeFailure>());
+      },
+    );
 
     test('should return true when code is valid', () async {
       final result = await useCase('123456');

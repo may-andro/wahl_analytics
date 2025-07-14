@@ -4,10 +4,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Icon Title Tile Widget',
-  type: DSIconTitleTileWidget,
-)
+@widgetbook.UseCase(name: 'Icon Title Tile Widget', type: DSIconTitleTileWidget)
 Widget build(BuildContext context) {
   final colorMap = context.colorMap;
   final colors = colorMap.keys.toList();

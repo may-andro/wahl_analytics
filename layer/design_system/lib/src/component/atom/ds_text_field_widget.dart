@@ -160,10 +160,7 @@ class _DSTextFieldWidgetState extends State<DSTextFieldWidget> {
     );
   }
 
-  InputDecoration decorateInputDecoration({
-    String? hint,
-    Widget? suffixIcon,
-  }) {
+  InputDecoration decorateInputDecoration({String? hint, Widget? suffixIcon}) {
     final borderRadius = BorderRadius.circular(
       context.dimen.radiusLevel1.value,
     );
@@ -181,14 +178,13 @@ class _DSTextFieldWidgetState extends State<DSTextFieldWidget> {
         borderRadius: borderRadius,
       ),
       disabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: context.colorPalette.neutral.grey4.color,
-        ),
+        borderSide: BorderSide(color: context.colorPalette.neutral.grey4.color),
         borderRadius: borderRadius,
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: _textFieldValidationData?.textFieldValidationType ==
+          color:
+              _textFieldValidationData?.textFieldValidationType ==
                   TextFieldValidationType.success
               ? context.colorPalette.semantic.success.color
               : context.colorPalette.background.disabled.color,
@@ -197,7 +193,8 @@ class _DSTextFieldWidgetState extends State<DSTextFieldWidget> {
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: _textFieldValidationData?.textFieldValidationType ==
+          color:
+              _textFieldValidationData?.textFieldValidationType ==
                   TextFieldValidationType.success
               ? context.colorPalette.semantic.success.color
               : context.colorPalette.background.disabled.color,
@@ -205,9 +202,7 @@ class _DSTextFieldWidgetState extends State<DSTextFieldWidget> {
         borderRadius: borderRadius,
       ),
       border: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: context.colorPalette.neutral.grey3.color,
-        ),
+        borderSide: BorderSide(color: context.colorPalette.neutral.grey3.color),
         borderRadius: borderRadius,
       ),
       errorStyle: const TextStyle(height: 0, fontSize: 0.1),
@@ -381,13 +376,13 @@ extension _TextFieldValidationTypeExtension on TextFieldValidationType {
 
 class TextFieldValidationData {
   const TextFieldValidationData.error(this.message)
-      : textFieldValidationType = TextFieldValidationType.error;
+    : textFieldValidationType = TextFieldValidationType.error;
 
   const TextFieldValidationData.success(this.message)
-      : textFieldValidationType = TextFieldValidationType.success;
+    : textFieldValidationType = TextFieldValidationType.success;
 
   const TextFieldValidationData.helper(this.message)
-      : textFieldValidationType = TextFieldValidationType.helper;
+    : textFieldValidationType = TextFieldValidationType.helper;
 
   final String message;
   final TextFieldValidationType textFieldValidationType;

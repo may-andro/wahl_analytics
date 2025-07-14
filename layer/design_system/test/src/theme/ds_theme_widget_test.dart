@@ -16,8 +16,9 @@ class _TestWidget extends StatelessWidget {
 
 void main() {
   group(DSThemeBuilderWidget, () {
-    testWidgets('should able to access $DSTheme via $DSThemeBuilderWidget',
-        (WidgetTester tester) async {
+    testWidgets('should able to access $DSTheme via $DSThemeBuilderWidget', (
+      WidgetTester tester,
+    ) async {
       const testWidget = TestWidgetWrapper(
         brightness: Brightness.light,
         designSystem: DesignSystem.primary,

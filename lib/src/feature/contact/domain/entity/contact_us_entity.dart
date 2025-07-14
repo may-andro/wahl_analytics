@@ -12,9 +12,5 @@ class ContactUsEntity extends Equatable {
   final String message;
 
   @override
-  List<Object?> get props => [
-        name,
-        email,
-        message,
-      ];
+  List<Object?> get props => [name, email, message];
 }

@@ -27,12 +27,12 @@ class CareerApplicationState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        validationMessages,
-        isConsentGiven,
-        resumeFile,
-        isFormSubmittedSuccessfully,
-      ];
+    viewState,
+    validationMessages,
+    isConsentGiven,
+    resumeFile,
+    isFormSubmittedSuccessfully,
+  ];
 
   CareerApplicationState copyWith({
     DSViewState? viewState,

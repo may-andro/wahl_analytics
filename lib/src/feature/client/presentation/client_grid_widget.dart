@@ -25,9 +25,7 @@ class ClientGridWidget extends StatelessWidget {
 }
 
 class _ClientCardWidget extends StatelessWidget {
-  const _ClientCardWidget({
-    required this.client,
-  });
+  const _ClientCardWidget({required this.client});
 
   final ClientEntity client;
 

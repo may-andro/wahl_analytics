@@ -12,9 +12,5 @@ class BusinessSummaryEntity extends Equatable {
   final List<String> urls;
 
   @override
-  List<Object?> get props => [
-        title,
-        descriptions,
-        urls,
-      ];
+  List<Object?> get props => [title, descriptions, urls];
 }

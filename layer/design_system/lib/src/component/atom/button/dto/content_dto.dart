@@ -10,10 +10,7 @@ abstract interface class ContentDTO {
   final IconData? left;
   final IconData? right;
 
-  Widget getContentWidget(
-    BuildContext context,
-    Color iconColor,
-  );
+  Widget getContentWidget(BuildContext context, Color iconColor);
 }
 
 @internal
@@ -21,10 +18,7 @@ class TextContent extends ContentDTO {
   TextContent(super.label) : super(left: null, right: null);
 
   @override
-  Widget getContentWidget(
-    BuildContext context,
-    Color iconColor,
-  ) {
+  Widget getContentWidget(BuildContext context, Color iconColor) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -38,19 +32,13 @@ class TextContent extends ContentDTO {
 
 @internal
 class LeftIconTextContent extends ContentDTO {
-  LeftIconTextContent(
-    super.label,
-    IconData left,
-    this.size,
-  ) : super(left: left, right: null);
+  LeftIconTextContent(super.label, IconData left, this.size)
+    : super(left: left, right: null);
 
   final double size;
 
   @override
-  Widget getContentWidget(
-    BuildContext context,
-    Color iconColor,
-  ) {
+  Widget getContentWidget(BuildContext context, Color iconColor) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -66,19 +54,13 @@ class LeftIconTextContent extends ContentDTO {
 
 @internal
 class RightIconTextContent extends ContentDTO {
-  RightIconTextContent(
-    super.label,
-    IconData right,
-    this.size,
-  ) : super(left: null, right: right);
+  RightIconTextContent(super.label, IconData right, this.size)
+    : super(left: null, right: right);
 
   final double size;
 
   @override
-  Widget getContentWidget(
-    BuildContext context,
-    Color iconColor,
-  ) {
+  Widget getContentWidget(BuildContext context, Color iconColor) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -93,11 +75,7 @@ class RightIconTextContent extends ContentDTO {
 }
 
 class _ImageContextWidget extends StatelessWidget {
-  const _ImageContextWidget(
-    this.icon,
-    this.size,
-    this.iconColor,
-  );
+  const _ImageContextWidget(this.icon, this.size, this.iconColor);
 
   final IconData icon;
   final double size;
@@ -105,11 +83,7 @@ class _ImageContextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      size: size,
-      color: iconColor,
-    );
+    return Icon(icon, size: size, color: iconColor);
   }
 }
 

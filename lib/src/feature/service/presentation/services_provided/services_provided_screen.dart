@@ -9,10 +9,7 @@ import 'package:wahl_analytics/src/feature/service/presentation/services_provide
 import 'package:wahl_analytics/src/route/route.dart';
 
 class ServicesProvidedScreen extends StatelessWidget {
-  const ServicesProvidedScreen({
-    required this.services,
-    super.key,
-  });
+  const ServicesProvidedScreen({required this.services, super.key});
 
   final List<ServiceEntity> services;
 
@@ -45,9 +42,7 @@ class ServicesProvidedScreen extends StatelessWidget {
                 );
               },
               errorBuilder: (_) {
-                return const DSErrorCardWidget(
-                  message: 'Error',
-                );
+                return const DSErrorCardWidget(message: 'Error');
               },
               builder: (_) {
                 return ContentWidget(services: services);

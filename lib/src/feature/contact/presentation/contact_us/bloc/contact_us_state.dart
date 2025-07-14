@@ -27,12 +27,12 @@ class ContactUsState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        validationMessages,
-        isConsentGiven,
-        isFormSubmittedSuccessfully,
-        businessContact,
-      ];
+    viewState,
+    validationMessages,
+    isConsentGiven,
+    isFormSubmittedSuccessfully,
+    businessContact,
+  ];
 
   ContactUsState copyWith({
     DSViewState? viewState,

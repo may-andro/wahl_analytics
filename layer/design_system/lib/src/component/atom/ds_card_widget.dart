@@ -37,8 +37,9 @@ class DsCardWidget extends StatelessWidget {
       child: Card(
         color:
             backgroundColor?.color.withValues(alpha: backgroundColorOpacity) ??
-                context.colorPalette.background.primary.color
-                    .withValues(alpha: backgroundColorOpacity),
+            context.colorPalette.background.primary.color.withValues(
+              alpha: backgroundColorOpacity,
+            ),
         shadowColor: shadowColor?.color,
         surfaceTintColor: surfaceTintColor?.color,
         clipBehavior: clipBehavior,

@@ -25,9 +25,7 @@ class ContentWidget extends StatelessWidget {
             );
           },
           errorBuilder: (_) {
-            return const DSErrorCardWidget(
-              message: 'Something went wrong',
-            );
+            return const DSErrorCardWidget(message: 'Something went wrong');
           },
           builder: (_) {
             return const _SuccessStateWidget();

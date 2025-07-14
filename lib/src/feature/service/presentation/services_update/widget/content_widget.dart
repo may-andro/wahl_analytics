@@ -6,10 +6,7 @@ import 'package:wahl_analytics/src/feature/service/presentation/services_update/
 import 'package:wahl_analytics/src/feature/service/presentation/services_update/widget/update_message_widget.dart';
 
 class ContentWidget extends StatelessWidget {
-  const ContentWidget({
-    required this.businessService,
-    super.key,
-  });
+  const ContentWidget({required this.businessService, super.key});
 
   final BusinessServiceEntity businessService;
 

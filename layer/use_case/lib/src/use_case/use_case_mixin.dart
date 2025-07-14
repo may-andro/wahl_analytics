@@ -40,46 +40,34 @@ mixin UseCaseExecutionMixin<O, F extends Failure> {
     Future<Either<F, O>> result,
     String tag,
   ) {
-    return result.then((asyncResult) {
-      _notifyInterceptorsOnSuccess(tag, asyncResult);
-      return asyncResult;
-    }).catchError((Object e, StackTrace st) => _doOnError(tag, e, st));
+    return result
+        .then((asyncResult) {
+          _notifyInterceptorsOnSuccess(tag, asyncResult);
+          return asyncResult;
+        })
+        .catchError((Object e, StackTrace st) => _doOnError(tag, e, st));
   }
 
   /// Handle errors and notify interceptors
-  Left<F, O> _doOnError(
-    String tag,
-    Object e,
-    StackTrace st,
-  ) {
+  Left<F, O> _doOnError(String tag, Object e, StackTrace st) {
     final failure = mapErrorToFailure(e, st);
     _notifyInterceptorsOnError(tag, e, st);
     return Left(failure);
   }
 
-  void _notifyInterceptorsOnCall(
-    String tag,
-    dynamic params,
-  ) {
+  void _notifyInterceptorsOnCall(String tag, dynamic params) {
     for (final interceptor in _interceptors) {
       interceptor.onCall(tag, params);
     }
   }
 
-  void _notifyInterceptorsOnSuccess(
-    String tag,
-    Either<F, O> result,
-  ) {
+  void _notifyInterceptorsOnSuccess(String tag, Either<F, O> result) {
     for (final interceptor in _interceptors) {
       interceptor.onSuccess(tag, result);
     }
   }
 
-  void _notifyInterceptorsOnError(
-    String tag,
-    Object error,
-    StackTrace st,
-  ) {
+  void _notifyInterceptorsOnError(String tag, Object error, StackTrace st) {
     for (final interceptor in _interceptors) {
       interceptor.onError(tag, error, st);
     }

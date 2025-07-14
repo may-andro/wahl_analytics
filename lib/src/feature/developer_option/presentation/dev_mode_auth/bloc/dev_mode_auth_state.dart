@@ -24,14 +24,14 @@ class DevModeAuthState extends Equatable {
 
   @override
   List<Object?> get props => [
-        formKey,
-        textFieldController,
-        focusNode,
-        validationMessage,
-        verificationDocId,
-        viewState,
-        isAuthenticatedSuccessfully,
-      ];
+    formKey,
+    textFieldController,
+    focusNode,
+    validationMessage,
+    verificationDocId,
+    viewState,
+    isAuthenticatedSuccessfully,
+  ];
 
   DevModeAuthState copyWith({
     DSViewState? viewState,

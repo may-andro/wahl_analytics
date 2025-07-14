@@ -6,10 +6,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Text Field Widget',
-  type: TextFieldWidget,
-)
+@widgetbook.UseCase(name: 'Text Field Widget', type: TextFieldWidget)
 TextFieldWidget textFieldWidget(BuildContext context) {
   return const TextFieldWidget();
 }
@@ -60,10 +57,10 @@ class TextFieldWidget extends StatelessWidget {
                   label: 'Autofill Hints',
                   options: <Option<List<String>?>>[
                     Option(null, 'None'),
-                    Option(
-                      ['Autofill Hint 1', 'Autofill Hint 2'],
-                      'With Autofill Hints',
-                    ),
+                    Option([
+                      'Autofill Hint 1',
+                      'Autofill Hint 2',
+                    ], 'With Autofill Hints'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -203,14 +200,11 @@ class TextFieldWidget extends StatelessWidget {
                   description: 'Select the clickable action behaviour',
                   options: <Option<void Function(String)?>>[
                     Option(null, 'Default [Non Clickable]'),
-                    Option(
-                      (String value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Value: $value')),
-                        );
-                      },
-                      'With Action',
-                    ),
+                    Option((String value) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text('Value: $value')));
+                    }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -220,14 +214,11 @@ class TextFieldWidget extends StatelessWidget {
                   label: 'Field Submit Action',
                   options: <Option<void Function(String)?>>[
                     Option(null, 'Default [No Action]'),
-                    Option(
-                      (String value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Value: $value')),
-                        );
-                      },
-                      'With Action',
-                    ),
+                    Option((String value) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text('Value: $value')));
+                    }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -237,28 +228,23 @@ class TextFieldWidget extends StatelessWidget {
                   label: 'Validator',
                   options: [
                     Option(null, 'Default [No Validation]'),
-                    Option(
-                      (String? value) {
-                        if (value == null || value.length < 2) {
-                          return const TextFieldValidationData.error(
-                            'Provide at least 2 characters',
-                          );
-                        }
-                        if (value.length > 10) {
-                          return const TextFieldValidationData.error(
-                            'Too big text',
-                          );
-                        }
+                    Option((String? value) {
+                      if (value == null || value.length < 2) {
+                        return const TextFieldValidationData.error(
+                          'Provide at least 2 characters',
+                        );
+                      }
+                      if (value.length > 10) {
+                        return const TextFieldValidationData.error(
+                          'Too big text',
+                        );
+                      }
 
-                        if (value.length > 3 && value.length < 7) {
-                          return const TextFieldValidationData.success(
-                            'Perfect',
-                          );
-                        }
-                        return null;
-                      },
-                      'With Validation',
-                    ),
+                      if (value.length > 3 && value.length < 7) {
+                        return const TextFieldValidationData.success('Perfect');
+                      }
+                      return null;
+                    }, 'With Validation'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

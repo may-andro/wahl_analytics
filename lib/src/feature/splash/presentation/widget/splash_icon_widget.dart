@@ -39,8 +39,9 @@ class _IconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DSSvgImageWidget(
-      assetImage:
-          context.isDarkMode ? DSSvgAssetImage.logoDark : DSSvgAssetImage.logo,
+      assetImage: context.isDarkMode
+          ? DSSvgAssetImage.logoDark
+          : DSSvgAssetImage.logo,
       fit: BoxFit.cover,
       width: 120,
     );

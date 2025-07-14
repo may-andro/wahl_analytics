@@ -15,8 +15,5 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   );
 
   TestWidgetsFlutterBinding.ensureInitialized();
-  return AlchemistConfig.runWithConfig(
-    config: config,
-    run: testMain,
-  );
+  return AlchemistConfig.runWithConfig(config: config, run: testMain);
 }

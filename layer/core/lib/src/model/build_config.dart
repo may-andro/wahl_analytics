@@ -17,18 +17,19 @@ enum BuildEnvironment {
   bool get debugShowCheckedModeBanner => this == BuildEnvironment.staging;
 
   static BuildEnvironment get buildEnvironment {
-    const receivedEnv =
-        String.fromEnvironment('build_env', defaultValue: 'prod');
-    final foundEnv = BuildEnvironment.values
-        .firstWhereOrNull((value) => value.name == receivedEnv);
+    const receivedEnv = String.fromEnvironment(
+      'build_env',
+      defaultValue: 'prod',
+    );
+    final foundEnv = BuildEnvironment.values.firstWhereOrNull(
+      (value) => value.name == receivedEnv,
+    );
     return foundEnv ?? BuildEnvironment.prod;
   }
 }
 
 class BuildConfig {
-  BuildConfig({
-    required this.buildEnvironment,
-  });
+  BuildConfig({required this.buildEnvironment});
 
   final BuildEnvironment buildEnvironment;
 }

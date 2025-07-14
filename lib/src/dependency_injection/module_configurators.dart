@@ -27,9 +27,7 @@ import 'package:wahl_analytics/src/utility/utility_module_configurator.dart';
 List<ModuleConfigurator> getModuleConfigurators(BuildConfig buildConfig) => [
   AppModuleConfigurator(buildConfig),
   FirebaseModuleConfigurator(buildConfig.buildEnvironment.isFirebaseEnabled),
-  TrackingModuleConfigurator(
-    buildConfig.buildEnvironment.isFirebaseEnabled,
-  ),
+  TrackingModuleConfigurator(buildConfig.buildEnvironment.isFirebaseEnabled),
   LogReporterModuleConfigurator(),
   UtilityModuleConfigurator(),
   RouteModuleConfigurator(),

@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Carousal Widget',
-  type: CarousalWidget,
-)
+@widgetbook.UseCase(name: 'Carousal Widget', type: CarousalWidget)
 CarousalWidget carousalWidget(BuildContext context) {
   return const CarousalWidget();
 }
@@ -37,20 +34,14 @@ class CarousalWidget extends StatelessWidget {
           enableInfiniteScroll: context.knobs
               .list<Option<bool>>(
                 label: 'Enable Infinite Scroll ?',
-                options: [
-                  Option(false, 'No'),
-                  Option(true, 'Yes'),
-                ],
+                options: [Option(false, 'No'), Option(true, 'Yes')],
                 labelBuilder: (option) => option.label,
               )
               .value,
           autoPlay: context.knobs
               .list<Option<bool>>(
                 label: 'Auto Play ?',
-                options: [
-                  Option(false, 'No'),
-                  Option(true, 'Yes'),
-                ],
+                options: [Option(false, 'No'), Option(true, 'Yes')],
                 labelBuilder: (option) => option.label,
               )
               .value,

@@ -85,97 +85,66 @@ void main() {
     });
 
     group('getBusinessTeam', () {
-      test(
-        'should return BusinessTeamEntity '
-        'when firebase has valid data',
-        () async {
-          mockFbFirestoreController.mockGetDocumentFromCollection(testTeamData);
+      test('should return BusinessTeamEntity '
+          'when firebase has valid data', () async {
+        mockFbFirestoreController.mockGetDocumentFromCollection(testTeamData);
 
-          final result = await repository.getBusinessTeam();
+        final result = await repository.getBusinessTeam();
 
-          expect(result, businessTeamEntity);
-        },
-      );
+        expect(result, businessTeamEntity);
+      });
 
-      test(
-        'should throw NullDataFoundTeamException '
-        'when firebase has null data',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(null);
+      test('should throw NullDataFoundTeamException '
+          'when firebase has null data', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
-          expect(
-            () async => await repository.getBusinessTeam(),
-            throwsA(
-              predicate(
-                (exception) => exception is NullDataFoundTeamException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessTeam(),
+          throwsA(
+            predicate((exception) => exception is NullDataFoundTeamException),
+          ),
+        );
+      });
 
-      test(
-        'should throw ServerTeamException '
-        'when firebase has FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw ServerTeamException '
+          'when firebase has FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessTeam(),
-            throwsA(
-              predicate((exception) => exception is ServerTeamException),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessTeam(),
+          throwsA(predicate((exception) => exception is ServerTeamException)),
+        );
+      });
 
-      test(
-        'should throw IncorrectJsonTeamException '
-        'when json is different from expected',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            {
-              'test': {
-                'name': 'name',
-                'title': 'title',
-              },
-            },
-          );
+      test('should throw IncorrectJsonTeamException '
+          'when json is different from expected', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection({
+          'test': {'name': 'name', 'title': 'title'},
+        });
 
-          expect(
-            () async => await repository.getBusinessTeam(),
-            throwsA(
-              predicate(
-                (exception) => exception is IncorrectJsonTeamException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessTeam(),
+          throwsA(
+            predicate((exception) => exception is IncorrectJsonTeamException),
+          ),
+        );
+      });
 
-      test(
-        'should throw UnknownTeamException '
-        'when json is different from expected',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw UnknownTeamException '
+          'when json is different from expected', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessTeam(),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownTeamException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessTeam(),
+          throwsA(predicate((exception) => exception is UnknownTeamException)),
+        );
+      });
     });
   });
 }

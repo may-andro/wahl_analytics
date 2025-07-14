@@ -33,9 +33,7 @@ class BaseButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        fixedSize: WidgetStateProperty.all(
-          Size(double.infinity, height),
-        ),
+        fixedSize: WidgetStateProperty.all(Size(double.infinity, height)),
         overlayColor: variant.getOverlayColor(context),
         foregroundColor: variant.getForegroundColor(context, isDisabled),
         backgroundColor: variant.getBackgroundColor(context, isDisabled),
@@ -46,8 +44,9 @@ class BaseButtonWidget extends StatelessWidget {
         padding: WidgetStateProperty.all(EdgeInsets.zero),
         elevation: WidgetStateProperty.all(0),
       ),
-      onPressed:
-          isDisabled || (loading?.blockClicks ?? false) ? null : onPressed,
+      onPressed: isDisabled || (loading?.blockClicks ?? false)
+          ? null
+          : onPressed,
       child: _ButtonChildWidget(
         content: content,
         variant: variant,
@@ -127,31 +126,27 @@ class _ButtonChildWidget extends StatelessWidget {
 
 extension _VariantDTOExtension on VariantDTO {
   WidgetStateProperty<Color?> getOverlayColor(BuildContext context) {
-    return WidgetStateProperty.resolveWith<Color>(
-      (Set<WidgetState> states) {
-        return states.contains(WidgetState.focused)
-            ? getDefaultBackgroundColor(context)
-            : getPressedBackgroundColor(context);
-      },
-    );
+    return WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+      return states.contains(WidgetState.focused)
+          ? getDefaultBackgroundColor(context)
+          : getPressedBackgroundColor(context);
+    });
   }
 
   WidgetStateProperty<Color?> getForegroundColor(
     BuildContext context,
     bool isDisabled,
   ) {
-    return WidgetStateProperty.resolveWith<Color>(
-      (Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled) && isDisabled) {
-          return getDisabledTextColor(context);
-        }
-        if (states.contains(WidgetState.pressed) ||
-            states.contains(WidgetState.hovered)) {
-          return getPressedTextColor(context);
-        }
-        return getDefaultTextColor(context);
-      },
-    );
+    return WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+      if (states.contains(WidgetState.disabled) && isDisabled) {
+        return getDisabledTextColor(context);
+      }
+      if (states.contains(WidgetState.pressed) ||
+          states.contains(WidgetState.hovered)) {
+        return getPressedTextColor(context);
+      }
+      return getDefaultTextColor(context);
+    });
   }
 
   WidgetStateProperty<Color?> getBackgroundColor(

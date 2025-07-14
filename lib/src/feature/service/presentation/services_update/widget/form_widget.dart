@@ -54,8 +54,8 @@ class FormWidget extends StatelessWidget {
       onFieldSubmitted: (text) {
         context.state.textFieldFocusNodes[formFieldType]?.unfocus();
         FocusScope.of(context).requestFocus(
-          context.state
-              .textFieldFocusNodes[ServicesUpdateFormFieldType.description],
+          context.state.textFieldFocusNodes[ServicesUpdateFormFieldType
+              .description],
         );
       },
       onChanged: (input) {

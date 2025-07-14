@@ -18,13 +18,7 @@ class BusinessServiceEntity extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      name,
-      title,
-      description,
-      action,
-      services,
-    ];
+    return [name, title, description, action, services];
   }
 
   BusinessServiceEntity copyWith({

@@ -38,19 +38,19 @@ class HomeState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        sections,
-        sectionKeyMap,
-        selectedBodySection,
-        scrollContentToSection,
-        isContactUsFabVisible,
-        isMobileDetailVisible,
-        isEmailDetailVisible,
-        isServiceDetailEnabled,
-        isDevMenuEnabled,
-        devMenuTriggerCount,
-        errorStateCause,
-      ];
+    viewState,
+    sections,
+    sectionKeyMap,
+    selectedBodySection,
+    scrollContentToSection,
+    isContactUsFabVisible,
+    isMobileDetailVisible,
+    isEmailDetailVisible,
+    isServiceDetailEnabled,
+    isDevMenuEnabled,
+    devMenuTriggerCount,
+    errorStateCause,
+  ];
 
   HomeState copyWith({
     DSViewState? viewState,

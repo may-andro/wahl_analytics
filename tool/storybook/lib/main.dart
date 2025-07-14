@@ -61,15 +61,8 @@ class StorybookApp extends StatelessWidget {
         );
       },
       addons: [
-        DeviceFrameAddon(
-          devices: [
-            ...Devices.ios.all,
-            ...Devices.android.all,
-          ],
-        ),
-        TextScaleAddon(
-          initialScale: 1,
-        ),
+        DeviceFrameAddon(devices: [...Devices.ios.all, ...Devices.android.all]),
+        TextScaleAddon(initialScale: 1),
         ThemeAddon<_CustomTheme>(
           themes: [
             WidgetbookTheme(

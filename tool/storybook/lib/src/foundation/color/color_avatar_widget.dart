@@ -44,9 +44,7 @@ class _ColorAvatarWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: context.space(factor: 0.5)),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: colorAvatar.color,
-        ),
+        leading: CircleAvatar(backgroundColor: colorAvatar.color),
         title: Text(
           colorAvatar.title,
           style: context.typography.bodyLarge.textStyle.copyWith(

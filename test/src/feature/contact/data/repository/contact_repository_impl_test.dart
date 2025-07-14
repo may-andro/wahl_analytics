@@ -48,144 +48,111 @@ void main() {
     });
 
     group('getBusinessContact', () {
-      test(
-        'should return BusinessContactEntity '
-        'when firebase has valid data',
-        () async {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            testContactData,
-          );
+      test('should return BusinessContactEntity '
+          'when firebase has valid data', () async {
+        mockFbFirestoreController.mockGetDocumentFromCollection(
+          testContactData,
+        );
 
-          final result = await repository.getBusinessContact();
+        final result = await repository.getBusinessContact();
 
-          expect(result, businessContactEntity);
-        },
-      );
+        expect(result, businessContactEntity);
+      });
 
-      test(
-        'should throw NullDataFoundContactException '
-        'when firebase has null data',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(null);
+      test('should throw NullDataFoundContactException '
+          'when firebase has null data', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection(null);
 
-          expect(
-            () async => await repository.getBusinessContact(),
-            throwsA(
-              predicate(
-                (exception) => exception is NullDataFoundContactException,
-              ),
+        expect(
+          () async => await repository.getBusinessContact(),
+          throwsA(
+            predicate(
+              (exception) => exception is NullDataFoundContactException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw ServerContactException '
-        'when firebase has FirestoreException exception',
-        () {
-          final exception = FirestoreException(
-            Exception(),
-            StackTrace.current,
-          );
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
+      test('should throw ServerContactException '
+          'when firebase has FirestoreException exception', () {
+        final exception = FirestoreException(Exception(), StackTrace.current);
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessContact(),
-            throwsA(
-              predicate((exception) => exception is ServerContactException),
+        expect(
+          () async => await repository.getBusinessContact(),
+          throwsA(
+            predicate((exception) => exception is ServerContactException),
+          ),
+        );
+      });
+
+      test('should throw IncorrectJsonContactException '
+          'when json is different from expected', () {
+        mockFbFirestoreController.mockGetDocumentFromCollection({
+          'test': {'name': 'name', 'title': 'title'},
+        });
+
+        expect(
+          () async => await repository.getBusinessContact(),
+          throwsA(
+            predicate(
+              (exception) => exception is IncorrectJsonContactException,
             ),
-          );
-        },
-      );
+          ),
+        );
+      });
 
-      test(
-        'should throw IncorrectJsonContactException '
-        'when json is different from expected',
-        () {
-          mockFbFirestoreController.mockGetDocumentFromCollection(
-            {
-              'test': {
-                'name': 'name',
-                'title': 'title',
-              },
-            },
-          );
+      test('should throw UnknownContactException '
+          'when json is different from expected', () {
+        final exception = Exception();
+        mockFbFirestoreController.mockGetDocumentFromCollectionThrowsException(
+          exception,
+        );
 
-          expect(
-            () async => await repository.getBusinessContact(),
-            throwsA(
-              predicate(
-                (exception) => exception is IncorrectJsonContactException,
-              ),
-            ),
-          );
-        },
-      );
-
-      test(
-        'should throw UnknownContactException '
-        'when json is different from expected',
-        () {
-          final exception = Exception();
-          mockFbFirestoreController
-              .mockGetDocumentFromCollectionThrowsException(exception);
-
-          expect(
-            () async => await repository.getBusinessContact(),
-            throwsA(
-              predicate(
-                (exception) => exception is UnknownContactException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.getBusinessContact(),
+          throwsA(
+            predicate((exception) => exception is UnknownContactException),
+          ),
+        );
+      });
     });
 
     group('submitApplication', () {
-      test(
-        'should return BusinessContactEntity '
-        'when firebase has valid data',
-        () async {
-          const entity = ContactUsEntity(
-            name: 'name',
-            email: 'email',
-            message: 'message',
-          );
-          mockFbFirestoreController.mockAddToCollection();
+      test('should return BusinessContactEntity '
+          'when firebase has valid data', () async {
+        const entity = ContactUsEntity(
+          name: 'name',
+          email: 'email',
+          message: 'message',
+        );
+        mockFbFirestoreController.mockAddToCollection();
 
-          await repository.submitApplication(entity);
+        await repository.submitApplication(entity);
 
-          verify(
-            () => mockFbFirestoreController.addToCollection(
-              'contact_us',
-              contactUsMapper.map(entity).toJson(),
-            ),
-          ).called(1);
-        },
-      );
+        verify(
+          () => mockFbFirestoreController.addToCollection(
+            'contact_us',
+            contactUsMapper.map(entity).toJson(),
+          ),
+        ).called(1);
+      });
 
-      test(
-        'should throw error when firebase throws exception',
-        () {
-          const entity = ContactUsEntity(
-            name: 'name',
-            email: 'email',
-            message: 'message',
-          );
-          mockFbFirestoreController.mockAddToCollectionThrowsException();
+      test('should throw error when firebase throws exception', () {
+        const entity = ContactUsEntity(
+          name: 'name',
+          email: 'email',
+          message: 'message',
+        );
+        mockFbFirestoreController.mockAddToCollectionThrowsException();
 
-          expect(
-            () async => await repository.submitApplication(entity),
-            throwsA(
-              predicate(
-                (exception) => exception is FirestoreException,
-              ),
-            ),
-          );
-        },
-      );
+        expect(
+          () async => await repository.submitApplication(entity),
+          throwsA(predicate((exception) => exception is FirestoreException)),
+        );
+      });
     });
   });
 }

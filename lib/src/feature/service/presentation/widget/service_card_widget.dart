@@ -24,10 +24,7 @@ class _ServiceCardWidgetState extends State<ServiceCardWidget>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: 400.ms,
-      vsync: this,
-    );
+    _animationController = AnimationController(duration: 400.ms, vsync: this);
     _fadeInAnimation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );

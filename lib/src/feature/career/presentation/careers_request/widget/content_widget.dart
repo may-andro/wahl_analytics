@@ -104,19 +104,16 @@ class ContentWidget extends StatelessWidget {
       widgets.add(const SliverToBoxAdapter(child: DSVerticalSpacerWidget(2)));
       widgets.add(
         SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (_, index) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  left: _getPadding(context),
-                  right: _getPadding(context),
-                  bottom: context.space(factor: 2),
-                ),
-                child: CareerCardWidget(value[index]),
-              );
-            },
-            childCount: value.length,
-          ),
+          delegate: SliverChildBuilderDelegate((_, index) {
+            return Padding(
+              padding: EdgeInsets.only(
+                left: _getPadding(context),
+                right: _getPadding(context),
+                bottom: context.space(factor: 2),
+              ),
+              child: CareerCardWidget(value[index]),
+            );
+          }, childCount: value.length),
         ),
       );
     });

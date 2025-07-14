@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'App Bar Widget',
-  type: AppBarWidget,
-)
+@widgetbook.UseCase(name: 'App Bar Widget', type: AppBarWidget)
 AppBarWidget appBarWidget(BuildContext context) {
   return const AppBarWidget();
 }

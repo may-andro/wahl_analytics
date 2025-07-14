@@ -248,9 +248,7 @@ class _DescriptionImageWidget extends StatelessWidget {
 }
 
 class _QuotedTextWidget extends StatelessWidget {
-  const _QuotedTextWidget({
-    required this.text,
-  });
+  const _QuotedTextWidget({required this.text});
 
   final String text;
 

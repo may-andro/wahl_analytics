@@ -36,20 +36,22 @@ void main() {
     });
 
     group('initialiseRemoteConfig', () {
-      test('should set defaults and fetch and activate remote configs',
-          () async {
-        mockFirebaseRemoteConfig.mockSetDefaults();
-        mockFirebaseRemoteConfig.mockFetchAndActivate();
+      test(
+        'should set defaults and fetch and activate remote configs',
+        () async {
+          mockFirebaseRemoteConfig.mockSetDefaults();
+          mockFirebaseRemoteConfig.mockFetchAndActivate();
 
-        await fbRemoteConfigController.initialiseRemoteConfig();
+          await fbRemoteConfigController.initialiseRemoteConfig();
 
-        verify(
-          () => mockFirebaseRemoteConfig.setDefaults(
-            RemoteConfigs.defaultConfigsMap,
-          ),
-        ).called(1);
-        verify(() => mockFirebaseRemoteConfig.fetchAndActivate()).called(1);
-      });
+          verify(
+            () => mockFirebaseRemoteConfig.setDefaults(
+              RemoteConfigs.defaultConfigsMap,
+            ),
+          ).called(1);
+          verify(() => mockFirebaseRemoteConfig.fetchAndActivate()).called(1);
+        },
+      );
     });
 
     group('getValueForKey', () {

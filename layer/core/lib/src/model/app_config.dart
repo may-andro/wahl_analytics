@@ -1,7 +1,5 @@
 class AppConfig {
-  AppConfig({
-    required this.minimumRequiredAppVersion,
-  });
+  AppConfig({required this.minimumRequiredAppVersion});
 
   final String minimumRequiredAppVersion;
 }

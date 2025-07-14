@@ -36,13 +36,8 @@ class CareerRepositoryImpl implements CareerRepository {
         careerApplicationEntity.fileData,
       );
       final dataMap = _careerApplicationMapper
-          .map(
-            careerApplicationEntity,
-          )
-          .copyWith(
-            resumeName: fileNameWithExtension,
-            resumeUrl: resumeUrl,
-          )
+          .map(careerApplicationEntity)
+          .copyWith(resumeName: fileNameWithExtension, resumeUrl: resumeUrl)
           .toJson();
 
       return _firestoreController.addDocumentToCollection(

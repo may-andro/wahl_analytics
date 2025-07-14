@@ -41,9 +41,9 @@ class _DSNetworkImageWidgetState extends State<DSNetworkImageWidget> {
   @override
   void initState() {
     super.initState();
-    _connectivitySubscription = Connectivity()
-        .onConnectivityChanged
-        .listen((List<ConnectivityResult> result) {
+    _connectivitySubscription = Connectivity().onConnectivityChanged.listen((
+      List<ConnectivityResult> result,
+    ) {
       if (imageState?.extendedImageLoadState == LoadState.failed &&
           result.none((s) => s == ConnectivityResult.none)) {
         imageState?.reLoadImage();
@@ -61,10 +61,7 @@ class _DSNetworkImageWidgetState extends State<DSNetworkImageWidget> {
   Widget build(BuildContext context) {
     final imageUrl = widget.url;
     if (imageUrl.isEmpty) {
-      return _ErrorWidget(
-        height: widget.height,
-        width: widget.width,
-      );
+      return _ErrorWidget(height: widget.height, width: widget.width);
     }
 
     return ExtendedImage.network(
@@ -83,7 +80,8 @@ class _DSNetworkImageWidgetState extends State<DSNetworkImageWidget> {
           case LoadState.completed:
             if (widget.autoSizeImage) {
               return AspectRatio(
-                aspectRatio: state.extendedImageInfo!.image.width /
+                aspectRatio:
+                    state.extendedImageInfo!.image.width /
                     state.extendedImageInfo!.image.height,
                 child: ExtendedRawImage(
                   image: state.extendedImageInfo?.image,
@@ -106,11 +104,7 @@ class _DSNetworkImageWidgetState extends State<DSNetworkImageWidget> {
 }
 
 class _ErrorWidget extends StatelessWidget {
-  const _ErrorWidget({
-    this.width,
-    this.height,
-    this.onTap,
-  });
+  const _ErrorWidget({this.width, this.height, this.onTap});
 
   final double? width;
   final double? height;
@@ -126,9 +120,7 @@ class _ErrorWidget extends StatelessWidget {
         color: context.colorPalette.neutral.transparent.color,
         child: LayoutBuilder(
           builder: (_, constraints) {
-            return Icon(
-              onTap != null ? Icons.refresh : Icons.broken_image,
-            );
+            return Icon(onTap != null ? Icons.refresh : Icons.broken_image);
           },
         ),
       ),

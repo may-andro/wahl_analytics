@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Network Image Widget',
-  type: NetworkImageWidget,
-)
+@widgetbook.UseCase(name: 'Network Image Widget', type: NetworkImageWidget)
 NetworkImageWidget networkImageWidget(BuildContext context) {
   return const NetworkImageWidget();
 }
@@ -131,10 +128,7 @@ class NetworkImageWidget extends StatelessWidget {
                     label: 'Error Widget',
                     options: <Option<Widget?>>[
                       Option(null, 'No error widget'),
-                      Option(
-                        const DSErrorCardWidget(),
-                        'Yes',
-                      ),
+                      Option(const DSErrorCardWidget(), 'Yes'),
                     ],
                     labelBuilder: (option) => option.label,
                   )

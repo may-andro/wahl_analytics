@@ -9,7 +9,7 @@ enum ServiceUpdateFormFieldType {
   const ServiceUpdateFormFieldType();
 
   static Map<ServiceUpdateFormFieldType, TextEditingController>
-      get textEditingControllerMap {
+  get textEditingControllerMap {
     return {
       ServiceUpdateFormFieldType.title: TextEditingController(),
       ServiceUpdateFormFieldType.shortDescription: TextEditingController(),
@@ -26,7 +26,7 @@ enum ServiceUpdateFormFieldType {
   }
 
   static Map<ServiceUpdateFormFieldType, FormFieldValidationMessage>
-      get validationMessageMap {
+  get validationMessageMap {
     return {
       ServiceUpdateFormFieldType.title: FormFieldValidationMessage.invalidTitle,
       ServiceUpdateFormFieldType.shortDescription:

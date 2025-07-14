@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Typography',
-  type: Typography,
-)
+@widgetbook.UseCase(name: 'Typography', type: Typography)
 Typography typography(BuildContext context) {
   return const Typography();
 }
@@ -44,42 +41,15 @@ class Typography extends StatelessWidget {
             'Headline Small',
             context.typography.headlineSmall.textStyle,
           ),
-          _ItemWidget(
-            'Title Large',
-            context.typography.titleLarge.textStyle,
-          ),
-          _ItemWidget(
-            'Title Medium',
-            context.typography.titleMedium.textStyle,
-          ),
-          _ItemWidget(
-            'Title Small',
-            context.typography.titleSmall.textStyle,
-          ),
-          _ItemWidget(
-            'Body Large',
-            context.typography.bodyLarge.textStyle,
-          ),
-          _ItemWidget(
-            'Body Medium',
-            context.typography.bodyMedium.textStyle,
-          ),
-          _ItemWidget(
-            'Body Small',
-            context.typography.bodySmall.textStyle,
-          ),
-          _ItemWidget(
-            'Label Large',
-            context.typography.labelLarge.textStyle,
-          ),
-          _ItemWidget(
-            'Label Medium',
-            context.typography.labelMedium.textStyle,
-          ),
-          _ItemWidget(
-            'Label Small',
-            context.typography.labelSmall.textStyle,
-          ),
+          _ItemWidget('Title Large', context.typography.titleLarge.textStyle),
+          _ItemWidget('Title Medium', context.typography.titleMedium.textStyle),
+          _ItemWidget('Title Small', context.typography.titleSmall.textStyle),
+          _ItemWidget('Body Large', context.typography.bodyLarge.textStyle),
+          _ItemWidget('Body Medium', context.typography.bodyMedium.textStyle),
+          _ItemWidget('Body Small', context.typography.bodySmall.textStyle),
+          _ItemWidget('Label Large', context.typography.labelLarge.textStyle),
+          _ItemWidget('Label Medium', context.typography.labelMedium.textStyle),
+          _ItemWidget('Label Small', context.typography.labelSmall.textStyle),
         ],
       ),
     );

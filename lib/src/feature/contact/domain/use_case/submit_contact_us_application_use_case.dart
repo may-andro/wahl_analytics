@@ -8,8 +8,9 @@ class SubmitContactUsApplicationFailure extends BasicFailure {
   const SubmitContactUsApplicationFailure({super.message, super.cause});
 }
 
-class SubmitContactUsApplicationUseCase extends BaseUseCase<void,
-    ContactUsEntity, SubmitContactUsApplicationFailure> {
+class SubmitContactUsApplicationUseCase
+    extends
+        BaseUseCase<void, ContactUsEntity, SubmitContactUsApplicationFailure> {
   SubmitContactUsApplicationUseCase(this._contactRepository);
 
   final ContactRepository _contactRepository;
@@ -23,9 +24,6 @@ class SubmitContactUsApplicationUseCase extends BaseUseCase<void,
 
   @override
   SubmitContactUsApplicationFailure mapErrorToFailure(Object e, StackTrace st) {
-    return SubmitContactUsApplicationFailure(
-      message: e.toString(),
-      cause: st,
-    );
+    return SubmitContactUsApplicationFailure(message: e.toString(), cause: st);
   }
 }

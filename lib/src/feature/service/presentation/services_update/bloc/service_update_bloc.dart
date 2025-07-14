@@ -15,13 +15,13 @@ class ServiceUpdateBloc extends Bloc<ServiceUpdateEvent, ServiceUpdateState> {
     this._isValidShortDescriptionUseCase,
     this._isValidLongDescriptionUseCase,
   ) : super(
-          ServiceUpdateState(
-            formKey: GlobalKey<FormState>(),
-            textFieldFocusNodes: ServiceUpdateFormFieldType.focusNodeMap,
-            textFieldControllers:
-                ServiceUpdateFormFieldType.textEditingControllerMap,
-          ),
-        ) {
+        ServiceUpdateState(
+          formKey: GlobalKey<FormState>(),
+          textFieldFocusNodes: ServiceUpdateFormFieldType.focusNodeMap,
+          textFieldControllers:
+              ServiceUpdateFormFieldType.textEditingControllerMap,
+        ),
+      ) {
     on<OnInitServiceUpdateEvent>(_mapOnInitServiceUpdateEventToState);
     on<ValidateServiceUpdateTextFieldEvent>(
       _mapValidateServiceUpdateTextFieldEventToState,
@@ -53,15 +53,19 @@ class ServiceUpdateBloc extends Bloc<ServiceUpdateEvent, ServiceUpdateState> {
 
     state.textFieldControllers[ServiceUpdateFormFieldType.title]?.text =
         title ?? '';
-    state.textFieldControllers[ServiceUpdateFormFieldType.shortDescription]
-        ?.text = shortDescription ?? '';
-    state.textFieldControllers[ServiceUpdateFormFieldType.longDescription]
-        ?.text = longDescription ?? '';
+    state
+            .textFieldControllers[ServiceUpdateFormFieldType.shortDescription]
+            ?.text =
+        shortDescription ?? '';
+    state
+            .textFieldControllers[ServiceUpdateFormFieldType.longDescription]
+            ?.text =
+        longDescription ?? '';
 
     final validationMap =
         Map<ServiceUpdateFormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    );
+          state.validationMessages,
+        );
     validationMap[ServiceUpdateFormFieldType.title] =
         await _getTitleValidationMessage(title);
 
@@ -97,8 +101,8 @@ class ServiceUpdateBloc extends Bloc<ServiceUpdateEvent, ServiceUpdateState> {
 
     final validationMessages =
         Map<ServiceUpdateFormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[event.formFieldType] = message;
+          state.validationMessages,
+        )..[event.formFieldType] = message;
 
     emit(state.copyWith(validationMessages: validationMessages));
   }

@@ -10,7 +10,7 @@ enum FormFieldType {
   const FormFieldType();
 
   static Map<FormFieldType, TextEditingController>
-      get textEditingControllerMap {
+  get textEditingControllerMap {
     return {
       FormFieldType.name: TextEditingController(),
       FormFieldType.email: TextEditingController(),
@@ -27,7 +27,7 @@ enum FormFieldType {
   }
 
   static Map<FormFieldType, FormFieldValidationMessage>
-      get validationMessageMap {
+  get validationMessageMap {
     return {
       FormFieldType.name: FormFieldValidationMessage.noNameFound,
       FormFieldType.email: FormFieldValidationMessage.noEmailFound,

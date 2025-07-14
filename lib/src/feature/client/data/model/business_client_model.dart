@@ -14,11 +14,9 @@ class BusinessClientModel {
   });
 
   factory BusinessClientModel.fromJson(Map<String, dynamic> json) {
-    final clients = (json['clients'] as List<dynamic>).map(
-      (client) {
-        return ClientModel.fromJson(Map<String, dynamic>.from(client as Map));
-      },
-    ).toList();
+    final clients = (json['clients'] as List<dynamic>).map((client) {
+      return ClientModel.fromJson(Map<String, dynamic>.from(client as Map));
+    }).toList();
     return BusinessClientModel(
       name: json['name'] as String,
       title: json['title'] as String,

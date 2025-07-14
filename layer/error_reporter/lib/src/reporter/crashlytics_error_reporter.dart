@@ -24,10 +24,10 @@ class CrashlyticsErrorReporter implements ErrorReporter {
   @override
   Future<void> init() async {
     FlutterError.onError = (FlutterErrorDetails details) => _onError(
-          details.exception,
-          details.stack ?? StackTrace.empty,
-          flutterErrorDetails: details,
-        );
+      details.exception,
+      details.stack ?? StackTrace.empty,
+      flutterErrorDetails: details,
+    );
   }
 
   @override
@@ -65,10 +65,7 @@ class CrashlyticsErrorReporter implements ErrorReporter {
     );
   }
 
-  Future<void> _handleFatalError(
-    Object error,
-    StackTrace stackTrace,
-  ) async {
+  Future<void> _handleFatalError(Object error, StackTrace stackTrace) async {
     if (!_blacklistErrorController.isBlacklistedError(error)) {
       await _fbCrashlyticsController.reportError(
         error,

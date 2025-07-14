@@ -14,9 +14,9 @@ import 'package:wahl_analytics/src/route/route.dart';
 class ServiceModuleConfigurator implements ModuleConfigurator {
   @override
   FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) {
-    serviceLocator
-        .get<ModuleRouteController>()
-        .register(ServiceModuleRouteConfigurator());
+    serviceLocator.get<ModuleRouteController>().register(
+      ServiceModuleRouteConfigurator(),
+    );
   }
 
   @override

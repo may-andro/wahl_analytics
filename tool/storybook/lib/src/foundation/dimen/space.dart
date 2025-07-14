@@ -4,10 +4,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Space',
-  type: SpaceDimension,
-)
+@widgetbook.UseCase(name: 'Space', type: SpaceDimension)
 SpaceDimension spaceDimension(BuildContext context) {
   return const SpaceDimension();
 }

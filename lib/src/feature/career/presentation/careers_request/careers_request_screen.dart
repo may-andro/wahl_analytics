@@ -52,9 +52,9 @@ class CareersRequestScreen extends StatelessWidget {
                   listener: (context, state) {
                     final snackBarMessageState = state.snackBarMessageState;
                     if (snackBarMessageState != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        snackBarMessageState.getSnackBar(context),
-                      );
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(snackBarMessageState.getSnackBar(context));
                     }
                   },
                   child: const ContentWidget(),

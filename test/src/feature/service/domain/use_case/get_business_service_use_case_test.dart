@@ -15,61 +15,53 @@ void main() {
       useCase = GetBusinessServiceUseCase(mockServiceRepository);
     });
 
-    test(
-      'should return business service entity',
-      () async {
-        const businessServiceEntity = BusinessServiceEntity(
-          title: 'title',
-          name: 'name',
-          description: 'description',
-          action: 'action',
-          services: [
-            ServiceEntity(
-              icon: 'icon',
-              shortDescription: 'shortDescription',
-              longDescription: 'longDescription',
-              title: 'title',
-            ),
-          ],
-        );
+    test('should return business service entity', () async {
+      const businessServiceEntity = BusinessServiceEntity(
+        title: 'title',
+        name: 'name',
+        description: 'description',
+        action: 'action',
+        services: [
+          ServiceEntity(
+            icon: 'icon',
+            shortDescription: 'shortDescription',
+            longDescription: 'longDescription',
+            title: 'title',
+          ),
+        ],
+      );
 
-        mockServiceRepository.mockGetBusinessServiceForLocale(
-          businessServiceEntity,
-        );
+      mockServiceRepository.mockGetBusinessServiceForLocale(
+        businessServiceEntity,
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isRight, isTrue);
-        expect(result.right, businessServiceEntity);
-      },
-    );
+      expect(result.isRight, isTrue);
+      expect(result.right, businessServiceEntity);
+    });
 
-    test(
-      'should return $BusinessServiceFailure '
-      'when exception is thrown',
-      () async {
-        final exceptions = [
-          NullDataFoundServiceException(Exception(), StackTrace.current),
-          ServerServiceException(Exception(), StackTrace.current),
-          IncorrectJsonServiceException(Exception(), StackTrace.current),
-          UnknownServiceException(Exception(), StackTrace.current),
-        ];
+    test('should return $BusinessServiceFailure '
+        'when exception is thrown', () async {
+      final exceptions = [
+        NullDataFoundServiceException(Exception(), StackTrace.current),
+        ServerServiceException(Exception(), StackTrace.current),
+        IncorrectJsonServiceException(Exception(), StackTrace.current),
+        UnknownServiceException(Exception(), StackTrace.current),
+      ];
 
-        for (final exception in exceptions) {
-          mockServiceRepository.mockGetBusinessServiceThrowsException(
-            exception,
-          );
-        }
+      for (final exception in exceptions) {
+        mockServiceRepository.mockGetBusinessServiceThrowsException(exception);
+      }
 
-        mockServiceRepository.mockGetBusinessServiceThrowsException(
-          NullDataFoundServiceException(Exception(), StackTrace.current),
-        );
+      mockServiceRepository.mockGetBusinessServiceThrowsException(
+        NullDataFoundServiceException(Exception(), StackTrace.current),
+      );
 
-        final result = await useCase();
+      final result = await useCase();
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<BusinessServiceFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<BusinessServiceFailure>());
+    });
   });
 }

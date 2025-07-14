@@ -7,10 +7,7 @@ import 'package:meta/meta.dart';
 
 @internal
 class LoggerErrorReporter implements ErrorReporter {
-  LoggerErrorReporter(
-    this._fatalErrorController,
-    this._logReporter,
-  );
+  LoggerErrorReporter(this._fatalErrorController, this._logReporter);
 
   final FatalErrorController _fatalErrorController;
   final LogReporter _logReporter;
@@ -18,10 +15,10 @@ class LoggerErrorReporter implements ErrorReporter {
   @override
   Future<void> init() async {
     FlutterError.onError = (FlutterErrorDetails details) => _onError(
-          details.exception,
-          details.stack ?? StackTrace.empty,
-          flutterErrorDetails: details,
-        );
+      details.exception,
+      details.stack ?? StackTrace.empty,
+      flutterErrorDetails: details,
+    );
   }
 
   @override
@@ -58,10 +55,7 @@ class LoggerErrorReporter implements ErrorReporter {
     );
   }
 
-  Future<void> _handleFatalError(
-    Object error,
-    StackTrace stackTrace,
-  ) async {
+  Future<void> _handleFatalError(Object error, StackTrace stackTrace) async {
     _logReporter.error('=============================================');
     _logReporter.error('Fatal error found!!! Stopping the app...');
     _logReporter.error('Exception: $error');

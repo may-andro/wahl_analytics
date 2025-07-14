@@ -26,22 +26,13 @@ class HorizontalDividerWidget extends StatelessWidget {
               .list<Option<DSColor>>(
                 label: 'Color',
                 options: <Option<DSColor>>[
-                  Option(
-                    context.colorPalette.brand.primary,
-                    'Brand Primary',
-                  ),
+                  Option(context.colorPalette.brand.primary, 'Brand Primary'),
                   Option(
                     context.colorPalette.semantic.success,
                     'Semantic Success',
                   ),
-                  Option(
-                    context.colorPalette.semantic.error,
-                    'Semantic Error',
-                  ),
-                  Option(
-                    context.colorPalette.semantic.info,
-                    'Semantic Info',
-                  ),
+                  Option(context.colorPalette.semantic.error, 'Semantic Error'),
+                  Option(context.colorPalette.semantic.info, 'Semantic Info'),
                 ],
                 labelBuilder: (option) => option.label,
               )

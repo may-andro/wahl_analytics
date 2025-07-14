@@ -14,8 +14,9 @@ class FeatureFlagCache extends DBCache<FeatureModel> {
   int get tableVersion => 1;
 
   @override
-  List<String> get dbColumnNames =>
-      ['name TEXT PRIMARY KEY, is_enabled INTEGER'];
+  List<String> get dbColumnNames => [
+    'name TEXT PRIMARY KEY, is_enabled INTEGER',
+  ];
 
   @override
   FeatureModel deserialize(Map<String, dynamic> map) {

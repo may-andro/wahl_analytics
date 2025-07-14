@@ -17,12 +17,15 @@ class FbAppCheckController {
   Future<void> initialiseAppCheck() async {
     try {
       await _firebaseAppCheck.activate(
-        webProvider:
-            ReCaptchaV3Provider(kDebugMode ? Token.debug : Token.release),
-        androidProvider:
-            kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
-        appleProvider:
-            kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
+        webProvider: ReCaptchaV3Provider(
+          kDebugMode ? Token.debug : Token.release,
+        ),
+        androidProvider: kDebugMode
+            ? AndroidProvider.debug
+            : AndroidProvider.playIntegrity,
+        appleProvider: kDebugMode
+            ? AppleProvider.debug
+            : AppleProvider.appAttest,
       );
       await _firebaseAppCheck.setTokenAutoRefreshEnabled(true);
     } catch (e, st) {

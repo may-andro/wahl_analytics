@@ -14,14 +14,10 @@ extension GoRouterStateExtension on GoRouterState {
     return CustomTransitionPage(
       key: pageKey,
       child: child,
-      transitionsBuilder: (
-        context,
-        animation,
-        secondaryAnimation,
-        child,
-      ) {
-        final opacity =
-            CurveTween(curve: Curves.easeInOutCirc).animate(animation);
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final opacity = CurveTween(
+          curve: Curves.easeInOutCirc,
+        ).animate(animation);
         return FadeTransition(opacity: opacity, child: child);
       },
     );

@@ -32,10 +32,7 @@ class DSViewStateBuilderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: 300.ms,
-      child: _buildContent(context),
-    );
+    return AnimatedSwitcher(duration: 300.ms, child: _buildContent(context));
   }
 
   Widget _buildContent(BuildContext context) {

@@ -62,8 +62,9 @@ class FormWidget extends StatelessWidget {
         context.bloc.add(ValidateTextFieldEvent(text: input));
       },
       validator: (input) {
-        final message = context.bloc.state.validationMessage
-            .getMessage(context.localizations);
+        final message = context.bloc.state.validationMessage.getMessage(
+          context.localizations,
+        );
 
         if (message != null) {
           return TextFieldValidationData.error(message);
@@ -89,7 +90,8 @@ class FormWidget extends StatelessWidget {
           ),
         );
       },
-      isDisabled: context.state.verificationDocId == null ||
+      isDisabled:
+          context.state.verificationDocId == null ||
           context.state.validationMessage.getMessage(context.localizations) !=
               null,
       isLoading: context.state.viewState.isLoading,

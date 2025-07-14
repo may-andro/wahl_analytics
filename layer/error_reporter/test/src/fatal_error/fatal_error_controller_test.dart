@@ -76,8 +76,7 @@ void main() {
         expect(result, isTrue);
       });
 
-      test(
-          'should return true when error is $FlutterError '
+      test('should return true when error is $FlutterError '
           '& does not contains RenderFlex keyword', () {
         final result = controller.isFatalError(FlutterError('Test'));
 
@@ -90,8 +89,7 @@ void main() {
         expect(result, isTrue);
       });
 
-      test(
-          'should return false when error is $FlutterError '
+      test('should return false when error is $FlutterError '
           '& contains RenderFlex keyword', () {
         final result = controller.isFatalError(FlutterError('RenderFlex'));
 
