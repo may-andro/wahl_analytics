@@ -13,9 +13,6 @@ class DSVerticalDividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VerticalDivider(
-      thickness: thickness,
-      color: color.color,
-    );
+    return VerticalDivider(thickness: thickness, color: color.color);
   }
 }

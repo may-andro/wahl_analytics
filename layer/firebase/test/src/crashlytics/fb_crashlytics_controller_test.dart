@@ -10,9 +10,7 @@ class MockFirebaseCrashlytics extends Mock implements FirebaseCrashlytics {
   }
 
   void mockSetCrashlyticsCollectionEnabled() {
-    when(
-      () => setCrashlyticsCollectionEnabled(any()),
-    ).thenAnswer((_) async {});
+    when(() => setCrashlyticsCollectionEnabled(any())).thenAnswer((_) async {});
   }
 
   void mockSetUserIdentifier() {
@@ -28,15 +26,13 @@ class MockFirebaseCrashlytics extends Mock implements FirebaseCrashlytics {
   }
 
   void mockRecordError(String error, StackTrace? st, bool isFatal) {
-    when(() => recordError(error, st, fatal: isFatal)).thenAnswer(
-      (invocation) async {},
-    );
+    when(
+      () => recordError(error, st, fatal: isFatal),
+    ).thenAnswer((invocation) async {});
   }
 
   void mockRecordFlutterError(FlutterErrorDetails error) {
-    when(() => recordFlutterError(error)).thenAnswer(
-      (invocation) async {},
-    );
+    when(() => recordFlutterError(error)).thenAnswer((invocation) async {});
   }
 }
 
@@ -56,12 +52,13 @@ void main() {
 
     group('isCrashlyticsEnabled', () {
       test(
-          'should return value from FirebaseCrashlytics when platform is supported',
-          () {
-        mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(true);
+        'should return value from FirebaseCrashlytics when platform is supported',
+        () {
+          mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(true);
 
-        expect(fbCrashlyticsController.isCrashlyticsEnabled, isTrue);
-      });
+          expect(fbCrashlyticsController.isCrashlyticsEnabled, isTrue);
+        },
+      );
 
       test('should return false when platform is not supported', () {
         debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
@@ -73,17 +70,20 @@ void main() {
     });
 
     group('setCrashlyticsEnabled', () {
-      test('should not enable Crashlytics when platform is not supported',
-          () async {
-        debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+      test(
+        'should not enable Crashlytics when platform is not supported',
+        () async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 
-        await fbCrashlyticsController.setCrashlyticsEnabled(true);
+          await fbCrashlyticsController.setCrashlyticsEnabled(true);
 
-        verifyNever(
-          () => mockFirebaseCrashlytics.setCrashlyticsCollectionEnabled(any()),
-        );
-        debugDefaultTargetPlatformOverride = null;
-      });
+          verifyNever(
+            () =>
+                mockFirebaseCrashlytics.setCrashlyticsCollectionEnabled(any()),
+          );
+          debugDefaultTargetPlatformOverride = null;
+        },
+      );
 
       test('should enable Crashlytics when platform is supported', () async {
         mockFirebaseCrashlytics.mockSetCrashlyticsCollectionEnabled();
@@ -111,25 +111,29 @@ void main() {
         ).called(1);
       });
 
-      test('should not set user identifier when operation is not allowed',
-          () async {
-        mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(false);
+      test(
+        'should not set user identifier when operation is not allowed',
+        () async {
+          mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(false);
 
-        await fbCrashlyticsController.setUser('user123');
+          await fbCrashlyticsController.setUser('user123');
 
-        verifyNever(() => mockFirebaseCrashlytics.setUserIdentifier(any()));
-      });
+          verifyNever(() => mockFirebaseCrashlytics.setUserIdentifier(any()));
+        },
+      );
 
-      test('should not set user identifier when platform is not supported',
-          () async {
-        debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-        mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(true);
+      test(
+        'should not set user identifier when platform is not supported',
+        () async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+          mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(true);
 
-        await fbCrashlyticsController.setUser('user123');
+          await fbCrashlyticsController.setUser('user123');
 
-        verifyNever(() => mockFirebaseCrashlytics.setUserIdentifier(any()));
-        debugDefaultTargetPlatformOverride = null;
-      });
+          verifyNever(() => mockFirebaseCrashlytics.setUserIdentifier(any()));
+          debugDefaultTargetPlatformOverride = null;
+        },
+      );
     });
 
     group('forceCrash', () {
@@ -240,22 +244,26 @@ void main() {
 
         await fbCrashlyticsController.reportFlutterError(errorDetails);
 
-        verify(() => mockFirebaseCrashlytics.recordFlutterError(errorDetails))
-            .called(1);
-      });
-
-      test('should not record Flutter error if operation is not allowed',
-          () async {
-        mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(false);
-
-        final errorDetails =
-            FlutterErrorDetails(exception: Exception('Flutter error'));
-        await fbCrashlyticsController.reportFlutterError(errorDetails);
-
-        verifyNever(
+        verify(
           () => mockFirebaseCrashlytics.recordFlutterError(errorDetails),
-        );
+        ).called(1);
       });
+
+      test(
+        'should not record Flutter error if operation is not allowed',
+        () async {
+          mockFirebaseCrashlytics.mockIsCrashlyticsCollectionEnabled(false);
+
+          final errorDetails = FlutterErrorDetails(
+            exception: Exception('Flutter error'),
+          );
+          await fbCrashlyticsController.reportFlutterError(errorDetails);
+
+          verifyNever(
+            () => mockFirebaseCrashlytics.recordFlutterError(errorDetails),
+          );
+        },
+      );
     });
   });
 }

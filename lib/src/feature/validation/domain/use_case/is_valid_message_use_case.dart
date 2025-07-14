@@ -30,7 +30,7 @@ class IsValidMessageUseCase
       return const Left(EmptyMessageFailure());
     }
 
-    final regEx = RegExp(r'^(?!\s*$).{10,500}$');
+    final regEx = RegExp(r'^(?!\s*$).{10,500}$', dotAll: true);
     return Right(regEx.hasMatch(input));
   }
 

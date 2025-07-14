@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Drop Down Widget',
-  type: DropDownWidget,
-)
+@widgetbook.UseCase(name: 'Drop Down Widget', type: DropDownWidget)
 DropDownWidget dropDownWidget(BuildContext context) {
   return const DropDownWidget();
 }
@@ -101,17 +98,14 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   description: 'Select the clickable action behaviour',
                   options: <Option<ValueChanged<String?>?>>[
                     Option(null, 'Default [Non Clickable]'),
-                    Option(
-                      (value) {
-                        setState(() {
-                          selectedItem = value;
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Value: $value')),
-                        );
-                      },
-                      'With Action',
-                    ),
+                    Option((value) {
+                      setState(() {
+                        selectedItem = value;
+                      });
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text('Value: $value')));
+                    }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -135,14 +129,11 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   label: 'Field Submit Action',
                   options: <Option<VoidCallback?>>[
                     Option(null, 'Default [No Action]'),
-                    Option(
-                      () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('On Tapped')),
-                        );
-                      },
-                      'With Action',
-                    ),
+                    Option(() {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text('On Tapped')));
+                    }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -152,28 +143,23 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   label: 'Validator',
                   options: [
                     Option(null, 'Default [No Validation]'),
-                    Option(
-                      (String? value) {
-                        if (value == null || value.length < 2) {
-                          return const DropDownValidationData.error(
-                            'Provide at least 2 characters',
-                          );
-                        }
-                        if (value.length > 10) {
-                          return const DropDownValidationData.error(
-                            'Too big text',
-                          );
-                        }
+                    Option((String? value) {
+                      if (value == null || value.length < 2) {
+                        return const DropDownValidationData.error(
+                          'Provide at least 2 characters',
+                        );
+                      }
+                      if (value.length > 10) {
+                        return const DropDownValidationData.error(
+                          'Too big text',
+                        );
+                      }
 
-                        if (value.length > 3 && value.length < 7) {
-                          return const DropDownValidationData.success(
-                            'Perfect',
-                          );
-                        }
-                        return null;
-                      },
-                      'With Validation',
-                    ),
+                      if (value.length > 3 && value.length < 7) {
+                        return const DropDownValidationData.success('Perfect');
+                      }
+                      return null;
+                    }, 'With Validation'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

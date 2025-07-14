@@ -15,8 +15,9 @@ class ContentWidget extends StatelessWidget {
         Positioned.fill(
           child: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              context.colorPalette.background.primary.color
-                  .withValues(alpha: 0.5),
+              context.colorPalette.background.primary.color.withValues(
+                alpha: 0.5,
+              ),
               BlendMode.darken,
             ),
             child: const DSAssetImageWidget(
@@ -32,14 +33,12 @@ class ContentWidget extends StatelessWidget {
           bottom: 0,
           top: 0,
           child: CustomScrollView(
-            scrollBehavior: ScrollConfiguration.of(context).copyWith(
-              scrollbars: false,
-            ),
+            scrollBehavior: ScrollConfiguration.of(
+              context,
+            ).copyWith(scrollbars: false),
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
-            slivers: [
-              SliverToBoxAdapter(child: _getContent(context)),
-            ],
+            slivers: [SliverToBoxAdapter(child: _getContent(context))],
           ),
         ),
       ],
@@ -64,10 +63,7 @@ class ContentWidget extends StatelessWidget {
 }
 
 class _XSContentWidget extends StatelessWidget {
-  const _XSContentWidget(
-    this.formWidget,
-    this.contactDetailsWidget,
-  );
+  const _XSContentWidget(this.formWidget, this.contactDetailsWidget);
 
   final Widget formWidget;
   final Widget contactDetailsWidget;
@@ -97,10 +93,7 @@ class _XSContentWidget extends StatelessWidget {
 }
 
 class _SContentWidget extends StatelessWidget {
-  const _SContentWidget(
-    this.formWidget,
-    this.contactDetailsWidget,
-  );
+  const _SContentWidget(this.formWidget, this.contactDetailsWidget);
 
   final Widget formWidget;
   final Widget contactDetailsWidget;
@@ -131,10 +124,7 @@ class _SContentWidget extends StatelessWidget {
 }
 
 class _MContentWidget extends StatelessWidget {
-  const _MContentWidget(
-    this.formWidget,
-    this.contactDetailsWidget,
-  );
+  const _MContentWidget(this.formWidget, this.contactDetailsWidget);
 
   final Widget formWidget;
   final Widget contactDetailsWidget;
@@ -165,10 +155,7 @@ class _MContentWidget extends StatelessWidget {
 }
 
 class _LContentWidget extends StatelessWidget {
-  const _LContentWidget(
-    this.formWidget,
-    this.contactDetailsWidget,
-  );
+  const _LContentWidget(this.formWidget, this.contactDetailsWidget);
 
   final Widget formWidget;
   final Widget contactDetailsWidget;

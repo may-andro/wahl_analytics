@@ -16,20 +16,20 @@ class UnknownSubmissionFailure extends SubmitVerificationCodeFailure {
 }
 
 class SubmitVerificationCodeParam {
-  SubmitVerificationCodeParam({
-    required this.docId,
-    required this.code,
-  });
+  SubmitVerificationCodeParam({required this.docId, required this.code});
 
   final String docId;
   final String code;
 }
 
-class SubmitVerificationCodeUseCase extends BaseUseCase<bool,
-    SubmitVerificationCodeParam, SubmitVerificationCodeFailure> {
-  SubmitVerificationCodeUseCase(
-    this._devModeAuthRepository,
-  );
+class SubmitVerificationCodeUseCase
+    extends
+        BaseUseCase<
+          bool,
+          SubmitVerificationCodeParam,
+          SubmitVerificationCodeFailure
+        > {
+  SubmitVerificationCodeUseCase(this._devModeAuthRepository);
 
   final DevModeAuthRepository _devModeAuthRepository;
 

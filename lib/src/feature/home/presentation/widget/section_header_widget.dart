@@ -33,6 +33,7 @@ class SectionHeaderWidget extends StatelessWidget {
   }
 
   void _navigateToContactUsScreen(BuildContext context) {
+    context.bloc.add(ContactUsClickEvent());
     context.push(ContactModuleRoute.contactUs.path);
   }
 }
@@ -54,9 +55,7 @@ class _MobileHeaderWidget extends StatelessWidget {
 }
 
 class _TabletHeaderWidget extends StatelessWidget {
-  const _TabletHeaderWidget({
-    required this.onTrailingButtonClicked,
-  });
+  const _TabletHeaderWidget({required this.onTrailingButtonClicked});
 
   final VoidCallback onTrailingButtonClicked;
 
@@ -124,7 +123,8 @@ class _TabsWidget extends StatelessWidget {
       builder: (context, state) {
         return Wrap(
           spacing: context.space(factor: 0),
-          children: state.homeBodySections?.map((section) {
+          children:
+              state.homeBodySections?.map((section) {
                 return SectionMenuItemWidget(
                   bodySection: section,
                   onTap: () {

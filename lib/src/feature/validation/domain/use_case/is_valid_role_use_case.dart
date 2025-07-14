@@ -30,8 +30,9 @@ class IsValidRoleUseCase
       return const Left(EmptyRoleFailure());
     }
 
-    final bool isValidRole =
-        RegExp(r"^(?!\s*$)[a-zA-Z\s'-]{1,40}$").hasMatch(input);
+    final bool isValidRole = RegExp(
+      r"^(?!\s*$)[a-zA-Z\s'-]{1,40}$",
+    ).hasMatch(input);
     return Right(isValidRole);
   }
 

@@ -30,7 +30,7 @@ class ClientRepositoryImpl implements ClientRepository {
       }
 
       final businessClientModelMap = Map<String, dynamic>.from(
-        dataMap[_appLocale.locale] as Map,
+        dataMap[_appLocale.languageCode] as Map,
       );
       final model = BusinessClientModel.fromJson(businessClientModelMap);
       return _businessClientMapper.map(model);

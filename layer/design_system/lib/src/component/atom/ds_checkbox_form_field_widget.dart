@@ -13,27 +13,27 @@ class DSCheckboxFormFieldWidget extends FormField<bool> {
     bool isTriStateEnabled = false,
     String? label,
   }) : super(
-          builder: (FormFieldState<bool> state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DSCheckboxWidget(
-                  value: state.value,
-                  isDisabled: isDisabled,
-                  isTriStateEnabled: isTriStateEnabled,
-                  onChanged: (value) {
-                    onSaved?.call(value);
-                    state.didChange(value);
-                    state.validate();
-                  },
-                  label: label,
-                ),
-                if (state.hasError)
-                  _ErrorTextWidget(error: state.errorText ?? ''),
-              ],
-            );
-          },
-        );
+         builder: (FormFieldState<bool> state) {
+           return Column(
+             crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+               DSCheckboxWidget(
+                 value: state.value,
+                 isDisabled: isDisabled,
+                 isTriStateEnabled: isTriStateEnabled,
+                 onChanged: (value) {
+                   onSaved?.call(value);
+                   state.didChange(value);
+                   state.validate();
+                 },
+                 label: label,
+               ),
+               if (state.hasError)
+                 _ErrorTextWidget(error: state.errorText ?? ''),
+             ],
+           );
+         },
+       );
 }
 
 class DSCheckboxWidget extends StatefulWidget {
@@ -95,10 +95,10 @@ class _DSCheckboxWidgetState extends State<DSCheckboxWidget> {
     final fillColor = widget.isDisabled && (isNull || isTrue)
         ? context.colorPalette.neutral.grey4.color
         : widget.isDisabled
-            ? context.colorPalette.neutral.grey2.color
-            : isNull || isTrue
-                ? context.colorPalette.prominent.primary.color
-                : context.colorPalette.background.primary.color;
+        ? context.colorPalette.neutral.grey2.color
+        : isNull || isTrue
+        ? context.colorPalette.prominent.primary.color
+        : context.colorPalette.background.primary.color;
 
     final iconColor = widget.isDisabled
         ? context.colorPalette.neutral.grey3.color
@@ -107,8 +107,8 @@ class _DSCheckboxWidgetState extends State<DSCheckboxWidget> {
     final borderColor = widget.isDisabled
         ? context.colorPalette.neutral.grey4.color
         : isNull || isTrue
-            ? context.colorPalette.brand.secondary.color
-            : context.colorPalette.neutral.grey8.color;
+        ? context.colorPalette.brand.secondary.color
+        : context.colorPalette.neutral.grey8.color;
 
     final labelColor = widget.isDisabled
         ? context.colorPalette.neutral.grey10

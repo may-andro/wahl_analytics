@@ -9,45 +9,55 @@ void main() {
       useCase = IsValidLongDescriptionUseCase();
     });
 
-    test('should return $NullLongDescriptionFailure when input is null',
-        () async {
-      final result = await useCase(null);
+    test(
+      'should return $NullLongDescriptionFailure when input is null',
+      () async {
+        final result = await useCase(null);
 
-      expect(result.isLeft, isTrue);
-      expect(result.left, isA<NullLongDescriptionFailure>());
-    });
+        expect(result.isLeft, isTrue);
+        expect(result.left, isA<NullLongDescriptionFailure>());
+      },
+    );
 
-    test('should return $EmptyLongDescriptionFailure when input is empty',
-        () async {
-      final result = await useCase('');
+    test(
+      'should return $EmptyLongDescriptionFailure when input is empty',
+      () async {
+        final result = await useCase('');
 
-      expect(result.isLeft, isTrue);
-      expect(result.left, isA<EmptyLongDescriptionFailure>());
-    });
+        expect(result.isLeft, isTrue);
+        expect(result.left, isA<EmptyLongDescriptionFailure>());
+      },
+    );
 
-    test('should return true when message is within allowed characters',
-        () async {
-      final result = await useCase('A' * 101);
+    test(
+      'should return true when message is within allowed characters',
+      () async {
+        final result = await useCase('A' * 101);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isTrue);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isTrue);
+      },
+    );
 
-    test('should return false when message is less than 100 characters',
-        () async {
-      final result = await useCase('A' * 39);
+    test(
+      'should return false when message is less than 100 characters',
+      () async {
+        final result = await useCase('A' * 39);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
-    test('should return false when message is more than 500 characters',
-        () async {
-      final result = await useCase('A' * 501);
+    test(
+      'should return false when message is more than 500 characters',
+      () async {
+        final result = await useCase('A' * 501);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test('should return false when message contains only whitespace', () async {
       final result = await useCase('       ');

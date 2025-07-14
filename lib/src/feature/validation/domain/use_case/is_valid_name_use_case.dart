@@ -30,8 +30,9 @@ class IsValidNameUseCase
       return const Left(EmptyNameFailure());
     }
 
-    final bool isValidName =
-        RegExp(r"^(?!\s*$)[a-zA-Z\s'-]{1,50}$").hasMatch(input);
+    final bool isValidName = RegExp(
+      r"^(?!\s*$)[a-zA-Z\s'-]{1,50}$",
+    ).hasMatch(input);
     return Right(isValidName);
   }
 

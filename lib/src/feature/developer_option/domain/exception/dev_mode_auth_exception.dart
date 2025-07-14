@@ -1,30 +1,21 @@
 import 'package:error_reporter/error_reporter.dart';
 
 sealed class DevModeAuthException implements AppException {
-  const DevModeAuthException(
-    this.cause,
-    this.stackTrace,
-  );
+  const DevModeAuthException(this.cause, this.stackTrace);
 
   final Object cause;
   final StackTrace stackTrace;
 }
 
 class NullDevModeAuthDataException extends DevModeAuthException {
-  const NullDevModeAuthDataException(
-    super.cause,
-    super.stackTrace,
-  );
+  const NullDevModeAuthDataException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Null data found for Verification Codes at Firebase';
 }
 
 class DevModeAuthServerException extends DevModeAuthException {
-  const DevModeAuthServerException(
-    super.cause,
-    super.stackTrace,
-  );
+  const DevModeAuthServerException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -32,10 +23,7 @@ class DevModeAuthServerException extends DevModeAuthException {
 }
 
 class InvalidDevModeAuthJsonException extends DevModeAuthException {
-  const InvalidDevModeAuthJsonException(
-    super.cause,
-    super.stackTrace,
-  );
+  const InvalidDevModeAuthJsonException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -43,10 +31,7 @@ class InvalidDevModeAuthJsonException extends DevModeAuthException {
 }
 
 class UnknownDevModeAuthException extends DevModeAuthException {
-  const UnknownDevModeAuthException(
-    super.cause,
-    super.stackTrace,
-  );
+  const UnknownDevModeAuthException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Failed to fetch Verification Codes due to $cause';

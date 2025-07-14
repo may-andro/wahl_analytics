@@ -65,32 +65,26 @@ void main() {
       useCase = UpdateAllLocaleBusinessServiceUseCase(mockServiceRepository);
     });
 
-    test(
-      'should call $ServiceRepository to update the data',
-      () async {
-        await useCase(allLocaleBusinessServiceEntity);
+    test('should call $ServiceRepository to update the data', () async {
+      await useCase(allLocaleBusinessServiceEntity);
 
-        verify(
-          () => mockServiceRepository.updateAllLocaleBusinessService(
-            allLocaleBusinessServiceEntity,
-          ),
-        ).called(1);
-      },
-    );
+      verify(
+        () => mockServiceRepository.updateAllLocaleBusinessService(
+          allLocaleBusinessServiceEntity,
+        ),
+      ).called(1);
+    });
 
-    test(
-      'should return $UpdateAllLocaleBusinessServiceFailure '
-      'when $Exception is thrown',
-      () async {
-        mockServiceRepository.mockUpdateAllLocaleBusinessServiceThrowsException(
-          Exception(),
-        );
+    test('should return $UpdateAllLocaleBusinessServiceFailure '
+        'when $Exception is thrown', () async {
+      mockServiceRepository.mockUpdateAllLocaleBusinessServiceThrowsException(
+        Exception(),
+      );
 
-        final result = await useCase(allLocaleBusinessServiceEntity);
+      final result = await useCase(allLocaleBusinessServiceEntity);
 
-        expect(result.isLeft, isTrue);
-        expect(result.left, isA<UpdateAllLocaleBusinessServiceFailure>());
-      },
-    );
+      expect(result.isLeft, isTrue);
+      expect(result.left, isA<UpdateAllLocaleBusinessServiceFailure>());
+    });
   });
 }

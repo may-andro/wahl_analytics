@@ -47,39 +47,33 @@ void main() {
     });
 
     group('init', () {
-      test(
-        'should register ${FlutterError.onError}',
-        () async {
-          mockFatalErrorController.mockIsFatalError(true);
+      test('should register ${FlutterError.onError}', () async {
+        mockFatalErrorController.mockIsFatalError(true);
 
-          await loggerErrorReporter.init();
+        await loggerErrorReporter.init();
 
-          expect(FlutterError.onError, isNotNull);
-        },
-      );
+        expect(FlutterError.onError, isNotNull);
+      });
     });
 
     group('reportError', () {
-      test(
-        'should log error in $LogReporter ',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
+      test('should log error in $LogReporter ', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
 
-          await loggerErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await loggerErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verify(
-            () => mockLogReporter.error(
-              'Error occurred due to $exception',
-              error: exception,
-              stacktrace: stackTrace,
-            ),
-          ).called(1);
-        },
-      );
+        verify(
+          () => mockLogReporter.error(
+            'Error occurred due to $exception',
+            error: exception,
+            stacktrace: stackTrace,
+          ),
+        ).called(1);
+      });
     });
   });
 }

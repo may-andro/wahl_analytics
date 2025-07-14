@@ -149,8 +149,9 @@ void main() {
   test(
     'should return error content when GetBusinessContactUseCase ends with failure',
     () async {
-      mockGetBusinessContactUseCase
-          .mockCallFailure(const BusinessContactFailure());
+      mockGetBusinessContactUseCase.mockCallFailure(
+        const BusinessContactFailure(),
+      );
 
       mockGetBusinessClientUseCase.mockCallSuccess(businessClientEntity);
       mockGetBusinessServiceUseCase.mockCallSuccess(businessServiceEntity);
@@ -166,8 +167,9 @@ void main() {
   test(
     'should return error content when GetBusinessClientUseCase ends with failure',
     () async {
-      mockGetBusinessClientUseCase
-          .mockCallFailure(const BusinessClientFailure());
+      mockGetBusinessClientUseCase.mockCallFailure(
+        const BusinessClientFailure(),
+      );
 
       mockGetBusinessContactUseCase.mockCallSuccess(businessContactEntity);
       mockGetBusinessServiceUseCase.mockCallSuccess(businessServiceEntity);

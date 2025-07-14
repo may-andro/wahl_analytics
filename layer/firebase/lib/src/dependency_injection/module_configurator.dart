@@ -12,9 +12,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseModuleConfigurator implements ModuleConfigurator {
-  FirebaseModuleConfigurator(
-    this.isFirebaseEnabled,
-  );
+  FirebaseModuleConfigurator(this.isFirebaseEnabled);
 
   final bool isFirebaseEnabled;
 
@@ -41,10 +39,6 @@ class FirebaseModuleConfigurator implements ModuleConfigurator {
     final analyticsController = serviceLocator.get<FbAnalyticsController>();
     await analyticsController.enableFirebaseAnalytics(isFirebaseEnabled);
     await analyticsController.sendUserEvent(userId);
-    await analyticsController.sendLogEvent(
-      'app_started',
-      parameters: {'time': '${DateTime.now().microsecondsSinceEpoch}'},
-    );
   }
 
   @override
@@ -90,9 +84,8 @@ class FirebaseModuleConfigurator implements ModuleConfigurator {
   Future<void> _injectRemoteConfig(ServiceLocator serviceLocator) async {
     serviceLocator.registerSingleton(() => FirebaseRemoteConfig.instance);
     serviceLocator.registerFactory(
-      () => FbRemoteConfigController(
-        serviceLocator.get<FirebaseRemoteConfig>(),
-      ),
+      () =>
+          FbRemoteConfigController(serviceLocator.get<FirebaseRemoteConfig>()),
     );
   }
 

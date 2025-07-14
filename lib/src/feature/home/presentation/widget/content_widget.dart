@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/bloc.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/widget/section_client_widget.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/widget/section_footer_widget.dart';
@@ -23,26 +24,10 @@ class ContentWidget extends StatelessWidget {
       builder: (context, state) {
         return DSViewStateBuilderWidget(
           state: state.viewState,
-          loadingBuilder: (_) {
-            return DSLoadingWidget(
-              size: max(context.shortestSide * 0.1, context.space(factor: 2)),
-            );
-          },
-          errorBuilder: (_) {
-            return Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: context.isDesktop
-                    ? context.width * 0.15
-                    : context.space(factor: 2),
-              ),
-              child: DSErrorCardWidget(
-                message: state.errorStateCause,
-              ),
-            );
-          },
-          builder: (_) {
-            return const _SuccessContentWidget();
-          },
+          loadingBuilder: (_) => const _LoadingContentView(),
+          errorBuilder: (_) =>
+              _ErrorContentView(errorMessage: state.errorStateCause),
+          builder: (_) => const _SuccessContentWidget(),
         );
       },
     );
@@ -75,15 +60,16 @@ class _SuccessContentWidgetState extends State<_SuccessContentWidget>
       duration: Duration.zero,
     );
 
-    _toolBarHeightFactorTweenAnimation = Tween<double>(
-      begin: _maxHeaderHeightFactor,
-      end: _minHeaderHeightFactor,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
+    _toolBarHeightFactorTweenAnimation =
+        Tween<double>(
+          begin: _maxHeaderHeightFactor,
+          end: _minHeaderHeightFactor,
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOut,
+          ),
+        );
   }
 
   @override
@@ -103,54 +89,47 @@ class _SuccessContentWidgetState extends State<_SuccessContentWidget>
           );
         }
       },
-      child: CustomScrollView(
-        controller: _listScrollController,
-        scrollBehavior: ScrollConfiguration.of(context).copyWith(
-          scrollbars: false,
-          overscroll: false,
+      child: TrackingImpressionDetectorWidget(
+        impressionId: 'home_content_view',
+        onImpression: () => context.bloc.add(HomeContentViewEvent()),
+        child: CustomScrollView(
+          controller: _listScrollController,
+          scrollBehavior: ScrollConfiguration.of(
+            context,
+          ).copyWith(scrollbars: false, overscroll: false),
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          slivers: [
+            AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                final animationValue = _toolBarHeightFactorTweenAnimation.value;
+                final scrollPercentage =
+                    (animationValue - _minHeaderHeightFactor) /
+                    (_maxHeaderHeightFactor - _minHeaderHeightFactor);
+                final height = context.space(factor: animationValue);
+                final colorPalette = context.colorPalette;
+                return SliverAppBar(
+                  pinned: true,
+                  backgroundColor: colorPalette.background.primary.color,
+                  surfaceTintColor: colorPalette.neutral.transparent.color,
+                  shadowColor: colorPalette.background.onPrimary.color,
+                  toolbarHeight: height,
+                  automaticallyImplyLeading: false,
+                  title: SectionHeaderWidget(
+                    opacity: 1 - scrollPercentage,
+                    height: height,
+                  ),
+                );
+              },
+            ),
+            const SliverToBoxAdapter(child: SectionIntroWidget()),
+            const SliverToBoxAdapter(child: SectionServiceWidget()),
+            const SliverToBoxAdapter(child: SectionClientWidget()),
+            const SliverToBoxAdapter(child: SectionTeamWidget()),
+            const SliverToBoxAdapter(child: SectionFooterWidget()),
+          ],
         ),
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        slivers: [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) {
-              final animationValue = _toolBarHeightFactorTweenAnimation.value;
-              final scrollPercentage =
-                  (animationValue - _minHeaderHeightFactor) /
-                      (_maxHeaderHeightFactor - _minHeaderHeightFactor);
-              final height = context.space(factor: animationValue);
-              final colorPalette = context.colorPalette;
-              return SliverAppBar(
-                pinned: true,
-                backgroundColor: colorPalette.background.primary.color,
-                surfaceTintColor: colorPalette.neutral.transparent.color,
-                shadowColor: colorPalette.background.onPrimary.color,
-                toolbarHeight: height,
-                automaticallyImplyLeading: false,
-                title: SectionHeaderWidget(
-                  opacity: 1 - scrollPercentage,
-                  height: height,
-                ),
-              );
-            },
-          ),
-          const SliverToBoxAdapter(
-            child: SectionIntroWidget(),
-          ),
-          const SliverToBoxAdapter(
-            child: SectionServiceWidget(),
-          ),
-          const SliverToBoxAdapter(
-            child: SectionClientWidget(),
-          ),
-          const SliverToBoxAdapter(
-            child: SectionTeamWidget(),
-          ),
-          const SliverToBoxAdapter(
-            child: SectionFooterWidget(),
-          ),
-        ],
       ),
     );
   }
@@ -188,5 +167,43 @@ class _SuccessContentWidgetState extends State<_SuccessContentWidget>
         }
       }
     }
+  }
+}
+
+class _ErrorContentView extends StatelessWidget {
+  const _ErrorContentView({this.errorMessage});
+
+  final String? errorMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return TrackingImpressionDetectorWidget(
+      impressionId: 'home_error_content_view',
+      onImpression: () => context.bloc.add(ErrorContentViewEvent()),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.isDesktop
+              ? context.width * 0.15
+              : context.space(factor: 2),
+        ),
+        child: DSErrorCardWidget(message: errorMessage),
+      ),
+    );
+  }
+}
+
+class _LoadingContentView extends StatelessWidget {
+  const _LoadingContentView();
+
+  @override
+  Widget build(BuildContext context) {
+    return TrackingImpressionDetectorWidget(
+      impressionId: 'home_loading_content_view',
+      onImpression: () => context.bloc.add(LoadingContentViewEvent()),
+
+      child: DSLoadingWidget(
+        size: max(context.shortestSide * 0.1, context.space(factor: 2)),
+      ),
+    );
   }
 }

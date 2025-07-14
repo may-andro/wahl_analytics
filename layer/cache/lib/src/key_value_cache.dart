@@ -5,9 +5,7 @@ import 'package:dependency_injection/dependency_injection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class KeyValueCache<T> extends Cache {
-  KeyValueCache(
-    this._cacheKey,
-  ) {
+  KeyValueCache(this._cacheKey) {
     _sharedPreferences = DIController().serviceLocator.get<SharedPreferences>();
   }
 

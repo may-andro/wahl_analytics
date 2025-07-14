@@ -15,9 +15,7 @@ class UpdateFeatureFlagUseCase
   final FeatureFlagRepository _featureFlagRepository;
 
   @override
-  FutureOr<Either<FeatureFlagUpdateFailure, void>> execute(
-    FeatureFlag input,
-  ) {
+  FutureOr<Either<FeatureFlagUpdateFailure, void>> execute(FeatureFlag input) {
     _featureFlagRepository.updateFeatureFlag(input);
     return const Right(null);
   }

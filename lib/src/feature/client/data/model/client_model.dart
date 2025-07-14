@@ -14,13 +14,9 @@ class ClientModel {
   });
 
   factory ClientModel.fromJson(Map<String, dynamic> json) {
-    final services = (json['servicesProvided'] as List<dynamic>).map(
-      (service) {
-        return ServiceModel.fromJson(
-          Map<String, dynamic>.from(service as Map),
-        );
-      },
-    ).toList();
+    final services = (json['servicesProvided'] as List<dynamic>).map((service) {
+      return ServiceModel.fromJson(Map<String, dynamic>.from(service as Map));
+    }).toList();
     return ClientModel(
       url: json['url'] as String,
       name: json['name'] as String,

@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Card Widget',
-  type: CardWidget,
-)
+@widgetbook.UseCase(name: 'Card Widget', type: CardWidget)
 CardWidget cardWidget(BuildContext context) {
   return const CardWidget();
 }
@@ -45,10 +42,7 @@ class CardWidget extends StatelessWidget {
                       context.colorPalette.backgroundSecondary.surface,
                       'BackgroundSecondary Surface',
                     ),
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -57,10 +51,7 @@ class CardWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -70,10 +61,7 @@ class CardWidget extends StatelessWidget {
                   label: 'Splash Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -82,10 +70,7 @@ class CardWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -95,10 +80,7 @@ class CardWidget extends StatelessWidget {
                   label: 'Shadow Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -107,10 +89,7 @@ class CardWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
@@ -120,10 +99,7 @@ class CardWidget extends StatelessWidget {
                   label: 'Surface Tine Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
-                    Option(
-                      context.colorPalette.brand.primary,
-                      'Brand Primary',
-                    ),
+                    Option(context.colorPalette.brand.primary, 'Brand Primary'),
                     Option(
                       context.colorPalette.semantic.success,
                       'Semantic Success',
@@ -132,10 +108,7 @@ class CardWidget extends StatelessWidget {
                       context.colorPalette.semantic.error,
                       'Semantic Error',
                     ),
-                    Option(
-                      context.colorPalette.semantic.info,
-                      'Semantic Info',
-                    ),
+                    Option(context.colorPalette.semantic.info, 'Semantic Info'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

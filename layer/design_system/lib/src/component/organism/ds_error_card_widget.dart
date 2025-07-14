@@ -3,11 +3,7 @@ import 'package:design_system/src/extension/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class DSErrorCardWidget extends StatelessWidget {
-  const DSErrorCardWidget({
-    super.key,
-    this.message,
-    this.onRetryClicked,
-  });
+  const DSErrorCardWidget({super.key, this.message, this.onRetryClicked});
 
   final VoidCallback? onRetryClicked;
   final String? message;

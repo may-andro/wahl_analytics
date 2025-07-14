@@ -23,9 +23,6 @@ class LogUseCaseInterceptor implements UseCaseInterceptor {
 
   @override
   void onSuccess<Type>(String tag, Type result) {
-    _logReporter.debug(
-      'Success: ${result.runtimeType} $result',
-      tag: tag,
-    );
+    _logReporter.debug('Success: ${result.runtimeType} $result', tag: tag);
   }
 }

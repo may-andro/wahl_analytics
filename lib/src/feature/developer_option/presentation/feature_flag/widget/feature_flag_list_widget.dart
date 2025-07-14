@@ -119,10 +119,7 @@ class _GridWidget extends StatelessWidget {
 }
 
 class _GridItemWidget extends StatelessWidget {
-  const _GridItemWidget({
-    required this.featureFlag,
-    required this.onClicked,
-  });
+  const _GridItemWidget({required this.featureFlag, required this.onClicked});
 
   final FeatureFlag featureFlag;
   final void Function(FeatureFlag) onClicked;

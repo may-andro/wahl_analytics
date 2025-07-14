@@ -16,12 +16,12 @@ class DevModeAuthBloc extends Bloc<DevModeAuthEvent, DevModeAuthState> {
     this._cacheDevModeAuthenticationUseCase,
     this._isValidVerificationCodeUseCase,
   ) : super(
-          DevModeAuthState(
-            formKey: GlobalKey<FormState>(),
-            textFieldController: TextEditingController(),
-            focusNode: FocusNode()..requestFocus(),
-          ),
-        ) {
+        DevModeAuthState(
+          formKey: GlobalKey<FormState>(),
+          textFieldController: TextEditingController(),
+          focusNode: FocusNode()..requestFocus(),
+        ),
+      ) {
     on<OnInitEvent>(_mapOnInitEventToState);
     on<ValidateTextFieldEvent>(_mapValidateTextFieldEventToState);
     on<SubmitFormEvent>(_mapSubmitFormEventToState);
@@ -43,10 +43,7 @@ class DevModeAuthBloc extends Bloc<DevModeAuthEvent, DevModeAuthState> {
       },
       (docId) {
         emit(
-          state.copyWith(
-            viewState: DSViewState.idle,
-            verificationDocId: docId,
-          ),
+          state.copyWith(viewState: DSViewState.idle, verificationDocId: docId),
         );
       },
     );

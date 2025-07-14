@@ -9,6 +9,7 @@ import 'package:wahl_analytics/src/feature/career/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/careers_request/bloc/careers_request_event.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/careers_request/bloc/careers_request_state.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/careers_request/bloc/snack_bar_message_state.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/careers_request/tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/file_picker/file_picker.dart';
 import 'package:wahl_analytics/src/feature/url_handler/url_handler.dart';
 
@@ -20,12 +21,8 @@ class CareersRequestBloc
     this._downloadResumeUseCase,
     this._fileOpenerUseCase,
     this._openExternalUrlUseCase,
-  ) : super(
-          const CareersRequestState(
-            careerMap: {},
-            downloadResumeFiles: [],
-          ),
-        ) {
+    this._trackingDelegate,
+  ) : super(const CareersRequestState(careerMap: {}, downloadResumeFiles: [])) {
     on<GetCareersRequestEvent>(_mapGetCareersRequestEventToState);
     on<DeleteCareersRequestEvent>(_mapDeleteCareersRequestEventToState);
     on<OpenResumeEvent>(_mapOpenResumeEventToState);
@@ -36,11 +33,13 @@ class CareersRequestBloc
   final DownloadResumeUseCase _downloadResumeUseCase;
   final FileOpenerUseCase _fileOpenerUseCase;
   final OpenExternalUrlUseCase _openExternalUrlUseCase;
+  final CareersRequestTrackingDelegate _trackingDelegate;
 
   FutureOr<void> _mapGetCareersRequestEventToState(
     GetCareersRequestEvent event,
     Emitter<CareersRequestState> emit,
   ) async {
+    _trackingDelegate.trackScreenView();
     final eitherResult = await _getCareersRequestUseCase();
     eitherResult.fold(
       (failure) => emit(state.copyWith(viewState: DSViewState.error)),
@@ -59,10 +58,7 @@ class CareersRequestBloc
         }
 
         emit(
-          state.copyWith(
-            careerMap: careerDateMap,
-            viewState: DSViewState.idle,
-          ),
+          state.copyWith(careerMap: careerDateMap, viewState: DSViewState.idle),
         );
       },
     );
@@ -128,9 +124,7 @@ class CareersRequestBloc
     if (eitherResult.isLeft) {
       emit(
         state.copyWith(
-          snackBarMessageState: ResumeDownloadFailureMessageState(
-            event.career,
-          ),
+          snackBarMessageState: ResumeDownloadFailureMessageState(event.career),
         ),
       );
       return;
@@ -154,15 +148,14 @@ class CareersRequestBloc
     final eitherResult = await _openExternalUrlUseCase.execute(
       OpenExternalUrlParam(Uri.parse(resumeUrl), false),
     );
-    return eitherResult.fold(
-      (failure) => const OpenUrlFailureMessageState(),
-      (isOpened) {
-        if (isOpened) {
-          return const OpenUrlSuccessMessageState();
-        }
-        return const OpenUrlFailureMessageState();
-      },
-    );
+    return eitherResult.fold((failure) => const OpenUrlFailureMessageState(), (
+      isOpened,
+    ) {
+      if (isOpened) {
+        return const OpenUrlSuccessMessageState();
+      }
+      return const OpenUrlFailureMessageState();
+    });
   }
 
   Future<SnackBarMessageState> _openFile(File file) async {

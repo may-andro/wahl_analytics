@@ -9,6 +9,7 @@ import 'package:wahl_analytics/src/feature/contact/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/bloc/contact_us_event.dart';
 import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/bloc/contact_us_state.dart';
 import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/dto/dto.dart';
+import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/validation/validation.dart';
 
 class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
@@ -19,17 +20,20 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
     this._isFeatureEnabledUseCase,
     this._getBusinessContactUseCase,
     this._submitContactUsApplicationUseCase,
+    this._trackingDelegate,
   ) : super(
-          ContactUsState(
-            formKey: GlobalKey<FormState>(),
-            textFieldFocusNodes: FormFieldType.focusNodeMap,
-            textFieldControllers: FormFieldType.textEditingControllerMap,
-          ),
-        ) {
-    on<InitialiseScreenEvent>(_mapInitialiseScreenEventToState);
+        ContactUsState(
+          formKey: GlobalKey<FormState>(),
+          textFieldFocusNodes: FormFieldType.focusNodeMap,
+          textFieldControllers: FormFieldType.textEditingControllerMap,
+        ),
+      ) {
+    on<OnInitEvent>(_mapOnInitEventToState);
+    on<OnScreenVisibleEvent>(_mapOnScreenVisibleEventToState);
     on<ValidateTextFieldEvent>(_mapValidateTextFieldEventToState);
     on<OnConsentSelectedEvent>(_mapOnConsentSelectedEventToState);
     on<SubmitFormEvent>(_mapSubmitFormEventToState);
+    on<OnCloseClickEvent>(_mapOnCloseClickEventToState);
   }
 
   final IsValidEmailUseCase _isValidEmailUseCase;
@@ -38,6 +42,7 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
   final IsFeatureEnabledUseCase _isFeatureEnabledUseCase;
   final GetBusinessContactUseCase _getBusinessContactUseCase;
   final SubmitContactUsApplicationUseCase _submitContactUsApplicationUseCase;
+  final ContactUsTrackingDelegate _trackingDelegate;
 
   Future<bool> get isMobileDetailVisible async {
     final eitherResult = await _isFeatureEnabledUseCase(
@@ -46,8 +51,8 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
     return eitherResult.fold((_) => false, (isEnabled) => isEnabled);
   }
 
-  FutureOr<void> _mapInitialiseScreenEventToState(
-    InitialiseScreenEvent event,
+  FutureOr<void> _mapOnInitEventToState(
+    OnInitEvent event,
     Emitter<ContactUsState> emit,
   ) async {
     emit(
@@ -70,6 +75,13 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
         );
       },
     );
+  }
+
+  FutureOr<void> _mapOnScreenVisibleEventToState(
+    OnScreenVisibleEvent event,
+    Emitter<ContactUsState> emit,
+  ) {
+    _trackingDelegate.trackScreenView();
   }
 
   FutureOr<void> _mapSubmitFormEventToState(
@@ -111,16 +123,21 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
         message: message!,
       );
       final result = await _submitContactUsApplicationUseCase(contactUsEntity);
-      result.fold((left) {
-        emit(state.copyWith(viewState: DSViewState.error));
-      }, (right) {
-        emit(
-          state.copyWith(
-            viewState: DSViewState.idle,
-            submissionSuccessful: true,
-          ),
-        );
-      });
+      result.fold(
+        (left) {
+          _trackingDelegate.trackSubmitFormFailure();
+          emit(state.copyWith(viewState: DSViewState.error));
+        },
+        (right) {
+          _trackingDelegate.trackSubmitForm();
+          emit(
+            state.copyWith(
+              viewState: DSViewState.idle,
+              submissionSuccessful: true,
+            ),
+          );
+        },
+      );
     }
   }
 
@@ -136,13 +153,9 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
 
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[formFieldType] = message;
-    emit(
-      state.copyWith(
-        validationMessages: validationMessages,
-      ),
-    );
+          state.validationMessages,
+        )..[formFieldType] = message;
+    emit(state.copyWith(validationMessages: validationMessages));
     return null;
   }
 
@@ -156,8 +169,8 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
     }
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[FormFieldType.consent] = message;
+          state.validationMessages,
+        )..[FormFieldType.consent] = message;
     emit(
       state.copyWith(
         isConsentGiven: event.isConsentGiven,
@@ -185,14 +198,10 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
 
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[event.formFieldType] = message;
+          state.validationMessages,
+        )..[event.formFieldType] = message;
 
-    emit(
-      state.copyWith(
-        validationMessages: validationMessages,
-      ),
-    );
+    emit(state.copyWith(validationMessages: validationMessages));
   }
 
   Future<FormFieldValidationMessage?> _getNameValidationMessage(
@@ -274,5 +283,12 @@ class ContactUsBloc extends Bloc<ContactUsEvent, ContactUsState> {
     );
 
     return message;
+  }
+
+  FutureOr<void> _mapOnCloseClickEventToState(
+    OnCloseClickEvent event,
+    Emitter<ContactUsState> emit,
+  ) {
+    _trackingDelegate.trackAppBarCloseClick();
   }
 }

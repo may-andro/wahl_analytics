@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 extension IconExtension on String {
   IconData get customIconData {
-    final iconData = DSIcons.all
-        .firstWhereOrNull((iconData) => iconData.codePoint == int.parse(this));
+    final iconData = DSIcons.all.firstWhereOrNull(
+      (iconData) => iconData.codePoint == int.parse(this),
+    );
 
     return iconData ?? Icons.question_mark;
   }

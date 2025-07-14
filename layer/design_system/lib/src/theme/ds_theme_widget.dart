@@ -5,11 +5,10 @@ import 'package:meta/meta.dart';
 
 @internal
 final class DSThemeWidget extends InheritedWidget {
-  DSThemeWidget({
-    super.key,
-    required this.dsTheme,
-    required Widget child,
-  }) : super(child: _ThemeWidget(dsTheme: dsTheme, child: child));
+  DSThemeWidget({super.key, required this.dsTheme, required Widget child})
+    : super(
+        child: _ThemeWidget(dsTheme: dsTheme, child: child),
+      );
 
   final DSTheme dsTheme;
 
@@ -24,19 +23,13 @@ final class DSThemeWidget extends InheritedWidget {
 }
 
 class _ThemeWidget extends StatelessWidget {
-  const _ThemeWidget({
-    required this.dsTheme,
-    required this.child,
-  });
+  const _ThemeWidget({required this.dsTheme, required this.child});
 
   final Widget child;
   final DSTheme dsTheme;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedTheme(
-      data: dsTheme.theme,
-      child: child,
-    );
+    return AnimatedTheme(data: dsTheme.theme, child: child);
   }
 }

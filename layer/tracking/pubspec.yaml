@@ -1,0 +1,28 @@
+name: tracking
+description: Provides support for analytic event reporting for the app
+publish_to: 'none'
+
+environment:
+  sdk: ^3.8.1
+
+resolution: workspace
+
+dependencies:
+  dependency_injection:
+    path: ../dependency_injection
+  firebase:
+    path: ../firebase
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.9.0
+  visibility_detector: ^0.4.0+2
+
+dev_dependencies:
+  build_runner: ^2.5.4
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.9.5
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true

@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/client/client.dart';
 import 'package:wahl_analytics/src/feature/contact/contact.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
@@ -23,28 +24,32 @@ class SectionClientWidget extends StatelessWidget {
         if (clientSections.isEmpty) return const SizedBox.shrink();
 
         final clientSection = clientSections.first;
-        return Container(
-          key: state.sectionKeyMap?[clientSection.name],
-          color: context.colorPalette.backgroundSecondary.primary.color,
-          padding: EdgeInsets.symmetric(
-            horizontal: context.space(factor: 5),
-            vertical: context.space(factor: 5),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ClientGridWidget(
-                clients: clientSection.clients,
-              ),
-              const DSVerticalSpacerWidget(3),
-              SectionInfoWidget(
-                bodySection: clientSection,
-                isSecondaryBackground: true,
-                onClicked: () =>
-                    context.push(ContactModuleRoute.contactUs.path),
-              ),
-            ],
+        return TrackingImpressionDetectorWidget(
+          impressionId: 'home_section_client',
+          onImpression: () => context.bloc.add(HomeClientSectionViewEvent()),
+          child: Container(
+            key: state.sectionKeyMap?[clientSection.name],
+            color: context.colorPalette.backgroundSecondary.primary.color,
+            padding: EdgeInsets.symmetric(
+              horizontal: context.space(factor: 5),
+              vertical: context.space(factor: 5),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ClientGridWidget(clients: clientSection.clients),
+                const DSVerticalSpacerWidget(3),
+                SectionInfoWidget(
+                  bodySection: clientSection,
+                  isSecondaryBackground: true,
+                  onClicked: () {
+                    context.bloc.add(ContactUsClickEvent());
+                    context.push(ContactModuleRoute.contactUs.path);
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

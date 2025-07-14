@@ -5,15 +5,11 @@ import 'package:mocktail/mocktail.dart';
 
 class MockFirebaseAnalytics extends Mock implements FirebaseAnalytics {
   void mockSetAnalyticsCollectionEnabled() {
-    when(
-      () => setAnalyticsCollectionEnabled(any()),
-    ).thenAnswer((_) async {});
+    when(() => setAnalyticsCollectionEnabled(any())).thenAnswer((_) async {});
   }
 
   void mockSetUserId() {
-    when(
-      () => setUserId(id: any(named: 'id')),
-    ).thenAnswer((_) async {});
+    when(() => setUserId(id: any(named: 'id'))).thenAnswer((_) async {});
   }
 
   void mockSetUserProperty() {
@@ -75,9 +71,7 @@ void main() {
           additionalProps: {'key': 'value'},
         );
 
-        verify(
-          () => mockFirebaseAnalytics.setUserId(id: 'test'),
-        ).called(1);
+        verify(() => mockFirebaseAnalytics.setUserId(id: 'test')).called(1);
         verify(
           () => mockFirebaseAnalytics.setUserProperty(
             name: 'key',

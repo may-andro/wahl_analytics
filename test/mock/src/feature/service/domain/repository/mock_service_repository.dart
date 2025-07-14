@@ -19,9 +19,9 @@ class MockServiceRepository extends Mock implements ServiceRepository {
   }
 
   void mockUpdateAllLocaleBusinessService() {
-    when(() => updateAllLocaleBusinessService(any())).thenAnswer(
-      (_) async => {},
-    );
+    when(
+      () => updateAllLocaleBusinessService(any()),
+    ).thenAnswer((_) async => {});
   }
 
   void mockUpdateAllLocaleBusinessServiceThrowsException(Object exception) {

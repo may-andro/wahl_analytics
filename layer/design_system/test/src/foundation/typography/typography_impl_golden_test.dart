@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../util/alchemist_utils.dart';
 
 void main() {
-  const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
+  const text =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
       ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       ' aute irure dolor in reprehenderit in voluptate velit esse cillum dolore'
       ' eu fugiat nulla pariatur.';

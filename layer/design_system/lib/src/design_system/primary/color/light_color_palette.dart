@@ -30,8 +30,9 @@ final class LightColorPalette implements DSColorPalette {
       // White text for contrast
       tertiaryContainer: DSColor(0xFFFDE6C5),
       // Light gold for container
-      onTertiaryContainer:
-          DSColor(0xFF624500), // Darker variant for text on container
+      onTertiaryContainer: DSColor(
+        0xFF624500,
+      ), // Darker variant for text on container
     );
   }
 

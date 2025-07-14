@@ -23,19 +23,14 @@ class DSThemeBuilderWidget extends StatelessWidget {
           brightness: brightness,
           designSystem: designSystem,
         );
-        return DSThemeWidget(
-          dsTheme: theme,
-          child: child,
-        );
+        return DSThemeWidget(dsTheme: theme, child: child);
       },
     );
   }
 }
 
 class _TextScaleClampWidget extends StatelessWidget {
-  const _TextScaleClampWidget({
-    required this.builder,
-  });
+  const _TextScaleClampWidget({required this.builder});
 
   final Widget Function(TextScaler textScaler) builder;
 

@@ -8,7 +8,9 @@ sealed class ContactUsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class InitialiseScreenEvent extends ContactUsEvent {}
+final class OnInitEvent extends ContactUsEvent {}
+
+final class OnScreenVisibleEvent extends ContactUsEvent {}
 
 class ValidateTextFieldEvent extends ContactUsEvent {
   const ValidateTextFieldEvent({
@@ -21,13 +23,15 @@ class ValidateTextFieldEvent extends ContactUsEvent {
 }
 
 final class OnConsentSelectedEvent extends ContactUsEvent {
-  const OnConsentSelectedEvent({
-    required this.isConsentGiven,
-  });
+  const OnConsentSelectedEvent({required this.isConsentGiven});
 
   final bool isConsentGiven;
 }
 
 final class SubmitFormEvent extends ContactUsEvent {
   const SubmitFormEvent();
+}
+
+final class OnCloseClickEvent extends ContactUsEvent {
+  const OnCloseClickEvent();
 }

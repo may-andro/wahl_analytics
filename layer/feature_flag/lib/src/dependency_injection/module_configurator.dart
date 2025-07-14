@@ -56,29 +56,23 @@ class FeatureFlagModuleConfigurator implements ModuleConfigurator {
 
     // use case
     serviceLocator.registerFactory(
-      () => GetFeatureFlagsUseCase(
-        serviceLocator.get<FeatureFlagRepository>(),
-      ),
+      () => GetFeatureFlagsUseCase(serviceLocator.get<FeatureFlagRepository>()),
     );
     serviceLocator.registerFactory(
-      () => InitFeatureFlagsUseCase(
-        serviceLocator.get<FeatureFlagRepository>(),
-      ),
+      () =>
+          InitFeatureFlagsUseCase(serviceLocator.get<FeatureFlagRepository>()),
     );
     serviceLocator.registerFactory(
-      () => IsFeatureEnabledUseCase(
-        serviceLocator.get<FeatureFlagRepository>(),
-      ),
+      () =>
+          IsFeatureEnabledUseCase(serviceLocator.get<FeatureFlagRepository>()),
     );
     serviceLocator.registerFactory(
-      () => ResetFeatureFlagsUseCase(
-        serviceLocator.get<FeatureFlagRepository>(),
-      ),
+      () =>
+          ResetFeatureFlagsUseCase(serviceLocator.get<FeatureFlagRepository>()),
     );
     serviceLocator.registerFactory(
-      () => UpdateFeatureFlagUseCase(
-        serviceLocator.get<FeatureFlagRepository>(),
-      ),
+      () =>
+          UpdateFeatureFlagUseCase(serviceLocator.get<FeatureFlagRepository>()),
     );
   }
 }

@@ -11,23 +11,33 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) {
-        return appServiceLocator.get<ContactUsBloc>()
-          ..add(InitialiseScreenEvent());
-      },
-      child: Scaffold(
-        backgroundColor: context.colorPalette.background.primary.color,
-        appBar: DSAppBarWidget(
-          height: DSAppBarWidget.getHeight(context),
-          onBackClicked: context.pop,
-        ),
-        body: BlocListener<ContactUsBloc, ContactUsState>(
-          listenWhen: (previous, current) {
-            return current.isFormSubmittedSuccessfully;
-          },
-          listener: (context, _) => context.pop(),
-          child: const ContentWidget(),
-        ),
+      create: (_) => appServiceLocator.get<ContactUsBloc>()..add(OnInitEvent()),
+      child: BlocBuilder<ContactUsBloc, ContactUsState>(
+        builder: (context, state) {
+          return RouteObserverWidget(
+            //onResume: () => context.bloc.add(OnScreenVisibleEvent()),
+            onResume: () {
+              context.bloc.add(OnScreenVisibleEvent());
+            },
+            child: Scaffold(
+              backgroundColor: context.colorPalette.background.primary.color,
+              appBar: DSAppBarWidget(
+                height: DSAppBarWidget.getHeight(context),
+                onBackClicked: () {
+                  context.bloc.add(const OnCloseClickEvent());
+                  context.pop();
+                },
+              ),
+              body: BlocListener<ContactUsBloc, ContactUsState>(
+                listenWhen: (previous, current) {
+                  return current.isFormSubmittedSuccessfully;
+                },
+                listener: (context, _) => context.pop(),
+                child: const ContentWidget(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

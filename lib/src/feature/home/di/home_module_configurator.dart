@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:core/core.dart';
 import 'package:dependency_injection/dependency_injection.dart';
 import 'package:feature_flag/feature_flag.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/client/client.dart';
 import 'package:wahl_analytics/src/feature/contact/contact.dart';
 import 'package:wahl_analytics/src/feature/developer_option/developer_option.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/bloc.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/route/route.dart';
+import 'package:wahl_analytics/src/feature/home/presentation/tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/service/service.dart';
 import 'package:wahl_analytics/src/feature/summary/summary.dart';
 import 'package:wahl_analytics/src/feature/team/team.dart';
@@ -17,9 +19,9 @@ import 'package:wahl_analytics/src/route/route.dart';
 class HomeModuleConfigurator implements ModuleConfigurator {
   @override
   FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) {
-    serviceLocator
-        .get<ModuleRouteController>()
-        .register(HomeModuleRouteConfigurator());
+    serviceLocator.get<ModuleRouteController>().register(
+      HomeModuleRouteConfigurator(),
+    );
   }
 
   @override
@@ -38,11 +40,16 @@ class HomeModuleConfigurator implements ModuleConfigurator {
     );
 
     serviceLocator.registerFactory(
+      () => HomeTrackingDelegate(serviceLocator.get<TrackingReporter>()),
+    );
+
+    serviceLocator.registerFactory(
       () => HomeBloc(
+        serviceLocator.get<BuildConfig>(),
         serviceLocator.get<GetHomeContentUseCase>(),
         serviceLocator.get<IsFeatureEnabledUseCase>(),
         serviceLocator.get<IsDevModeAuthenticatedUseCase>(),
-        serviceLocator.get<BuildConfig>(),
+        serviceLocator.get<HomeTrackingDelegate>(),
       ),
     );
   }

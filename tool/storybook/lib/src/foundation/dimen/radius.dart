@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Radius',
-  type: RadiusDimension,
-)
+@widgetbook.UseCase(name: 'Radius', type: RadiusDimension)
 RadiusDimension radiusDimension(BuildContext context) {
   return const RadiusDimension();
 }

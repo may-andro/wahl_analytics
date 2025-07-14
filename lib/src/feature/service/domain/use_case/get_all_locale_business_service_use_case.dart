@@ -9,8 +9,12 @@ class GetAllLocaleBusinessServiceFailure extends BasicFailure {
   const GetAllLocaleBusinessServiceFailure({super.message, super.cause});
 }
 
-class GetAllLocaleBusinessServiceUseCase extends BaseNoParamUseCase<
-    AllLocaleBusinessServiceEntity, GetAllLocaleBusinessServiceFailure> {
+class GetAllLocaleBusinessServiceUseCase
+    extends
+        BaseNoParamUseCase<
+          AllLocaleBusinessServiceEntity,
+          GetAllLocaleBusinessServiceFailure
+        > {
   GetAllLocaleBusinessServiceUseCase(this._serviceRepository);
 
   final ServiceRepository _serviceRepository;
@@ -18,8 +22,9 @@ class GetAllLocaleBusinessServiceUseCase extends BaseNoParamUseCase<
   @protected
   @override
   Future<
-      Either<GetAllLocaleBusinessServiceFailure,
-          AllLocaleBusinessServiceEntity>> execute() async {
+    Either<GetAllLocaleBusinessServiceFailure, AllLocaleBusinessServiceEntity>
+  >
+  execute() async {
     final businessService = await _serviceRepository.getBusinessService();
     return Right(businessService);
   }

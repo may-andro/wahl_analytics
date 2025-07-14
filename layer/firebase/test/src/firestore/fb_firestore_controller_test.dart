@@ -42,10 +42,12 @@ void main() {
       test('should add data to collection', () async {
         await fbFirestoreController.addToCollection(collectionPath, data);
 
-        final querySnapshot =
-            await fakeFirebaseFirestore.collection('collectionPath').get();
-        final actualDataList =
-            querySnapshot.docs.map((snapshot) => snapshot.data()).toList();
+        final querySnapshot = await fakeFirebaseFirestore
+            .collection('collectionPath')
+            .get();
+        final actualDataList = querySnapshot.docs
+            .map((snapshot) => snapshot.data())
+            .toList();
 
         expect(actualDataList, const MapListContains(data));
       });
@@ -70,8 +72,9 @@ void main() {
           data: data,
         );
 
-        final documentReference =
-            fakeFirebaseFirestore.collection(collectionPath).doc(documentPath);
+        final documentReference = fakeFirebaseFirestore
+            .collection(collectionPath)
+            .doc(documentPath);
         final actualDocumentSnapshot = await documentReference.get();
 
         expect(actualDocumentSnapshot.data(), data);
@@ -91,8 +94,9 @@ void main() {
           documentPath: documentPath,
         );
 
-        final documentSnapshot =
-            await collectionReference.doc(documentPath).get();
+        final documentSnapshot = await collectionReference
+            .doc(documentPath)
+            .get();
 
         expect(documentSnapshot.exists, false);
       });
@@ -100,8 +104,9 @@ void main() {
 
     group('getDocumentFromCollection', () {
       test('should get all documents', () async {
-        final documentReference =
-            fakeFirebaseFirestore.collection(collectionPath).doc(documentPath);
+        final documentReference = fakeFirebaseFirestore
+            .collection(collectionPath)
+            .doc(documentPath);
         await documentReference.set(data);
 
         final expectedDocumentSnapshot = await documentReference.get();
@@ -118,8 +123,9 @@ void main() {
 
     group('updateDocumentFromCollection', () {
       test('should update the document', () async {
-        final documentReference =
-            fakeFirebaseFirestore.collection(collectionPath).doc(documentPath);
+        final documentReference = fakeFirebaseFirestore
+            .collection(collectionPath)
+            .doc(documentPath);
         await documentReference.set(data);
 
         final Map<String, dynamic> dataUpdate = {'data': '43'};

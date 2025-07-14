@@ -18,7 +18,7 @@ class GetBusinessContactUseCase
   @protected
   @override
   Future<Either<BusinessContactFailure, BusinessContactEntity>>
-      execute() async {
+  execute() async {
     final businessContact = await _contactRepository.getBusinessContact();
     return Right(businessContact);
   }

@@ -15,11 +15,6 @@ class ServiceEntity extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      icon,
-      title,
-      shortDescription,
-      longDescription,
-    ];
+    return [icon, title, shortDescription, longDescription];
   }
 }

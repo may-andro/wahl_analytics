@@ -41,17 +41,13 @@ void main() {
 
         repository.initFeatureFlags();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, true),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, true),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
       });
 
-      test(
-          'should cache only bool FeatureFlags '
+      test('should cache only bool FeatureFlags '
           'when firebase return a valid list', () {
         final configs = {
           'contact_us_home_fab': RemoteConfigValue(
@@ -67,14 +63,12 @@ void main() {
 
         repository.initFeatureFlags();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [FeatureFlag(Feature.contactUsHomeFab, false)],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+        ]);
       });
 
-      test(
-          'should cache null values as false '
+      test('should cache null values as false '
           'when firebase return a valid list', () {
         final configs = {
           'contact_us_home_fab': RemoteConfigValue(
@@ -90,16 +84,14 @@ void main() {
 
         repository.initFeatureFlags();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [FeatureFlag(Feature.contactUsHomeFab, false)],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+        ]);
       });
     });
 
     group('getFeatureFlags', () {
-      test(
-          'should return empty list '
+      test('should return empty list '
           'when initFeatureFlags is not called', () {
         final result = repository.getFeatureFlags();
 
@@ -123,13 +115,10 @@ void main() {
         final result = repository.getFeatureFlags();
 
         expect(result.isEmpty, isFalse);
-        expect(
-          result,
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, false),
-            FeatureFlag(Feature.languageSwitcher, true),
-          ],
-        );
+        expect(result, const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+          FeatureFlag(Feature.languageSwitcher, true),
+        ]);
       });
 
       test('should skip invalid keys', () {
@@ -153,13 +142,10 @@ void main() {
         final result = repository.getFeatureFlags();
 
         expect(result.isEmpty, isFalse);
-        expect(
-          result,
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, false),
-            FeatureFlag(Feature.languageSwitcher, true),
-          ],
-        );
+        expect(result, const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+          FeatureFlag(Feature.languageSwitcher, true),
+        ]);
       });
     });
 
@@ -219,35 +205,26 @@ void main() {
 
         repository.initFeatureFlags();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, true),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, true),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
 
         repository.updateFeatureFlag(
           const FeatureFlag(Feature.contactUsHomeFab, false),
         );
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, false),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
 
         repository.reset();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, true),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, true),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
       });
     });
 
@@ -267,25 +244,19 @@ void main() {
 
         repository.initFeatureFlags();
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, true),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, true),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
 
         repository.updateFeatureFlag(
           const FeatureFlag(Feature.contactUsHomeFab, false),
         );
 
-        expect(
-          repository.getFeatureFlags(),
-          const [
-            FeatureFlag(Feature.contactUsHomeFab, false),
-            FeatureFlag(Feature.languageSwitcher, false),
-          ],
-        );
+        expect(repository.getFeatureFlags(), const [
+          FeatureFlag(Feature.contactUsHomeFab, false),
+          FeatureFlag(Feature.languageSwitcher, false),
+        ]);
       });
     });
   });

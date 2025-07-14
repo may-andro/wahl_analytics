@@ -8,10 +8,7 @@ import 'package:recase/recase.dart';
 /// A [TestCase] holds the description of the test, and the widget to be
 /// rendered.
 class TestCase {
-  const TestCase(
-    this.description,
-    this.widget,
-  );
+  const TestCase(this.description, this.widget);
 
   final String description;
   final Widget widget;
@@ -64,21 +61,20 @@ void groupGolden(
   group(widgetUnderTest, () {
     goldenTest(
       'on $brightness with $designSystem',
-      fileName: '${widgetUnderTest.snakeCase}_'
+      fileName:
+          '${widgetUnderTest.snakeCase}_'
           '${label == null ? '' : '${label.snakeCase.replaceAll(' ', '')}_'}'
           '${brightness.title.toLowerCase().snakeCase..replaceAll(' ', '')}',
       pumpBeforeTest: precacheImages,
       builder: () => GoldenTestGroup(
         scenarioConstraints: const BoxConstraints(maxWidth: 600),
-        children: testCases.map(
-          (testCase) {
-            return _TestCaseWidget(
-              testCase,
-              designSystem: designSystem,
-              brightness: brightness,
-            );
-          },
-        ).toList(),
+        children: testCases.map((testCase) {
+          return _TestCaseWidget(
+            testCase,
+            designSystem: designSystem,
+            brightness: brightness,
+          );
+        }).toList(),
       ),
     );
   });

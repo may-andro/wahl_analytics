@@ -42,13 +42,15 @@ void main() {
       expect(hyphenatedResult.right, isTrue);
     });
 
-    test('should return false when name is longer than 50 characters',
-        () async {
-      final result = await useCase('A' * 51);
+    test(
+      'should return false when name is longer than 50 characters',
+      () async {
+        final result = await useCase('A' * 51);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test('should return false when name contains invalid characters', () async {
       final result = await useCase('John123!');

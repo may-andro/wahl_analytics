@@ -11,9 +11,7 @@ class RouteNotFoundScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colorPalette.background.primary.color,
-      appBar: DSAppBarWidget(
-        height: DSAppBarWidget.getHeight(context),
-      ),
+      appBar: DSAppBarWidget(height: DSAppBarWidget.getHeight(context)),
       body: DSResponsiveContainerWidget(
         mobileBuilder: (_) {
           return Padding(

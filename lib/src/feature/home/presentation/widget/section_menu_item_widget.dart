@@ -100,9 +100,7 @@ class _SectionMenuItemWidgetState extends State<SectionMenuItemWidget>
 }
 
 class _SelectedIndicatorWidget extends StatelessWidget {
-  const _SelectedIndicatorWidget({
-    required this.width,
-  });
+  const _SelectedIndicatorWidget({required this.width});
 
   final double width;
 

@@ -16,7 +16,7 @@ class GetCareersRequestUseCase
 
   @override
   FutureOr<Either<GetCareersRequestFailure, List<CareerEntity>>>
-      execute() async {
+  execute() async {
     final careers = await _careerRepository.getCareersRequest();
     return Right(careers);
   }

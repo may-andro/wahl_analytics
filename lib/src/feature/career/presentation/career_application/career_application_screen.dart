@@ -13,21 +13,31 @@ class CareerApplicationScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) {
         return appServiceLocator.get<CareerApplicationBloc>()
-          ..add(InitialiseScreenEvent());
+          ..add(OnInitEvent());
       },
-      child: Scaffold(
-        backgroundColor: context.colorPalette.background.primary.color,
-        appBar: DSAppBarWidget(
-          height: DSAppBarWidget.getHeight(context),
-          onBackClicked: context.pop,
-        ),
-        body: BlocListener<CareerApplicationBloc, CareerApplicationState>(
-          listenWhen: (previous, current) {
-            return current.isFormSubmittedSuccessfully;
-          },
-          listener: (context, _) => context.pop(),
-          child: const ContentWidget(),
-        ),
+      child: BlocBuilder<CareerApplicationBloc, CareerApplicationState>(
+        builder: (context, state) {
+          return RouteObserverWidget(
+            onResume: () => context.bloc.add(ScreenVisibleEvent()),
+            child: Scaffold(
+              backgroundColor: context.colorPalette.background.primary.color,
+              appBar: DSAppBarWidget(
+                height: DSAppBarWidget.getHeight(context),
+                onBackClicked: () {
+                  context.bloc.add(const CloseClickEvent());
+                  context.pop();
+                },
+              ),
+              body: BlocListener<CareerApplicationBloc, CareerApplicationState>(
+                listenWhen: (previous, current) {
+                  return current.isFormSubmittedSuccessfully;
+                },
+                listener: (context, _) => context.pop(),
+                child: const ContentWidget(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

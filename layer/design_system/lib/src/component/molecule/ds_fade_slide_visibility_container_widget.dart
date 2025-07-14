@@ -37,12 +37,13 @@ class _DSFadeSlideVisibilityContainerWidgetState
     _fadeInAnimation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.decelerate),
     );
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.25),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.decelerate),
-    );
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(0, 0.25), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.decelerate,
+          ),
+        );
   }
 
   @override
@@ -62,10 +63,7 @@ class _DSFadeSlideVisibilityContainerWidgetState
       },
       child: FadeTransition(
         opacity: _fadeInAnimation,
-        child: SlideTransition(
-          position: _slideAnimation,
-          child: widget.child,
-        ),
+        child: SlideTransition(position: _slideAnimation, child: widget.child),
       ),
     );
   }

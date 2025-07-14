@@ -27,8 +27,7 @@ void main() {
       expect(result.right.length, careers.length);
     });
 
-    test(
-        'should return $GetCareersRequestFailure '
+    test('should return $GetCareersRequestFailure '
         'when exception occurs', () async {
       mockCareerRepository.mockGetCareersRequestThrowsException(Exception());
 

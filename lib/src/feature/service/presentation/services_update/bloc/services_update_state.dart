@@ -21,10 +21,10 @@ class ServicesUpdateState extends Equatable {
   final DSViewState viewState;
   final GlobalKey<FormState> formKey;
   final Map<ServicesUpdateFormFieldType, TextEditingController>
-      textFieldControllers;
+  textFieldControllers;
   final Map<ServicesUpdateFormFieldType, FocusNode> textFieldFocusNodes;
   final Map<ServicesUpdateFormFieldType, FormFieldValidationMessage?>
-      validationMessages;
+  validationMessages;
   final bool isFormSubmittedSuccessfully;
   final bool isFormSubmitted;
   final BusinessServiceEntity? businessService;
@@ -33,19 +33,19 @@ class ServicesUpdateState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        validationMessages,
-        isFormSubmittedSuccessfully,
-        isFormSubmitted,
-        businessService,
-        allLocaleBusinessServiceEntity,
-        locale,
-      ];
+    viewState,
+    validationMessages,
+    isFormSubmittedSuccessfully,
+    isFormSubmitted,
+    businessService,
+    allLocaleBusinessServiceEntity,
+    locale,
+  ];
 
   ServicesUpdateState copyWith({
     DSViewState? viewState,
     Map<ServicesUpdateFormFieldType, FormFieldValidationMessage?>?
-        validationMessages,
+    validationMessages,
     bool? submissionSuccessful,
     bool? isFormSubmitted,
     BusinessServiceEntity? businessService,

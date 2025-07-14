@@ -26,26 +26,21 @@ void main() {
       useCase = SubmitContactUsApplicationUseCase(mockContactRepository);
     });
 
-    test(
-      'should submit application successfully',
-      () async {
-        mockContactRepository.mockSubmitApplication();
+    test('should submit application successfully', () async {
+      mockContactRepository.mockSubmitApplication();
 
-        final result = await useCase(contactUsEntity);
+      final result = await useCase(contactUsEntity);
 
-        expect(result.isRight, isTrue);
-        verify(
-          () => mockContactRepository.submitApplication(contactUsEntity),
-        ).called(1);
-      },
-    );
+      expect(result.isRight, isTrue);
+      verify(
+        () => mockContactRepository.submitApplication(contactUsEntity),
+      ).called(1);
+    });
 
     test(
       'should return SubmitContactUsApplicationFailure when exception occurs',
       () async {
-        mockContactRepository.mockSubmitApplicationThrowsException(
-          Exception(),
-        );
+        mockContactRepository.mockSubmitApplicationThrowsException(Exception());
 
         final result = await useCase(contactUsEntity);
 

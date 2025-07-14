@@ -12,9 +12,5 @@ class BusinessContactEntity extends Equatable {
   final List<String> address;
 
   @override
-  List<Object?> get props => [
-        email,
-        mobileNumber,
-        address,
-      ];
+  List<Object?> get props => [email, mobileNumber, address];
 }

@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 
 class HomeState extends Equatable {
@@ -38,19 +38,19 @@ class HomeState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        sections,
-        sectionKeyMap,
-        selectedBodySection,
-        scrollContentToSection,
-        isContactUsFabVisible,
-        isMobileDetailVisible,
-        isEmailDetailVisible,
-        isServiceDetailEnabled,
-        isDevMenuEnabled,
-        devMenuTriggerCount,
-        errorStateCause,
-      ];
+    viewState,
+    sections,
+    sectionKeyMap,
+    selectedBodySection,
+    scrollContentToSection,
+    isContactUsFabVisible,
+    isMobileDetailVisible,
+    isEmailDetailVisible,
+    isServiceDetailEnabled,
+    isDevMenuEnabled,
+    devMenuTriggerCount,
+    errorStateCause,
+  ];
 
   HomeState copyWith({
     DSViewState? viewState,

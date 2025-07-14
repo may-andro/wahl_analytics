@@ -18,7 +18,7 @@ class GetBusinessSummaryUseCase
   @protected
   @override
   Future<Either<BusinessSummaryFailure, BusinessSummaryEntity>>
-      execute() async {
+  execute() async {
     final businessSummary = await _summaryRepository.getBusinessSummary();
     return Right(businessSummary);
   }

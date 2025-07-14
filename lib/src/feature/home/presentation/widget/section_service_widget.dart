@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/bloc.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/widget/section_info_widget.dart';
@@ -13,48 +14,51 @@ class SectionServiceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final sections =
-            state.homeBodySections?.whereType<ServiceSection>().toList();
+        final sections = state.homeBodySections
+            ?.whereType<ServiceSection>()
+            .toList();
         if (sections == null || sections.isEmpty) {
           return const SizedBox.shrink();
         }
 
         final serviceSection = sections.first;
-        return Container(
-          key: state.sectionKeyMap?[serviceSection.name],
-          color: context.colorPalette.background.primary.color,
-          padding: EdgeInsets.symmetric(vertical: context.space(factor: 5)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (context.deviceResolution.isMobile)
-                ServiceCarousalWidget(
-                  services: serviceSection.services,
+        return TrackingImpressionDetectorWidget(
+          impressionId: 'home_section_service',
+          onImpression: () => context.bloc.add(HomeServiceSectionViewEvent()),
+          child: Container(
+            key: state.sectionKeyMap?[serviceSection.name],
+            color: context.colorPalette.background.primary.color,
+            padding: EdgeInsets.symmetric(vertical: context.space(factor: 5)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (context.deviceResolution.isMobile)
+                  ServiceCarousalWidget(services: serviceSection.services),
+                if (context.deviceResolution.isTablet)
+                  ..._getTabletWidgets(context, serviceSection),
+                if (context.deviceResolution.isDesktop)
+                  ..._getDesktopWidgets(context, serviceSection),
+                const DSVerticalSpacerWidget(3),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.space(factor: 5),
+                  ),
+                  child: SectionInfoWidget(
+                    bodySection: serviceSection,
+                    isSecondaryBackground: false,
+                    onClicked: state.isServiceDetailEnabled
+                        ? () {
+                            context.push(
+                              ServiceModuleRoute.servicesProvided.path,
+                              extra: serviceSection.services,
+                            );
+                          }
+                        : null,
+                  ),
                 ),
-              if (context.deviceResolution.isTablet)
-                ..._getTabletWidgets(context, serviceSection),
-              if (context.deviceResolution.isDesktop)
-                ..._getDesktopWidgets(context, serviceSection),
-              const DSVerticalSpacerWidget(3),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.space(factor: 5),
-                ),
-                child: SectionInfoWidget(
-                  bodySection: serviceSection,
-                  isSecondaryBackground: false,
-                  onClicked: state.isServiceDetailEnabled
-                      ? () {
-                          context.push(
-                            ServiceModuleRoute.servicesProvided.path,
-                            extra: serviceSection.services,
-                          );
-                        }
-                      : null,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -67,9 +71,7 @@ class SectionServiceWidget extends StatelessWidget {
   ) {
     return [
       Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.space(factor: 5),
-        ),
+        padding: EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
         child: ServiceGridWidget(services: serviceSection.services),
       ),
     ];
@@ -81,12 +83,8 @@ class SectionServiceWidget extends StatelessWidget {
   ) {
     return [
       Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.space(factor: 5),
-        ),
-        child: ServiceHorizontalListWidget(
-          services: serviceSection.services,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: context.space(factor: 5)),
+        child: ServiceHorizontalListWidget(services: serviceSection.services),
       ),
     ];
   }

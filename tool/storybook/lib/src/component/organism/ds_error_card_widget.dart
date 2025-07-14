@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Error Card Widget',
-  type: ErrorCardWidget,
-)
+@widgetbook.UseCase(name: 'Error Card Widget', type: ErrorCardWidget)
 ErrorCardWidget errorCardWidget(BuildContext context) {
   return const ErrorCardWidget();
 }
@@ -30,19 +27,16 @@ class ErrorCardWidget extends StatelessWidget {
                   label: 'On Retry Clicked',
                   options: [
                     Option(null, 'Default [Non Clickable]'),
-                    Option(
-                      () {
-                        final snackBar = SnackBar(
-                          content: DSTextWidget(
-                            'On retry clicked',
-                            color: context.colorPalette.neutral.grey9,
-                            style: context.typography.bodyMedium,
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      'With Action',
-                    ),
+                    Option(() {
+                      final snackBar = SnackBar(
+                        content: DSTextWidget(
+                          'On retry clicked',
+                          color: context.colorPalette.neutral.grey9,
+                          style: context.typography.bodyMedium,
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )

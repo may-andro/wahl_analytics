@@ -22,8 +22,13 @@ class ApplicationSubmissionUnknownFailure
   const ApplicationSubmissionUnknownFailure({super.message, super.cause});
 }
 
-class SubmitCareerApplicationUseCase extends BaseUseCase<void,
-    CareerApplicationEntity, SubmitCareerApplicationFailure> {
+class SubmitCareerApplicationUseCase
+    extends
+        BaseUseCase<
+          void,
+          CareerApplicationEntity,
+          SubmitCareerApplicationFailure
+        > {
   SubmitCareerApplicationUseCase(this._careerRepository);
 
   final CareerRepository _careerRepository;

@@ -32,7 +32,7 @@ class GetHomeContentUseCase
   @protected
   @override
   Future<Either<GetHomeContentFailure, List<HomeContentEntity>>>
-      execute() async {
+  execute() async {
     final homeContentList = <HomeContentEntity>[];
 
     final businessSummaryEither = await _getBusinessSummaryUseCase();

@@ -29,8 +29,7 @@ void main() {
       expect(result.isRight, isTrue);
     });
 
-    test(
-        'should return $DeleteCareerRequestFailure '
+    test('should return $DeleteCareerRequestFailure '
         'when exception occurs', () async {
       mockCareerRepository.mockGetCareersRequestThrowsException(Exception());
 

@@ -8,9 +8,7 @@ void main() {
     (dsTheme) => [
       TestCase(
         'Primary',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.brand.primary.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.brand.primary.color),
       ),
       TestCase(
         'OnPrimary',
@@ -88,9 +86,7 @@ void main() {
     (dsTheme) => [
       TestCase(
         'Info',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.semantic.info.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.semantic.info.color),
       ),
       TestCase(
         'On Info',
@@ -193,69 +189,47 @@ void main() {
     (dsTheme) => [
       TestCase(
         'White',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.white.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.white.color),
       ),
       TestCase(
         'Black',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.black.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.black.color),
       ),
       TestCase(
         'Grey1',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey1.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey1.color),
       ),
       TestCase(
         'Grey2',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey2.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey2.color),
       ),
       TestCase(
         'Grey3',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey3.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey3.color),
       ),
       TestCase(
         'Grey4',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey4.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey4.color),
       ),
       TestCase(
         'Grey5',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey5.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey5.color),
       ),
       TestCase(
         'Grey6',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey6.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey6.color),
       ),
       TestCase(
         'Grey7',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey7.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey7.color),
       ),
       TestCase(
         'Grey8',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey8.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey8.color),
       ),
       TestCase(
         'Grey9',
-        CircleAvatar(
-          backgroundColor: dsTheme.colorPalette.neutral.grey9.color,
-        ),
+        CircleAvatar(backgroundColor: dsTheme.colorPalette.neutral.grey9.color),
       ),
       TestCase(
         'Grey10',

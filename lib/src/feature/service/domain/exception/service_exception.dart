@@ -1,30 +1,21 @@
 import 'package:error_reporter/error_reporter.dart';
 
 sealed class ServiceException implements AppException {
-  const ServiceException(
-    this.cause,
-    this.stackTrace,
-  );
+  const ServiceException(this.cause, this.stackTrace);
 
   final Object cause;
   final StackTrace stackTrace;
 }
 
 class NullDataFoundServiceException extends ServiceException {
-  const NullDataFoundServiceException(
-    super.cause,
-    super.stackTrace,
-  );
+  const NullDataFoundServiceException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Null data found for BusinessService at Firebase';
 }
 
 class ServerServiceException extends ServiceException {
-  const ServerServiceException(
-    super.cause,
-    super.stackTrace,
-  );
+  const ServerServiceException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -32,10 +23,7 @@ class ServerServiceException extends ServiceException {
 }
 
 class IncorrectJsonServiceException extends ServiceException {
-  const IncorrectJsonServiceException(
-    super.cause,
-    super.stackTrace,
-  );
+  const IncorrectJsonServiceException(super.cause, super.stackTrace);
 
   @override
   String toString() =>
@@ -43,10 +31,7 @@ class IncorrectJsonServiceException extends ServiceException {
 }
 
 class UnknownServiceException extends ServiceException {
-  const UnknownServiceException(
-    super.cause,
-    super.stackTrace,
-  );
+  const UnknownServiceException(super.cause, super.stackTrace);
 
   @override
   String toString() => 'Failed to fetch BusinessService due to $cause';

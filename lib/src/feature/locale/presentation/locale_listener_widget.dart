@@ -1,70 +1,28 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:log_reporter/log_reporter.dart';
 import 'package:wahl_analytics/src/dependency_injection/app_module_configurator.dart';
-import 'package:wahl_analytics/src/feature/locale/presentation/locale_provider_widget.dart';
+import 'package:wahl_analytics/src/feature/locale/domain/domain.dart';
 
-class LocaleListenerWidget extends StatefulWidget {
+class LocaleListenerWidget extends StatelessWidget {
   const LocaleListenerWidget({
-    required this.appLocale,
-    required this.child,
     super.key,
+    required this.appLocale,
+    required this.builder,
   });
 
   final AppLocale appLocale;
-  final Widget child;
-
-  @override
-  State<LocaleListenerWidget> createState() => _LocaleListenerWidgetState();
-}
-
-class _LocaleListenerWidgetState extends State<LocaleListenerWidget>
-    with WidgetsBindingObserver {
-  late final LogReporter _logReporter;
-  late AppLocale _currentAppLocale;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-
-    _logReporter = appServiceLocator.get<LogReporter>();
-
-    _currentAppLocale = widget.appLocale;
-  }
-
-  @override
-  void didChangeLocales(List<Locale>? locales) {
-    super.didChangeLocales(locales);
-
-    final currentLocale = locales?.first;
-    if (currentLocale != null &&
-        currentLocale.languageCode != _currentAppLocale.locale) {
-      _currentAppLocale = AppLocale(currentLocale.languageCode);
-
-      appServiceLocator.unregister<AppLocale>();
-      appServiceLocator.registerSingleton(() => _currentAppLocale);
-
-      _logReporter.debug(
-        'App locale updated to ${currentLocale.languageCode}',
-        tag: 'LocaleListenerWidget',
-      );
-
-      setState(() {});
-    }
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
+  final Widget Function(BuildContext context, AppLocale appLocale) builder;
 
   @override
   Widget build(BuildContext context) {
-    return LocaleProviderWidget(
-      locale: Locale(_currentAppLocale.locale),
-      child: widget.child,
+    final localeStream = appServiceLocator.get<GetLocaleStreamUseCase>().call();
+
+    return StreamBuilder<AppLocale>(
+      stream: localeStream,
+      initialData: appLocale,
+      builder: (context, asyncSnapshot) {
+        return builder(context, asyncSnapshot.data ?? appLocale);
+      },
     );
   }
 }

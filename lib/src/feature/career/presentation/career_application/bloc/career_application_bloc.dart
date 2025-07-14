@@ -8,6 +8,7 @@ import 'package:wahl_analytics/src/feature/career/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/career_application/bloc/career_application_event.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/career_application/bloc/career_application_state.dart';
 import 'package:wahl_analytics/src/feature/career/presentation/career_application/dto/dto.dart';
+import 'package:wahl_analytics/src/feature/career/presentation/career_application/tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/file_picker/file_picker.dart';
 import 'package:wahl_analytics/src/feature/validation/validation.dart';
 
@@ -22,18 +23,21 @@ class CareerApplicationBloc
     this._isValidMessageUseCase,
     this._filePickerUseCase,
     this._submitCareerApplicationUseCase,
+    this._trackingDelegate,
   ) : super(
-          CareerApplicationState(
-            formKey: GlobalKey<FormState>(),
-            textFieldFocusNodes: FormFieldType.focusNodeMap,
-            textFieldControllers: FormFieldType.textEditingControllerMap,
-          ),
-        ) {
-    on<InitialiseScreenEvent>(_mapInitialiseScreenEventToState);
+        CareerApplicationState(
+          formKey: GlobalKey<FormState>(),
+          textFieldFocusNodes: FormFieldType.focusNodeMap,
+          textFieldControllers: FormFieldType.textEditingControllerMap,
+        ),
+      ) {
+    on<OnInitEvent>(_mapOnInitEventToState);
+    on<ScreenVisibleEvent>(_mapScreenVisibleEventToState);
     on<ValidateTextFieldEvent>(_mapValidateTextFieldEventToState);
     on<OnConsentSelectedEvent>(_mapOnConsentSelectedEventToState);
     on<UploadResumeEvent>(_mapUploadResumeEventToState);
     on<SubmitFormEvent>(_mapSubmitFormEventToState);
+    on<CloseClickEvent>(_mapCloseClickEventToState);
   }
 
   final BuildConfig _buildConfig;
@@ -44,9 +48,10 @@ class CareerApplicationBloc
   final IsValidMessageUseCase _isValidMessageUseCase;
   final FilePickerUseCase _filePickerUseCase;
   final SubmitCareerApplicationUseCase _submitCareerApplicationUseCase;
+  final CareerApplicationTrackingDelegate _trackingDelegate;
 
-  FutureOr<void> _mapInitialiseScreenEventToState(
-    InitialiseScreenEvent event,
+  FutureOr<void> _mapOnInitEventToState(
+    OnInitEvent event,
     Emitter<CareerApplicationState> emit,
   ) {
     emit(
@@ -55,6 +60,13 @@ class CareerApplicationBloc
         validationMessages: FormFieldType.validationMessageMap,
       ),
     );
+  }
+
+  FutureOr<void> _mapScreenVisibleEventToState(
+    ScreenVisibleEvent event,
+    Emitter<CareerApplicationState> emit,
+  ) {
+    _trackingDelegate.trackScreenView();
   }
 
   FutureOr<void> _mapSubmitFormEventToState(
@@ -115,16 +127,21 @@ class CareerApplicationBloc
         env: _buildConfig.buildEnvironment.name,
       );
       final result = await _submitCareerApplicationUseCase(careerEntity);
-      result.fold((left) {
-        emit(state.copyWith(viewState: DSViewState.error));
-      }, (right) {
-        emit(
-          state.copyWith(
-            viewState: DSViewState.idle,
-            submissionSuccessful: true,
-          ),
-        );
-      });
+      result.fold(
+        (left) {
+          _trackingDelegate.trackSubmitFormFailure();
+          emit(state.copyWith(viewState: DSViewState.error));
+        },
+        (right) {
+          _trackingDelegate.trackSubmitForm();
+          emit(
+            state.copyWith(
+              viewState: DSViewState.idle,
+              submissionSuccessful: true,
+            ),
+          );
+        },
+      );
     }
   }
 
@@ -140,13 +157,9 @@ class CareerApplicationBloc
 
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[formFieldType] = formFieldValidationMessage;
-    emit(
-      state.copyWith(
-        validationMessages: validationMessages,
-      ),
-    );
+          state.validationMessages,
+        )..[formFieldType] = formFieldValidationMessage;
+    emit(state.copyWith(validationMessages: validationMessages));
     return null;
   }
 
@@ -157,8 +170,8 @@ class CareerApplicationBloc
 
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[FormFieldType.resume] = FormFieldValidationMessage.fileUploadFailed;
+          state.validationMessages,
+        )..[FormFieldType.resume] = FormFieldValidationMessage.fileUploadFailed;
     emit(state.copyWith(validationMessages: validationMessages));
     return null;
   }
@@ -173,8 +186,8 @@ class CareerApplicationBloc
     }
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[FormFieldType.consent] = message;
+          state.validationMessages,
+        )..[FormFieldType.consent] = message;
     emit(
       state.copyWith(
         isConsentGiven: event.isConsentGiven,
@@ -207,8 +220,8 @@ class CareerApplicationBloc
 
     final validationMessages =
         Map<FormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[event.formFieldType] = message;
+          state.validationMessages,
+        )..[event.formFieldType] = message;
 
     emit(state.copyWith(validationMessages: validationMessages));
   }
@@ -367,13 +380,20 @@ class CareerApplicationBloc
         }
         final validationMessages =
             Map<FormFieldType, FormFieldValidationMessage?>.from(
-          state.validationMessages,
-        )..[FormFieldType.resume] = message;
+              state.validationMessages,
+            )..[FormFieldType.resume] = message;
         emit(state.copyWith(validationMessages: validationMessages));
       },
       (pickedFile) {
         emit(state.copyWith(resumeFile: pickedFile));
       },
     );
+  }
+
+  FutureOr<void> _mapCloseClickEventToState(
+    CloseClickEvent event,
+    Emitter<CareerApplicationState> emit,
+  ) {
+    _trackingDelegate.trackAppBarCloseClick();
   }
 }

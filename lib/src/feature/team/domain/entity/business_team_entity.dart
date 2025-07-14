@@ -17,11 +17,5 @@ class BusinessTeamEntity extends Equatable {
   final List<TeamMemberEntity> members;
 
   @override
-  List<Object?> get props => [
-        name,
-        title,
-        description,
-        action,
-        members,
-      ];
+  List<Object?> get props => [name, title, description, action, members];
 }

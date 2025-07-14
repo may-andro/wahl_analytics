@@ -9,9 +9,7 @@ class RequestVerificationCodeFailure extends BasicFailure {
 
 class RequestVerificationCodeUseCase
     extends BaseNoParamUseCase<String?, RequestVerificationCodeFailure> {
-  RequestVerificationCodeUseCase(
-    this._devModeAuthRepository,
-  );
+  RequestVerificationCodeUseCase(this._devModeAuthRepository);
 
   final DevModeAuthRepository _devModeAuthRepository;
 

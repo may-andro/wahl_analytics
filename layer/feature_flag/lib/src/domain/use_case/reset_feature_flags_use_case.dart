@@ -4,9 +4,7 @@ import 'package:feature_flag/src/domain/repository/feature_flag_repository.dart'
 import 'package:use_case/use_case.dart';
 
 class ResetFeatureFlagsUseCase extends BaseNoParamUseCase<void, NoFailure> {
-  ResetFeatureFlagsUseCase(
-    this._featureFlagRepository,
-  );
+  ResetFeatureFlagsUseCase(this._featureFlagRepository);
 
   final FeatureFlagRepository _featureFlagRepository;
 

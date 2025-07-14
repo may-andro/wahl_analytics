@@ -27,9 +27,7 @@ class CachedFeatureFlagRepository implements FeatureFlagRepository {
     final featureFlags = await _featureFlagRepositoryDelegate.getFeatureFlags();
 
     final featureModels = featureFlags.map(_featureFlagMapper.map).toList();
-    await Future.wait(
-      featureModels.map((flag) => _featureFlagCache.put(flag)),
-    );
+    await Future.wait(featureModels.map((flag) => _featureFlagCache.put(flag)));
   }
 
   @override

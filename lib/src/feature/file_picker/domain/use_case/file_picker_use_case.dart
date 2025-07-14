@@ -44,9 +44,7 @@ class FilePickerUseCase
           return const Left(FileTooBigFailure());
         }
 
-        return Right(
-          PickedFile(bytes: bytes, name: result.files.first.name),
-        );
+        return Right(PickedFile(bytes: bytes, name: result.files.first.name));
       } else {
         return const Left(FileNotFoundFailure());
       }

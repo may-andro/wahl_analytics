@@ -14,11 +14,7 @@ class AllLocaleBusinessServiceEntity extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      en,
-      es,
-      nl,
-    ];
+    return [en, es, nl];
   }
 
   AllLocaleBusinessServiceEntity copyWith({

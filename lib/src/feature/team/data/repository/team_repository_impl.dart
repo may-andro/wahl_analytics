@@ -30,7 +30,7 @@ class TeamRepositoryImpl implements TeamRepository {
       }
 
       final businessTeamModelMap = Map<String, dynamic>.from(
-        dataMap[_appLocale.locale] as Map,
+        dataMap[_appLocale.languageCode] as Map,
       );
       final model = BusinessTeamModel.fromJson(businessTeamModelMap);
       return _businessTeamMapper.map(model);

@@ -2,6 +2,7 @@ import 'package:wahl_analytics/src/feature/developer_option/presentation/cache_p
 import 'package:wahl_analytics/src/feature/developer_option/presentation/dev_mode/dev_mode.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/feature_flag/feature_flag.dart';
 import 'package:wahl_analytics/src/feature/developer_option/presentation/route/developer_option_module_route.dart';
+import 'package:wahl_analytics/src/feature/developer_option/presentation/tracking_log/tracking_log_screen.dart';
 import 'package:wahl_analytics/src/route/route.dart';
 
 class DeveloperOptionModuleRouteConfigurator
@@ -23,6 +24,11 @@ class DeveloperOptionModuleRouteConfigurator
         name: DeveloperOptionModuleRoute.cachePlayground.name,
         path: DeveloperOptionModuleRoute.cachePlayground.path,
         builder: (context, state) => const DbCachePlaygroundScreen(),
+      ),
+      GoRoute(
+        name: DeveloperOptionModuleRoute.trackingLog.name,
+        path: DeveloperOptionModuleRoute.trackingLog.path,
+        builder: (context, state) => const TrackingLogScreen(),
       ),
     ];
   }

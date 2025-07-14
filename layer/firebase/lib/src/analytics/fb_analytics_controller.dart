@@ -21,10 +21,7 @@ class FbAnalyticsController {
     }
   }
 
-  Future<void> sendLogEvent(
-    String event, {
-    Map<String, Object>? parameters,
-  }) {
+  Future<void> sendLogEvent(String event, {Map<String, Object>? parameters}) {
     return _firebaseAnalytics.logEvent(name: event, parameters: parameters);
   }
 }

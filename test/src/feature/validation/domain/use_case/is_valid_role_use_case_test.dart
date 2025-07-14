@@ -37,13 +37,15 @@ void main() {
       expect(result.right, isTrue);
     });
 
-    test('should return false when role is longer than 40 characters',
-        () async {
-      final result = await useCase('A' * 41);
+    test(
+      'should return false when role is longer than 40 characters',
+      () async {
+        final result = await useCase('A' * 41);
 
-      expect(result.isRight, isTrue);
-      expect(result.right, isFalse);
-    });
+        expect(result.isRight, isTrue);
+        expect(result.right, isFalse);
+      },
+    );
 
     test('should return false when role contains invalid characters', () async {
       final result = await useCase('Engineer123!');

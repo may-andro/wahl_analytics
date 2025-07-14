@@ -18,19 +18,16 @@ class DSPositionIndicatorWidget extends StatelessWidget {
       height: context.space(factor: 0.5),
       child: AnimatedBuilder(
         animation: indexListener,
-        builder: (_, __) {
+        builder: (_, _) {
           return ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: itemCount,
             itemBuilder: (_, pos) {
-              return _IndicatorWidget(
-                isActive: indexListener.value == pos,
-              );
+              return _IndicatorWidget(isActive: indexListener.value == pos);
             },
-            separatorBuilder: (_, __) => SizedBox(
-              width: context.space(factor: 0.5),
-            ),
+            separatorBuilder: (_, _) =>
+                SizedBox(width: context.space(factor: 0.5)),
           );
         },
       ),
@@ -39,9 +36,7 @@ class DSPositionIndicatorWidget extends StatelessWidget {
 }
 
 class _IndicatorWidget extends StatelessWidget {
-  const _IndicatorWidget({
-    required this.isActive,
-  });
+  const _IndicatorWidget({required this.isActive});
 
   final bool isActive;
 

@@ -4,10 +4,7 @@ import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/service/presentation/services_provided/widget/widget.dart';
 
 class ContentWidget extends StatelessWidget {
-  const ContentWidget({
-    required this.services,
-    super.key,
-  });
+  const ContentWidget({required this.services, super.key});
 
   final List<ServiceEntity> services;
 
@@ -18,8 +15,9 @@ class ContentWidget extends StatelessWidget {
         Positioned.fill(
           child: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              context.colorPalette.background.primary.color
-                  .withValues(alpha: 0.5),
+              context.colorPalette.background.primary.color.withValues(
+                alpha: 0.5,
+              ),
               BlendMode.darken,
             ),
             child: const DSAssetImageWidget(
@@ -35,17 +33,18 @@ class ContentWidget extends StatelessWidget {
           bottom: 0,
           top: 0,
           child: CustomScrollView(
-            scrollBehavior: ScrollConfiguration.of(context).copyWith(
-              scrollbars: false,
-            ),
+            scrollBehavior: ScrollConfiguration.of(
+              context,
+            ).copyWith(scrollbars: false),
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             slivers: [
               SliverToBoxAdapter(
                 child: Container(
                   color: context.colorPalette.background.primary.color,
-                  padding:
-                      EdgeInsets.symmetric(vertical: context.space(factor: 5)),
+                  padding: EdgeInsets.symmetric(
+                    vertical: context.space(factor: 5),
+                  ),
                   child: const IntoWidget(),
                 ),
               ),

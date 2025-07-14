@@ -74,145 +74,120 @@ void main() {
     });
 
     group('init', () {
-      test(
-        'should register ${FlutterError.onError}',
-        () async {
-          mockFatalErrorController.mockIsFatalError(true);
-          mockBlacklistErrorController.mockIsBlacklistedError(false);
+      test('should register ${FlutterError.onError}', () async {
+        mockFatalErrorController.mockIsFatalError(true);
+        mockBlacklistErrorController.mockIsBlacklistedError(false);
 
-          await crashlyticsErrorReporter.init();
+        await crashlyticsErrorReporter.init();
 
-          expect(FlutterError.onError, isNotNull);
-        },
-      );
+        expect(FlutterError.onError, isNotNull);
+      });
     });
 
     group('reportError', () {
-      test(
-        'should report fatal error '
-        'when the error is not blacklisted',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
-          mockFatalErrorController.mockIsFatalError(true);
-          mockBlacklistErrorController.mockIsBlacklistedError(false);
+      test('should report fatal error '
+          'when the error is not blacklisted', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
+        mockFatalErrorController.mockIsFatalError(true);
+        mockBlacklistErrorController.mockIsBlacklistedError(false);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verify(
-            () => mockFbCrashlyticsController.reportError(
-              exception,
-              stackTrace,
-              isFatal: true,
-            ),
-          ).called(1);
-        },
-      );
+        verify(
+          () => mockFbCrashlyticsController.reportError(
+            exception,
+            stackTrace,
+            isFatal: true,
+          ),
+        ).called(1);
+      });
 
-      test(
-        'should not report fatal error '
-        'when the error is blacklisted',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
-          mockFatalErrorController.mockIsFatalError(true);
-          mockBlacklistErrorController.mockIsBlacklistedError(true);
+      test('should not report fatal error '
+          'when the error is blacklisted', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
+        mockFatalErrorController.mockIsFatalError(true);
+        mockBlacklistErrorController.mockIsBlacklistedError(true);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verifyNever(
-            () => mockFbCrashlyticsController.reportError(
-              exception,
-              stackTrace,
-              isFatal: any(named: 'isFatal'),
-            ),
-          );
-        },
-      );
+        verifyNever(
+          () => mockFbCrashlyticsController.reportError(
+            exception,
+            stackTrace,
+            isFatal: any(named: 'isFatal'),
+          ),
+        );
+      });
 
-      test(
-        'should call $FatalErrorHandler '
-        'when the error is fatal',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
-          mockFatalErrorController.mockIsFatalError(true);
-          mockBlacklistErrorController.mockIsBlacklistedError(true);
+      test('should call $FatalErrorHandler '
+          'when the error is fatal', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
+        mockFatalErrorController.mockIsFatalError(true);
+        mockBlacklistErrorController.mockIsBlacklistedError(true);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verify(
-            () => mockFatalErrorController.onFatalError(any()),
-          ).called(1);
+        verify(() => mockFatalErrorController.onFatalError(any())).called(1);
 
-          mockBlacklistErrorController.mockIsBlacklistedError(true);
+        mockBlacklistErrorController.mockIsBlacklistedError(true);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verify(
-            () => mockFatalErrorController.onFatalError(any()),
-          ).called(1);
-        },
-      );
+        verify(() => mockFatalErrorController.onFatalError(any())).called(1);
+      });
 
-      test(
-        'should not report non fatal error '
-        'when the error is blacklisted',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
-          mockFatalErrorController.mockIsFatalError(false);
-          mockBlacklistErrorController.mockIsBlacklistedError(true);
+      test('should not report non fatal error '
+          'when the error is blacklisted', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
+        mockFatalErrorController.mockIsFatalError(false);
+        mockBlacklistErrorController.mockIsBlacklistedError(true);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verifyNever(
-            () => mockFbCrashlyticsController.reportError(
-              exception,
-              stackTrace,
-              isFatal: any(named: 'isFatal'),
-            ),
-          );
-        },
-      );
+        verifyNever(
+          () => mockFbCrashlyticsController.reportError(
+            exception,
+            stackTrace,
+            isFatal: any(named: 'isFatal'),
+          ),
+        );
+      });
 
-      test(
-        'should report non fatal error '
-        'when the error is not blacklisted',
-        () async {
-          final exception = TestFatalException();
-          final stackTrace = StackTrace.current;
-          mockFatalErrorController.mockIsFatalError(false);
-          mockBlacklistErrorController.mockIsBlacklistedError(false);
+      test('should report non fatal error '
+          'when the error is not blacklisted', () async {
+        final exception = TestFatalException();
+        final stackTrace = StackTrace.current;
+        mockFatalErrorController.mockIsFatalError(false);
+        mockBlacklistErrorController.mockIsBlacklistedError(false);
 
-          await crashlyticsErrorReporter.reportError(
-            exception: exception,
-            stackTrace: stackTrace,
-          );
+        await crashlyticsErrorReporter.reportError(
+          exception: exception,
+          stackTrace: stackTrace,
+        );
 
-          verify(
-            () => mockFbCrashlyticsController.reportError(
-              exception,
-              stackTrace,
-            ),
-          ).called(1);
-        },
-      );
+        verify(
+          () => mockFbCrashlyticsController.reportError(exception, stackTrace),
+        ).called(1);
+      });
     });
   });
 }

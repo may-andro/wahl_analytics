@@ -44,31 +44,34 @@ void main() {
 
     group('setUpDIGraph', () {
       test(
-          'should calls preDependenciesSetup, registerDependencies, and postDependenciesSetup',
-          () async {
-        final statuses = <DISetUpStatus>[];
-        final stream =
-            diController.setUpDIGraph(configurators: [mockConfigurator]);
+        'should calls preDependenciesSetup, registerDependencies, and postDependenciesSetup',
+        () async {
+          final statuses = <DISetUpStatus>[];
+          final stream = diController.setUpDIGraph(
+            configurators: [mockConfigurator],
+          );
 
-        await for (final status in stream) {
-          statuses.add(status);
-        }
+          await for (final status in stream) {
+            statuses.add(status);
+          }
 
-        expect(statuses, [
-          DISetUpStatus.warmup,
-          DISetUpStatus.fetch,
-          DISetUpStatus.register,
-          DISetUpStatus.done,
-        ]);
-        expect(mockConfigurator.preDependenciesSetupCalled, isTrue);
-        expect(mockConfigurator.registerDependenciesCalled, isTrue);
-        expect(mockConfigurator.postDependenciesSetupCalled, isTrue);
-      });
+          expect(statuses, [
+            DISetUpStatus.warmup,
+            DISetUpStatus.fetch,
+            DISetUpStatus.register,
+            DISetUpStatus.done,
+          ]);
+          expect(mockConfigurator.preDependenciesSetupCalled, isTrue);
+          expect(mockConfigurator.registerDependenciesCalled, isTrue);
+          expect(mockConfigurator.postDependenciesSetupCalled, isTrue);
+        },
+      );
 
       test('should emits correct DISetUpStatus values', () async {
         final statuses = <DISetUpStatus>[];
-        final stream =
-            diController.setUpDIGraph(configurators: [mockConfigurator]);
+        final stream = diController.setUpDIGraph(
+          configurators: [mockConfigurator],
+        );
 
         await for (final status in stream) {
           statuses.add(status);

@@ -13,9 +13,6 @@ class DSHorizontalDividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(
-      thickness: thickness,
-      color: color.color,
-    );
+    return Divider(thickness: thickness, color: color.color);
   }
 }

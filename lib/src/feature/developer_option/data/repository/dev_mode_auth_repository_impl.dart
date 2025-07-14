@@ -51,9 +51,9 @@ class DevModeAuthRepositoryImpl implements DevModeAuthRepository {
   @override
   Future<String> requestVerificationCode() async {
     try {
-      final dataMap = await _fbFunctionController.callFunction(
-        'sendDevMenuAuthEmail',
-      ) as Map<String, dynamic>?;
+      final dataMap =
+          await _fbFunctionController.callFunction('sendDevMenuAuthEmail')
+              as Map<String, dynamic>?;
 
       if (dataMap == null) {
         throw const FormatException();

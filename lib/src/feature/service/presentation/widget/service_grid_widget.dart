@@ -4,10 +4,7 @@ import 'package:wahl_analytics/src/feature/service/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/service/presentation/widget/service_card_widget.dart';
 
 class ServiceGridWidget extends StatelessWidget {
-  const ServiceGridWidget({
-    required this.services,
-    super.key,
-  });
+  const ServiceGridWidget({required this.services, super.key});
 
   final List<ServiceEntity> services;
 

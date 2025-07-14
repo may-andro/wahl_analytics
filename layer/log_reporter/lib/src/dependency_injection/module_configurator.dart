@@ -10,7 +10,11 @@ import 'package:logger/logger.dart';
 
 class LogReporterModuleConfigurator implements ModuleConfigurator {
   @override
-  FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) => null;
+  FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) {
+    serviceLocator.get<LogReporter>().debug(
+      'Log reporter initialised successfully',
+    );
+  }
 
   @override
   FutureOr<void> preDependenciesSetup(ServiceLocator serviceLocator) => null;
@@ -18,19 +22,14 @@ class LogReporterModuleConfigurator implements ModuleConfigurator {
   @override
   FutureOr<void> registerDependencies(ServiceLocator serviceLocator) {
     serviceLocator.registerSingleton(() => Logger());
-    final localLogReporter = LocalLogReporter(
-      serviceLocator.get<Logger>(),
-    );
+    final localLogReporter = LocalLogReporter(serviceLocator.get<Logger>());
 
     final firebaseLogReporter = FirebaseLogReporter(
       serviceLocator.get<FbCrashlyticsController>(),
     );
 
     serviceLocator.registerSingleton<LogReporter>(
-      () => CompositeLogReporter([
-        firebaseLogReporter,
-        localLogReporter,
-      ]),
+      () => CompositeLogReporter([firebaseLogReporter, localLogReporter]),
     );
   }
 }

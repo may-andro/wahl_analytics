@@ -7,9 +7,9 @@ class MockFbFirestoreController extends Mock implements FbFirestoreController {
   }
 
   void mockAddToCollectionThrowsException() {
-    when(() => addToCollection(any(), any())).thenThrow(
-      FirestoreException(Exception(), StackTrace.current),
-    );
+    when(
+      () => addToCollection(any(), any()),
+    ).thenThrow(FirestoreException(Exception(), StackTrace.current));
   }
 
   void mockGetDocumentFromCollection(Map<String, dynamic>? expected) {
@@ -29,8 +29,9 @@ class MockFbFirestoreController extends Mock implements FbFirestoreController {
   }
 
   void mockUpdateDocumentFromCollectionThrowsException(Object exception) {
-    when(() => updateDocumentFromCollection(any(), any(), any()))
-        .thenThrow(exception);
+    when(
+      () => updateDocumentFromCollection(any(), any(), any()),
+    ).thenThrow(exception);
   }
 
   void mockGetCollectionQuerySnapshot(List<Map<String, dynamic>> expected) {

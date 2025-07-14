@@ -1,15 +1,16 @@
 import 'package:cache/cache.dart';
+import 'package:core/core.dart';
 
-class AppLocaleCache extends KeyValueCache<String> {
-  AppLocaleCache() : super('test_cache');
+class AppLocaleCache extends KeyValueCache<AppLocale> {
+  AppLocaleCache() : super('app_locale_cache');
 
   @override
-  String deserializeValue(Map<String, dynamic> map) {
-    return map['locale'] as String;
+  AppLocale deserializeValue(Map<String, dynamic> map) {
+    return AppLocale.fromJson(map);
   }
 
   @override
-  Map<String, dynamic> serializeValue(String value) {
-    return {'locale': value};
+  Map<String, dynamic> serializeValue(AppLocale value) {
+    return value.toJson();
   }
 }

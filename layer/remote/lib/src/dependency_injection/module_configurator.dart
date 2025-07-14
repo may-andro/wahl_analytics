@@ -9,10 +9,7 @@ import 'package:remote/src/rest/dio_api_service.dart';
 import 'package:remote/src/rest/rest_api_service.dart';
 
 class RemoteModuleConfigurator implements ModuleConfigurator {
-  RemoteModuleConfigurator(
-    this.isLoggingEnabled,
-    this.baseUrl,
-  );
+  RemoteModuleConfigurator(this.isLoggingEnabled, this.baseUrl);
 
   final bool isLoggingEnabled;
   final String baseUrl;
@@ -36,10 +33,7 @@ class RemoteModuleConfigurator implements ModuleConfigurator {
 
     if (isLoggingEnabled) {
       dio.interceptors.add(
-        PrettyDioLogger(
-          requestHeader: true,
-          requestBody: true,
-        ),
+        PrettyDioLogger(requestHeader: true, requestBody: true),
       );
     }
 

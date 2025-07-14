@@ -74,9 +74,9 @@ class FormWidget extends StatelessWidget {
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (text) {
         context.state.textFieldFocusNodes[formFieldType]?.unfocus();
-        FocusScope.of(context).requestFocus(
-          context.state.textFieldFocusNodes[FormFieldType.email],
-        );
+        FocusScope.of(
+          context,
+        ).requestFocus(context.state.textFieldFocusNodes[FormFieldType.email]);
       },
       onChanged: (input) {
         context.bloc.add(
@@ -109,9 +109,9 @@ class FormWidget extends StatelessWidget {
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (text) {
         context.state.textFieldFocusNodes[formFieldType]?.unfocus();
-        FocusScope.of(context).requestFocus(
-          context.state.textFieldFocusNodes[FormFieldType.role],
-        );
+        FocusScope.of(
+          context,
+        ).requestFocus(context.state.textFieldFocusNodes[FormFieldType.role]);
       },
       onChanged: (input) {
         context.bloc.add(

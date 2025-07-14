@@ -19,14 +19,14 @@ class ServicesUpdateBloc
     this._isValidNameUseCase,
     this._isValidMessageUseCase,
   ) : super(
-          ServicesUpdateState(
-            formKey: GlobalKey<FormState>(),
-            textFieldFocusNodes: ServicesUpdateFormFieldType.focusNodeMap,
-            textFieldControllers:
-                ServicesUpdateFormFieldType.textEditingControllerMap,
-            locale: appLocale.locale,
-          ),
-        ) {
+        ServicesUpdateState(
+          formKey: GlobalKey<FormState>(),
+          textFieldFocusNodes: ServicesUpdateFormFieldType.focusNodeMap,
+          textFieldControllers:
+              ServicesUpdateFormFieldType.textEditingControllerMap,
+          locale: appLocale.languageCode,
+        ),
+      ) {
     on<GetBusinessServiceEvent>(_mapOnGetBusinessServiceEventToState);
     on<ValidateTextFieldEvent>(_mapValidateTextFieldEventToState);
     on<SubmitFormEvent>(_mapSubmitFormEventToState);
@@ -39,7 +39,7 @@ class ServicesUpdateBloc
 
   final GetAllLocaleBusinessServiceUseCase _getAllLocaleBusinessServiceUseCase;
   final UpdateAllLocaleBusinessServiceUseCase
-      _updateAllLocaleBusinessServiceUseCase;
+  _updateAllLocaleBusinessServiceUseCase;
   final IsValidNameUseCase _isValidNameUseCase;
   final IsValidMessageUseCase _isValidMessageUseCase;
 
@@ -58,8 +58,10 @@ class ServicesUpdateBloc
 
         state.textFieldControllers[ServicesUpdateFormFieldType.title]?.text =
             businessService.title;
-        state.textFieldControllers[ServicesUpdateFormFieldType.description]
-            ?.text = businessService.description;
+        state
+                .textFieldControllers[ServicesUpdateFormFieldType.description]
+                ?.text =
+            businessService.description;
         emit(
           state.copyWith(
             viewState: DSViewState.idle,
@@ -86,8 +88,8 @@ class ServicesUpdateBloc
 
     final validationMessages =
         Map<ServicesUpdateFormFieldType, FormFieldValidationMessage?>.from(
-      state.validationMessages,
-    )..[event.formFieldType] = message;
+          state.validationMessages,
+        )..[event.formFieldType] = message;
 
     emit(state.copyWith(validationMessages: validationMessages));
   }
@@ -162,7 +164,8 @@ class ServicesUpdateBloc
       final title =
           state.textFieldControllers[ServicesUpdateFormFieldType.title]?.text;
       final description = state
-          .textFieldControllers[ServicesUpdateFormFieldType.description]?.text;
+          .textFieldControllers[ServicesUpdateFormFieldType.description]
+          ?.text;
       final businessService = state.businessService?.copyWith(
         title: title,
         description: description,
@@ -170,10 +173,7 @@ class ServicesUpdateBloc
 
       if (businessService == null) {
         emit(
-          state.copyWith(
-            isFormSubmitted: false,
-            submissionSuccessful: false,
-          ),
+          state.copyWith(isFormSubmitted: false, submissionSuccessful: false),
         );
         return;
       }
@@ -281,7 +281,8 @@ class ServicesUpdateBloc
       title:
           state.textFieldControllers[ServicesUpdateFormFieldType.title]?.text,
       description: state
-          .textFieldControllers[ServicesUpdateFormFieldType.description]?.text,
+          .textFieldControllers[ServicesUpdateFormFieldType.description]
+          ?.text,
     );
     final updatedAllLocaleBusinessService = _getAllLocaleBusinessServiceEntity(
       state.locale,
@@ -295,8 +296,10 @@ class ServicesUpdateBloc
       );
       state.textFieldControllers[ServicesUpdateFormFieldType.title]?.text =
           businessService.title;
-      state.textFieldControllers[ServicesUpdateFormFieldType.description]
-          ?.text = businessService.description;
+      state
+              .textFieldControllers[ServicesUpdateFormFieldType.description]
+              ?.text =
+          businessService.description;
 
       emit(
         state.copyWith(

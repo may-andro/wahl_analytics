@@ -9,25 +9,39 @@ import 'package:wahl_analytics/src/feature/developer_option/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/home/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/home_event.dart';
 import 'package:wahl_analytics/src/feature/home/presentation/bloc/home_state.dart';
+import 'package:wahl_analytics/src/feature/home/presentation/tracking/tracking.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(
+    this._buildConfig,
     this._getHomeContentUseCase,
     this._isFeatureEnabledUseCase,
     this._isDevModeAuthenticatedUseCase,
-    this._buildConfig,
+    this._homeTrackingDelegate,
   ) : super(const HomeState()) {
-    on<OnInitScreenEvent>(_mapOnInitScreenEventToState);
+    on<OnInitEvent>(_mapOnInitEventToState);
+    on<ScreenVisibleEvent>(_mapScreenVisibleEventToState);
+    on<LoadingContentViewEvent>(_mapLoadingContentViewEventToState);
+    on<HomeContentViewEvent>(_mapHomeContentViewEventToState);
+    on<HomeServiceSectionViewEvent>(_mapHomeServiceSectionViewEventToState);
+    on<HomeClientSectionViewEvent>(_mapHomeClientSectionViewEventToState);
+    on<HomeTeamSectionViewEvent>(_mapHomeTeamSectionViewEventToState);
+    on<ErrorContentViewEvent>(_mapErrorContentViewEventToState);
     on<GetContentEvent>(_mapGetContentEventToState);
     on<ContentScrollEvent>(_mapContentScrollEventToState);
     on<TabSelectionEvent>(_mapTabSelectionEventToState);
     on<HeaderLogoClickEvent>(_mapHeaderLogoClickEventToState);
+    on<DrawerEvent>(_mapDrawerEventToState);
+    on<ContactUsClickEvent>(_mapContactUsClickEventToState);
+    on<JoinUsClickEvent>(_mapJoinUsClickEventToState);
   }
 
+  final BuildConfig _buildConfig;
   final GetHomeContentUseCase _getHomeContentUseCase;
   final IsFeatureEnabledUseCase _isFeatureEnabledUseCase;
   final IsDevModeAuthenticatedUseCase _isDevModeAuthenticatedUseCase;
-  final BuildConfig _buildConfig;
+  final HomeTrackingDelegate _homeTrackingDelegate;
+
   int lastHeaderLogoTapTimeStamp = 0;
   int headerLogoTapCount = 0;
 
@@ -57,8 +71,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     return eitherResult.fold((_) => false, (isEnabled) => isEnabled);
   }
 
-  FutureOr<void> _mapOnInitScreenEventToState(
-    OnInitScreenEvent event,
+  FutureOr<void> _mapOnInitEventToState(
+    OnInitEvent event,
     Emitter<HomeState> emit,
   ) async {
     final isContactUsHomeFabVisible = await _isContactUsHomeFabVisible;
@@ -75,6 +89,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
     add(GetContentEvent());
+  }
+
+  FutureOr<void> _mapScreenVisibleEventToState(
+    ScreenVisibleEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackScreenView();
   }
 
   FutureOr<void> _mapGetContentEventToState(
@@ -127,6 +148,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     TabSelectionEvent event,
     Emitter<HomeState> emit,
   ) {
+    _homeTrackingDelegate.trackDrawerItemSelection(
+      event.selectedBodySection.name,
+    );
     emit(
       state.copyWith(
         selectedBodySection: event.selectedBodySection,
@@ -142,6 +166,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final newTriggerCount = state.devMenuTriggerCount + 1;
 
     if (_buildConfig.buildEnvironment.isDevMenuEnabled) {
+      _homeTrackingDelegate.trackLogoClick(isAuthenticatedToDevMode: true);
       emit(
         state.copyWith(
           devMenuTriggerCount: newTriggerCount,
@@ -158,6 +183,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
 
     if (showDevMenuAuthentication) {
+      _homeTrackingDelegate.trackLogoClick(isAuthenticatedToDevMode: true);
       emit(
         state.copyWith(
           devMenuTriggerCount: newTriggerCount,
@@ -178,5 +204,79 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       headerLogoTapCount = 0;
     }
     lastHeaderLogoTapTimeStamp = now;
+    _homeTrackingDelegate.trackLogoClick(isAuthenticatedToDevMode: false);
   }
+
+  FutureOr<void> _mapDrawerEventToState(
+    DrawerEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    if (event.isOpened) {
+      _homeTrackingDelegate.trackDrawerOpen();
+    } else {
+      _homeTrackingDelegate.trackDrawerClose();
+    }
+  }
+
+  FutureOr<void> _mapContactUsClickEventToState(
+    ContactUsClickEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackContactUsClick();
+  }
+
+  FutureOr<void> _mapJoinUsClickEventToState(
+    JoinUsClickEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackJoinUsClick();
+  }
+
+  FutureOr<void> _mapLoadingContentViewEventToState(
+    LoadingContentViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackLoadingContentView();
+  }
+
+  FutureOr<void> _mapHomeContentViewEventToState(
+    HomeContentViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackHomeContentView();
+  }
+
+  FutureOr<void> _mapErrorContentViewEventToState(
+    ErrorContentViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackErrorContentView();
+  }
+
+  FutureOr<void> _mapHomeServiceSectionViewEventToState(
+    HomeServiceSectionViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackServicesSectionView();
+  }
+
+  FutureOr<void> _mapHomeClientSectionViewEventToState(
+    HomeClientSectionViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackClientSectionView();
+  }
+
+  FutureOr<void> _mapHomeTeamSectionViewEventToState(
+    HomeTeamSectionViewEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    _homeTrackingDelegate.trackTeamSectionView();
+  }
+}
+
+extension ContextExtension on BuildContext {
+  HomeBloc get bloc => read<HomeBloc>();
+
+  HomeState get state => bloc.state;
 }

@@ -5,10 +5,7 @@ part 'auth_verification_model.g.dart';
 
 @JsonSerializable()
 class AuthVerificationModel {
-  const AuthVerificationModel({
-    required this.code,
-    required this.createdAt,
-  });
+  const AuthVerificationModel({required this.code, required this.createdAt});
 
   factory AuthVerificationModel.fromJson(Map<String, dynamic> json) =>
       _$AuthVerificationModelFromJson(json);

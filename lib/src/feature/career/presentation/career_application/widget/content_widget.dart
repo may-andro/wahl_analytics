@@ -33,14 +33,12 @@ class _ContentWidgetState extends State<ContentWidget> {
         ),
         Positioned.fill(
           child: CustomScrollView(
-            scrollBehavior: ScrollConfiguration.of(context).copyWith(
-              scrollbars: false,
-            ),
+            scrollBehavior: ScrollConfiguration.of(
+              context,
+            ).copyWith(scrollbars: false),
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
-            slivers: [
-              SliverToBoxAdapter(child: _getContent(context)),
-            ],
+            slivers: [SliverToBoxAdapter(child: _getContent(context))],
           ),
         ),
       ],
@@ -176,9 +174,7 @@ class _LContentWidget extends StatelessWidget {
                     ),
                     const DSVerticalSpacerWidget(2),
                     const IntoWidget(),
-                    const Spacer(
-                      flex: 2,
-                    ),
+                    const Spacer(flex: 2),
                   ],
                 ),
               ),

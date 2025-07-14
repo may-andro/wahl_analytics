@@ -22,10 +22,7 @@ class HeaderSection extends HomeContentEntity {
 
   @override
   List<Object?> get props {
-    return [
-      descriptions,
-      urls,
-    ];
+    return [descriptions, urls];
   }
 }
 
@@ -44,11 +41,7 @@ class FooterSection extends HomeContentEntity {
 
   @override
   List<Object?> get props {
-    return [
-      email,
-      mobileNumber,
-      address,
-    ];
+    return [email, mobileNumber, address];
   }
 }
 
@@ -82,13 +75,7 @@ class ClientSection extends BodySection {
 
   @override
   List<Object?> get props {
-    return [
-      name,
-      title,
-      description,
-      action,
-      clients,
-    ];
+    return [name, title, description, action, clients];
   }
 }
 
@@ -105,13 +92,7 @@ class ServiceSection extends BodySection {
 
   @override
   List<Object?> get props {
-    return [
-      name,
-      title,
-      description,
-      action,
-      services,
-    ];
+    return [name, title, description, action, services];
   }
 }
 
@@ -128,12 +109,6 @@ class TeamSection extends BodySection {
 
   @override
   List<Object?> get props {
-    return [
-      name,
-      title,
-      description,
-      action,
-      members,
-    ];
+    return [name, title, description, action, members];
   }
 }

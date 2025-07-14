@@ -4,9 +4,11 @@ import 'package:core/core.dart';
 import 'package:dependency_injection/dependency_injection.dart';
 import 'package:feature_flag/feature_flag.dart';
 import 'package:firebase/firebase.dart';
+import 'package:tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/contact/data/data.dart';
 import 'package:wahl_analytics/src/feature/contact/domain/domain.dart';
 import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/bloc/bloc.dart';
+import 'package:wahl_analytics/src/feature/contact/presentation/contact_us/tracking/tracking.dart';
 import 'package:wahl_analytics/src/feature/contact/presentation/route/route.dart';
 import 'package:wahl_analytics/src/feature/validation/validation.dart';
 import 'package:wahl_analytics/src/route/route.dart';
@@ -14,9 +16,9 @@ import 'package:wahl_analytics/src/route/route.dart';
 class ContactModuleConfigurator implements ModuleConfigurator {
   @override
   FutureOr<void> postDependenciesSetup(ServiceLocator serviceLocator) {
-    serviceLocator
-        .get<ModuleRouteController>()
-        .register(ContactModuleRouteConfigurator());
+    serviceLocator.get<ModuleRouteController>().register(
+      ContactModuleRouteConfigurator(),
+    );
   }
 
   @override
@@ -45,6 +47,10 @@ class ContactModuleConfigurator implements ModuleConfigurator {
     );
 
     serviceLocator.registerFactory(
+      () => ContactUsTrackingDelegate(serviceLocator.get<TrackingReporter>()),
+    );
+
+    serviceLocator.registerFactory(
       () => ContactUsBloc(
         serviceLocator.get<IsValidEmailUseCase>(),
         serviceLocator.get<IsValidNameUseCase>(),
@@ -52,6 +58,7 @@ class ContactModuleConfigurator implements ModuleConfigurator {
         serviceLocator.get<IsFeatureEnabledUseCase>(),
         serviceLocator.get<GetBusinessContactUseCase>(),
         serviceLocator.get<SubmitContactUsApplicationUseCase>(),
+        serviceLocator.get<ContactUsTrackingDelegate>(),
       ),
     );
   }

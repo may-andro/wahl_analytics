@@ -53,10 +53,7 @@ abstract class DBCache<T> extends Cache {
 
     final timestamp = DateTime.now().millisecondsSinceEpoch;
 
-    final values = {
-      ...serialize(model),
-      _cacheTimestampKey: timestamp,
-    };
+    final values = {...serialize(model), _cacheTimestampKey: timestamp};
     await temptDb.transaction((txn) async {
       await txn.insert(
         tableName,
@@ -78,12 +75,10 @@ abstract class DBCache<T> extends Cache {
 
     final cachedList = <T>[];
 
-    final cachedDataMaps =
-        await temptDb.transaction<List<Map<String, dynamic>>>(
-      (txn) async {
-        return await txn.query(tableName);
-      },
-    );
+    final cachedDataMaps = await temptDb
+        .transaction<List<Map<String, dynamic>>>((txn) async {
+          return await txn.query(tableName);
+        });
 
     final expiredItems = <Map<String, dynamic>>[];
 
@@ -109,9 +104,7 @@ abstract class DBCache<T> extends Cache {
     return false;
   }
 
-  void _deleteExpiredEntries(
-    List<Map<String, dynamic>> expiredItems,
-  ) {
+  void _deleteExpiredEntries(List<Map<String, dynamic>> expiredItems) {
     for (final map in expiredItems) {
       _cacheTimestamp = map[_cacheTimestampKey] as int;
       delete('$_cacheTimestampKey = ?', [_cacheTimestamp]);
@@ -153,11 +146,7 @@ abstract class DBCache<T> extends Cache {
     }
 
     await temptDb.transaction((txn) async {
-      await txn.delete(
-        tableName,
-        where: where,
-        whereArgs: arguments,
-      );
+      await txn.delete(tableName, where: where, whereArgs: arguments);
     });
   }
 

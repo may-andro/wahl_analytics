@@ -63,8 +63,9 @@ class DrawerWidget extends StatelessWidget {
                 Align(
                   child: SelectableText.rich(
                     TextSpan(
-                      text: context.localizations
-                          .copyright('${DateTime.now().year}'),
+                      text: context.localizations.copyright(
+                        '${DateTime.now().year}',
+                      ),
                       style: context.typography.labelSmall.textStyle,
                       children: [
                         const TextSpan(text: '\n'),

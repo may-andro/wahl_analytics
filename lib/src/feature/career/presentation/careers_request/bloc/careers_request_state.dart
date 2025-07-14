@@ -20,11 +20,11 @@ class CareersRequestState extends Equatable {
 
   @override
   List<Object?> get props => [
-        viewState,
-        careerMap,
-        snackBarMessageState,
-        downloadResumeFiles,
-      ];
+    viewState,
+    careerMap,
+    snackBarMessageState,
+    downloadResumeFiles,
+  ];
 
   CareersRequestState copyWith({
     DSViewState? viewState,

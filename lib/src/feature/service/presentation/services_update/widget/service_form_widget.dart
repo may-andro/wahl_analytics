@@ -123,10 +123,7 @@ class _FormWidget extends StatelessWidget {
           value: icon,
           child: Row(
             children: [
-              Icon(
-                icon,
-                color: context.colorPalette.prominent.primary.color,
-              ),
+              Icon(icon, color: context.colorPalette.prominent.primary.color),
               const DSHorizontalSpacerWidget(1),
               DSTextWidget(
                 '${icon.codePoint}',
@@ -167,7 +164,8 @@ class _FormWidget extends StatelessWidget {
         context.serviceUpdateState.textFieldFocusNodes[formFieldType]
             ?.unfocus();
         FocusScope.of(context).requestFocus(
-          context.serviceUpdateState
+          context
+              .serviceUpdateState
               .textFieldFocusNodes[ServiceUpdateFormFieldType.shortDescription],
         );
       },
@@ -181,7 +179,9 @@ class _FormWidget extends StatelessWidget {
       },
       validator: (input) {
         final message = context
-            .serviceUpdateBloc.state.validationMessages[formFieldType]
+            .serviceUpdateBloc
+            .state
+            .validationMessages[formFieldType]
             ?.getMessage(context.localizations);
         if (message != null) {
           return TextFieldValidationData.error(message);
@@ -211,7 +211,8 @@ class _FormWidget extends StatelessWidget {
         context.serviceUpdateState.textFieldFocusNodes[formFieldType]
             ?.unfocus();
         FocusScope.of(context).requestFocus(
-          context.serviceUpdateState
+          context
+              .serviceUpdateState
               .textFieldFocusNodes[ServiceUpdateFormFieldType.longDescription],
         );
       },

@@ -24,9 +24,7 @@ class BuildFeatureFlagRepository implements FeatureFlagRepository {
   @override
   FutureOr<bool> isFeatureEnabled(Feature feature) {
     if (_isCacheEnabled) {
-      return _cacheRepositoryDelegate.isFeatureEnabled(
-        feature,
-      );
+      return _cacheRepositoryDelegate.isFeatureEnabled(feature);
     }
     return _remoteRepositoryDelegate.isFeatureEnabled(feature);
   }

@@ -5,10 +5,7 @@ import 'package:storybook/src/widget/base_scaffold_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(
-  name: 'Shimmer Loading Widget',
-  type: ShimmerLoadingWidget,
-)
+@widgetbook.UseCase(name: 'Shimmer Loading Widget', type: ShimmerLoadingWidget)
 ShimmerLoadingWidget shimmerLoadingWidget(BuildContext context) {
   return const ShimmerLoadingWidget();
 }

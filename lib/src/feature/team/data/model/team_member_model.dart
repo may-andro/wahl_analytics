@@ -15,13 +15,9 @@ class TeamMemberModel {
   });
 
   factory TeamMemberModel.fromJson(Map<String, dynamic> json) {
-    final services = (json['services'] as List<dynamic>).map(
-      (service) {
-        return ServiceModel.fromJson(
-          Map<String, dynamic>.from(service as Map),
-        );
-      },
-    ).toList();
+    final services = (json['services'] as List<dynamic>).map((service) {
+      return ServiceModel.fromJson(Map<String, dynamic>.from(service as Map));
+    }).toList();
 
     return TeamMemberModel(
       url: json['url'] as String,

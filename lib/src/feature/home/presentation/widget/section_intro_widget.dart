@@ -10,8 +10,9 @@ class SectionIntroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        final headerSections =
-            state.sections?.whereType<HeaderSection>().toList();
+        final headerSections = state.sections
+            ?.whereType<HeaderSection>()
+            .toList();
         if (headerSections == null || headerSections.isEmpty) {
           return const SizedBox.shrink();
         }
@@ -25,15 +26,14 @@ class SectionIntroWidget extends StatelessWidget {
                 url: headerSection.urls.last,
                 fit: BoxFit.cover,
                 errorWidget: const DSAssetImageWidget(DSAssetImage.intro),
-                loadingWidget: DSLoadingWidget(
-                  size: context.space(factor: 4),
-                ),
+                loadingWidget: DSLoadingWidget(size: context.space(factor: 4)),
               ),
             ),
             Positioned.fill(
               child: Container(
-                color: context.colorPalette.prominent.primary.color
-                    .withValues(alpha: 0.3),
+                color: context.colorPalette.prominent.primary.color.withValues(
+                  alpha: 0.3,
+                ),
               ),
             ),
             Padding(

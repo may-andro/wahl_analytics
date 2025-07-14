@@ -4,7 +4,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:wahl_analytics/l10n/l10n.dart';
 import 'package:wahl_analytics/src/feature/locale/locale.dart';
-import 'package:wahl_analytics/src/feature/splash/splash_screen.dart';
+import 'package:wahl_analytics/src/feature/splash/splash.dart';
 
 class SplashApp extends StatelessWidget {
   const SplashApp({
@@ -16,7 +16,7 @@ class SplashApp extends StatelessWidget {
 
   final BuildConfig buildConfig;
   final List<ModuleConfigurator> moduleConfigurators;
-  final void Function(DesignSystem, AppLocale) onInitializationSuccessful;
+  final void Function(DesignSystem) onInitializationSuccessful;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,10 @@ class SplashApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: (locale, supportedLocales) {
-        final resolvedLocale =
-            supportedLocales.contains(locale) ? locale : supportedLocales.first;
-        final appLocale = AppLocale(resolvedLocale?.languageCode ?? 'en');
+        final resolvedLocale = supportedLocales.contains(locale)
+            ? locale
+            : supportedLocales.first;
+        final appLocale = resolvedLocale?.appLocale ?? AppLocale.fallback();
         moduleConfigurators.insert(0, AppLocaleConfigurator(appLocale));
         return resolvedLocale; // Return the resolved locale
       },

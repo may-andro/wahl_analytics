@@ -11,99 +11,99 @@ extension BuildContextExtension on BuildContext {
   DSColorPalette get colorPalette => theme.colorPalette;
 
   List<DSColor> get colors => [
-        ...neutralColors,
-        ...brandColors,
-        ...backgroundColors,
-        ...backgroundSecondaryColors,
-        ...semanticColors,
-        ...prominentColors,
-      ];
+    ...neutralColors,
+    ...brandColors,
+    ...backgroundColors,
+    ...backgroundSecondaryColors,
+    ...semanticColors,
+    ...prominentColors,
+  ];
 
   List<DSColor> get neutralColors => [
-        colorPalette.neutral.grey1,
-        colorPalette.neutral.grey2,
-        colorPalette.neutral.grey3,
-        colorPalette.neutral.grey4,
-        colorPalette.neutral.grey5,
-        colorPalette.neutral.grey6,
-        colorPalette.neutral.grey7,
-        colorPalette.neutral.grey8,
-        colorPalette.neutral.grey9,
-        colorPalette.neutral.grey10,
-        colorPalette.neutral.white,
-        colorPalette.neutral.black,
-      ];
+    colorPalette.neutral.grey1,
+    colorPalette.neutral.grey2,
+    colorPalette.neutral.grey3,
+    colorPalette.neutral.grey4,
+    colorPalette.neutral.grey5,
+    colorPalette.neutral.grey6,
+    colorPalette.neutral.grey7,
+    colorPalette.neutral.grey8,
+    colorPalette.neutral.grey9,
+    colorPalette.neutral.grey10,
+    colorPalette.neutral.white,
+    colorPalette.neutral.black,
+  ];
 
   List<DSColor> get brandColors => [
-        colorPalette.brand.primary,
-        colorPalette.brand.onPrimary,
-        colorPalette.brand.primaryContainer,
-        colorPalette.brand.onPrimaryContainer,
-        colorPalette.brand.secondary,
-        colorPalette.brand.onSecondary,
-        colorPalette.brand.secondaryContainer,
-        colorPalette.brand.onSecondaryContainer,
-        colorPalette.brand.tertiary,
-        colorPalette.brand.onTertiary,
-        colorPalette.brand.tertiaryContainer,
-        colorPalette.brand.onTertiaryContainer,
-      ];
+    colorPalette.brand.primary,
+    colorPalette.brand.onPrimary,
+    colorPalette.brand.primaryContainer,
+    colorPalette.brand.onPrimaryContainer,
+    colorPalette.brand.secondary,
+    colorPalette.brand.onSecondary,
+    colorPalette.brand.secondaryContainer,
+    colorPalette.brand.onSecondaryContainer,
+    colorPalette.brand.tertiary,
+    colorPalette.brand.onTertiary,
+    colorPalette.brand.tertiaryContainer,
+    colorPalette.brand.onTertiaryContainer,
+  ];
 
   List<DSColor> get prominentColors => [
-        colorPalette.prominent.primary,
-        colorPalette.prominent.onPrimary,
-        colorPalette.prominent.primaryContainer,
-        colorPalette.prominent.onPrimaryContainer,
-      ];
+    colorPalette.prominent.primary,
+    colorPalette.prominent.onPrimary,
+    colorPalette.prominent.primaryContainer,
+    colorPalette.prominent.onPrimaryContainer,
+  ];
 
   List<DSColor> get semanticColors => [
-        colorPalette.semantic.info,
-        colorPalette.semantic.onInfo,
-        colorPalette.semantic.infoContainer,
-        colorPalette.semantic.onInfoContainer,
-        colorPalette.semantic.success,
-        colorPalette.semantic.onSuccess,
-        colorPalette.semantic.successContainer,
-        colorPalette.semantic.onSuccessContainer,
-        colorPalette.semantic.warning,
-        colorPalette.semantic.onWarning,
-        colorPalette.semantic.warningContainer,
-        colorPalette.semantic.onWarningContainer,
-        colorPalette.semantic.error,
-        colorPalette.semantic.onError,
-        colorPalette.semantic.errorContainer,
-        colorPalette.semantic.onErrorContainer,
-      ];
+    colorPalette.semantic.info,
+    colorPalette.semantic.onInfo,
+    colorPalette.semantic.infoContainer,
+    colorPalette.semantic.onInfoContainer,
+    colorPalette.semantic.success,
+    colorPalette.semantic.onSuccess,
+    colorPalette.semantic.successContainer,
+    colorPalette.semantic.onSuccessContainer,
+    colorPalette.semantic.warning,
+    colorPalette.semantic.onWarning,
+    colorPalette.semantic.warningContainer,
+    colorPalette.semantic.onWarningContainer,
+    colorPalette.semantic.error,
+    colorPalette.semantic.onError,
+    colorPalette.semantic.errorContainer,
+    colorPalette.semantic.onErrorContainer,
+  ];
 
   List<DSColor> get backgroundColors => [
-        colorPalette.background.primary,
-        colorPalette.background.onPrimary,
-        colorPalette.background.surface,
-        colorPalette.background.onSurface,
-        colorPalette.background.disabled,
-        colorPalette.background.onDisabled,
-        colorPalette.background.surfaceVariant,
-        colorPalette.background.onSurfaceVariant,
-        colorPalette.background.inverseSurface,
-        colorPalette.background.onInverseSurface,
-        colorPalette.background.shadow,
-        colorPalette.background.scrim,
-      ];
+    colorPalette.background.primary,
+    colorPalette.background.onPrimary,
+    colorPalette.background.surface,
+    colorPalette.background.onSurface,
+    colorPalette.background.disabled,
+    colorPalette.background.onDisabled,
+    colorPalette.background.surfaceVariant,
+    colorPalette.background.onSurfaceVariant,
+    colorPalette.background.inverseSurface,
+    colorPalette.background.onInverseSurface,
+    colorPalette.background.shadow,
+    colorPalette.background.scrim,
+  ];
 
   List<DSColor> get backgroundSecondaryColors => [
-        colorPalette.backgroundSecondary.primary,
-        colorPalette.backgroundSecondary.onPrimary,
-        colorPalette.backgroundSecondary.surface,
-        colorPalette.backgroundSecondary.onSurface,
-        colorPalette.backgroundSecondary.disabled,
-        colorPalette.backgroundSecondary.onDisabled,
-        colorPalette.backgroundSecondary.surfaceVariant,
-        colorPalette.backgroundSecondary.onSurfaceVariant,
-        colorPalette.backgroundSecondary.inverseSurface,
-        colorPalette.backgroundSecondary.onInverseSurface,
-        colorPalette.backgroundSecondary.shadow,
-        colorPalette.backgroundSecondary.scrim,
-      ];
+    colorPalette.backgroundSecondary.primary,
+    colorPalette.backgroundSecondary.onPrimary,
+    colorPalette.backgroundSecondary.surface,
+    colorPalette.backgroundSecondary.onSurface,
+    colorPalette.backgroundSecondary.disabled,
+    colorPalette.backgroundSecondary.onDisabled,
+    colorPalette.backgroundSecondary.surfaceVariant,
+    colorPalette.backgroundSecondary.onSurfaceVariant,
+    colorPalette.backgroundSecondary.inverseSurface,
+    colorPalette.backgroundSecondary.onInverseSurface,
+    colorPalette.backgroundSecondary.shadow,
+    colorPalette.backgroundSecondary.scrim,
+  ];
 
   Map<DSColor, String> get colorMap {
     return {
@@ -290,10 +290,7 @@ extension BuildContextExtension on BuildContext {
     }
   }
 
-  double getTextWidth(
-    String text,
-    DSTextStyle textStyle,
-  ) {
+  double getTextWidth(String text, DSTextStyle textStyle) {
     final textScaler = MediaQuery.textScalerOf(this);
     final renderParagraph = RenderParagraph(
       TextSpan(text: text, style: textStyle.textStyle),
@@ -304,16 +301,10 @@ extension BuildContextExtension on BuildContext {
     return renderParagraph.getMaxIntrinsicWidth(double.infinity);
   }
 
-  double getTextHeight(
-    DSTextStyle textStyle,
-    int lines,
-  ) {
+  double getTextHeight(DSTextStyle textStyle, int lines) {
     final textScaler = MediaQuery.textScalerOf(this);
     final renderParagraph = RenderParagraph(
-      TextSpan(
-        text: _stringWithAllAsciiCharCodes,
-        style: textStyle.textStyle,
-      ),
+      TextSpan(text: _stringWithAllAsciiCharCodes, style: textStyle.textStyle),
       textDirection: TextDirection.ltr,
       maxLines: 1,
       strutStyle: StrutStyle.fromTextStyle(textStyle.textStyle),

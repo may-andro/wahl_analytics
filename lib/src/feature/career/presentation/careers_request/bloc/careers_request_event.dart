@@ -11,17 +11,13 @@ sealed class CareersRequestEvent extends Equatable {
 final class GetCareersRequestEvent extends CareersRequestEvent {}
 
 final class DeleteCareersRequestEvent extends CareersRequestEvent {
-  const DeleteCareersRequestEvent({
-    required this.career,
-  });
+  const DeleteCareersRequestEvent({required this.career});
 
   final CareerEntity career;
 }
 
 final class OpenResumeEvent extends CareersRequestEvent {
-  const OpenResumeEvent({
-    required this.career,
-  });
+  const OpenResumeEvent({required this.career});
 
   final CareerEntity career;
 }

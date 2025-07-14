@@ -48,8 +48,9 @@ void main() {
         );
         mockFbFirestoreController.mockAddDocumentToCollection();
 
-        await repository
-            .submitCareerApplication(CareerApplicationEntity.test());
+        await repository.submitCareerApplication(
+          CareerApplicationEntity.test(),
+        );
 
         verify(
           () => mockFbStorageController.uploadRawDocument(any(), any()),
@@ -63,8 +64,7 @@ void main() {
         ).called(1);
       });
 
-      test(
-          'should propagates exception '
+      test('should propagates exception '
           'when occurs while uploading document', () async {
         mockFbStorageController.mockUploadRawDocumentThrowsException();
 
@@ -85,8 +85,7 @@ void main() {
         );
       });
 
-      test(
-          'should propagates exception '
+      test('should propagates exception '
           'when updating firestore', () async {
         mockFbStorageController.mockUploadRawDocument(
           'https://example.com/resume.pdf',
@@ -114,59 +113,58 @@ void main() {
     });
 
     group('getCareersRequest', () {
-      test('should return list of $CareerEntity when data is available in FS',
-          () async {
-        final Map<String, dynamic> testCareerData = {
-          'name': 'John Doe',
-          'email': 'john.doe@example.com',
-          'role': 'Software Engineer',
-          'country': 'USA',
-          'message': 'Excited to apply for this role!',
-          'resumeName': 'john_doe_resume.pdf',
-          'resumeUrl': 'https://example.com/resumes/john_doe_resume.pdf',
-          'uploadedAt': 'Sunday, April 6, 2025 19:41',
-          'env': 'production',
-        };
-
-        mockFbFirestoreController.mockGetCollectionQuerySnapshot(
-          <Map<String, dynamic>>[testCareerData],
-        );
-
-        final result = await repository.getCareersRequest();
-
-        verify(
-          () => mockFbFirestoreController.getCollectionQuerySnapshot(
-            'career',
-            field: 'env',
-            isEqualTo: 'prod',
-          ),
-        ).called(1);
-
-        final careerEntity = result.first;
-        expect(result.length, 1);
-        expect(careerEntity.name, equals(testCareerData['name']));
-        expect(careerEntity.email, equals(testCareerData['email']));
-        expect(careerEntity.role, equals(testCareerData['role']));
-        expect(careerEntity.country, equals(testCareerData['country']));
-        expect(careerEntity.message, equals(testCareerData['message']));
-        expect(careerEntity.resumeUrl, equals(testCareerData['resumeUrl']));
-        expect(careerEntity.resumeName, equals(testCareerData['resumeName']));
-        expect(
-          careerEntity.uploadedAt,
-          equals((testCareerData['uploadedAt'] as String).toFullDateTime),
-        );
-      });
-
       test(
-          'should propagates exception '
-          'when add to firestore fails', () async {
-        mockFbFirestoreController
-            .mockGetCollectionQuerySnapshotThrowsException(Exception());
+        'should return list of $CareerEntity when data is available in FS',
+        () async {
+          final Map<String, dynamic> testCareerData = {
+            'name': 'John Doe',
+            'email': 'john.doe@example.com',
+            'role': 'Software Engineer',
+            'country': 'USA',
+            'message': 'Excited to apply for this role!',
+            'resumeName': 'john_doe_resume.pdf',
+            'resumeUrl': 'https://example.com/resumes/john_doe_resume.pdf',
+            'uploadedAt': 'Sunday, April 6, 2025 19:41',
+            'env': 'production',
+          };
 
-        await expectLater(
-          repository.getCareersRequest(),
-          throwsException,
+          mockFbFirestoreController.mockGetCollectionQuerySnapshot(
+            <Map<String, dynamic>>[testCareerData],
+          );
+
+          final result = await repository.getCareersRequest();
+
+          verify(
+            () => mockFbFirestoreController.getCollectionQuerySnapshot(
+              'career',
+              field: 'env',
+              isEqualTo: 'prod',
+            ),
+          ).called(1);
+
+          final careerEntity = result.first;
+          expect(result.length, 1);
+          expect(careerEntity.name, equals(testCareerData['name']));
+          expect(careerEntity.email, equals(testCareerData['email']));
+          expect(careerEntity.role, equals(testCareerData['role']));
+          expect(careerEntity.country, equals(testCareerData['country']));
+          expect(careerEntity.message, equals(testCareerData['message']));
+          expect(careerEntity.resumeUrl, equals(testCareerData['resumeUrl']));
+          expect(careerEntity.resumeName, equals(testCareerData['resumeName']));
+          expect(
+            careerEntity.uploadedAt,
+            equals((testCareerData['uploadedAt'] as String).toFullDateTime),
+          );
+        },
+      );
+
+      test('should propagates exception '
+          'when add to firestore fails', () async {
+        mockFbFirestoreController.mockGetCollectionQuerySnapshotThrowsException(
+          Exception(),
         );
+
+        await expectLater(repository.getCareersRequest(), throwsException);
 
         verify(
           () => mockFbFirestoreController.getCollectionQuerySnapshot(
@@ -198,8 +196,7 @@ void main() {
         ).called(1);
       });
 
-      test(
-          'should propagates exception '
+      test('should propagates exception '
           'when deleting to firestore fails', () async {
         mockFbFirestoreController
             .mockDeleteDocumentFromCollectionThrowsException(Exception());

@@ -27,11 +27,7 @@ enum Feature {
     icon: Icons.details,
   );
 
-  const Feature({
-    required this.key,
-    required this.title,
-    required this.icon,
-  });
+  const Feature({required this.key, required this.title, required this.icon});
 
   factory Feature.getFeature(String key) {
     return Feature.values.firstWhere((feature) => feature.key == key);
