@@ -19,7 +19,7 @@ class RouteConfigurator {
       initialLocation: '/',
       routes: moduleRouteConfigurator.expand((item) => item.routes).toList(),
       observers: navigationObservers,
-      errorBuilder: (_, __) => const RouteNotFoundScreen(),
+      errorBuilder: (_, _) => const RouteNotFoundScreen(),
     );
   }
 }
