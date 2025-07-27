@@ -14,7 +14,7 @@ dependencies:
     path: ../firebase
   flutter:
     sdk: flutter
-  logger: ^2.5.0
+  logger: ^2.6.0
 
 dev_dependencies:
   flutter_test:
