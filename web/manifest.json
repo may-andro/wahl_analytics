@@ -3,7 +3,7 @@
     "short_name": "wahl_analytics",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#212121",
+    "background_color": "#F6F6F6",
     "theme_color": "#990B2C",
     "description": "Dashboard app for Wahl Analytics",
     "orientation": "portrait-primary",
