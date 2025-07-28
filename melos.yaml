@@ -6,9 +6,9 @@ environment:
 packages:
   # Include the package in the workspace root.
   - .
-  # Include all packages inside the `layers` directory that are direct children.
+  # Include all packages inside the `layer` directory that are direct children.
   - layer/*
-  # Include all packages inside the `layers` directory that are direct children.
+  # Include all packages inside the `tool` directory that are direct children.
   - tool/*
 
 scripts:

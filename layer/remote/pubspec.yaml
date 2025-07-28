@@ -10,7 +10,7 @@ resolution: workspace
 dependencies:
   dependency_injection:
     path: ../dependency_injection
-  dio: ^5.7.0
+  dio: ^5.8.0+1
   dio_smart_retry: ^7.0.1
   flutter:
     sdk: flutter
@@ -22,7 +22,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   http_mock_adapter: ^0.6.1
-  mocktail: ^1.0.2
+  mocktail: ^1.0.4
 
 flutter:
   uses-material-design: true

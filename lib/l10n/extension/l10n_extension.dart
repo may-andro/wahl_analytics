@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:wahl_analytics/l10n/generated/app_localizations.dart';
 
 extension AppLocalizationsExtension on AppLocalizations {}

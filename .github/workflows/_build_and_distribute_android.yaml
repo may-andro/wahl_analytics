@@ -161,7 +161,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_SERVICE_ACCOUNT }}
           packageName: com.mayandro.wahl_analytics
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: alpha
+          track: production
 
 
 

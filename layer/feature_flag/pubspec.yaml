@@ -28,10 +28,10 @@ dependencies:
     path: ../use_case
 
 dev_dependencies:
-  build_runner: ^2.4.14
+  build_runner: ^2.5.4
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.9.2
+  json_serializable: ^6.9.5
   mocktail: ^1.0.4
 
 flutter:
