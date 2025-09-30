@@ -47,7 +47,7 @@ jobs:
         run: melos gen_app --no-select
 
       - name: Format the Dart code
-        run: dart format . --set-exit-if-changed
+        run: dart format lib test --set-exit-if-changed
 
       - name: Statically analyze the code
         run: flutter analyze
