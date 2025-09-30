@@ -11,10 +11,9 @@ ClientModel _$ClientModelFromJson(Map<String, dynamic> json) => ClientModel(
   name: json['name'] as String,
   shortDescription: json['shortDescription'] as String,
   longDescription: json['longDescription'] as String,
-  services:
-      (json['servicesProvided'] as List<dynamic>)
-          .map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  services: (json['servicesProvided'] as List<dynamic>)
+      .map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$ClientModelToJson(ClientModel instance) =>

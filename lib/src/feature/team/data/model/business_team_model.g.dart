@@ -12,10 +12,9 @@ BusinessTeamModel _$BusinessTeamModelFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['shortDescription'] as String,
       action: json['action'] as String,
-      members:
-          (json['members'] as List<dynamic>)
-              .map((e) => TeamMemberModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      members: (json['members'] as List<dynamic>)
+          .map((e) => TeamMemberModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$BusinessTeamModelToJson(BusinessTeamModel instance) =>

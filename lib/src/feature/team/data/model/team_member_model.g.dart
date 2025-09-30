@@ -13,10 +13,9 @@ TeamMemberModel _$TeamMemberModelFromJson(Map<String, dynamic> json) =>
       role: json['role'] as String,
       shortDescription: json['shortDescription'] as String,
       longDescription: json['longDescription'] as String,
-      services:
-          (json['services'] as List<dynamic>)
-              .map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      services: (json['services'] as List<dynamic>)
+          .map((e) => ServiceModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$TeamMemberModelToJson(TeamMemberModel instance) =>
