@@ -43,11 +43,11 @@ jobs:
       - name: Get dart dependencies
         run: flutter pub get
 
-      - name: Run code generator
-        run: melos gen_app --no-select
-
       - name: Format the Dart code
         run: dart format lib test --set-exit-if-changed
+
+      - name: Run code generator
+        run: melos gen_app --no-select
 
       - name: Statically analyze the code
         run: flutter analyze
