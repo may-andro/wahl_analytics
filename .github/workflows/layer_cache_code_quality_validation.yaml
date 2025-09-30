@@ -15,13 +15,14 @@ on:
     paths:
       - 'layer/cache/**'
       - '.github/workflows/layer_cache_code_quality_validation.yaml'
+      - '.github/workflows/_layer_static_analyze_with_test.yaml'
 
 permissions:
   checks: write
 
 jobs:
   layer_cache_code_quality_validation:
-    name: Format, Analyze, and Test module
+    name: Format, Analyze, and Test Cache module
     runs-on: ubuntu-latest
     defaults:
       run:
