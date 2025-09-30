@@ -32,8 +32,8 @@ class IconButtonWidget extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            iconColor: context.knobs
-                .list<Option<DSColor>>(
+            iconColor: context.knobs.object
+                .dropdown<Option<DSColor>>(
                   label: 'Icon Color',
                   options: <Option<DSColor>>[
                     Option(context.colorPalette.neutral.white, 'White'),
@@ -51,8 +51,8 @@ class IconButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            buttonColor: context.knobs
-                .list<Option<DSColor>>(
+            buttonColor: context.knobs.object
+                .dropdown<Option<DSColor>>(
                   label: 'Button Color',
                   options: <Option<DSColor>>[
                     Option(context.colorPalette.brand.primary, 'Brand Primary'),
@@ -69,8 +69,8 @@ class IconButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            size: context.knobs
-                .list<Option<DSIconButtonSize>>(
+            size: context.knobs.object
+                .dropdown<Option<DSIconButtonSize>>(
                   label: 'Size',
                   options: [
                     Option(DSIconButtonSize.large, 'Large'),
@@ -80,8 +80,8 @@ class IconButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            elevation: context.knobs
-                .list<Option<DSElevation?>>(
+            elevation: context.knobs.object
+                .dropdown<Option<DSElevation?>>(
                   label: 'Elevation',
                   options: <Option<DSElevation?>>[
                     Option(null, 'None'),

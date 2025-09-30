@@ -21,13 +21,10 @@ void main() {
 
         final header = await getApiHeaderUseCase.execute('path');
 
-        expect(
-          header,
-          <String, String>{
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer token',
-          },
-        );
+        expect(header, <String, String>{
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer token',
+        });
       });
     });
   });

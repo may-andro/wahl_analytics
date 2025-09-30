@@ -19,8 +19,8 @@ class AssetImageWidget extends StatelessWidget {
       title: 'DSAssetImageWidget',
       child: Center(
         child: DSAssetImageWidget(
-          context.knobs
-              .list<Option<DSAssetImage>>(
+          context.knobs.object
+              .dropdown<Option<DSAssetImage>>(
                 label: 'Asset Image',
                 options: <Option<DSAssetImage>>[
                   Option(DSAssetImage.contactUs, 'ContactUs'),
@@ -30,8 +30,8 @@ class AssetImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          height: context.knobs
-              .list<Option<double>>(
+          height: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Height',
                 options: <Option<double>>[
                   Option(context.height * 0.25, '25% Screen Height'),
@@ -41,8 +41,8 @@ class AssetImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          width: context.knobs
-              .list<Option<double>>(
+          width: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Width',
                 options: <Option<double>>[
                   Option(context.width * 0.25, '25% Screen Width'),
@@ -52,8 +52,8 @@ class AssetImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          boxFit: context.knobs
-              .list<Option<BoxFit?>>(
+          boxFit: context.knobs.object
+              .dropdown<Option<BoxFit?>>(
                 label: 'Box Fit',
                 options: <Option<BoxFit?>>[
                   Option(BoxFit.none, 'None'),

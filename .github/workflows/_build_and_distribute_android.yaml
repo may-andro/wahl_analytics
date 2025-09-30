@@ -37,7 +37,7 @@ on:
         required: true
 
 env:
-  FLUTTER_VERSION: 3.32.2
+  FLUTTER_VERSION: 3.35.4
   JAVA_VERSION: "17"
   PROPERTIES_PATH: "./android/key.properties"
 
@@ -113,8 +113,7 @@ jobs:
           fi
 
       - name: Setup Melos
-        run: |
-          dart pub global activate melos
+        uses: bluefireteam/melos-action@v3
 
       - name: Run code generator
         run: melos gen --no-select

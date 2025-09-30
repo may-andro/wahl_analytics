@@ -52,8 +52,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
               );
             }).toList(),
             value: selectedItem,
-            labelText: context.knobs
-                .list<Option<String?>>(
+            labelText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Label Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -62,8 +62,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            hintText: context.knobs
-                .list<Option<String?>>(
+            hintText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Hint Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -72,8 +72,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            helperText: context.knobs
-                .list<Option<String?>>(
+            helperText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Helper Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -82,8 +82,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            enabled: context.knobs
-                .list<Option<bool>>(
+            enabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Enabled?',
                   options: <Option<bool>>[
                     Option(true, 'Yes'),
@@ -92,8 +92,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onChanged: context.knobs
-                .list<Option<ValueChanged<String?>?>>(
+            onChanged: context.knobs.object
+                .dropdown<Option<ValueChanged<String?>?>>(
                   label: 'On Change Behaviour',
                   description: 'Select the clickable action behaviour',
                   options: <Option<ValueChanged<String?>?>>[
@@ -110,8 +110,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            autoValidateMode: context.knobs
-                .list<Option<AutovalidateMode>>(
+            autoValidateMode: context.knobs.object
+                .dropdown<Option<AutovalidateMode>>(
                   label: 'Auto Validate Mode',
                   options: <Option<AutovalidateMode>>[
                     Option(AutovalidateMode.disabled, 'Disabled [Default]'),
@@ -124,22 +124,22 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onTap: context.knobs
-                .list<Option<VoidCallback?>>(
+            onTap: context.knobs.object
+                .dropdown<Option<VoidCallback?>>(
                   label: 'Field Submit Action',
                   options: <Option<VoidCallback?>>[
                     Option(null, 'Default [No Action]'),
                     Option(() {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text('On Tapped')));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('On Tapped')),
+                      );
                     }, 'With Action'),
                   ],
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            validator: context.knobs
-                .list<Option<DropDownValidationData? Function(String?)?>>(
+            validator: context.knobs.object
+                .dropdown<Option<DropDownValidationData? Function(String?)?>>(
                   label: 'Validator',
                   options: [
                     Option(null, 'Default [No Validation]'),
@@ -164,8 +164,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onValidationError: context.knobs
-                .list<Option<void Function(String)?>>(
+            onValidationError: context.knobs.object
+                .dropdown<Option<void Function(String)?>>(
                   label: 'Validation Error Action',
                   description:
                       'Select the on validation error action behaviour',

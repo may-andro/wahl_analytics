@@ -22,8 +22,8 @@ class ErrorCardWidget extends StatelessWidget {
           padding: EdgeInsets.all(context.space(factor: 2)),
           child: DSErrorCardWidget(
             message: 'Something went wrong, please try again later',
-            onRetryClicked: context.knobs
-                .list<Option<void Function()?>>(
+            onRetryClicked: context.knobs.object
+                .dropdown<Option<void Function()?>>(
                   label: 'On Retry Clicked',
                   options: [
                     Option(null, 'Default [Non Clickable]'),

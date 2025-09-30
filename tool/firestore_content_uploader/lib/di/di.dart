@@ -15,27 +15,17 @@ void setUpDI() {
 }
 
 void _addHttpClientToDI() {
-  locator.registerFactory<http.Client>(
-    () => http.Client(),
-  );
+  locator.registerFactory<http.Client>(() => http.Client());
 }
 
 void _addLoggerToDI() {
-  locator.registerFactory<Logger>(
-    () => Logger(),
-  );
+  locator.registerFactory<Logger>(() => Logger());
 
-  locator.registerFactory<Log>(
-    () => LogImpl(
-      locator<Logger>(),
-    ),
-  );
+  locator.registerFactory<Log>(() => LogImpl(locator<Logger>()));
 }
 
 void _addUseCasesToDI() {
-  locator.registerFactory<GetBaseUrlUseCase>(
-    () => const GetBaseUrlUseCase(),
-  );
+  locator.registerFactory<GetBaseUrlUseCase>(() => const GetBaseUrlUseCase());
 
   locator.registerFactory<GetDataToUploadUseCase>(
     () => const GetDataToUploadUseCase(),
@@ -53,9 +43,7 @@ void _addUseCasesToDI() {
   );
 
   locator.registerFactory<GetApiHeaderUseCase>(
-    () => GetApiHeaderUseCase(
-      locator<GetAuthTokenUseCase>(),
-    ),
+    () => GetApiHeaderUseCase(locator<GetAuthTokenUseCase>()),
   );
 
   locator.registerFactory<UploadUseCase>(
@@ -71,8 +59,6 @@ void _addUseCasesToDI() {
 
 void _addCommandsToDI() {
   locator.registerFactory<UploadCommand>(
-    () => UploadCommand(
-      locator<UploadUseCase>(),
-    ),
+    () => UploadCommand(locator<UploadUseCase>()),
   );
 }

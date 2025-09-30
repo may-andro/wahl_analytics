@@ -22,8 +22,8 @@ class TextFieldWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(context.space(factor: 2)),
           child: DSTextFieldWidget(
-            labelText: context.knobs
-                .list<Option<String?>>(
+            labelText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Label Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -32,8 +32,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            hintText: context.knobs
-                .list<Option<String?>>(
+            hintText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Hint Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -42,8 +42,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            helperText: context.knobs
-                .list<Option<String?>>(
+            helperText: context.knobs.object
+                .dropdown<Option<String?>>(
                   label: 'Helper Text',
                   options: <Option<String?>>[
                     Option(null, 'None'),
@@ -52,8 +52,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            autofillHints: context.knobs
-                .list<Option<List<String>?>>(
+            autofillHints: context.knobs.object
+                .dropdown<Option<List<String>?>>(
                   label: 'Autofill Hints',
                   options: <Option<List<String>?>>[
                     Option(null, 'None'),
@@ -65,8 +65,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            autofocus: context.knobs
-                .list<Option<bool>>(
+            autofocus: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Autofocus?',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -75,8 +75,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            enabled: context.knobs
-                .list<Option<bool>>(
+            enabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Enabled?',
                   options: <Option<bool>>[
                     Option(true, 'Yes'),
@@ -85,8 +85,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            readOnly: context.knobs
-                .list<Option<bool>>(
+            readOnly: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Read Only?',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -95,8 +95,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            maxLines: context.knobs
-                .list<Option<int>>(
+            maxLines: context.knobs.object
+                .dropdown<Option<int>>(
                   label: 'Max Lines',
                   options: <Option<int>>[
                     Option(1, 'Default: 1'),
@@ -106,8 +106,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            maxLength: context.knobs
-                .list<Option<int?>>(
+            maxLength: context.knobs.object
+                .dropdown<Option<int?>>(
                   label: 'Max Length',
                   options: <Option<int?>>[
                     Option(null, 'None'),
@@ -117,8 +117,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            keyboardType: context.knobs
-                .list<Option<TextInputType?>>(
+            keyboardType: context.knobs.object
+                .dropdown<Option<TextInputType?>>(
                   label: 'Keyboard Type',
                   options: <Option<TextInputType?>>[
                     Option(null, 'None'),
@@ -132,8 +132,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            autoValidateMode: context.knobs
-                .list<Option<AutovalidateMode>>(
+            autoValidateMode: context.knobs.object
+                .dropdown<Option<AutovalidateMode>>(
                   label: 'Auto Validate Mode',
                   options: <Option<AutovalidateMode>>[
                     Option(AutovalidateMode.disabled, 'Disabled [Default]'),
@@ -146,8 +146,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            textCapitalization: context.knobs
-                .list<Option<TextCapitalization>>(
+            textCapitalization: context.knobs.object
+                .dropdown<Option<TextCapitalization>>(
                   label: 'Text Capitalization',
                   options: <Option<TextCapitalization>>[
                     Option(TextCapitalization.none, 'None [Default]'),
@@ -158,8 +158,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            suffixIcon: context.knobs
-                .list<Option<IconData?>>(
+            suffixIcon: context.knobs.object
+                .dropdown<Option<IconData?>>(
                   label: 'Suffix Icon',
                   options: <Option<IconData?>>[
                     Option(null, 'None'),
@@ -168,8 +168,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            textInputAction: context.knobs
-                .list<Option<TextInputAction?>>(
+            textInputAction: context.knobs.object
+                .dropdown<Option<TextInputAction?>>(
                   label: 'Text Input Action',
                   options: <Option<TextInputAction?>>[
                     Option(null, 'None'),
@@ -184,8 +184,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            textFieldType: context.knobs
-                .list<Option<TextFieldType>>(
+            textFieldType: context.knobs.object
+                .dropdown<Option<TextFieldType>>(
                   label: 'Text Field Type',
                   options: <Option<TextFieldType>>[
                     Option(TextFieldType.normal, 'Normal'),
@@ -194,8 +194,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onChanged: context.knobs
-                .list<Option<void Function(String)?>>(
+            onChanged: context.knobs.object
+                .dropdown<Option<void Function(String)?>>(
                   label: 'On Change Behaviour',
                   description: 'Select the clickable action behaviour',
                   options: <Option<void Function(String)?>>[
@@ -209,8 +209,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onFieldSubmitted: context.knobs
-                .list<Option<void Function(String)?>>(
+            onFieldSubmitted: context.knobs.object
+                .dropdown<Option<void Function(String)?>>(
                   label: 'Field Submit Action',
                   options: <Option<void Function(String)?>>[
                     Option(null, 'Default [No Action]'),
@@ -223,8 +223,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            validator: context.knobs
-                .list<Option<TextFieldValidationData? Function(String?)?>>(
+            validator: context.knobs.object
+                .dropdown<Option<TextFieldValidationData? Function(String?)?>>(
                   label: 'Validator',
                   options: [
                     Option(null, 'Default [No Validation]'),
@@ -249,8 +249,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            onValidationError: context.knobs
-                .list<Option<void Function(String)?>>(
+            onValidationError: context.knobs.object
+                .dropdown<Option<void Function(String)?>>(
                   label: 'Validation Error Action',
                   description:
                       'Select the on validation error action behaviour',
@@ -261,8 +261,8 @@ class TextFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            inputFormatters: context.knobs
-                .list<Option<List<TextInputFormatter>?>>(
+            inputFormatters: context.knobs.object
+                .dropdown<Option<List<TextInputFormatter>?>>(
                   label: 'Input Formatters',
                   options: <Option<List<TextInputFormatter>?>>[
                     Option(null, 'None'),

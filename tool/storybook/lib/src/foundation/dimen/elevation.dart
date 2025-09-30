@@ -19,8 +19,8 @@ class ElevationDimension extends StatelessWidget {
       title: 'Elevation',
       child: Center(
         child: Card(
-          elevation: context.knobs
-              .list<Option<double>>(
+          elevation: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Elevation Type',
                 options: <Option<double>>[
                   Option(context.dimen.elevationLevel1.value, 'Level1'),

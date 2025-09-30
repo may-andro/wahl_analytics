@@ -22,8 +22,8 @@ class RadiusDimension extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(
-                context.knobs
-                    .list<Option<double>>(
+                context.knobs.object
+                    .dropdown<Option<double>>(
                       label: 'Radius Type',
                       options: <Option<double>>[
                         Option(context.dimen.radiusLevel1.value, 'Level1'),

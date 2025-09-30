@@ -32,8 +32,8 @@ class ProgressButtonWidget extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            border: context.knobs
-                .list<Option<DSProgressButtonBorder>>(
+            border: context.knobs.object
+                .dropdown<Option<DSProgressButtonBorder>>(
                   label: 'Border',
                   options: [
                     Option(DSProgressButtonBorder.regular, 'Regular'),
@@ -42,8 +42,8 @@ class ProgressButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            isDisabled: context.knobs
-                .list<Option<bool>>(
+            isDisabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Is Disabled?',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -52,8 +52,8 @@ class ProgressButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            size: context.knobs
-                .list<Option<DSProgressButtonSize>>(
+            size: context.knobs.object
+                .dropdown<Option<DSProgressButtonSize>>(
                   label: 'Size',
                   options: [
                     Option(DSProgressButtonSize.large, 'Large'),
@@ -63,8 +63,8 @@ class ProgressButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            icon: context.knobs
-                .list<Option<IconData?>>(
+            icon: context.knobs.object
+                .dropdown<Option<IconData?>>(
                   label: 'Icon',
                   options: [
                     Option(null, 'None'),
@@ -73,8 +73,8 @@ class ProgressButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            iconDirection: context.knobs
-                .list<Option<DSProgressButtonIconDirection>>(
+            iconDirection: context.knobs.object
+                .dropdown<Option<DSProgressButtonIconDirection>>(
                   label: 'Icon Direction',
                   options: [
                     Option(DSProgressButtonIconDirection.left, 'Left'),
@@ -83,8 +83,8 @@ class ProgressButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            loadingPercentage: context.knobs
-                .list<Option<double?>>(
+            loadingPercentage: context.knobs.object
+                .dropdown<Option<double?>>(
                   label: 'Loading Percentage',
                   options: [
                     Option(null, 'None'),

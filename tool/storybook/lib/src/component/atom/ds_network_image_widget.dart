@@ -24,8 +24,8 @@ class NetworkImageWidget extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: DSNetworkImageWidget(
               url: 'https://picsum.photos/250?image=8',
-              height: context.knobs
-                  .list<Option<double>>(
+              height: context.knobs.object
+                  .dropdown<Option<double>>(
                     label: 'Height',
                     options: <Option<double>>[
                       Option(context.height * 0.25, '25% Screen Height'),
@@ -35,8 +35,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              width: context.knobs
-                  .list<Option<double>>(
+              width: context.knobs.object
+                  .dropdown<Option<double>>(
                     label: 'Width',
                     options: <Option<double>>[
                       Option(context.width * 0.25, '25% Screen Width'),
@@ -46,8 +46,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              fit: context.knobs
-                  .list<Option<BoxFit?>>(
+              fit: context.knobs.object
+                  .dropdown<Option<BoxFit?>>(
                     label: 'Box Fit',
                     options: <Option<BoxFit?>>[
                       Option(BoxFit.none, 'None'),
@@ -61,8 +61,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              shape: context.knobs
-                  .list<Option<BoxShape?>>(
+              shape: context.knobs.object
+                  .dropdown<Option<BoxShape?>>(
                     label: 'Shape',
                     options: <Option<BoxShape?>>[
                       Option(null, 'None'),
@@ -72,8 +72,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              borderRadius: context.knobs
-                  .list<Option<BorderRadius?>>(
+              borderRadius: context.knobs.object
+                  .dropdown<Option<BorderRadius?>>(
                     label: 'Border Radius',
                     options: <Option<BorderRadius?>>[
                       Option(null, 'None'),
@@ -100,8 +100,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              autoSizeImage: context.knobs
-                  .list<Option<bool>>(
+              autoSizeImage: context.knobs.object
+                  .dropdown<Option<bool>>(
                     label: 'Auto Size Image',
                     options: <Option<bool>>[
                       Option(false, 'No'),
@@ -110,8 +110,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              loadingWidget: context.knobs
-                  .list<Option<Widget?>>(
+              loadingWidget: context.knobs.object
+                  .dropdown<Option<Widget?>>(
                     label: 'Loading Widget',
                     options: <Option<Widget?>>[
                       Option(null, 'No loading widget'),
@@ -123,8 +123,8 @@ class NetworkImageWidget extends StatelessWidget {
                     labelBuilder: (option) => option.label,
                   )
                   .value,
-              errorWidget: context.knobs
-                  .list<Option<Widget?>>(
+              errorWidget: context.knobs.object
+                  .dropdown<Option<Widget?>>(
                     label: 'Error Widget',
                     options: <Option<Widget?>>[
                       Option(null, 'No error widget'),

@@ -3,15 +3,15 @@ description: Provides dependency injection for the app
 publish_to: 'none'
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 resolution: workspace
 
 dependencies:
   flutter:
     sdk: flutter
-  get_it: ^8.0.3
-  meta: ^1.15.0
+  get_it: ^8.2.0
+  meta: ^1.16.0
 
 dev_dependencies:
   flutter_test:

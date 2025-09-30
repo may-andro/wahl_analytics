@@ -19,8 +19,8 @@ class LoadingWidget extends StatelessWidget {
       title: 'DSLoadingWidget',
       child: Center(
         child: DSLoadingWidget(
-          size: context.knobs
-              .list<Option<double>>(
+          size: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Size',
                 options: <Option<double>>[
                   Option(16, '16 pixel'),

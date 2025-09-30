@@ -20,8 +20,8 @@ class CarousalWidget extends StatelessWidget {
       child: Center(
         child: DSCarousalWidget(
           height: context.height * 0.5,
-          viewportFraction: context.knobs
-              .list<Option<double>>(
+          viewportFraction: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Viewport Fraction',
                 options: [
                   Option(1.0, '1.0'),
@@ -31,15 +31,15 @@ class CarousalWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          enableInfiniteScroll: context.knobs
-              .list<Option<bool>>(
+          enableInfiniteScroll: context.knobs.object
+              .dropdown<Option<bool>>(
                 label: 'Enable Infinite Scroll ?',
                 options: [Option(false, 'No'), Option(true, 'Yes')],
                 labelBuilder: (option) => option.label,
               )
               .value,
-          autoPlay: context.knobs
-              .list<Option<bool>>(
+          autoPlay: context.knobs.object
+              .dropdown<Option<bool>>(
                 label: 'Auto Play ?',
                 options: [Option(false, 'No'), Option(true, 'Yes')],
                 labelBuilder: (option) => option.label,
@@ -55,8 +55,8 @@ class CarousalWidget extends StatelessWidget {
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
-          scrollDirection: context.knobs
-              .list<Option<Axis>>(
+          scrollDirection: context.knobs.object
+              .dropdown<Option<Axis>>(
                 label: 'Scroll Direction',
                 options: [
                   Option(Axis.horizontal, 'Axis Horizontal'),
@@ -65,8 +65,8 @@ class CarousalWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          scrollPhysics: context.knobs
-              .list<Option<ScrollPhysics?>>(
+          scrollPhysics: context.knobs.object
+              .dropdown<Option<ScrollPhysics?>>(
                 label: 'Scroll Physics',
                 options: [
                   Option(null, 'None [Default]'),

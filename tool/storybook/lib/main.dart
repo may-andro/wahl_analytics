@@ -1,11 +1,11 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:storybook/assets/assets.gen.dart';
 import 'package:storybook/main.directories.g.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:package_info_plus/package_info_plus.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,10 +33,10 @@ class StorybookApp extends StatelessWidget {
                     if (snapshot.hasData && snapshot.data != null) {
                       return Text('Version: ${snapshot.data!.version}');
                     }
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   },
                 ),
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   fontSize: 12.0,
                   fontWeight: FontWeight.w500,
                   height: 1.33,
@@ -46,7 +46,7 @@ class StorybookApp extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
             ],
             title: SvgPicture.asset(
               (context.isDarkMode
@@ -61,7 +61,11 @@ class StorybookApp extends StatelessWidget {
         );
       },
       addons: [
-        DeviceFrameAddon(devices: [...Devices.ios.all, ...Devices.android.all]),
+        ViewportAddon([
+          Viewports.none,
+          ...IosViewports.all,
+          ...AndroidViewports.all,
+        ]),
         TextScaleAddon(initialScale: 1),
         ThemeAddon<_CustomTheme>(
           themes: [
