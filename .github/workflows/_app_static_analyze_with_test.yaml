@@ -44,7 +44,7 @@ jobs:
         run: flutter pub get
 
       - name: Format the Dart code
-        run: dart format lib test --set-exit-if-changed
+        run: dart format . --set-exit-if-changed
 
       - name: Run code generator
         run: melos gen_app --no-select
