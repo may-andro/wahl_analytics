@@ -1,4 +1,4 @@
-*.dart text=auto eol=lf
+*.dart text eol=lf
 *.g.dart linguist-generated=true
 *.gen.dart linguist-generated=true
 lib/l10n/generated linguist-generated=true
