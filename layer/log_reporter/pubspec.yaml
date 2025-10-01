@@ -3,7 +3,7 @@ description: Provides support for generating logs for the app
 publish_to: 'none'
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 resolution: workspace
 
@@ -14,7 +14,7 @@ dependencies:
     path: ../firebase
   flutter:
     sdk: flutter
-  logger: ^2.6.0
+  logger: ^2.6.1
 
 dev_dependencies:
   flutter_test:

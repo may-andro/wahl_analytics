@@ -3,7 +3,7 @@ description: Provides base classes for making use cases for the app
 publish_to: 'none'
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 resolution: workspace
 
@@ -14,7 +14,7 @@ dependencies:
   equatable: ^2.0.7
   flutter:
     sdk: flutter
-  meta: ^1.15.0
+  meta: ^1.16.0
 
 dev_dependencies:
   flutter_test:

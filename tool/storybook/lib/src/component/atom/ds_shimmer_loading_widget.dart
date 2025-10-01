@@ -19,8 +19,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
       title: 'DSShimmerLoadingWidget',
       child: Center(
         child: DSShimmerLoadingWidget(
-          height: context.knobs
-              .list<Option<double>>(
+          height: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Height',
                 options: <Option<double>>[
                   Option(context.height * 0.25, '25% Screen Height'),
@@ -30,8 +30,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          width: context.knobs
-              .list<Option<double>>(
+          width: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Width',
                 options: <Option<double>>[
                   Option(context.width * 0.25, '25% Screen Width'),

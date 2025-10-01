@@ -16,7 +16,7 @@ on:
         required: true
 
 env:
-  FLUTTER_VERSION: 3.32.2
+  FLUTTER_VERSION: 3.35.4
 
 jobs:
   analyze-module:
@@ -53,10 +53,6 @@ jobs:
       - name: Run code generators
         if: inputs.has_build_runner == 'true'
         run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Get dart dependencies
-        if: inputs.has_build_runner == 'false'
-        run: flutter pub get
 
       - name: Statically analyze the Dart code
         run: flutter analyze

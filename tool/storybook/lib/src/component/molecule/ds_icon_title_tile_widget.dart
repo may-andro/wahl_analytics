@@ -27,25 +27,24 @@ Widget build(BuildContext context) {
                 'Lorem Ipsum has been the industry standard dummy text ever since the 1500s, '
                 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
           ),
-          textColor: context.knobs.list(
+          textColor: context.knobs.object.dropdown(
             label: 'Text Colors',
             options: colors,
             labelBuilder: (color) => colorMap[color] ?? 'Not found',
             initialOption: colors[12],
           ),
-          style: context.knobs.list(
+          style: context.knobs.object.dropdown(
             label: 'Style',
             options: textStyles,
             labelBuilder: (style) => textStyleMap[style] ?? 'Not found',
           ),
-          icon: context.knobs.list(
+          icon: context.knobs.object.dropdown(
             label: 'Icon',
             options: iconMap.keys.toList(),
             labelBuilder: (icon) => iconMap[icon] ?? 'Not found',
           ),
           iconSize: context.knobs.doubleOrNull.slider(
             label: 'Icon Size',
-            min: 0,
             max: 100,
           ),
         ),

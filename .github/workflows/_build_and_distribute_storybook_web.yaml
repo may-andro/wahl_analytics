@@ -15,7 +15,7 @@ on:
         required: true
 
 env:
-  FLUTTER_VERSION: 3.32.2
+  FLUTTER_VERSION: 3.35.4
   STORYBOOK_PATH: ./tool/storybook
 
 jobs:

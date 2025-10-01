@@ -21,13 +21,13 @@ class SpaceDimension extends StatelessWidget {
           color: context.colorPalette.brand.primary.color,
           child: SizedBox(
             height: context.space(
-              factor: context.knobs.list(
+              factor: context.knobs.object.dropdown(
                 label: 'Factor',
                 options: [1, 5, 10, 20, 30],
               ),
             ),
             width: context.space(
-              factor: context.knobs.list(
+              factor: context.knobs.object.dropdown(
                 label: 'Factor',
                 options: [1, 5, 10, 20, 30],
               ),

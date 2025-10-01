@@ -25,8 +25,8 @@ class AnimatedTextWidget extends StatelessWidget {
               'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.',
               'Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen.',
             ],
-            color: context.knobs
-                .list<Option<DSColor>>(
+            color: context.knobs.object
+                .dropdown<Option<DSColor>>(
                   label: 'Text Color',
                   options: <Option<DSColor>>[
                     Option(context.colorPalette.neutral.grey9, 'Grey Level 9'),
@@ -37,8 +37,8 @@ class AnimatedTextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            style: context.knobs
-                .list<Option<DSTextStyle>>(
+            style: context.knobs.object
+                .dropdown<Option<DSTextStyle>>(
                   label: 'Typography',
                   options: <Option<DSTextStyle>>[
                     Option(context.typography.titleSmall, 'Title Small'),

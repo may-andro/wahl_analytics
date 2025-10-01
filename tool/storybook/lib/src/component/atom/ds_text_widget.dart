@@ -28,8 +28,8 @@ class TextWidget extends StatelessWidget {
           padding: EdgeInsets.all(context.space(factor: 2)),
           child: DSTextWidget(
             _sampleText,
-            color: context.knobs
-                .list<Option<DSColor>>(
+            color: context.knobs.object
+                .dropdown<Option<DSColor>>(
                   label: 'Color',
                   options: <Option<DSColor>>[
                     Option(context.colorPalette.brand.primary, 'Brand Primary'),
@@ -46,8 +46,8 @@ class TextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            style: context.knobs
-                .list<Option<DSTextStyle>>(
+            style: context.knobs.object
+                .dropdown<Option<DSTextStyle>>(
                   label: 'Text Style',
                   description: 'Select the style',
                   options: [
@@ -70,8 +70,8 @@ class TextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            decoration: context.knobs
-                .list<Option<TextDecoration>>(
+            decoration: context.knobs.object
+                .dropdown<Option<TextDecoration>>(
                   label: 'Text Decoration',
                   description: 'Select the style',
                   options: [
@@ -83,8 +83,8 @@ class TextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            softWrap: context.knobs
-                .list<Option<bool?>>(
+            softWrap: context.knobs.object
+                .dropdown<Option<bool?>>(
                   label: 'SoftWrap',
                   description: 'Select the style',
                   options: [
@@ -95,8 +95,8 @@ class TextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            textOverflow: context.knobs
-                .list<Option<TextOverflow?>>(
+            textOverflow: context.knobs.object
+                .dropdown<Option<TextOverflow?>>(
                   label: 'TextOverflow',
                   description: 'Select the style',
                   options: [
@@ -109,8 +109,8 @@ class TextWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            maxLines: context.knobs
-                .list<Option<int?>>(
+            maxLines: context.knobs.object
+                .dropdown<Option<int?>>(
                   label: 'Max Lines',
                   description: 'Select the style',
                   options: [

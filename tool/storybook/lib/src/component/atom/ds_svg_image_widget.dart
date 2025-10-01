@@ -19,8 +19,8 @@ class SvgImageWidget extends StatelessWidget {
       title: 'DSSvgImageWidget',
       child: Center(
         child: DSSvgImageWidget(
-          assetImage: context.knobs
-              .list<Option<DSSvgAssetImage>>(
+          assetImage: context.knobs.object
+              .dropdown<Option<DSSvgAssetImage>>(
                 label: 'Asset Image',
                 options: <Option<DSSvgAssetImage>>[
                   Option(DSSvgAssetImage.logo, 'Logo'),
@@ -30,8 +30,8 @@ class SvgImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          height: context.knobs
-              .list<Option<double?>>(
+          height: context.knobs.object
+              .dropdown<Option<double?>>(
                 label: 'Height',
                 options: <Option<double?>>[
                   Option(null, 'Not Defined'),
@@ -42,8 +42,8 @@ class SvgImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          width: context.knobs
-              .list<Option<double?>>(
+          width: context.knobs.object
+              .dropdown<Option<double?>>(
                 label: 'Width',
                 options: <Option<double?>>[
                   Option(null, 'Not Defined'),
@@ -54,8 +54,8 @@ class SvgImageWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          fit: context.knobs
-              .list<Option<BoxFit>>(
+          fit: context.knobs.object
+              .dropdown<Option<BoxFit>>(
                 label: 'Box Fit',
                 options: <Option<BoxFit>>[
                   Option(BoxFit.contain, 'Contain'),

@@ -32,8 +32,8 @@ class ButtonWidget extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            variant: context.knobs
-                .list<Option<DSButtonVariant>>(
+            variant: context.knobs.object
+                .dropdown<Option<DSButtonVariant>>(
                   label: 'Variant',
                   options: [
                     Option(DSButtonVariant.primary, 'Primary'),
@@ -45,8 +45,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            border: context.knobs
-                .list<Option<DSButtonBorder>>(
+            border: context.knobs.object
+                .dropdown<Option<DSButtonBorder>>(
                   label: 'Border',
                   options: [
                     Option(DSButtonBorder.regular, 'Regular'),
@@ -55,8 +55,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            isDisabled: context.knobs
-                .list<Option<bool>>(
+            isDisabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Is Disabled',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -65,8 +65,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            isLoading: context.knobs
-                .list<Option<bool>>(
+            isLoading: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Is Loading?',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -75,8 +75,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            size: context.knobs
-                .list<Option<DSButtonSize>>(
+            size: context.knobs.object
+                .dropdown<Option<DSButtonSize>>(
                   label: 'Size',
                   options: <Option<DSButtonSize>>[
                     Option(DSButtonSize.large, 'Large'),
@@ -86,8 +86,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            icon: context.knobs
-                .list<Option<IconData?>>(
+            icon: context.knobs.object
+                .dropdown<Option<IconData?>>(
                   label: 'Icon',
                   options: [
                     Option(null, 'None'),
@@ -96,8 +96,8 @@ class ButtonWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            iconDirection: context.knobs
-                .list<Option<DSButtonIconDirection>>(
+            iconDirection: context.knobs.object
+                .dropdown<Option<DSButtonIconDirection>>(
                   label: 'Icon Direction',
                   options: [
                     Option(DSButtonIconDirection.left, 'Left'),

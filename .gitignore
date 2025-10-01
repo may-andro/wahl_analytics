@@ -60,7 +60,7 @@ test-results.json
 test-results-golden.json
 
 # build_runner generated files
-**.g.dart
+#**.g.dart
 
 # ignore signing keystore files
 /android/app/.signing

@@ -22,8 +22,8 @@ class VerticalDividerWidget extends StatelessWidget {
       title: 'DSVerticalDividerWidget',
       child: Center(
         child: DSVerticalDividerWidget(
-          color: context.knobs
-              .list<Option<DSColor>>(
+          color: context.knobs.object
+              .dropdown<Option<DSColor>>(
                 label: 'Color',
                 options: <Option<DSColor>>[
                   Option(context.colorPalette.brand.primary, 'Brand Primary'),
@@ -37,8 +37,8 @@ class VerticalDividerWidget extends StatelessWidget {
                 labelBuilder: (option) => option.label,
               )
               .value,
-          thickness: context.knobs
-              .list<Option<double>>(
+          thickness: context.knobs.object
+              .dropdown<Option<double>>(
                 label: 'Thickness',
                 options: <Option<double>>[
                   Option(1, '1 pixel'),

@@ -23,8 +23,8 @@ class MasonStaggeredGridWidget extends StatelessWidget {
       child: Center(
         child: SingleChildScrollView(
           child: DSMasonStaggeredGridWidget(
-            crossAxisCount: context.knobs
-                .list<Option<int>>(
+            crossAxisCount: context.knobs.object
+                .dropdown<Option<int>>(
                   label: 'Cross Axis Count',
                   options: [
                     Option(1, '1'),
@@ -36,8 +36,8 @@ class MasonStaggeredGridWidget extends StatelessWidget {
                 )
                 .value,
             itemCount: 10,
-            mainAxisSpacing: context.knobs
-                .list<Option<double>>(
+            mainAxisSpacing: context.knobs.object
+                .dropdown<Option<double>>(
                   label: 'Main Axis Spacing',
                   options: [
                     Option(0.0, '0.0 [default]'),
@@ -48,8 +48,8 @@ class MasonStaggeredGridWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            crossAxisSpacing: context.knobs
-                .list<Option<double>>(
+            crossAxisSpacing: context.knobs.object
+                .dropdown<Option<double>>(
                   label: 'Cross Axis Spacing',
                   options: [
                     Option(0.0, '0.0 [default]'),

@@ -3,7 +3,7 @@ description: Provides all firebase related features for the app.
 publish_to: 'none'
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.2
 
 resolution: workspace
 

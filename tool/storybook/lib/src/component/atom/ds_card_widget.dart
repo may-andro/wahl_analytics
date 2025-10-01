@@ -21,8 +21,8 @@ class CardWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(context.space(factor: 2)),
           child: DsCardWidget(
-            backgroundColor: context.knobs
-                .list<Option<DSColor?>>(
+            backgroundColor: context.knobs.object
+                .dropdown<Option<DSColor?>>(
                   label: 'Background Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
@@ -56,8 +56,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            splashColor: context.knobs
-                .list<Option<DSColor?>>(
+            splashColor: context.knobs.object
+                .dropdown<Option<DSColor?>>(
                   label: 'Splash Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
@@ -75,8 +75,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            shadowColor: context.knobs
-                .list<Option<DSColor?>>(
+            shadowColor: context.knobs.object
+                .dropdown<Option<DSColor?>>(
                   label: 'Shadow Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
@@ -94,8 +94,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            surfaceTintColor: context.knobs
-                .list<Option<DSColor?>>(
+            surfaceTintColor: context.knobs.object
+                .dropdown<Option<DSColor?>>(
                   label: 'Surface Tine Color',
                   options: <Option<DSColor?>>[
                     Option(null, 'None'),
@@ -113,8 +113,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            radius: context.knobs
-                .list<Option<DSRadius?>>(
+            radius: context.knobs.object
+                .dropdown<Option<DSRadius?>>(
                   label: 'Radius',
                   options: <Option<DSRadius?>>[
                     Option(null, 'None'),
@@ -126,8 +126,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            elevation: context.knobs
-                .list<Option<DSElevation?>>(
+            elevation: context.knobs.object
+                .dropdown<Option<DSElevation?>>(
                   label: 'Elevation',
                   options: <Option<DSElevation?>>[
                     Option(null, 'None'),
@@ -139,8 +139,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            backgroundColorOpacity: context.knobs
-                .list<Option<double>>(
+            backgroundColorOpacity: context.knobs.object
+                .dropdown<Option<double>>(
                   label: 'Background Color Opacity',
                   options: <Option<double>>[
                     Option(1.0, '100% Opacity'),
@@ -152,8 +152,8 @@ class CardWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            margin: context.knobs
-                .list<Option<EdgeInsetsGeometry?>>(
+            margin: context.knobs.object
+                .dropdown<Option<EdgeInsetsGeometry?>>(
                   label: 'Margin',
                   options: <Option<EdgeInsetsGeometry?>>[
                     Option(null, 'None'),

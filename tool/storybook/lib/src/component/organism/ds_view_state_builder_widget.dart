@@ -33,8 +33,8 @@ class ViewStateBuilderWidget extends StatelessWidget {
                 padding: EdgeInsets.all(context.space(factor: 4)),
                 child: Center(
                   child: DSViewStateBuilderWidget(
-                    state: context.knobs
-                        .list<Option<DSViewState>>(
+                    state: context.knobs.object
+                        .dropdown<Option<DSViewState>>(
                           label: 'View State',
                           options: <Option<DSViewState>>[
                             Option(DSViewState.idle, 'Idle'),
@@ -47,8 +47,8 @@ class ViewStateBuilderWidget extends StatelessWidget {
                     loadingBuilder: (_) {
                       return DSLoadingWidget(size: context.space(factor: 5));
                     },
-                    errorBuilder: context.knobs
-                        .list<Option<WidgetBuilder?>>(
+                    errorBuilder: context.knobs.object
+                        .dropdown<Option<WidgetBuilder?>>(
                           label: 'Error Widget',
                           options: [
                             Option(null, 'Default'),

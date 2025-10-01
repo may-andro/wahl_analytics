@@ -40,8 +40,8 @@ class CheckboxFormFieldWidget extends StatelessWidget {
               }
               return null;
             },
-            isDisabled: context.knobs
-                .list<Option<bool>>(
+            isDisabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Disabled',
                   options: <Option<bool>>[
                     Option(false, 'No'),
@@ -50,8 +50,8 @@ class CheckboxFormFieldWidget extends StatelessWidget {
                   labelBuilder: (option) => option.label,
                 )
                 .value,
-            isTriStateEnabled: context.knobs
-                .list<Option<bool>>(
+            isTriStateEnabled: context.knobs.object
+                .dropdown<Option<bool>>(
                   label: 'Is TriState Enabled',
                   options: <Option<bool>>[
                     Option(false, 'No'),

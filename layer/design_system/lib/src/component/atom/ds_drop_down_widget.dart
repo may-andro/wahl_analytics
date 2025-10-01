@@ -52,7 +52,7 @@ class _DSDropDownWidgetState<T> extends State<DSDropDownWidget<T>> {
         DropdownButtonFormField<T>(
           items: widget.items,
           selectedItemBuilder: widget.selectedItemBuilder,
-          value: widget.value,
+          initialValue: widget.value,
           decoration: _decorateInputDecoration(hint: widget.hintText),
           focusNode: widget.focusNode,
           onChanged: widget.onChanged,

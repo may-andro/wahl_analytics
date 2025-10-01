@@ -29,8 +29,8 @@ class VerticalSpacerWidget extends StatelessWidget {
               ),
             ),
             DSVerticalSpacerWidget(
-              context.knobs
-                  .list<Option<double>>(
+              context.knobs.object
+                  .dropdown<Option<double>>(
                     label: 'Space Factor',
                     options: <Option<double>>[
                       Option(1, 'Factor 1'),

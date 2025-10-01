@@ -41,6 +41,6 @@ analyzer:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
     - '**/*.gen.dart'
-    - tool/**
+    - 'tool/**'
 
 

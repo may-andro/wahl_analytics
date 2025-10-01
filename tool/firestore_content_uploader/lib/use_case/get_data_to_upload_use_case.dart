@@ -21,20 +21,16 @@ class GetDataToUploadUseCase {
     return {'fields': firestoreJson};
   }
 
-// Helper function to convert each value to Firestore format
+  // Helper function to convert each value to Firestore format
   dynamic _convertValueToFirestore(dynamic value) {
     if (value is Map<String, dynamic>) {
       // For nested maps, we recursively convert the map into `mapValue` structure
       return {
-        'mapValue': {
-          'fields': _convertToFirestoreFormat(value)['fields'],
-        },
+        'mapValue': {'fields': _convertToFirestoreFormat(value)['fields']},
       };
     } else if (value is String) {
       // Convert string values to `stringValue`
-      return {
-        'stringValue': value,
-      };
+      return {'stringValue': value};
     } else if (value is int) {
       // Convert integer values to `integerValue`
       return {
@@ -43,15 +39,14 @@ class GetDataToUploadUseCase {
       };
     } else if (value is bool) {
       // Convert boolean values to `booleanValue`
-      return {
-        'booleanValue': value,
-      };
+      return {'booleanValue': value};
     } else if (value is List) {
       // Convert lists to `arrayValue`
       return {
         'arrayValue': {
-          'values':
-              value.map((item) => _convertValueToFirestore(item)).toList(),
+          'values': value
+              .map((item) => _convertValueToFirestore(item))
+              .toList(),
         },
       };
     }
