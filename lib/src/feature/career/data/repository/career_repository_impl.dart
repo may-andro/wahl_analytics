@@ -40,7 +40,7 @@ class CareerRepositoryImpl implements CareerRepository {
           .copyWith(resumeName: fileNameWithExtension, resumeUrl: resumeUrl)
           .toJson();
 
-      return _firestoreController.addDocumentToCollection(
+      await _firestoreController.addDocumentToCollection(
         collectionPath: _collectionName,
         documentPath: fileNameWithExtension,
         data: dataMap,

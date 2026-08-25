@@ -15,8 +15,6 @@ linter:
     avoid_futureor_void: false
 
 analyzer:
-  plugins:
-    - custom_lint
   language:
     strict-raw-types: true
     strict-inference: true
@@ -42,5 +40,12 @@ analyzer:
     - '**/*.freezed.dart'
     - '**/*.gen.dart'
     - 'tool/**'
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
 
