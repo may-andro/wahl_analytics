@@ -16,7 +16,8 @@ class ServiceListWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: services.length,
-      onReorderItem: (int oldIndex, int newIndex) {
+      // ignore: deprecated_member_use
+      onReorder: (int oldIndex, int newIndex) {
         if (oldIndex < newIndex) {
           newIndex -= 1;
         }
